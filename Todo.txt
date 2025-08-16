@@ -1,0 +1,13 @@
+Todo
+- Visualize 3d data from 3 cameras
+    - load intrinsics and extrinsics DONE
+    - load data and target           DONE?
+    - project target onto data using int/ext DONE?
+    - Make sure all the input args for the vizualization of calculated in main
+    - modify vizulaizer to allow on screen modification of int/ext while updating error and vizuals
+- Generate perfect synthetic 3d data
+- get very low error initializing with intrinsics used to generate data
+- get low error initializing close, but not exactly the intriniscs used to gerenate data
+- gererate synthetic data 3d data with noise
+- get reasonable error initializing with intrinsics used to generate data
+- get reasonable error initializing close, but not exactly the intriniscs used to gerenate data

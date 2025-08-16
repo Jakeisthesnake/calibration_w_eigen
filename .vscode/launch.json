@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug calibrate_2_cameras",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/launch_wrapper.sh",
+        "args": [
+            "${fileDirname}/${fileBasenameNoExtension} /home/jake/atest/synthetic_data.csv"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "externalConsole": true,
+        "MIMode": "gdb",
+        "miDebuggerPath": "/usr/bin/gdb"
+      }
+    ]
+  }
+  
