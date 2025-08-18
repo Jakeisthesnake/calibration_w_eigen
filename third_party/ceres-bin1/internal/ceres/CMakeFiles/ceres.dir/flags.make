@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DCERES_SUITESPARSE_VERSION=\"5.10.1\" -DGFLAGS_IS_A_DLL=0 -DGOOGLE_GLOG_DLL_DECL="" -DGOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=""
 
-CXX_INCLUDES = -I/home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include -I/home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal -I/home/jake/calibration_w_eigan/third_party/ceres-bin1/include -isystem /usr/include/suitesparse -isystem /usr/include/eigen3
+CXX_INCLUDES = -I/home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include -I/home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal -I/home/jake/calibration_w_eigen/third_party/ceres-bin1/include -isystem /usr/include/suitesparse -isystem /usr/include/eigen3
 
 CXX_FLAGS = -O3 -march=native -DNDEBUG  -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
 

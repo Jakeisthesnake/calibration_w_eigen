@@ -57,10 +57,10 @@ RM = /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0
+CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jake/calibration_w_eigan/third_party/ceres-bin
+CMAKE_BINARY_DIR = /home/jake/calibration_w_eigen/third_party/ceres-bin
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles /home/jake/calibration_w_eigan/third_party/ceres-bin/examples/slam//CMakeFiles/progress.marks
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/slam/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles 0
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles /home/jake/calibration_w_eigen/third_party/ceres-bin/examples/slam//CMakeFiles/progress.marks
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/slam/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/slam/clean
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/slam/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,17 +158,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/slam/preinstall
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/slam/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/slam/preinstall
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/slam/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -195,6 +195,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

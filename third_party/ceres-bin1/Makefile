@@ -57,10 +57,10 @@ RM = /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0
+CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jake/calibration_w_eigan/third_party/ceres-bin1
+CMAKE_BINARY_DIR = /home/jake/calibration_w_eigen/third_party/ceres-bin1
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/third_party/ceres-bin1/CMakeFiles /home/jake/calibration_w_eigan/third_party/ceres-bin1//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/third_party/ceres-bin1/CMakeFiles /home/jake/calibration_w_eigen/third_party/ceres-bin1//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/third_party/ceres-bin1/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/third_party/ceres-bin1/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

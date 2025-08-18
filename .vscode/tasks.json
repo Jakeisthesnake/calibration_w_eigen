@@ -9,18 +9,18 @@
                 "-std=c++17",        
                 "-fdiagnostics-color=always",
                 "-g",
-                "-I/home/jake/calibration_w_eigan/third_party",
-                "-I/home/jake/calibration_w_eigan/third_party/Pangolin/install/include",
-                "-I/home/jake/calibration_w_eigan/third_party/ceres-bin/install/include",
-                "-I/home/jake/calibration_w_eigan/third_party/eigen-3.4.0",
+                "-I/home/jake/calibration_w_eigen/third_party",
+                "-I/home/jake/calibration_w_eigen/third_party/Pangolin/install/include",
+                "-I/home/jake/calibration_w_eigen/third_party/ceres-bin/install/include",
+                "-I/home/jake/calibration_w_eigen/third_party/eigen-3.4.0",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 
 
                 // ✅ Linker paths
-                "-L/home/jake/calibration_w_eigan/third_party/Pangolin/install/lib",
-                "-L/home/jake/calibration_w_eigan/third_party/ceres-bin/install/lib",
+                "-L/home/jake/calibration_w_eigen/third_party/Pangolin/install/lib",
+                "-L/home/jake/calibration_w_eigen/third_party/ceres-bin/install/lib",
 
                 // ✅ Pangolin libraries
                 "-lpango_core",

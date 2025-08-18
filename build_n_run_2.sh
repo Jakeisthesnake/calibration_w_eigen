@@ -10,7 +10,7 @@ cmake ..
 make -j$(nproc)
 
 # Set Pangolin library path
-PANGOLIN_LIB="/home/jake/calibration_w_eigan/third_party/Pangolin/install/lib"
+PANGOLIN_LIB="/home/jake/calibration_w_eigen/third_party/Pangolin/install/lib"
 
 # Update library cache
 echo "Updating library cache..."

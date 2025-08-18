@@ -1,5 +1,5 @@
 examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o: \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/curve_fitting.c \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/curve_fitting.c \
  /usr/include/stdc-predef.h /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -37,7 +37,7 @@ examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o: \
  /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/c_api.h \
- /home/jake/calibration_w_eigan/third_party/ceres-bin/include/ceres/internal/export.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/c_api.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-bin/include/ceres/internal/export.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h

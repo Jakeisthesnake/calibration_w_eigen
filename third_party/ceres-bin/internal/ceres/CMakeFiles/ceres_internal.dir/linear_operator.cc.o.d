@@ -1,8 +1,8 @@
 internal/ceres/CMakeFiles/ceres_internal.dir/linear_operator.cc.o: \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/linear_operator.cc \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/linear_operator.cc \
  /usr/include/stdc-predef.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/linear_operator.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/eigen.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/linear_operator.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/eigen.h \
  /usr/include/eigen3/Eigen/Core \
  /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
  /usr/include/eigen3/Eigen/src/Core/util/Macros.h \
@@ -351,10 +351,10 @@ internal/ceres/CMakeFiles/ceres_internal.dir/linear_operator.cc.o: \
  /usr/include/eigen3/Eigen/src/Core/StlIterators.h \
  /usr/include/eigen3/Eigen/src/Core/GlobalFunctions.h \
  /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h \
- /home/jake/calibration_w_eigan/third_party/ceres-bin/include/ceres/internal/export.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/types.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-bin/include/ceres/internal/export.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/types.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h \
  /usr/include/glog/logging.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \

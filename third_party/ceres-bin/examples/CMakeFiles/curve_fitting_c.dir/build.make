@@ -53,10 +53,10 @@ RM = /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0
+CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jake/calibration_w_eigan/third_party/ceres-bin
+CMAKE_BINARY_DIR = /home/jake/calibration_w_eigen/third_party/ceres-bin
 
 # Include any dependencies generated for this target.
 include examples/CMakeFiles/curve_fitting_c.dir/depend.make
@@ -70,18 +70,18 @@ include examples/CMakeFiles/curve_fitting_c.dir/progress.make
 include examples/CMakeFiles/curve_fitting_c.dir/flags.make
 
 examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o: examples/CMakeFiles/curve_fitting_c.dir/flags.make
-examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o: /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/curve_fitting.c
+examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o: /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/curve_fitting.c
 examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o: examples/CMakeFiles/curve_fitting_c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o -MF CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o.d -o CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o -c /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/curve_fitting.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o"
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o -MF CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o.d -o CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o -c /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/curve_fitting.c
 
 examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/curve_fitting_c.dir/curve_fitting.c.i"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/curve_fitting.c > CMakeFiles/curve_fitting_c.dir/curve_fitting.c.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/curve_fitting.c > CMakeFiles/curve_fitting_c.dir/curve_fitting.c.i
 
 examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/curve_fitting_c.dir/curve_fitting.c.s"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/curve_fitting.c -o CMakeFiles/curve_fitting_c.dir/curve_fitting.c.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/curve_fitting.c -o CMakeFiles/curve_fitting_c.dir/curve_fitting.c.s
 
 # Object files for target curve_fitting_c
 curve_fitting_c_OBJECTS = \
@@ -106,18 +106,18 @@ bin/curve_fitting_c: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
 bin/curve_fitting_c: /usr/lib/x86_64-linux-gnu/libtbb.so
 bin/curve_fitting_c: /usr/lib/x86_64-linux-gnu/libopenblas.so
 bin/curve_fitting_c: examples/CMakeFiles/curve_fitting_c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bin/curve_fitting_c"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/curve_fitting_c.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bin/curve_fitting_c"
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/curve_fitting_c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 examples/CMakeFiles/curve_fitting_c.dir/build: bin/curve_fitting_c
 .PHONY : examples/CMakeFiles/curve_fitting_c.dir/build
 
 examples/CMakeFiles/curve_fitting_c.dir/clean:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -P CMakeFiles/curve_fitting_c.dir/cmake_clean.cmake
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -P CMakeFiles/curve_fitting_c.dir/cmake_clean.cmake
 .PHONY : examples/CMakeFiles/curve_fitting_c.dir/clean
 
 examples/CMakeFiles/curve_fitting_c.dir/depend:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples /home/jake/calibration_w_eigan/third_party/ceres-bin /home/jake/calibration_w_eigan/third_party/ceres-bin/examples /home/jake/calibration_w_eigan/third_party/ceres-bin/examples/CMakeFiles/curve_fitting_c.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples /home/jake/calibration_w_eigen/third_party/ceres-bin /home/jake/calibration_w_eigen/third_party/ceres-bin/examples /home/jake/calibration_w_eigen/third_party/ceres-bin/examples/CMakeFiles/curve_fitting_c.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : examples/CMakeFiles/curve_fitting_c.dir/depend
 

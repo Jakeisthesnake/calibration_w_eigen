@@ -57,10 +57,10 @@ RM = /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0
+CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jake/calibration_w_eigan/third_party/ceres-bin1
+CMAKE_BINARY_DIR = /home/jake/calibration_w_eigen/third_party/ceres-bin1
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/third_party/ceres-bin1/CMakeFiles /home/jake/calibration_w_eigan/third_party/ceres-bin1/internal/ceres//CMakeFiles/progress.marks
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/third_party/ceres-bin1/CMakeFiles 0
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/third_party/ceres-bin1/CMakeFiles /home/jake/calibration_w_eigen/third_party/ceres-bin1/internal/ceres//CMakeFiles/progress.marks
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/third_party/ceres-bin1/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/clean
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/preinstall
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/preinstall
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/ceres_internal.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/ceres_internal.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/ceres_internal.dir/rule
 .PHONY : internal/ceres/CMakeFiles/ceres_internal.dir/rule
 
 # Convenience name for target.
@@ -182,12 +182,12 @@ ceres_internal: internal/ceres/CMakeFiles/ceres_internal.dir/rule
 
 # fast build rule for target.
 ceres_internal/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/build
 .PHONY : ceres_internal/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/ceres.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/ceres.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/ceres.dir/rule
 .PHONY : internal/ceres/CMakeFiles/ceres.dir/rule
 
 # Convenience name for target.
@@ -196,12 +196,12 @@ ceres: internal/ceres/CMakeFiles/ceres.dir/rule
 
 # fast build rule for target.
 ceres/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/build
 .PHONY : ceres/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/evaluation_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/evaluation_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/evaluation_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/evaluation_benchmark.dir/rule
 
 # Convenience name for target.
@@ -210,12 +210,12 @@ evaluation_benchmark: internal/ceres/CMakeFiles/evaluation_benchmark.dir/rule
 
 # fast build rule for target.
 evaluation_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/evaluation_benchmark.dir/build.make internal/ceres/CMakeFiles/evaluation_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/evaluation_benchmark.dir/build.make internal/ceres/CMakeFiles/evaluation_benchmark.dir/build
 .PHONY : evaluation_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/rule
 
 # Convenience name for target.
@@ -224,12 +224,12 @@ small_blas_gemv_benchmark: internal/ceres/CMakeFiles/small_blas_gemv_benchmark.d
 
 # fast build rule for target.
 small_blas_gemv_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build
 .PHONY : small_blas_gemv_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/rule
 
 # Convenience name for target.
@@ -238,12 +238,12 @@ small_blas_gemm_benchmark: internal/ceres/CMakeFiles/small_blas_gemm_benchmark.d
 
 # fast build rule for target.
 small_blas_gemm_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build
 .PHONY : small_blas_gemm_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/rule
 
 # Convenience name for target.
@@ -252,12 +252,12 @@ invert_psd_matrix_benchmark: internal/ceres/CMakeFiles/invert_psd_matrix_benchma
 
 # fast build rule for target.
 invert_psd_matrix_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build.make internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build.make internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build
 .PHONY : invert_psd_matrix_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/rule
 
 # Convenience name for target.
@@ -266,12 +266,12 @@ schur_eliminator_benchmark: internal/ceres/CMakeFiles/schur_eliminator_benchmark
 
 # fast build rule for target.
 schur_eliminator_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build.make internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build.make internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build
 .PHONY : schur_eliminator_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/jet_operator_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/jet_operator_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/jet_operator_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/jet_operator_benchmark.dir/rule
 
 # Convenience name for target.
@@ -280,12 +280,12 @@ jet_operator_benchmark: internal/ceres/CMakeFiles/jet_operator_benchmark.dir/rul
 
 # fast build rule for target.
 jet_operator_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build.make internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build.make internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build
 .PHONY : jet_operator_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/rule
 
 # Convenience name for target.
@@ -294,12 +294,12 @@ dense_linear_solver_benchmark: internal/ceres/CMakeFiles/dense_linear_solver_ben
 
 # fast build rule for target.
 dense_linear_solver_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build.make internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build.make internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build
 .PHONY : dense_linear_solver_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/spmv_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/spmv_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/spmv_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/spmv_benchmark.dir/rule
 
 # Convenience name for target.
@@ -308,12 +308,12 @@ spmv_benchmark: internal/ceres/CMakeFiles/spmv_benchmark.dir/rule
 
 # fast build rule for target.
 spmv_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/spmv_benchmark.dir/build.make internal/ceres/CMakeFiles/spmv_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/spmv_benchmark.dir/build.make internal/ceres/CMakeFiles/spmv_benchmark.dir/build
 .PHONY : spmv_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/rule
 
 # Convenience name for target.
@@ -322,12 +322,12 @@ parallel_vector_operations_benchmark: internal/ceres/CMakeFiles/parallel_vector_
 
 # fast build rule for target.
 parallel_vector_operations_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build
 .PHONY : parallel_vector_operations_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/parallel_for_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/parallel_for_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/parallel_for_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/parallel_for_benchmark.dir/rule
 
 # Convenience name for target.
@@ -336,12 +336,12 @@ parallel_for_benchmark: internal/ceres/CMakeFiles/parallel_for_benchmark.dir/rul
 
 # fast build rule for target.
 parallel_for_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build
 .PHONY : parallel_for_benchmark/fast
 
 # Convenience name for target.
 internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/rule
 .PHONY : internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/rule
 
 # Convenience name for target.
@@ -350,7 +350,7 @@ block_jacobi_preconditioner_benchmark: internal/ceres/CMakeFiles/block_jacobi_pr
 
 # fast build rule for target.
 block_jacobi_preconditioner_benchmark/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build.make internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build.make internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build
 .PHONY : block_jacobi_preconditioner_benchmark/fast
 
 accelerate_sparse.o: accelerate_sparse.cc.o
@@ -358,7 +358,7 @@ accelerate_sparse.o: accelerate_sparse.cc.o
 
 # target to build an object file
 accelerate_sparse.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/accelerate_sparse.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/accelerate_sparse.cc.o
 .PHONY : accelerate_sparse.cc.o
 
 accelerate_sparse.i: accelerate_sparse.cc.i
@@ -366,7 +366,7 @@ accelerate_sparse.i: accelerate_sparse.cc.i
 
 # target to preprocess a source file
 accelerate_sparse.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/accelerate_sparse.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/accelerate_sparse.cc.i
 .PHONY : accelerate_sparse.cc.i
 
 accelerate_sparse.s: accelerate_sparse.cc.s
@@ -374,7 +374,7 @@ accelerate_sparse.s: accelerate_sparse.cc.s
 
 # target to generate assembly for a file
 accelerate_sparse.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/accelerate_sparse.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/accelerate_sparse.cc.s
 .PHONY : accelerate_sparse.cc.s
 
 array_utils.o: array_utils.cc.o
@@ -382,7 +382,7 @@ array_utils.o: array_utils.cc.o
 
 # target to build an object file
 array_utils.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/array_utils.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/array_utils.cc.o
 .PHONY : array_utils.cc.o
 
 array_utils.i: array_utils.cc.i
@@ -390,7 +390,7 @@ array_utils.i: array_utils.cc.i
 
 # target to preprocess a source file
 array_utils.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/array_utils.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/array_utils.cc.i
 .PHONY : array_utils.cc.i
 
 array_utils.s: array_utils.cc.s
@@ -398,7 +398,7 @@ array_utils.s: array_utils.cc.s
 
 # target to generate assembly for a file
 array_utils.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/array_utils.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/array_utils.cc.s
 .PHONY : array_utils.cc.s
 
 block_evaluate_preparer.o: block_evaluate_preparer.cc.o
@@ -406,7 +406,7 @@ block_evaluate_preparer.o: block_evaluate_preparer.cc.o
 
 # target to build an object file
 block_evaluate_preparer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_evaluate_preparer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_evaluate_preparer.cc.o
 .PHONY : block_evaluate_preparer.cc.o
 
 block_evaluate_preparer.i: block_evaluate_preparer.cc.i
@@ -414,7 +414,7 @@ block_evaluate_preparer.i: block_evaluate_preparer.cc.i
 
 # target to preprocess a source file
 block_evaluate_preparer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_evaluate_preparer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_evaluate_preparer.cc.i
 .PHONY : block_evaluate_preparer.cc.i
 
 block_evaluate_preparer.s: block_evaluate_preparer.cc.s
@@ -422,7 +422,7 @@ block_evaluate_preparer.s: block_evaluate_preparer.cc.s
 
 # target to generate assembly for a file
 block_evaluate_preparer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_evaluate_preparer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_evaluate_preparer.cc.s
 .PHONY : block_evaluate_preparer.cc.s
 
 block_jacobi_preconditioner.o: block_jacobi_preconditioner.cc.o
@@ -430,7 +430,7 @@ block_jacobi_preconditioner.o: block_jacobi_preconditioner.cc.o
 
 # target to build an object file
 block_jacobi_preconditioner.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobi_preconditioner.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobi_preconditioner.cc.o
 .PHONY : block_jacobi_preconditioner.cc.o
 
 block_jacobi_preconditioner.i: block_jacobi_preconditioner.cc.i
@@ -438,7 +438,7 @@ block_jacobi_preconditioner.i: block_jacobi_preconditioner.cc.i
 
 # target to preprocess a source file
 block_jacobi_preconditioner.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobi_preconditioner.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobi_preconditioner.cc.i
 .PHONY : block_jacobi_preconditioner.cc.i
 
 block_jacobi_preconditioner.s: block_jacobi_preconditioner.cc.s
@@ -446,7 +446,7 @@ block_jacobi_preconditioner.s: block_jacobi_preconditioner.cc.s
 
 # target to generate assembly for a file
 block_jacobi_preconditioner.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobi_preconditioner.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobi_preconditioner.cc.s
 .PHONY : block_jacobi_preconditioner.cc.s
 
 block_jacobi_preconditioner_benchmark.o: block_jacobi_preconditioner_benchmark.cc.o
@@ -454,7 +454,7 @@ block_jacobi_preconditioner_benchmark.o: block_jacobi_preconditioner_benchmark.c
 
 # target to build an object file
 block_jacobi_preconditioner_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build.make internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/block_jacobi_preconditioner_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build.make internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/block_jacobi_preconditioner_benchmark.cc.o
 .PHONY : block_jacobi_preconditioner_benchmark.cc.o
 
 block_jacobi_preconditioner_benchmark.i: block_jacobi_preconditioner_benchmark.cc.i
@@ -462,7 +462,7 @@ block_jacobi_preconditioner_benchmark.i: block_jacobi_preconditioner_benchmark.c
 
 # target to preprocess a source file
 block_jacobi_preconditioner_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build.make internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/block_jacobi_preconditioner_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build.make internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/block_jacobi_preconditioner_benchmark.cc.i
 .PHONY : block_jacobi_preconditioner_benchmark.cc.i
 
 block_jacobi_preconditioner_benchmark.s: block_jacobi_preconditioner_benchmark.cc.s
@@ -470,7 +470,7 @@ block_jacobi_preconditioner_benchmark.s: block_jacobi_preconditioner_benchmark.c
 
 # target to generate assembly for a file
 block_jacobi_preconditioner_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build.make internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/block_jacobi_preconditioner_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/build.make internal/ceres/CMakeFiles/block_jacobi_preconditioner_benchmark.dir/block_jacobi_preconditioner_benchmark.cc.s
 .PHONY : block_jacobi_preconditioner_benchmark.cc.s
 
 block_jacobian_writer.o: block_jacobian_writer.cc.o
@@ -478,7 +478,7 @@ block_jacobian_writer.o: block_jacobian_writer.cc.o
 
 # target to build an object file
 block_jacobian_writer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobian_writer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobian_writer.cc.o
 .PHONY : block_jacobian_writer.cc.o
 
 block_jacobian_writer.i: block_jacobian_writer.cc.i
@@ -486,7 +486,7 @@ block_jacobian_writer.i: block_jacobian_writer.cc.i
 
 # target to preprocess a source file
 block_jacobian_writer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobian_writer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobian_writer.cc.i
 .PHONY : block_jacobian_writer.cc.i
 
 block_jacobian_writer.s: block_jacobian_writer.cc.s
@@ -494,7 +494,7 @@ block_jacobian_writer.s: block_jacobian_writer.cc.s
 
 # target to generate assembly for a file
 block_jacobian_writer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobian_writer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_jacobian_writer.cc.s
 .PHONY : block_jacobian_writer.cc.s
 
 block_random_access_dense_matrix.o: block_random_access_dense_matrix.cc.o
@@ -502,7 +502,7 @@ block_random_access_dense_matrix.o: block_random_access_dense_matrix.cc.o
 
 # target to build an object file
 block_random_access_dense_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_dense_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_dense_matrix.cc.o
 .PHONY : block_random_access_dense_matrix.cc.o
 
 block_random_access_dense_matrix.i: block_random_access_dense_matrix.cc.i
@@ -510,7 +510,7 @@ block_random_access_dense_matrix.i: block_random_access_dense_matrix.cc.i
 
 # target to preprocess a source file
 block_random_access_dense_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_dense_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_dense_matrix.cc.i
 .PHONY : block_random_access_dense_matrix.cc.i
 
 block_random_access_dense_matrix.s: block_random_access_dense_matrix.cc.s
@@ -518,7 +518,7 @@ block_random_access_dense_matrix.s: block_random_access_dense_matrix.cc.s
 
 # target to generate assembly for a file
 block_random_access_dense_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_dense_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_dense_matrix.cc.s
 .PHONY : block_random_access_dense_matrix.cc.s
 
 block_random_access_diagonal_matrix.o: block_random_access_diagonal_matrix.cc.o
@@ -526,7 +526,7 @@ block_random_access_diagonal_matrix.o: block_random_access_diagonal_matrix.cc.o
 
 # target to build an object file
 block_random_access_diagonal_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_diagonal_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_diagonal_matrix.cc.o
 .PHONY : block_random_access_diagonal_matrix.cc.o
 
 block_random_access_diagonal_matrix.i: block_random_access_diagonal_matrix.cc.i
@@ -534,7 +534,7 @@ block_random_access_diagonal_matrix.i: block_random_access_diagonal_matrix.cc.i
 
 # target to preprocess a source file
 block_random_access_diagonal_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_diagonal_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_diagonal_matrix.cc.i
 .PHONY : block_random_access_diagonal_matrix.cc.i
 
 block_random_access_diagonal_matrix.s: block_random_access_diagonal_matrix.cc.s
@@ -542,7 +542,7 @@ block_random_access_diagonal_matrix.s: block_random_access_diagonal_matrix.cc.s
 
 # target to generate assembly for a file
 block_random_access_diagonal_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_diagonal_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_diagonal_matrix.cc.s
 .PHONY : block_random_access_diagonal_matrix.cc.s
 
 block_random_access_matrix.o: block_random_access_matrix.cc.o
@@ -550,7 +550,7 @@ block_random_access_matrix.o: block_random_access_matrix.cc.o
 
 # target to build an object file
 block_random_access_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_matrix.cc.o
 .PHONY : block_random_access_matrix.cc.o
 
 block_random_access_matrix.i: block_random_access_matrix.cc.i
@@ -558,7 +558,7 @@ block_random_access_matrix.i: block_random_access_matrix.cc.i
 
 # target to preprocess a source file
 block_random_access_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_matrix.cc.i
 .PHONY : block_random_access_matrix.cc.i
 
 block_random_access_matrix.s: block_random_access_matrix.cc.s
@@ -566,7 +566,7 @@ block_random_access_matrix.s: block_random_access_matrix.cc.s
 
 # target to generate assembly for a file
 block_random_access_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_matrix.cc.s
 .PHONY : block_random_access_matrix.cc.s
 
 block_random_access_sparse_matrix.o: block_random_access_sparse_matrix.cc.o
@@ -574,7 +574,7 @@ block_random_access_sparse_matrix.o: block_random_access_sparse_matrix.cc.o
 
 # target to build an object file
 block_random_access_sparse_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_sparse_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_sparse_matrix.cc.o
 .PHONY : block_random_access_sparse_matrix.cc.o
 
 block_random_access_sparse_matrix.i: block_random_access_sparse_matrix.cc.i
@@ -582,7 +582,7 @@ block_random_access_sparse_matrix.i: block_random_access_sparse_matrix.cc.i
 
 # target to preprocess a source file
 block_random_access_sparse_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_sparse_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_sparse_matrix.cc.i
 .PHONY : block_random_access_sparse_matrix.cc.i
 
 block_random_access_sparse_matrix.s: block_random_access_sparse_matrix.cc.s
@@ -590,7 +590,7 @@ block_random_access_sparse_matrix.s: block_random_access_sparse_matrix.cc.s
 
 # target to generate assembly for a file
 block_random_access_sparse_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_sparse_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_random_access_sparse_matrix.cc.s
 .PHONY : block_random_access_sparse_matrix.cc.s
 
 block_sparse_matrix.o: block_sparse_matrix.cc.o
@@ -598,7 +598,7 @@ block_sparse_matrix.o: block_sparse_matrix.cc.o
 
 # target to build an object file
 block_sparse_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_sparse_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_sparse_matrix.cc.o
 .PHONY : block_sparse_matrix.cc.o
 
 block_sparse_matrix.i: block_sparse_matrix.cc.i
@@ -606,7 +606,7 @@ block_sparse_matrix.i: block_sparse_matrix.cc.i
 
 # target to preprocess a source file
 block_sparse_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_sparse_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_sparse_matrix.cc.i
 .PHONY : block_sparse_matrix.cc.i
 
 block_sparse_matrix.s: block_sparse_matrix.cc.s
@@ -614,7 +614,7 @@ block_sparse_matrix.s: block_sparse_matrix.cc.s
 
 # target to generate assembly for a file
 block_sparse_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_sparse_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_sparse_matrix.cc.s
 .PHONY : block_sparse_matrix.cc.s
 
 block_structure.o: block_structure.cc.o
@@ -622,7 +622,7 @@ block_structure.o: block_structure.cc.o
 
 # target to build an object file
 block_structure.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_structure.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_structure.cc.o
 .PHONY : block_structure.cc.o
 
 block_structure.i: block_structure.cc.i
@@ -630,7 +630,7 @@ block_structure.i: block_structure.cc.i
 
 # target to preprocess a source file
 block_structure.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_structure.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_structure.cc.i
 .PHONY : block_structure.cc.i
 
 block_structure.s: block_structure.cc.s
@@ -638,7 +638,7 @@ block_structure.s: block_structure.cc.s
 
 # target to generate assembly for a file
 block_structure.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_structure.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/block_structure.cc.s
 .PHONY : block_structure.cc.s
 
 c_api.o: c_api.cc.o
@@ -646,7 +646,7 @@ c_api.o: c_api.cc.o
 
 # target to build an object file
 c_api.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/c_api.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/c_api.cc.o
 .PHONY : c_api.cc.o
 
 c_api.i: c_api.cc.i
@@ -654,7 +654,7 @@ c_api.i: c_api.cc.i
 
 # target to preprocess a source file
 c_api.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/c_api.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/c_api.cc.i
 .PHONY : c_api.cc.i
 
 c_api.s: c_api.cc.s
@@ -662,7 +662,7 @@ c_api.s: c_api.cc.s
 
 # target to generate assembly for a file
 c_api.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/c_api.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/c_api.cc.s
 .PHONY : c_api.cc.s
 
 callbacks.o: callbacks.cc.o
@@ -670,7 +670,7 @@ callbacks.o: callbacks.cc.o
 
 # target to build an object file
 callbacks.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/callbacks.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/callbacks.cc.o
 .PHONY : callbacks.cc.o
 
 callbacks.i: callbacks.cc.i
@@ -678,7 +678,7 @@ callbacks.i: callbacks.cc.i
 
 # target to preprocess a source file
 callbacks.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/callbacks.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/callbacks.cc.i
 .PHONY : callbacks.cc.i
 
 callbacks.s: callbacks.cc.s
@@ -686,7 +686,7 @@ callbacks.s: callbacks.cc.s
 
 # target to generate assembly for a file
 callbacks.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/callbacks.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/callbacks.cc.s
 .PHONY : callbacks.cc.s
 
 canonical_views_clustering.o: canonical_views_clustering.cc.o
@@ -694,7 +694,7 @@ canonical_views_clustering.o: canonical_views_clustering.cc.o
 
 # target to build an object file
 canonical_views_clustering.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/canonical_views_clustering.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/canonical_views_clustering.cc.o
 .PHONY : canonical_views_clustering.cc.o
 
 canonical_views_clustering.i: canonical_views_clustering.cc.i
@@ -702,7 +702,7 @@ canonical_views_clustering.i: canonical_views_clustering.cc.i
 
 # target to preprocess a source file
 canonical_views_clustering.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/canonical_views_clustering.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/canonical_views_clustering.cc.i
 .PHONY : canonical_views_clustering.cc.i
 
 canonical_views_clustering.s: canonical_views_clustering.cc.s
@@ -710,7 +710,7 @@ canonical_views_clustering.s: canonical_views_clustering.cc.s
 
 # target to generate assembly for a file
 canonical_views_clustering.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/canonical_views_clustering.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/canonical_views_clustering.cc.s
 .PHONY : canonical_views_clustering.cc.s
 
 cgnr_solver.o: cgnr_solver.cc.o
@@ -718,7 +718,7 @@ cgnr_solver.o: cgnr_solver.cc.o
 
 # target to build an object file
 cgnr_solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cgnr_solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cgnr_solver.cc.o
 .PHONY : cgnr_solver.cc.o
 
 cgnr_solver.i: cgnr_solver.cc.i
@@ -726,7 +726,7 @@ cgnr_solver.i: cgnr_solver.cc.i
 
 # target to preprocess a source file
 cgnr_solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cgnr_solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cgnr_solver.cc.i
 .PHONY : cgnr_solver.cc.i
 
 cgnr_solver.s: cgnr_solver.cc.s
@@ -734,7 +734,7 @@ cgnr_solver.s: cgnr_solver.cc.s
 
 # target to generate assembly for a file
 cgnr_solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cgnr_solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cgnr_solver.cc.s
 .PHONY : cgnr_solver.cc.s
 
 compressed_col_sparse_matrix_utils.o: compressed_col_sparse_matrix_utils.cc.o
@@ -742,7 +742,7 @@ compressed_col_sparse_matrix_utils.o: compressed_col_sparse_matrix_utils.cc.o
 
 # target to build an object file
 compressed_col_sparse_matrix_utils.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_col_sparse_matrix_utils.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_col_sparse_matrix_utils.cc.o
 .PHONY : compressed_col_sparse_matrix_utils.cc.o
 
 compressed_col_sparse_matrix_utils.i: compressed_col_sparse_matrix_utils.cc.i
@@ -750,7 +750,7 @@ compressed_col_sparse_matrix_utils.i: compressed_col_sparse_matrix_utils.cc.i
 
 # target to preprocess a source file
 compressed_col_sparse_matrix_utils.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_col_sparse_matrix_utils.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_col_sparse_matrix_utils.cc.i
 .PHONY : compressed_col_sparse_matrix_utils.cc.i
 
 compressed_col_sparse_matrix_utils.s: compressed_col_sparse_matrix_utils.cc.s
@@ -758,7 +758,7 @@ compressed_col_sparse_matrix_utils.s: compressed_col_sparse_matrix_utils.cc.s
 
 # target to generate assembly for a file
 compressed_col_sparse_matrix_utils.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_col_sparse_matrix_utils.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_col_sparse_matrix_utils.cc.s
 .PHONY : compressed_col_sparse_matrix_utils.cc.s
 
 compressed_row_jacobian_writer.o: compressed_row_jacobian_writer.cc.o
@@ -766,7 +766,7 @@ compressed_row_jacobian_writer.o: compressed_row_jacobian_writer.cc.o
 
 # target to build an object file
 compressed_row_jacobian_writer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_jacobian_writer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_jacobian_writer.cc.o
 .PHONY : compressed_row_jacobian_writer.cc.o
 
 compressed_row_jacobian_writer.i: compressed_row_jacobian_writer.cc.i
@@ -774,7 +774,7 @@ compressed_row_jacobian_writer.i: compressed_row_jacobian_writer.cc.i
 
 # target to preprocess a source file
 compressed_row_jacobian_writer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_jacobian_writer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_jacobian_writer.cc.i
 .PHONY : compressed_row_jacobian_writer.cc.i
 
 compressed_row_jacobian_writer.s: compressed_row_jacobian_writer.cc.s
@@ -782,7 +782,7 @@ compressed_row_jacobian_writer.s: compressed_row_jacobian_writer.cc.s
 
 # target to generate assembly for a file
 compressed_row_jacobian_writer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_jacobian_writer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_jacobian_writer.cc.s
 .PHONY : compressed_row_jacobian_writer.cc.s
 
 compressed_row_sparse_matrix.o: compressed_row_sparse_matrix.cc.o
@@ -790,7 +790,7 @@ compressed_row_sparse_matrix.o: compressed_row_sparse_matrix.cc.o
 
 # target to build an object file
 compressed_row_sparse_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_sparse_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_sparse_matrix.cc.o
 .PHONY : compressed_row_sparse_matrix.cc.o
 
 compressed_row_sparse_matrix.i: compressed_row_sparse_matrix.cc.i
@@ -798,7 +798,7 @@ compressed_row_sparse_matrix.i: compressed_row_sparse_matrix.cc.i
 
 # target to preprocess a source file
 compressed_row_sparse_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_sparse_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_sparse_matrix.cc.i
 .PHONY : compressed_row_sparse_matrix.cc.i
 
 compressed_row_sparse_matrix.s: compressed_row_sparse_matrix.cc.s
@@ -806,7 +806,7 @@ compressed_row_sparse_matrix.s: compressed_row_sparse_matrix.cc.s
 
 # target to generate assembly for a file
 compressed_row_sparse_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_sparse_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/compressed_row_sparse_matrix.cc.s
 .PHONY : compressed_row_sparse_matrix.cc.s
 
 conditioned_cost_function.o: conditioned_cost_function.cc.o
@@ -814,7 +814,7 @@ conditioned_cost_function.o: conditioned_cost_function.cc.o
 
 # target to build an object file
 conditioned_cost_function.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/conditioned_cost_function.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/conditioned_cost_function.cc.o
 .PHONY : conditioned_cost_function.cc.o
 
 conditioned_cost_function.i: conditioned_cost_function.cc.i
@@ -822,7 +822,7 @@ conditioned_cost_function.i: conditioned_cost_function.cc.i
 
 # target to preprocess a source file
 conditioned_cost_function.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/conditioned_cost_function.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/conditioned_cost_function.cc.i
 .PHONY : conditioned_cost_function.cc.i
 
 conditioned_cost_function.s: conditioned_cost_function.cc.s
@@ -830,7 +830,7 @@ conditioned_cost_function.s: conditioned_cost_function.cc.s
 
 # target to generate assembly for a file
 conditioned_cost_function.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/conditioned_cost_function.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/conditioned_cost_function.cc.s
 .PHONY : conditioned_cost_function.cc.s
 
 context.o: context.cc.o
@@ -838,7 +838,7 @@ context.o: context.cc.o
 
 # target to build an object file
 context.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context.cc.o
 .PHONY : context.cc.o
 
 context.i: context.cc.i
@@ -846,7 +846,7 @@ context.i: context.cc.i
 
 # target to preprocess a source file
 context.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context.cc.i
 .PHONY : context.cc.i
 
 context.s: context.cc.s
@@ -854,7 +854,7 @@ context.s: context.cc.s
 
 # target to generate assembly for a file
 context.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context.cc.s
 .PHONY : context.cc.s
 
 context_impl.o: context_impl.cc.o
@@ -862,7 +862,7 @@ context_impl.o: context_impl.cc.o
 
 # target to build an object file
 context_impl.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context_impl.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context_impl.cc.o
 .PHONY : context_impl.cc.o
 
 context_impl.i: context_impl.cc.i
@@ -870,7 +870,7 @@ context_impl.i: context_impl.cc.i
 
 # target to preprocess a source file
 context_impl.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context_impl.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context_impl.cc.i
 .PHONY : context_impl.cc.i
 
 context_impl.s: context_impl.cc.s
@@ -878,7 +878,7 @@ context_impl.s: context_impl.cc.s
 
 # target to generate assembly for a file
 context_impl.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context_impl.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/context_impl.cc.s
 .PHONY : context_impl.cc.s
 
 coordinate_descent_minimizer.o: coordinate_descent_minimizer.cc.o
@@ -886,7 +886,7 @@ coordinate_descent_minimizer.o: coordinate_descent_minimizer.cc.o
 
 # target to build an object file
 coordinate_descent_minimizer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/coordinate_descent_minimizer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/coordinate_descent_minimizer.cc.o
 .PHONY : coordinate_descent_minimizer.cc.o
 
 coordinate_descent_minimizer.i: coordinate_descent_minimizer.cc.i
@@ -894,7 +894,7 @@ coordinate_descent_minimizer.i: coordinate_descent_minimizer.cc.i
 
 # target to preprocess a source file
 coordinate_descent_minimizer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/coordinate_descent_minimizer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/coordinate_descent_minimizer.cc.i
 .PHONY : coordinate_descent_minimizer.cc.i
 
 coordinate_descent_minimizer.s: coordinate_descent_minimizer.cc.s
@@ -902,7 +902,7 @@ coordinate_descent_minimizer.s: coordinate_descent_minimizer.cc.s
 
 # target to generate assembly for a file
 coordinate_descent_minimizer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/coordinate_descent_minimizer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/coordinate_descent_minimizer.cc.s
 .PHONY : coordinate_descent_minimizer.cc.s
 
 corrector.o: corrector.cc.o
@@ -910,7 +910,7 @@ corrector.o: corrector.cc.o
 
 # target to build an object file
 corrector.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/corrector.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/corrector.cc.o
 .PHONY : corrector.cc.o
 
 corrector.i: corrector.cc.i
@@ -918,7 +918,7 @@ corrector.i: corrector.cc.i
 
 # target to preprocess a source file
 corrector.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/corrector.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/corrector.cc.i
 .PHONY : corrector.cc.i
 
 corrector.s: corrector.cc.s
@@ -926,7 +926,7 @@ corrector.s: corrector.cc.s
 
 # target to generate assembly for a file
 corrector.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/corrector.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/corrector.cc.s
 .PHONY : corrector.cc.s
 
 cost_function.o: cost_function.cc.o
@@ -934,7 +934,7 @@ cost_function.o: cost_function.cc.o
 
 # target to build an object file
 cost_function.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cost_function.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cost_function.cc.o
 .PHONY : cost_function.cc.o
 
 cost_function.i: cost_function.cc.i
@@ -942,7 +942,7 @@ cost_function.i: cost_function.cc.i
 
 # target to preprocess a source file
 cost_function.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cost_function.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cost_function.cc.i
 .PHONY : cost_function.cc.i
 
 cost_function.s: cost_function.cc.s
@@ -950,7 +950,7 @@ cost_function.s: cost_function.cc.s
 
 # target to generate assembly for a file
 cost_function.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cost_function.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cost_function.cc.s
 .PHONY : cost_function.cc.s
 
 covariance.o: covariance.cc.o
@@ -958,7 +958,7 @@ covariance.o: covariance.cc.o
 
 # target to build an object file
 covariance.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance.cc.o
 .PHONY : covariance.cc.o
 
 covariance.i: covariance.cc.i
@@ -966,7 +966,7 @@ covariance.i: covariance.cc.i
 
 # target to preprocess a source file
 covariance.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance.cc.i
 .PHONY : covariance.cc.i
 
 covariance.s: covariance.cc.s
@@ -974,7 +974,7 @@ covariance.s: covariance.cc.s
 
 # target to generate assembly for a file
 covariance.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance.cc.s
 .PHONY : covariance.cc.s
 
 covariance_impl.o: covariance_impl.cc.o
@@ -982,7 +982,7 @@ covariance_impl.o: covariance_impl.cc.o
 
 # target to build an object file
 covariance_impl.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance_impl.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance_impl.cc.o
 .PHONY : covariance_impl.cc.o
 
 covariance_impl.i: covariance_impl.cc.i
@@ -990,7 +990,7 @@ covariance_impl.i: covariance_impl.cc.i
 
 # target to preprocess a source file
 covariance_impl.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance_impl.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance_impl.cc.i
 .PHONY : covariance_impl.cc.i
 
 covariance_impl.s: covariance_impl.cc.s
@@ -998,7 +998,7 @@ covariance_impl.s: covariance_impl.cc.s
 
 # target to generate assembly for a file
 covariance_impl.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance_impl.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/covariance_impl.cc.s
 .PHONY : covariance_impl.cc.s
 
 cuda_block_sparse_crs_view.o: cuda_block_sparse_crs_view.cc.o
@@ -1006,7 +1006,7 @@ cuda_block_sparse_crs_view.o: cuda_block_sparse_crs_view.cc.o
 
 # target to build an object file
 cuda_block_sparse_crs_view.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_sparse_crs_view.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_sparse_crs_view.cc.o
 .PHONY : cuda_block_sparse_crs_view.cc.o
 
 cuda_block_sparse_crs_view.i: cuda_block_sparse_crs_view.cc.i
@@ -1014,7 +1014,7 @@ cuda_block_sparse_crs_view.i: cuda_block_sparse_crs_view.cc.i
 
 # target to preprocess a source file
 cuda_block_sparse_crs_view.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_sparse_crs_view.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_sparse_crs_view.cc.i
 .PHONY : cuda_block_sparse_crs_view.cc.i
 
 cuda_block_sparse_crs_view.s: cuda_block_sparse_crs_view.cc.s
@@ -1022,7 +1022,7 @@ cuda_block_sparse_crs_view.s: cuda_block_sparse_crs_view.cc.s
 
 # target to generate assembly for a file
 cuda_block_sparse_crs_view.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_sparse_crs_view.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_sparse_crs_view.cc.s
 .PHONY : cuda_block_sparse_crs_view.cc.s
 
 cuda_block_structure.o: cuda_block_structure.cc.o
@@ -1030,7 +1030,7 @@ cuda_block_structure.o: cuda_block_structure.cc.o
 
 # target to build an object file
 cuda_block_structure.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_structure.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_structure.cc.o
 .PHONY : cuda_block_structure.cc.o
 
 cuda_block_structure.i: cuda_block_structure.cc.i
@@ -1038,7 +1038,7 @@ cuda_block_structure.i: cuda_block_structure.cc.i
 
 # target to preprocess a source file
 cuda_block_structure.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_structure.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_structure.cc.i
 .PHONY : cuda_block_structure.cc.i
 
 cuda_block_structure.s: cuda_block_structure.cc.s
@@ -1046,7 +1046,7 @@ cuda_block_structure.s: cuda_block_structure.cc.s
 
 # target to generate assembly for a file
 cuda_block_structure.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_structure.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_block_structure.cc.s
 .PHONY : cuda_block_structure.cc.s
 
 cuda_partitioned_block_sparse_crs_view.o: cuda_partitioned_block_sparse_crs_view.cc.o
@@ -1054,7 +1054,7 @@ cuda_partitioned_block_sparse_crs_view.o: cuda_partitioned_block_sparse_crs_view
 
 # target to build an object file
 cuda_partitioned_block_sparse_crs_view.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_partitioned_block_sparse_crs_view.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_partitioned_block_sparse_crs_view.cc.o
 .PHONY : cuda_partitioned_block_sparse_crs_view.cc.o
 
 cuda_partitioned_block_sparse_crs_view.i: cuda_partitioned_block_sparse_crs_view.cc.i
@@ -1062,7 +1062,7 @@ cuda_partitioned_block_sparse_crs_view.i: cuda_partitioned_block_sparse_crs_view
 
 # target to preprocess a source file
 cuda_partitioned_block_sparse_crs_view.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_partitioned_block_sparse_crs_view.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_partitioned_block_sparse_crs_view.cc.i
 .PHONY : cuda_partitioned_block_sparse_crs_view.cc.i
 
 cuda_partitioned_block_sparse_crs_view.s: cuda_partitioned_block_sparse_crs_view.cc.s
@@ -1070,7 +1070,7 @@ cuda_partitioned_block_sparse_crs_view.s: cuda_partitioned_block_sparse_crs_view
 
 # target to generate assembly for a file
 cuda_partitioned_block_sparse_crs_view.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_partitioned_block_sparse_crs_view.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_partitioned_block_sparse_crs_view.cc.s
 .PHONY : cuda_partitioned_block_sparse_crs_view.cc.s
 
 cuda_sparse_matrix.o: cuda_sparse_matrix.cc.o
@@ -1078,7 +1078,7 @@ cuda_sparse_matrix.o: cuda_sparse_matrix.cc.o
 
 # target to build an object file
 cuda_sparse_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_sparse_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_sparse_matrix.cc.o
 .PHONY : cuda_sparse_matrix.cc.o
 
 cuda_sparse_matrix.i: cuda_sparse_matrix.cc.i
@@ -1086,7 +1086,7 @@ cuda_sparse_matrix.i: cuda_sparse_matrix.cc.i
 
 # target to preprocess a source file
 cuda_sparse_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_sparse_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_sparse_matrix.cc.i
 .PHONY : cuda_sparse_matrix.cc.i
 
 cuda_sparse_matrix.s: cuda_sparse_matrix.cc.s
@@ -1094,7 +1094,7 @@ cuda_sparse_matrix.s: cuda_sparse_matrix.cc.s
 
 # target to generate assembly for a file
 cuda_sparse_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_sparse_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_sparse_matrix.cc.s
 .PHONY : cuda_sparse_matrix.cc.s
 
 cuda_vector.o: cuda_vector.cc.o
@@ -1102,7 +1102,7 @@ cuda_vector.o: cuda_vector.cc.o
 
 # target to build an object file
 cuda_vector.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_vector.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_vector.cc.o
 .PHONY : cuda_vector.cc.o
 
 cuda_vector.i: cuda_vector.cc.i
@@ -1110,7 +1110,7 @@ cuda_vector.i: cuda_vector.cc.i
 
 # target to preprocess a source file
 cuda_vector.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_vector.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_vector.cc.i
 .PHONY : cuda_vector.cc.i
 
 cuda_vector.s: cuda_vector.cc.s
@@ -1118,7 +1118,7 @@ cuda_vector.s: cuda_vector.cc.s
 
 # target to generate assembly for a file
 cuda_vector.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_vector.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/cuda_vector.cc.s
 .PHONY : cuda_vector.cc.s
 
 dense_cholesky.o: dense_cholesky.cc.o
@@ -1126,7 +1126,7 @@ dense_cholesky.o: dense_cholesky.cc.o
 
 # target to build an object file
 dense_cholesky.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_cholesky.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_cholesky.cc.o
 .PHONY : dense_cholesky.cc.o
 
 dense_cholesky.i: dense_cholesky.cc.i
@@ -1134,7 +1134,7 @@ dense_cholesky.i: dense_cholesky.cc.i
 
 # target to preprocess a source file
 dense_cholesky.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_cholesky.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_cholesky.cc.i
 .PHONY : dense_cholesky.cc.i
 
 dense_cholesky.s: dense_cholesky.cc.s
@@ -1142,7 +1142,7 @@ dense_cholesky.s: dense_cholesky.cc.s
 
 # target to generate assembly for a file
 dense_cholesky.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_cholesky.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_cholesky.cc.s
 .PHONY : dense_cholesky.cc.s
 
 dense_linear_solver_benchmark.o: dense_linear_solver_benchmark.cc.o
@@ -1150,7 +1150,7 @@ dense_linear_solver_benchmark.o: dense_linear_solver_benchmark.cc.o
 
 # target to build an object file
 dense_linear_solver_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build.make internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/dense_linear_solver_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build.make internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/dense_linear_solver_benchmark.cc.o
 .PHONY : dense_linear_solver_benchmark.cc.o
 
 dense_linear_solver_benchmark.i: dense_linear_solver_benchmark.cc.i
@@ -1158,7 +1158,7 @@ dense_linear_solver_benchmark.i: dense_linear_solver_benchmark.cc.i
 
 # target to preprocess a source file
 dense_linear_solver_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build.make internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/dense_linear_solver_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build.make internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/dense_linear_solver_benchmark.cc.i
 .PHONY : dense_linear_solver_benchmark.cc.i
 
 dense_linear_solver_benchmark.s: dense_linear_solver_benchmark.cc.s
@@ -1166,7 +1166,7 @@ dense_linear_solver_benchmark.s: dense_linear_solver_benchmark.cc.s
 
 # target to generate assembly for a file
 dense_linear_solver_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build.make internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/dense_linear_solver_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/build.make internal/ceres/CMakeFiles/dense_linear_solver_benchmark.dir/dense_linear_solver_benchmark.cc.s
 .PHONY : dense_linear_solver_benchmark.cc.s
 
 dense_normal_cholesky_solver.o: dense_normal_cholesky_solver.cc.o
@@ -1174,7 +1174,7 @@ dense_normal_cholesky_solver.o: dense_normal_cholesky_solver.cc.o
 
 # target to build an object file
 dense_normal_cholesky_solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_normal_cholesky_solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_normal_cholesky_solver.cc.o
 .PHONY : dense_normal_cholesky_solver.cc.o
 
 dense_normal_cholesky_solver.i: dense_normal_cholesky_solver.cc.i
@@ -1182,7 +1182,7 @@ dense_normal_cholesky_solver.i: dense_normal_cholesky_solver.cc.i
 
 # target to preprocess a source file
 dense_normal_cholesky_solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_normal_cholesky_solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_normal_cholesky_solver.cc.i
 .PHONY : dense_normal_cholesky_solver.cc.i
 
 dense_normal_cholesky_solver.s: dense_normal_cholesky_solver.cc.s
@@ -1190,7 +1190,7 @@ dense_normal_cholesky_solver.s: dense_normal_cholesky_solver.cc.s
 
 # target to generate assembly for a file
 dense_normal_cholesky_solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_normal_cholesky_solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_normal_cholesky_solver.cc.s
 .PHONY : dense_normal_cholesky_solver.cc.s
 
 dense_qr.o: dense_qr.cc.o
@@ -1198,7 +1198,7 @@ dense_qr.o: dense_qr.cc.o
 
 # target to build an object file
 dense_qr.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr.cc.o
 .PHONY : dense_qr.cc.o
 
 dense_qr.i: dense_qr.cc.i
@@ -1206,7 +1206,7 @@ dense_qr.i: dense_qr.cc.i
 
 # target to preprocess a source file
 dense_qr.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr.cc.i
 .PHONY : dense_qr.cc.i
 
 dense_qr.s: dense_qr.cc.s
@@ -1214,7 +1214,7 @@ dense_qr.s: dense_qr.cc.s
 
 # target to generate assembly for a file
 dense_qr.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr.cc.s
 .PHONY : dense_qr.cc.s
 
 dense_qr_solver.o: dense_qr_solver.cc.o
@@ -1222,7 +1222,7 @@ dense_qr_solver.o: dense_qr_solver.cc.o
 
 # target to build an object file
 dense_qr_solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr_solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr_solver.cc.o
 .PHONY : dense_qr_solver.cc.o
 
 dense_qr_solver.i: dense_qr_solver.cc.i
@@ -1230,7 +1230,7 @@ dense_qr_solver.i: dense_qr_solver.cc.i
 
 # target to preprocess a source file
 dense_qr_solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr_solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr_solver.cc.i
 .PHONY : dense_qr_solver.cc.i
 
 dense_qr_solver.s: dense_qr_solver.cc.s
@@ -1238,7 +1238,7 @@ dense_qr_solver.s: dense_qr_solver.cc.s
 
 # target to generate assembly for a file
 dense_qr_solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr_solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_qr_solver.cc.s
 .PHONY : dense_qr_solver.cc.s
 
 dense_sparse_matrix.o: dense_sparse_matrix.cc.o
@@ -1246,7 +1246,7 @@ dense_sparse_matrix.o: dense_sparse_matrix.cc.o
 
 # target to build an object file
 dense_sparse_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_sparse_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_sparse_matrix.cc.o
 .PHONY : dense_sparse_matrix.cc.o
 
 dense_sparse_matrix.i: dense_sparse_matrix.cc.i
@@ -1254,7 +1254,7 @@ dense_sparse_matrix.i: dense_sparse_matrix.cc.i
 
 # target to preprocess a source file
 dense_sparse_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_sparse_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_sparse_matrix.cc.i
 .PHONY : dense_sparse_matrix.cc.i
 
 dense_sparse_matrix.s: dense_sparse_matrix.cc.s
@@ -1262,7 +1262,7 @@ dense_sparse_matrix.s: dense_sparse_matrix.cc.s
 
 # target to generate assembly for a file
 dense_sparse_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_sparse_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dense_sparse_matrix.cc.s
 .PHONY : dense_sparse_matrix.cc.s
 
 detect_structure.o: detect_structure.cc.o
@@ -1270,7 +1270,7 @@ detect_structure.o: detect_structure.cc.o
 
 # target to build an object file
 detect_structure.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/detect_structure.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/detect_structure.cc.o
 .PHONY : detect_structure.cc.o
 
 detect_structure.i: detect_structure.cc.i
@@ -1278,7 +1278,7 @@ detect_structure.i: detect_structure.cc.i
 
 # target to preprocess a source file
 detect_structure.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/detect_structure.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/detect_structure.cc.i
 .PHONY : detect_structure.cc.i
 
 detect_structure.s: detect_structure.cc.s
@@ -1286,7 +1286,7 @@ detect_structure.s: detect_structure.cc.s
 
 # target to generate assembly for a file
 detect_structure.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/detect_structure.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/detect_structure.cc.s
 .PHONY : detect_structure.cc.s
 
 dogleg_strategy.o: dogleg_strategy.cc.o
@@ -1294,7 +1294,7 @@ dogleg_strategy.o: dogleg_strategy.cc.o
 
 # target to build an object file
 dogleg_strategy.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dogleg_strategy.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dogleg_strategy.cc.o
 .PHONY : dogleg_strategy.cc.o
 
 dogleg_strategy.i: dogleg_strategy.cc.i
@@ -1302,7 +1302,7 @@ dogleg_strategy.i: dogleg_strategy.cc.i
 
 # target to preprocess a source file
 dogleg_strategy.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dogleg_strategy.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dogleg_strategy.cc.i
 .PHONY : dogleg_strategy.cc.i
 
 dogleg_strategy.s: dogleg_strategy.cc.s
@@ -1310,7 +1310,7 @@ dogleg_strategy.s: dogleg_strategy.cc.s
 
 # target to generate assembly for a file
 dogleg_strategy.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dogleg_strategy.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dogleg_strategy.cc.s
 .PHONY : dogleg_strategy.cc.s
 
 dynamic_compressed_row_jacobian_writer.o: dynamic_compressed_row_jacobian_writer.cc.o
@@ -1318,7 +1318,7 @@ dynamic_compressed_row_jacobian_writer.o: dynamic_compressed_row_jacobian_writer
 
 # target to build an object file
 dynamic_compressed_row_jacobian_writer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_jacobian_writer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_jacobian_writer.cc.o
 .PHONY : dynamic_compressed_row_jacobian_writer.cc.o
 
 dynamic_compressed_row_jacobian_writer.i: dynamic_compressed_row_jacobian_writer.cc.i
@@ -1326,7 +1326,7 @@ dynamic_compressed_row_jacobian_writer.i: dynamic_compressed_row_jacobian_writer
 
 # target to preprocess a source file
 dynamic_compressed_row_jacobian_writer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_jacobian_writer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_jacobian_writer.cc.i
 .PHONY : dynamic_compressed_row_jacobian_writer.cc.i
 
 dynamic_compressed_row_jacobian_writer.s: dynamic_compressed_row_jacobian_writer.cc.s
@@ -1334,7 +1334,7 @@ dynamic_compressed_row_jacobian_writer.s: dynamic_compressed_row_jacobian_writer
 
 # target to generate assembly for a file
 dynamic_compressed_row_jacobian_writer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_jacobian_writer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_jacobian_writer.cc.s
 .PHONY : dynamic_compressed_row_jacobian_writer.cc.s
 
 dynamic_compressed_row_sparse_matrix.o: dynamic_compressed_row_sparse_matrix.cc.o
@@ -1342,7 +1342,7 @@ dynamic_compressed_row_sparse_matrix.o: dynamic_compressed_row_sparse_matrix.cc.
 
 # target to build an object file
 dynamic_compressed_row_sparse_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_sparse_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_sparse_matrix.cc.o
 .PHONY : dynamic_compressed_row_sparse_matrix.cc.o
 
 dynamic_compressed_row_sparse_matrix.i: dynamic_compressed_row_sparse_matrix.cc.i
@@ -1350,7 +1350,7 @@ dynamic_compressed_row_sparse_matrix.i: dynamic_compressed_row_sparse_matrix.cc.
 
 # target to preprocess a source file
 dynamic_compressed_row_sparse_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_sparse_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_sparse_matrix.cc.i
 .PHONY : dynamic_compressed_row_sparse_matrix.cc.i
 
 dynamic_compressed_row_sparse_matrix.s: dynamic_compressed_row_sparse_matrix.cc.s
@@ -1358,7 +1358,7 @@ dynamic_compressed_row_sparse_matrix.s: dynamic_compressed_row_sparse_matrix.cc.
 
 # target to generate assembly for a file
 dynamic_compressed_row_sparse_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_sparse_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_compressed_row_sparse_matrix.cc.s
 .PHONY : dynamic_compressed_row_sparse_matrix.cc.s
 
 dynamic_sparse_normal_cholesky_solver.o: dynamic_sparse_normal_cholesky_solver.cc.o
@@ -1366,7 +1366,7 @@ dynamic_sparse_normal_cholesky_solver.o: dynamic_sparse_normal_cholesky_solver.c
 
 # target to build an object file
 dynamic_sparse_normal_cholesky_solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_sparse_normal_cholesky_solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_sparse_normal_cholesky_solver.cc.o
 .PHONY : dynamic_sparse_normal_cholesky_solver.cc.o
 
 dynamic_sparse_normal_cholesky_solver.i: dynamic_sparse_normal_cholesky_solver.cc.i
@@ -1374,7 +1374,7 @@ dynamic_sparse_normal_cholesky_solver.i: dynamic_sparse_normal_cholesky_solver.c
 
 # target to preprocess a source file
 dynamic_sparse_normal_cholesky_solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_sparse_normal_cholesky_solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_sparse_normal_cholesky_solver.cc.i
 .PHONY : dynamic_sparse_normal_cholesky_solver.cc.i
 
 dynamic_sparse_normal_cholesky_solver.s: dynamic_sparse_normal_cholesky_solver.cc.s
@@ -1382,7 +1382,7 @@ dynamic_sparse_normal_cholesky_solver.s: dynamic_sparse_normal_cholesky_solver.c
 
 # target to generate assembly for a file
 dynamic_sparse_normal_cholesky_solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_sparse_normal_cholesky_solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/dynamic_sparse_normal_cholesky_solver.cc.s
 .PHONY : dynamic_sparse_normal_cholesky_solver.cc.s
 
 eigensparse.o: eigensparse.cc.o
@@ -1390,7 +1390,7 @@ eigensparse.o: eigensparse.cc.o
 
 # target to build an object file
 eigensparse.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/eigensparse.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/eigensparse.cc.o
 .PHONY : eigensparse.cc.o
 
 eigensparse.i: eigensparse.cc.i
@@ -1398,7 +1398,7 @@ eigensparse.i: eigensparse.cc.i
 
 # target to preprocess a source file
 eigensparse.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/eigensparse.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/eigensparse.cc.i
 .PHONY : eigensparse.cc.i
 
 eigensparse.s: eigensparse.cc.s
@@ -1406,7 +1406,7 @@ eigensparse.s: eigensparse.cc.s
 
 # target to generate assembly for a file
 eigensparse.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/eigensparse.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/eigensparse.cc.s
 .PHONY : eigensparse.cc.s
 
 evaluation_benchmark.o: evaluation_benchmark.cc.o
@@ -1414,7 +1414,7 @@ evaluation_benchmark.o: evaluation_benchmark.cc.o
 
 # target to build an object file
 evaluation_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/evaluation_benchmark.dir/build.make internal/ceres/CMakeFiles/evaluation_benchmark.dir/evaluation_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/evaluation_benchmark.dir/build.make internal/ceres/CMakeFiles/evaluation_benchmark.dir/evaluation_benchmark.cc.o
 .PHONY : evaluation_benchmark.cc.o
 
 evaluation_benchmark.i: evaluation_benchmark.cc.i
@@ -1422,7 +1422,7 @@ evaluation_benchmark.i: evaluation_benchmark.cc.i
 
 # target to preprocess a source file
 evaluation_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/evaluation_benchmark.dir/build.make internal/ceres/CMakeFiles/evaluation_benchmark.dir/evaluation_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/evaluation_benchmark.dir/build.make internal/ceres/CMakeFiles/evaluation_benchmark.dir/evaluation_benchmark.cc.i
 .PHONY : evaluation_benchmark.cc.i
 
 evaluation_benchmark.s: evaluation_benchmark.cc.s
@@ -1430,7 +1430,7 @@ evaluation_benchmark.s: evaluation_benchmark.cc.s
 
 # target to generate assembly for a file
 evaluation_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/evaluation_benchmark.dir/build.make internal/ceres/CMakeFiles/evaluation_benchmark.dir/evaluation_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/evaluation_benchmark.dir/build.make internal/ceres/CMakeFiles/evaluation_benchmark.dir/evaluation_benchmark.cc.s
 .PHONY : evaluation_benchmark.cc.s
 
 evaluation_callback.o: evaluation_callback.cc.o
@@ -1438,7 +1438,7 @@ evaluation_callback.o: evaluation_callback.cc.o
 
 # target to build an object file
 evaluation_callback.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluation_callback.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluation_callback.cc.o
 .PHONY : evaluation_callback.cc.o
 
 evaluation_callback.i: evaluation_callback.cc.i
@@ -1446,7 +1446,7 @@ evaluation_callback.i: evaluation_callback.cc.i
 
 # target to preprocess a source file
 evaluation_callback.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluation_callback.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluation_callback.cc.i
 .PHONY : evaluation_callback.cc.i
 
 evaluation_callback.s: evaluation_callback.cc.s
@@ -1454,7 +1454,7 @@ evaluation_callback.s: evaluation_callback.cc.s
 
 # target to generate assembly for a file
 evaluation_callback.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluation_callback.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluation_callback.cc.s
 .PHONY : evaluation_callback.cc.s
 
 evaluator.o: evaluator.cc.o
@@ -1462,7 +1462,7 @@ evaluator.o: evaluator.cc.o
 
 # target to build an object file
 evaluator.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluator.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluator.cc.o
 .PHONY : evaluator.cc.o
 
 evaluator.i: evaluator.cc.i
@@ -1470,7 +1470,7 @@ evaluator.i: evaluator.cc.i
 
 # target to preprocess a source file
 evaluator.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluator.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluator.cc.i
 .PHONY : evaluator.cc.i
 
 evaluator.s: evaluator.cc.s
@@ -1478,7 +1478,7 @@ evaluator.s: evaluator.cc.s
 
 # target to generate assembly for a file
 evaluator.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluator.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/evaluator.cc.s
 .PHONY : evaluator.cc.s
 
 fake_bundle_adjustment_jacobian.o: fake_bundle_adjustment_jacobian.cc.o
@@ -1486,7 +1486,7 @@ fake_bundle_adjustment_jacobian.o: fake_bundle_adjustment_jacobian.cc.o
 
 # target to build an object file
 fake_bundle_adjustment_jacobian.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/fake_bundle_adjustment_jacobian.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/fake_bundle_adjustment_jacobian.cc.o
 .PHONY : fake_bundle_adjustment_jacobian.cc.o
 
 fake_bundle_adjustment_jacobian.i: fake_bundle_adjustment_jacobian.cc.i
@@ -1494,7 +1494,7 @@ fake_bundle_adjustment_jacobian.i: fake_bundle_adjustment_jacobian.cc.i
 
 # target to preprocess a source file
 fake_bundle_adjustment_jacobian.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/fake_bundle_adjustment_jacobian.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/fake_bundle_adjustment_jacobian.cc.i
 .PHONY : fake_bundle_adjustment_jacobian.cc.i
 
 fake_bundle_adjustment_jacobian.s: fake_bundle_adjustment_jacobian.cc.s
@@ -1502,7 +1502,7 @@ fake_bundle_adjustment_jacobian.s: fake_bundle_adjustment_jacobian.cc.s
 
 # target to generate assembly for a file
 fake_bundle_adjustment_jacobian.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/fake_bundle_adjustment_jacobian.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/fake_bundle_adjustment_jacobian.cc.s
 .PHONY : fake_bundle_adjustment_jacobian.cc.s
 
 file.o: file.cc.o
@@ -1510,7 +1510,7 @@ file.o: file.cc.o
 
 # target to build an object file
 file.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/file.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/file.cc.o
 .PHONY : file.cc.o
 
 file.i: file.cc.i
@@ -1518,7 +1518,7 @@ file.i: file.cc.i
 
 # target to preprocess a source file
 file.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/file.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/file.cc.i
 .PHONY : file.cc.i
 
 file.s: file.cc.s
@@ -1526,7 +1526,7 @@ file.s: file.cc.s
 
 # target to generate assembly for a file
 file.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/file.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/file.cc.s
 .PHONY : file.cc.s
 
 first_order_function.o: first_order_function.cc.o
@@ -1534,7 +1534,7 @@ first_order_function.o: first_order_function.cc.o
 
 # target to build an object file
 first_order_function.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/first_order_function.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/first_order_function.cc.o
 .PHONY : first_order_function.cc.o
 
 first_order_function.i: first_order_function.cc.i
@@ -1542,7 +1542,7 @@ first_order_function.i: first_order_function.cc.i
 
 # target to preprocess a source file
 first_order_function.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/first_order_function.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/first_order_function.cc.i
 .PHONY : first_order_function.cc.i
 
 first_order_function.s: first_order_function.cc.s
@@ -1550,7 +1550,7 @@ first_order_function.s: first_order_function.cc.s
 
 # target to generate assembly for a file
 first_order_function.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/first_order_function.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/first_order_function.cc.s
 .PHONY : first_order_function.cc.s
 
 float_suitesparse.o: float_suitesparse.cc.o
@@ -1558,7 +1558,7 @@ float_suitesparse.o: float_suitesparse.cc.o
 
 # target to build an object file
 float_suitesparse.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/float_suitesparse.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/float_suitesparse.cc.o
 .PHONY : float_suitesparse.cc.o
 
 float_suitesparse.i: float_suitesparse.cc.i
@@ -1566,7 +1566,7 @@ float_suitesparse.i: float_suitesparse.cc.i
 
 # target to preprocess a source file
 float_suitesparse.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/float_suitesparse.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/float_suitesparse.cc.i
 .PHONY : float_suitesparse.cc.i
 
 float_suitesparse.s: float_suitesparse.cc.s
@@ -1574,7 +1574,7 @@ float_suitesparse.s: float_suitesparse.cc.s
 
 # target to generate assembly for a file
 float_suitesparse.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/float_suitesparse.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/float_suitesparse.cc.s
 .PHONY : float_suitesparse.cc.s
 
 function_sample.o: function_sample.cc.o
@@ -1582,7 +1582,7 @@ function_sample.o: function_sample.cc.o
 
 # target to build an object file
 function_sample.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/function_sample.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/function_sample.cc.o
 .PHONY : function_sample.cc.o
 
 function_sample.i: function_sample.cc.i
@@ -1590,7 +1590,7 @@ function_sample.i: function_sample.cc.i
 
 # target to preprocess a source file
 function_sample.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/function_sample.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/function_sample.cc.i
 .PHONY : function_sample.cc.i
 
 function_sample.s: function_sample.cc.s
@@ -1598,7 +1598,7 @@ function_sample.s: function_sample.cc.s
 
 # target to generate assembly for a file
 function_sample.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/function_sample.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/function_sample.cc.s
 .PHONY : function_sample.cc.s
 
 generated/partitioned_matrix_view_2_2_2.o: generated/partitioned_matrix_view_2_2_2.cc.o
@@ -1606,7 +1606,7 @@ generated/partitioned_matrix_view_2_2_2.o: generated/partitioned_matrix_view_2_2
 
 # target to build an object file
 generated/partitioned_matrix_view_2_2_2.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_2.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_2.cc.o
 .PHONY : generated/partitioned_matrix_view_2_2_2.cc.o
 
 generated/partitioned_matrix_view_2_2_2.i: generated/partitioned_matrix_view_2_2_2.cc.i
@@ -1614,7 +1614,7 @@ generated/partitioned_matrix_view_2_2_2.i: generated/partitioned_matrix_view_2_2
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_2_2.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_2.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_2.cc.i
 .PHONY : generated/partitioned_matrix_view_2_2_2.cc.i
 
 generated/partitioned_matrix_view_2_2_2.s: generated/partitioned_matrix_view_2_2_2.cc.s
@@ -1622,7 +1622,7 @@ generated/partitioned_matrix_view_2_2_2.s: generated/partitioned_matrix_view_2_2
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_2_2.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_2.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_2.cc.s
 .PHONY : generated/partitioned_matrix_view_2_2_2.cc.s
 
 generated/partitioned_matrix_view_2_2_3.o: generated/partitioned_matrix_view_2_2_3.cc.o
@@ -1630,7 +1630,7 @@ generated/partitioned_matrix_view_2_2_3.o: generated/partitioned_matrix_view_2_2
 
 # target to build an object file
 generated/partitioned_matrix_view_2_2_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_3.cc.o
 .PHONY : generated/partitioned_matrix_view_2_2_3.cc.o
 
 generated/partitioned_matrix_view_2_2_3.i: generated/partitioned_matrix_view_2_2_3.cc.i
@@ -1638,7 +1638,7 @@ generated/partitioned_matrix_view_2_2_3.i: generated/partitioned_matrix_view_2_2
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_2_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_3.cc.i
 .PHONY : generated/partitioned_matrix_view_2_2_3.cc.i
 
 generated/partitioned_matrix_view_2_2_3.s: generated/partitioned_matrix_view_2_2_3.cc.s
@@ -1646,7 +1646,7 @@ generated/partitioned_matrix_view_2_2_3.s: generated/partitioned_matrix_view_2_2
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_2_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_3.cc.s
 .PHONY : generated/partitioned_matrix_view_2_2_3.cc.s
 
 generated/partitioned_matrix_view_2_2_4.o: generated/partitioned_matrix_view_2_2_4.cc.o
@@ -1654,7 +1654,7 @@ generated/partitioned_matrix_view_2_2_4.o: generated/partitioned_matrix_view_2_2
 
 # target to build an object file
 generated/partitioned_matrix_view_2_2_4.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_4.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_4.cc.o
 .PHONY : generated/partitioned_matrix_view_2_2_4.cc.o
 
 generated/partitioned_matrix_view_2_2_4.i: generated/partitioned_matrix_view_2_2_4.cc.i
@@ -1662,7 +1662,7 @@ generated/partitioned_matrix_view_2_2_4.i: generated/partitioned_matrix_view_2_2
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_2_4.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_4.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_4.cc.i
 .PHONY : generated/partitioned_matrix_view_2_2_4.cc.i
 
 generated/partitioned_matrix_view_2_2_4.s: generated/partitioned_matrix_view_2_2_4.cc.s
@@ -1670,7 +1670,7 @@ generated/partitioned_matrix_view_2_2_4.s: generated/partitioned_matrix_view_2_2
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_2_4.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_4.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_4.cc.s
 .PHONY : generated/partitioned_matrix_view_2_2_4.cc.s
 
 generated/partitioned_matrix_view_2_2_d.o: generated/partitioned_matrix_view_2_2_d.cc.o
@@ -1678,7 +1678,7 @@ generated/partitioned_matrix_view_2_2_d.o: generated/partitioned_matrix_view_2_2
 
 # target to build an object file
 generated/partitioned_matrix_view_2_2_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_d.cc.o
 .PHONY : generated/partitioned_matrix_view_2_2_d.cc.o
 
 generated/partitioned_matrix_view_2_2_d.i: generated/partitioned_matrix_view_2_2_d.cc.i
@@ -1686,7 +1686,7 @@ generated/partitioned_matrix_view_2_2_d.i: generated/partitioned_matrix_view_2_2
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_2_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_d.cc.i
 .PHONY : generated/partitioned_matrix_view_2_2_d.cc.i
 
 generated/partitioned_matrix_view_2_2_d.s: generated/partitioned_matrix_view_2_2_d.cc.s
@@ -1694,7 +1694,7 @@ generated/partitioned_matrix_view_2_2_d.s: generated/partitioned_matrix_view_2_2
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_2_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_2_d.cc.s
 .PHONY : generated/partitioned_matrix_view_2_2_d.cc.s
 
 generated/partitioned_matrix_view_2_3_3.o: generated/partitioned_matrix_view_2_3_3.cc.o
@@ -1702,7 +1702,7 @@ generated/partitioned_matrix_view_2_3_3.o: generated/partitioned_matrix_view_2_3
 
 # target to build an object file
 generated/partitioned_matrix_view_2_3_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_3.cc.o
 .PHONY : generated/partitioned_matrix_view_2_3_3.cc.o
 
 generated/partitioned_matrix_view_2_3_3.i: generated/partitioned_matrix_view_2_3_3.cc.i
@@ -1710,7 +1710,7 @@ generated/partitioned_matrix_view_2_3_3.i: generated/partitioned_matrix_view_2_3
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_3_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_3.cc.i
 .PHONY : generated/partitioned_matrix_view_2_3_3.cc.i
 
 generated/partitioned_matrix_view_2_3_3.s: generated/partitioned_matrix_view_2_3_3.cc.s
@@ -1718,7 +1718,7 @@ generated/partitioned_matrix_view_2_3_3.s: generated/partitioned_matrix_view_2_3
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_3_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_3.cc.s
 .PHONY : generated/partitioned_matrix_view_2_3_3.cc.s
 
 generated/partitioned_matrix_view_2_3_4.o: generated/partitioned_matrix_view_2_3_4.cc.o
@@ -1726,7 +1726,7 @@ generated/partitioned_matrix_view_2_3_4.o: generated/partitioned_matrix_view_2_3
 
 # target to build an object file
 generated/partitioned_matrix_view_2_3_4.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_4.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_4.cc.o
 .PHONY : generated/partitioned_matrix_view_2_3_4.cc.o
 
 generated/partitioned_matrix_view_2_3_4.i: generated/partitioned_matrix_view_2_3_4.cc.i
@@ -1734,7 +1734,7 @@ generated/partitioned_matrix_view_2_3_4.i: generated/partitioned_matrix_view_2_3
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_3_4.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_4.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_4.cc.i
 .PHONY : generated/partitioned_matrix_view_2_3_4.cc.i
 
 generated/partitioned_matrix_view_2_3_4.s: generated/partitioned_matrix_view_2_3_4.cc.s
@@ -1742,7 +1742,7 @@ generated/partitioned_matrix_view_2_3_4.s: generated/partitioned_matrix_view_2_3
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_3_4.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_4.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_4.cc.s
 .PHONY : generated/partitioned_matrix_view_2_3_4.cc.s
 
 generated/partitioned_matrix_view_2_3_6.o: generated/partitioned_matrix_view_2_3_6.cc.o
@@ -1750,7 +1750,7 @@ generated/partitioned_matrix_view_2_3_6.o: generated/partitioned_matrix_view_2_3
 
 # target to build an object file
 generated/partitioned_matrix_view_2_3_6.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_6.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_6.cc.o
 .PHONY : generated/partitioned_matrix_view_2_3_6.cc.o
 
 generated/partitioned_matrix_view_2_3_6.i: generated/partitioned_matrix_view_2_3_6.cc.i
@@ -1758,7 +1758,7 @@ generated/partitioned_matrix_view_2_3_6.i: generated/partitioned_matrix_view_2_3
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_3_6.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_6.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_6.cc.i
 .PHONY : generated/partitioned_matrix_view_2_3_6.cc.i
 
 generated/partitioned_matrix_view_2_3_6.s: generated/partitioned_matrix_view_2_3_6.cc.s
@@ -1766,7 +1766,7 @@ generated/partitioned_matrix_view_2_3_6.s: generated/partitioned_matrix_view_2_3
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_3_6.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_6.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_6.cc.s
 .PHONY : generated/partitioned_matrix_view_2_3_6.cc.s
 
 generated/partitioned_matrix_view_2_3_9.o: generated/partitioned_matrix_view_2_3_9.cc.o
@@ -1774,7 +1774,7 @@ generated/partitioned_matrix_view_2_3_9.o: generated/partitioned_matrix_view_2_3
 
 # target to build an object file
 generated/partitioned_matrix_view_2_3_9.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_9.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_9.cc.o
 .PHONY : generated/partitioned_matrix_view_2_3_9.cc.o
 
 generated/partitioned_matrix_view_2_3_9.i: generated/partitioned_matrix_view_2_3_9.cc.i
@@ -1782,7 +1782,7 @@ generated/partitioned_matrix_view_2_3_9.i: generated/partitioned_matrix_view_2_3
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_3_9.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_9.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_9.cc.i
 .PHONY : generated/partitioned_matrix_view_2_3_9.cc.i
 
 generated/partitioned_matrix_view_2_3_9.s: generated/partitioned_matrix_view_2_3_9.cc.s
@@ -1790,7 +1790,7 @@ generated/partitioned_matrix_view_2_3_9.s: generated/partitioned_matrix_view_2_3
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_3_9.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_9.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_9.cc.s
 .PHONY : generated/partitioned_matrix_view_2_3_9.cc.s
 
 generated/partitioned_matrix_view_2_3_d.o: generated/partitioned_matrix_view_2_3_d.cc.o
@@ -1798,7 +1798,7 @@ generated/partitioned_matrix_view_2_3_d.o: generated/partitioned_matrix_view_2_3
 
 # target to build an object file
 generated/partitioned_matrix_view_2_3_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_d.cc.o
 .PHONY : generated/partitioned_matrix_view_2_3_d.cc.o
 
 generated/partitioned_matrix_view_2_3_d.i: generated/partitioned_matrix_view_2_3_d.cc.i
@@ -1806,7 +1806,7 @@ generated/partitioned_matrix_view_2_3_d.i: generated/partitioned_matrix_view_2_3
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_3_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_d.cc.i
 .PHONY : generated/partitioned_matrix_view_2_3_d.cc.i
 
 generated/partitioned_matrix_view_2_3_d.s: generated/partitioned_matrix_view_2_3_d.cc.s
@@ -1814,7 +1814,7 @@ generated/partitioned_matrix_view_2_3_d.s: generated/partitioned_matrix_view_2_3
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_3_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_3_d.cc.s
 .PHONY : generated/partitioned_matrix_view_2_3_d.cc.s
 
 generated/partitioned_matrix_view_2_4_3.o: generated/partitioned_matrix_view_2_4_3.cc.o
@@ -1822,7 +1822,7 @@ generated/partitioned_matrix_view_2_4_3.o: generated/partitioned_matrix_view_2_4
 
 # target to build an object file
 generated/partitioned_matrix_view_2_4_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_3.cc.o
 .PHONY : generated/partitioned_matrix_view_2_4_3.cc.o
 
 generated/partitioned_matrix_view_2_4_3.i: generated/partitioned_matrix_view_2_4_3.cc.i
@@ -1830,7 +1830,7 @@ generated/partitioned_matrix_view_2_4_3.i: generated/partitioned_matrix_view_2_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_4_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_3.cc.i
 .PHONY : generated/partitioned_matrix_view_2_4_3.cc.i
 
 generated/partitioned_matrix_view_2_4_3.s: generated/partitioned_matrix_view_2_4_3.cc.s
@@ -1838,7 +1838,7 @@ generated/partitioned_matrix_view_2_4_3.s: generated/partitioned_matrix_view_2_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_4_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_3.cc.s
 .PHONY : generated/partitioned_matrix_view_2_4_3.cc.s
 
 generated/partitioned_matrix_view_2_4_4.o: generated/partitioned_matrix_view_2_4_4.cc.o
@@ -1846,7 +1846,7 @@ generated/partitioned_matrix_view_2_4_4.o: generated/partitioned_matrix_view_2_4
 
 # target to build an object file
 generated/partitioned_matrix_view_2_4_4.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_4.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_4.cc.o
 .PHONY : generated/partitioned_matrix_view_2_4_4.cc.o
 
 generated/partitioned_matrix_view_2_4_4.i: generated/partitioned_matrix_view_2_4_4.cc.i
@@ -1854,7 +1854,7 @@ generated/partitioned_matrix_view_2_4_4.i: generated/partitioned_matrix_view_2_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_4_4.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_4.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_4.cc.i
 .PHONY : generated/partitioned_matrix_view_2_4_4.cc.i
 
 generated/partitioned_matrix_view_2_4_4.s: generated/partitioned_matrix_view_2_4_4.cc.s
@@ -1862,7 +1862,7 @@ generated/partitioned_matrix_view_2_4_4.s: generated/partitioned_matrix_view_2_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_4_4.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_4.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_4.cc.s
 .PHONY : generated/partitioned_matrix_view_2_4_4.cc.s
 
 generated/partitioned_matrix_view_2_4_6.o: generated/partitioned_matrix_view_2_4_6.cc.o
@@ -1870,7 +1870,7 @@ generated/partitioned_matrix_view_2_4_6.o: generated/partitioned_matrix_view_2_4
 
 # target to build an object file
 generated/partitioned_matrix_view_2_4_6.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_6.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_6.cc.o
 .PHONY : generated/partitioned_matrix_view_2_4_6.cc.o
 
 generated/partitioned_matrix_view_2_4_6.i: generated/partitioned_matrix_view_2_4_6.cc.i
@@ -1878,7 +1878,7 @@ generated/partitioned_matrix_view_2_4_6.i: generated/partitioned_matrix_view_2_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_4_6.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_6.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_6.cc.i
 .PHONY : generated/partitioned_matrix_view_2_4_6.cc.i
 
 generated/partitioned_matrix_view_2_4_6.s: generated/partitioned_matrix_view_2_4_6.cc.s
@@ -1886,7 +1886,7 @@ generated/partitioned_matrix_view_2_4_6.s: generated/partitioned_matrix_view_2_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_4_6.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_6.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_6.cc.s
 .PHONY : generated/partitioned_matrix_view_2_4_6.cc.s
 
 generated/partitioned_matrix_view_2_4_8.o: generated/partitioned_matrix_view_2_4_8.cc.o
@@ -1894,7 +1894,7 @@ generated/partitioned_matrix_view_2_4_8.o: generated/partitioned_matrix_view_2_4
 
 # target to build an object file
 generated/partitioned_matrix_view_2_4_8.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_8.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_8.cc.o
 .PHONY : generated/partitioned_matrix_view_2_4_8.cc.o
 
 generated/partitioned_matrix_view_2_4_8.i: generated/partitioned_matrix_view_2_4_8.cc.i
@@ -1902,7 +1902,7 @@ generated/partitioned_matrix_view_2_4_8.i: generated/partitioned_matrix_view_2_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_4_8.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_8.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_8.cc.i
 .PHONY : generated/partitioned_matrix_view_2_4_8.cc.i
 
 generated/partitioned_matrix_view_2_4_8.s: generated/partitioned_matrix_view_2_4_8.cc.s
@@ -1910,7 +1910,7 @@ generated/partitioned_matrix_view_2_4_8.s: generated/partitioned_matrix_view_2_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_4_8.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_8.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_8.cc.s
 .PHONY : generated/partitioned_matrix_view_2_4_8.cc.s
 
 generated/partitioned_matrix_view_2_4_9.o: generated/partitioned_matrix_view_2_4_9.cc.o
@@ -1918,7 +1918,7 @@ generated/partitioned_matrix_view_2_4_9.o: generated/partitioned_matrix_view_2_4
 
 # target to build an object file
 generated/partitioned_matrix_view_2_4_9.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_9.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_9.cc.o
 .PHONY : generated/partitioned_matrix_view_2_4_9.cc.o
 
 generated/partitioned_matrix_view_2_4_9.i: generated/partitioned_matrix_view_2_4_9.cc.i
@@ -1926,7 +1926,7 @@ generated/partitioned_matrix_view_2_4_9.i: generated/partitioned_matrix_view_2_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_4_9.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_9.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_9.cc.i
 .PHONY : generated/partitioned_matrix_view_2_4_9.cc.i
 
 generated/partitioned_matrix_view_2_4_9.s: generated/partitioned_matrix_view_2_4_9.cc.s
@@ -1934,7 +1934,7 @@ generated/partitioned_matrix_view_2_4_9.s: generated/partitioned_matrix_view_2_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_4_9.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_9.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_9.cc.s
 .PHONY : generated/partitioned_matrix_view_2_4_9.cc.s
 
 generated/partitioned_matrix_view_2_4_d.o: generated/partitioned_matrix_view_2_4_d.cc.o
@@ -1942,7 +1942,7 @@ generated/partitioned_matrix_view_2_4_d.o: generated/partitioned_matrix_view_2_4
 
 # target to build an object file
 generated/partitioned_matrix_view_2_4_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_d.cc.o
 .PHONY : generated/partitioned_matrix_view_2_4_d.cc.o
 
 generated/partitioned_matrix_view_2_4_d.i: generated/partitioned_matrix_view_2_4_d.cc.i
@@ -1950,7 +1950,7 @@ generated/partitioned_matrix_view_2_4_d.i: generated/partitioned_matrix_view_2_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_4_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_d.cc.i
 .PHONY : generated/partitioned_matrix_view_2_4_d.cc.i
 
 generated/partitioned_matrix_view_2_4_d.s: generated/partitioned_matrix_view_2_4_d.cc.s
@@ -1958,7 +1958,7 @@ generated/partitioned_matrix_view_2_4_d.s: generated/partitioned_matrix_view_2_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_4_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_4_d.cc.s
 .PHONY : generated/partitioned_matrix_view_2_4_d.cc.s
 
 generated/partitioned_matrix_view_2_d_d.o: generated/partitioned_matrix_view_2_d_d.cc.o
@@ -1966,7 +1966,7 @@ generated/partitioned_matrix_view_2_d_d.o: generated/partitioned_matrix_view_2_d
 
 # target to build an object file
 generated/partitioned_matrix_view_2_d_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_d_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_d_d.cc.o
 .PHONY : generated/partitioned_matrix_view_2_d_d.cc.o
 
 generated/partitioned_matrix_view_2_d_d.i: generated/partitioned_matrix_view_2_d_d.cc.i
@@ -1974,7 +1974,7 @@ generated/partitioned_matrix_view_2_d_d.i: generated/partitioned_matrix_view_2_d
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_2_d_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_d_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_d_d.cc.i
 .PHONY : generated/partitioned_matrix_view_2_d_d.cc.i
 
 generated/partitioned_matrix_view_2_d_d.s: generated/partitioned_matrix_view_2_d_d.cc.s
@@ -1982,7 +1982,7 @@ generated/partitioned_matrix_view_2_d_d.s: generated/partitioned_matrix_view_2_d
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_2_d_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_d_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_2_d_d.cc.s
 .PHONY : generated/partitioned_matrix_view_2_d_d.cc.s
 
 generated/partitioned_matrix_view_3_3_3.o: generated/partitioned_matrix_view_3_3_3.cc.o
@@ -1990,7 +1990,7 @@ generated/partitioned_matrix_view_3_3_3.o: generated/partitioned_matrix_view_3_3
 
 # target to build an object file
 generated/partitioned_matrix_view_3_3_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_3_3_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_3_3_3.cc.o
 .PHONY : generated/partitioned_matrix_view_3_3_3.cc.o
 
 generated/partitioned_matrix_view_3_3_3.i: generated/partitioned_matrix_view_3_3_3.cc.i
@@ -1998,7 +1998,7 @@ generated/partitioned_matrix_view_3_3_3.i: generated/partitioned_matrix_view_3_3
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_3_3_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_3_3_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_3_3_3.cc.i
 .PHONY : generated/partitioned_matrix_view_3_3_3.cc.i
 
 generated/partitioned_matrix_view_3_3_3.s: generated/partitioned_matrix_view_3_3_3.cc.s
@@ -2006,7 +2006,7 @@ generated/partitioned_matrix_view_3_3_3.s: generated/partitioned_matrix_view_3_3
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_3_3_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_3_3_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_3_3_3.cc.s
 .PHONY : generated/partitioned_matrix_view_3_3_3.cc.s
 
 generated/partitioned_matrix_view_4_4_2.o: generated/partitioned_matrix_view_4_4_2.cc.o
@@ -2014,7 +2014,7 @@ generated/partitioned_matrix_view_4_4_2.o: generated/partitioned_matrix_view_4_4
 
 # target to build an object file
 generated/partitioned_matrix_view_4_4_2.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_2.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_2.cc.o
 .PHONY : generated/partitioned_matrix_view_4_4_2.cc.o
 
 generated/partitioned_matrix_view_4_4_2.i: generated/partitioned_matrix_view_4_4_2.cc.i
@@ -2022,7 +2022,7 @@ generated/partitioned_matrix_view_4_4_2.i: generated/partitioned_matrix_view_4_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_4_4_2.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_2.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_2.cc.i
 .PHONY : generated/partitioned_matrix_view_4_4_2.cc.i
 
 generated/partitioned_matrix_view_4_4_2.s: generated/partitioned_matrix_view_4_4_2.cc.s
@@ -2030,7 +2030,7 @@ generated/partitioned_matrix_view_4_4_2.s: generated/partitioned_matrix_view_4_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_4_4_2.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_2.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_2.cc.s
 .PHONY : generated/partitioned_matrix_view_4_4_2.cc.s
 
 generated/partitioned_matrix_view_4_4_3.o: generated/partitioned_matrix_view_4_4_3.cc.o
@@ -2038,7 +2038,7 @@ generated/partitioned_matrix_view_4_4_3.o: generated/partitioned_matrix_view_4_4
 
 # target to build an object file
 generated/partitioned_matrix_view_4_4_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_3.cc.o
 .PHONY : generated/partitioned_matrix_view_4_4_3.cc.o
 
 generated/partitioned_matrix_view_4_4_3.i: generated/partitioned_matrix_view_4_4_3.cc.i
@@ -2046,7 +2046,7 @@ generated/partitioned_matrix_view_4_4_3.i: generated/partitioned_matrix_view_4_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_4_4_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_3.cc.i
 .PHONY : generated/partitioned_matrix_view_4_4_3.cc.i
 
 generated/partitioned_matrix_view_4_4_3.s: generated/partitioned_matrix_view_4_4_3.cc.s
@@ -2054,7 +2054,7 @@ generated/partitioned_matrix_view_4_4_3.s: generated/partitioned_matrix_view_4_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_4_4_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_3.cc.s
 .PHONY : generated/partitioned_matrix_view_4_4_3.cc.s
 
 generated/partitioned_matrix_view_4_4_4.o: generated/partitioned_matrix_view_4_4_4.cc.o
@@ -2062,7 +2062,7 @@ generated/partitioned_matrix_view_4_4_4.o: generated/partitioned_matrix_view_4_4
 
 # target to build an object file
 generated/partitioned_matrix_view_4_4_4.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_4.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_4.cc.o
 .PHONY : generated/partitioned_matrix_view_4_4_4.cc.o
 
 generated/partitioned_matrix_view_4_4_4.i: generated/partitioned_matrix_view_4_4_4.cc.i
@@ -2070,7 +2070,7 @@ generated/partitioned_matrix_view_4_4_4.i: generated/partitioned_matrix_view_4_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_4_4_4.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_4.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_4.cc.i
 .PHONY : generated/partitioned_matrix_view_4_4_4.cc.i
 
 generated/partitioned_matrix_view_4_4_4.s: generated/partitioned_matrix_view_4_4_4.cc.s
@@ -2078,7 +2078,7 @@ generated/partitioned_matrix_view_4_4_4.s: generated/partitioned_matrix_view_4_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_4_4_4.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_4.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_4.cc.s
 .PHONY : generated/partitioned_matrix_view_4_4_4.cc.s
 
 generated/partitioned_matrix_view_4_4_d.o: generated/partitioned_matrix_view_4_4_d.cc.o
@@ -2086,7 +2086,7 @@ generated/partitioned_matrix_view_4_4_d.o: generated/partitioned_matrix_view_4_4
 
 # target to build an object file
 generated/partitioned_matrix_view_4_4_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_d.cc.o
 .PHONY : generated/partitioned_matrix_view_4_4_d.cc.o
 
 generated/partitioned_matrix_view_4_4_d.i: generated/partitioned_matrix_view_4_4_d.cc.i
@@ -2094,7 +2094,7 @@ generated/partitioned_matrix_view_4_4_d.i: generated/partitioned_matrix_view_4_4
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_4_4_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_d.cc.i
 .PHONY : generated/partitioned_matrix_view_4_4_d.cc.i
 
 generated/partitioned_matrix_view_4_4_d.s: generated/partitioned_matrix_view_4_4_d.cc.s
@@ -2102,7 +2102,7 @@ generated/partitioned_matrix_view_4_4_d.s: generated/partitioned_matrix_view_4_4
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_4_4_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_4_4_d.cc.s
 .PHONY : generated/partitioned_matrix_view_4_4_d.cc.s
 
 generated/partitioned_matrix_view_d_d_d.o: generated/partitioned_matrix_view_d_d_d.cc.o
@@ -2110,7 +2110,7 @@ generated/partitioned_matrix_view_d_d_d.o: generated/partitioned_matrix_view_d_d
 
 # target to build an object file
 generated/partitioned_matrix_view_d_d_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_d_d_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_d_d_d.cc.o
 .PHONY : generated/partitioned_matrix_view_d_d_d.cc.o
 
 generated/partitioned_matrix_view_d_d_d.i: generated/partitioned_matrix_view_d_d_d.cc.i
@@ -2118,7 +2118,7 @@ generated/partitioned_matrix_view_d_d_d.i: generated/partitioned_matrix_view_d_d
 
 # target to preprocess a source file
 generated/partitioned_matrix_view_d_d_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_d_d_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_d_d_d.cc.i
 .PHONY : generated/partitioned_matrix_view_d_d_d.cc.i
 
 generated/partitioned_matrix_view_d_d_d.s: generated/partitioned_matrix_view_d_d_d.cc.s
@@ -2126,7 +2126,7 @@ generated/partitioned_matrix_view_d_d_d.s: generated/partitioned_matrix_view_d_d
 
 # target to generate assembly for a file
 generated/partitioned_matrix_view_d_d_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_d_d_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/partitioned_matrix_view_d_d_d.cc.s
 .PHONY : generated/partitioned_matrix_view_d_d_d.cc.s
 
 generated/schur_eliminator_2_2_2.o: generated/schur_eliminator_2_2_2.cc.o
@@ -2134,7 +2134,7 @@ generated/schur_eliminator_2_2_2.o: generated/schur_eliminator_2_2_2.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_2_2.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_2.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_2.cc.o
 .PHONY : generated/schur_eliminator_2_2_2.cc.o
 
 generated/schur_eliminator_2_2_2.i: generated/schur_eliminator_2_2_2.cc.i
@@ -2142,7 +2142,7 @@ generated/schur_eliminator_2_2_2.i: generated/schur_eliminator_2_2_2.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_2_2.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_2.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_2.cc.i
 .PHONY : generated/schur_eliminator_2_2_2.cc.i
 
 generated/schur_eliminator_2_2_2.s: generated/schur_eliminator_2_2_2.cc.s
@@ -2150,7 +2150,7 @@ generated/schur_eliminator_2_2_2.s: generated/schur_eliminator_2_2_2.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_2_2.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_2.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_2.cc.s
 .PHONY : generated/schur_eliminator_2_2_2.cc.s
 
 generated/schur_eliminator_2_2_3.o: generated/schur_eliminator_2_2_3.cc.o
@@ -2158,7 +2158,7 @@ generated/schur_eliminator_2_2_3.o: generated/schur_eliminator_2_2_3.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_2_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_3.cc.o
 .PHONY : generated/schur_eliminator_2_2_3.cc.o
 
 generated/schur_eliminator_2_2_3.i: generated/schur_eliminator_2_2_3.cc.i
@@ -2166,7 +2166,7 @@ generated/schur_eliminator_2_2_3.i: generated/schur_eliminator_2_2_3.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_2_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_3.cc.i
 .PHONY : generated/schur_eliminator_2_2_3.cc.i
 
 generated/schur_eliminator_2_2_3.s: generated/schur_eliminator_2_2_3.cc.s
@@ -2174,7 +2174,7 @@ generated/schur_eliminator_2_2_3.s: generated/schur_eliminator_2_2_3.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_2_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_3.cc.s
 .PHONY : generated/schur_eliminator_2_2_3.cc.s
 
 generated/schur_eliminator_2_2_4.o: generated/schur_eliminator_2_2_4.cc.o
@@ -2182,7 +2182,7 @@ generated/schur_eliminator_2_2_4.o: generated/schur_eliminator_2_2_4.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_2_4.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_4.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_4.cc.o
 .PHONY : generated/schur_eliminator_2_2_4.cc.o
 
 generated/schur_eliminator_2_2_4.i: generated/schur_eliminator_2_2_4.cc.i
@@ -2190,7 +2190,7 @@ generated/schur_eliminator_2_2_4.i: generated/schur_eliminator_2_2_4.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_2_4.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_4.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_4.cc.i
 .PHONY : generated/schur_eliminator_2_2_4.cc.i
 
 generated/schur_eliminator_2_2_4.s: generated/schur_eliminator_2_2_4.cc.s
@@ -2198,7 +2198,7 @@ generated/schur_eliminator_2_2_4.s: generated/schur_eliminator_2_2_4.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_2_4.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_4.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_4.cc.s
 .PHONY : generated/schur_eliminator_2_2_4.cc.s
 
 generated/schur_eliminator_2_2_d.o: generated/schur_eliminator_2_2_d.cc.o
@@ -2206,7 +2206,7 @@ generated/schur_eliminator_2_2_d.o: generated/schur_eliminator_2_2_d.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_2_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_d.cc.o
 .PHONY : generated/schur_eliminator_2_2_d.cc.o
 
 generated/schur_eliminator_2_2_d.i: generated/schur_eliminator_2_2_d.cc.i
@@ -2214,7 +2214,7 @@ generated/schur_eliminator_2_2_d.i: generated/schur_eliminator_2_2_d.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_2_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_d.cc.i
 .PHONY : generated/schur_eliminator_2_2_d.cc.i
 
 generated/schur_eliminator_2_2_d.s: generated/schur_eliminator_2_2_d.cc.s
@@ -2222,7 +2222,7 @@ generated/schur_eliminator_2_2_d.s: generated/schur_eliminator_2_2_d.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_2_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_2_d.cc.s
 .PHONY : generated/schur_eliminator_2_2_d.cc.s
 
 generated/schur_eliminator_2_3_3.o: generated/schur_eliminator_2_3_3.cc.o
@@ -2230,7 +2230,7 @@ generated/schur_eliminator_2_3_3.o: generated/schur_eliminator_2_3_3.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_3_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_3.cc.o
 .PHONY : generated/schur_eliminator_2_3_3.cc.o
 
 generated/schur_eliminator_2_3_3.i: generated/schur_eliminator_2_3_3.cc.i
@@ -2238,7 +2238,7 @@ generated/schur_eliminator_2_3_3.i: generated/schur_eliminator_2_3_3.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_3_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_3.cc.i
 .PHONY : generated/schur_eliminator_2_3_3.cc.i
 
 generated/schur_eliminator_2_3_3.s: generated/schur_eliminator_2_3_3.cc.s
@@ -2246,7 +2246,7 @@ generated/schur_eliminator_2_3_3.s: generated/schur_eliminator_2_3_3.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_3_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_3.cc.s
 .PHONY : generated/schur_eliminator_2_3_3.cc.s
 
 generated/schur_eliminator_2_3_4.o: generated/schur_eliminator_2_3_4.cc.o
@@ -2254,7 +2254,7 @@ generated/schur_eliminator_2_3_4.o: generated/schur_eliminator_2_3_4.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_3_4.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_4.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_4.cc.o
 .PHONY : generated/schur_eliminator_2_3_4.cc.o
 
 generated/schur_eliminator_2_3_4.i: generated/schur_eliminator_2_3_4.cc.i
@@ -2262,7 +2262,7 @@ generated/schur_eliminator_2_3_4.i: generated/schur_eliminator_2_3_4.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_3_4.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_4.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_4.cc.i
 .PHONY : generated/schur_eliminator_2_3_4.cc.i
 
 generated/schur_eliminator_2_3_4.s: generated/schur_eliminator_2_3_4.cc.s
@@ -2270,7 +2270,7 @@ generated/schur_eliminator_2_3_4.s: generated/schur_eliminator_2_3_4.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_3_4.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_4.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_4.cc.s
 .PHONY : generated/schur_eliminator_2_3_4.cc.s
 
 generated/schur_eliminator_2_3_6.o: generated/schur_eliminator_2_3_6.cc.o
@@ -2278,7 +2278,7 @@ generated/schur_eliminator_2_3_6.o: generated/schur_eliminator_2_3_6.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_3_6.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_6.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_6.cc.o
 .PHONY : generated/schur_eliminator_2_3_6.cc.o
 
 generated/schur_eliminator_2_3_6.i: generated/schur_eliminator_2_3_6.cc.i
@@ -2286,7 +2286,7 @@ generated/schur_eliminator_2_3_6.i: generated/schur_eliminator_2_3_6.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_3_6.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_6.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_6.cc.i
 .PHONY : generated/schur_eliminator_2_3_6.cc.i
 
 generated/schur_eliminator_2_3_6.s: generated/schur_eliminator_2_3_6.cc.s
@@ -2294,7 +2294,7 @@ generated/schur_eliminator_2_3_6.s: generated/schur_eliminator_2_3_6.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_3_6.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_6.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_6.cc.s
 .PHONY : generated/schur_eliminator_2_3_6.cc.s
 
 generated/schur_eliminator_2_3_9.o: generated/schur_eliminator_2_3_9.cc.o
@@ -2302,7 +2302,7 @@ generated/schur_eliminator_2_3_9.o: generated/schur_eliminator_2_3_9.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_3_9.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_9.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_9.cc.o
 .PHONY : generated/schur_eliminator_2_3_9.cc.o
 
 generated/schur_eliminator_2_3_9.i: generated/schur_eliminator_2_3_9.cc.i
@@ -2310,7 +2310,7 @@ generated/schur_eliminator_2_3_9.i: generated/schur_eliminator_2_3_9.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_3_9.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_9.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_9.cc.i
 .PHONY : generated/schur_eliminator_2_3_9.cc.i
 
 generated/schur_eliminator_2_3_9.s: generated/schur_eliminator_2_3_9.cc.s
@@ -2318,7 +2318,7 @@ generated/schur_eliminator_2_3_9.s: generated/schur_eliminator_2_3_9.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_3_9.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_9.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_9.cc.s
 .PHONY : generated/schur_eliminator_2_3_9.cc.s
 
 generated/schur_eliminator_2_3_d.o: generated/schur_eliminator_2_3_d.cc.o
@@ -2326,7 +2326,7 @@ generated/schur_eliminator_2_3_d.o: generated/schur_eliminator_2_3_d.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_3_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_d.cc.o
 .PHONY : generated/schur_eliminator_2_3_d.cc.o
 
 generated/schur_eliminator_2_3_d.i: generated/schur_eliminator_2_3_d.cc.i
@@ -2334,7 +2334,7 @@ generated/schur_eliminator_2_3_d.i: generated/schur_eliminator_2_3_d.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_3_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_d.cc.i
 .PHONY : generated/schur_eliminator_2_3_d.cc.i
 
 generated/schur_eliminator_2_3_d.s: generated/schur_eliminator_2_3_d.cc.s
@@ -2342,7 +2342,7 @@ generated/schur_eliminator_2_3_d.s: generated/schur_eliminator_2_3_d.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_3_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_3_d.cc.s
 .PHONY : generated/schur_eliminator_2_3_d.cc.s
 
 generated/schur_eliminator_2_4_3.o: generated/schur_eliminator_2_4_3.cc.o
@@ -2350,7 +2350,7 @@ generated/schur_eliminator_2_4_3.o: generated/schur_eliminator_2_4_3.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_4_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_3.cc.o
 .PHONY : generated/schur_eliminator_2_4_3.cc.o
 
 generated/schur_eliminator_2_4_3.i: generated/schur_eliminator_2_4_3.cc.i
@@ -2358,7 +2358,7 @@ generated/schur_eliminator_2_4_3.i: generated/schur_eliminator_2_4_3.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_4_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_3.cc.i
 .PHONY : generated/schur_eliminator_2_4_3.cc.i
 
 generated/schur_eliminator_2_4_3.s: generated/schur_eliminator_2_4_3.cc.s
@@ -2366,7 +2366,7 @@ generated/schur_eliminator_2_4_3.s: generated/schur_eliminator_2_4_3.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_4_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_3.cc.s
 .PHONY : generated/schur_eliminator_2_4_3.cc.s
 
 generated/schur_eliminator_2_4_4.o: generated/schur_eliminator_2_4_4.cc.o
@@ -2374,7 +2374,7 @@ generated/schur_eliminator_2_4_4.o: generated/schur_eliminator_2_4_4.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_4_4.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_4.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_4.cc.o
 .PHONY : generated/schur_eliminator_2_4_4.cc.o
 
 generated/schur_eliminator_2_4_4.i: generated/schur_eliminator_2_4_4.cc.i
@@ -2382,7 +2382,7 @@ generated/schur_eliminator_2_4_4.i: generated/schur_eliminator_2_4_4.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_4_4.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_4.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_4.cc.i
 .PHONY : generated/schur_eliminator_2_4_4.cc.i
 
 generated/schur_eliminator_2_4_4.s: generated/schur_eliminator_2_4_4.cc.s
@@ -2390,7 +2390,7 @@ generated/schur_eliminator_2_4_4.s: generated/schur_eliminator_2_4_4.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_4_4.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_4.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_4.cc.s
 .PHONY : generated/schur_eliminator_2_4_4.cc.s
 
 generated/schur_eliminator_2_4_6.o: generated/schur_eliminator_2_4_6.cc.o
@@ -2398,7 +2398,7 @@ generated/schur_eliminator_2_4_6.o: generated/schur_eliminator_2_4_6.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_4_6.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_6.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_6.cc.o
 .PHONY : generated/schur_eliminator_2_4_6.cc.o
 
 generated/schur_eliminator_2_4_6.i: generated/schur_eliminator_2_4_6.cc.i
@@ -2406,7 +2406,7 @@ generated/schur_eliminator_2_4_6.i: generated/schur_eliminator_2_4_6.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_4_6.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_6.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_6.cc.i
 .PHONY : generated/schur_eliminator_2_4_6.cc.i
 
 generated/schur_eliminator_2_4_6.s: generated/schur_eliminator_2_4_6.cc.s
@@ -2414,7 +2414,7 @@ generated/schur_eliminator_2_4_6.s: generated/schur_eliminator_2_4_6.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_4_6.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_6.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_6.cc.s
 .PHONY : generated/schur_eliminator_2_4_6.cc.s
 
 generated/schur_eliminator_2_4_8.o: generated/schur_eliminator_2_4_8.cc.o
@@ -2422,7 +2422,7 @@ generated/schur_eliminator_2_4_8.o: generated/schur_eliminator_2_4_8.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_4_8.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_8.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_8.cc.o
 .PHONY : generated/schur_eliminator_2_4_8.cc.o
 
 generated/schur_eliminator_2_4_8.i: generated/schur_eliminator_2_4_8.cc.i
@@ -2430,7 +2430,7 @@ generated/schur_eliminator_2_4_8.i: generated/schur_eliminator_2_4_8.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_4_8.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_8.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_8.cc.i
 .PHONY : generated/schur_eliminator_2_4_8.cc.i
 
 generated/schur_eliminator_2_4_8.s: generated/schur_eliminator_2_4_8.cc.s
@@ -2438,7 +2438,7 @@ generated/schur_eliminator_2_4_8.s: generated/schur_eliminator_2_4_8.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_4_8.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_8.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_8.cc.s
 .PHONY : generated/schur_eliminator_2_4_8.cc.s
 
 generated/schur_eliminator_2_4_9.o: generated/schur_eliminator_2_4_9.cc.o
@@ -2446,7 +2446,7 @@ generated/schur_eliminator_2_4_9.o: generated/schur_eliminator_2_4_9.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_4_9.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_9.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_9.cc.o
 .PHONY : generated/schur_eliminator_2_4_9.cc.o
 
 generated/schur_eliminator_2_4_9.i: generated/schur_eliminator_2_4_9.cc.i
@@ -2454,7 +2454,7 @@ generated/schur_eliminator_2_4_9.i: generated/schur_eliminator_2_4_9.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_4_9.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_9.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_9.cc.i
 .PHONY : generated/schur_eliminator_2_4_9.cc.i
 
 generated/schur_eliminator_2_4_9.s: generated/schur_eliminator_2_4_9.cc.s
@@ -2462,7 +2462,7 @@ generated/schur_eliminator_2_4_9.s: generated/schur_eliminator_2_4_9.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_4_9.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_9.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_9.cc.s
 .PHONY : generated/schur_eliminator_2_4_9.cc.s
 
 generated/schur_eliminator_2_4_d.o: generated/schur_eliminator_2_4_d.cc.o
@@ -2470,7 +2470,7 @@ generated/schur_eliminator_2_4_d.o: generated/schur_eliminator_2_4_d.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_4_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_d.cc.o
 .PHONY : generated/schur_eliminator_2_4_d.cc.o
 
 generated/schur_eliminator_2_4_d.i: generated/schur_eliminator_2_4_d.cc.i
@@ -2478,7 +2478,7 @@ generated/schur_eliminator_2_4_d.i: generated/schur_eliminator_2_4_d.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_4_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_d.cc.i
 .PHONY : generated/schur_eliminator_2_4_d.cc.i
 
 generated/schur_eliminator_2_4_d.s: generated/schur_eliminator_2_4_d.cc.s
@@ -2486,7 +2486,7 @@ generated/schur_eliminator_2_4_d.s: generated/schur_eliminator_2_4_d.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_4_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_4_d.cc.s
 .PHONY : generated/schur_eliminator_2_4_d.cc.s
 
 generated/schur_eliminator_2_d_d.o: generated/schur_eliminator_2_d_d.cc.o
@@ -2494,7 +2494,7 @@ generated/schur_eliminator_2_d_d.o: generated/schur_eliminator_2_d_d.cc.o
 
 # target to build an object file
 generated/schur_eliminator_2_d_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_d_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_d_d.cc.o
 .PHONY : generated/schur_eliminator_2_d_d.cc.o
 
 generated/schur_eliminator_2_d_d.i: generated/schur_eliminator_2_d_d.cc.i
@@ -2502,7 +2502,7 @@ generated/schur_eliminator_2_d_d.i: generated/schur_eliminator_2_d_d.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_2_d_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_d_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_d_d.cc.i
 .PHONY : generated/schur_eliminator_2_d_d.cc.i
 
 generated/schur_eliminator_2_d_d.s: generated/schur_eliminator_2_d_d.cc.s
@@ -2510,7 +2510,7 @@ generated/schur_eliminator_2_d_d.s: generated/schur_eliminator_2_d_d.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_2_d_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_d_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_2_d_d.cc.s
 .PHONY : generated/schur_eliminator_2_d_d.cc.s
 
 generated/schur_eliminator_3_3_3.o: generated/schur_eliminator_3_3_3.cc.o
@@ -2518,7 +2518,7 @@ generated/schur_eliminator_3_3_3.o: generated/schur_eliminator_3_3_3.cc.o
 
 # target to build an object file
 generated/schur_eliminator_3_3_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_3_3_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_3_3_3.cc.o
 .PHONY : generated/schur_eliminator_3_3_3.cc.o
 
 generated/schur_eliminator_3_3_3.i: generated/schur_eliminator_3_3_3.cc.i
@@ -2526,7 +2526,7 @@ generated/schur_eliminator_3_3_3.i: generated/schur_eliminator_3_3_3.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_3_3_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_3_3_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_3_3_3.cc.i
 .PHONY : generated/schur_eliminator_3_3_3.cc.i
 
 generated/schur_eliminator_3_3_3.s: generated/schur_eliminator_3_3_3.cc.s
@@ -2534,7 +2534,7 @@ generated/schur_eliminator_3_3_3.s: generated/schur_eliminator_3_3_3.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_3_3_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_3_3_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_3_3_3.cc.s
 .PHONY : generated/schur_eliminator_3_3_3.cc.s
 
 generated/schur_eliminator_4_4_2.o: generated/schur_eliminator_4_4_2.cc.o
@@ -2542,7 +2542,7 @@ generated/schur_eliminator_4_4_2.o: generated/schur_eliminator_4_4_2.cc.o
 
 # target to build an object file
 generated/schur_eliminator_4_4_2.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_2.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_2.cc.o
 .PHONY : generated/schur_eliminator_4_4_2.cc.o
 
 generated/schur_eliminator_4_4_2.i: generated/schur_eliminator_4_4_2.cc.i
@@ -2550,7 +2550,7 @@ generated/schur_eliminator_4_4_2.i: generated/schur_eliminator_4_4_2.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_4_4_2.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_2.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_2.cc.i
 .PHONY : generated/schur_eliminator_4_4_2.cc.i
 
 generated/schur_eliminator_4_4_2.s: generated/schur_eliminator_4_4_2.cc.s
@@ -2558,7 +2558,7 @@ generated/schur_eliminator_4_4_2.s: generated/schur_eliminator_4_4_2.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_4_4_2.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_2.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_2.cc.s
 .PHONY : generated/schur_eliminator_4_4_2.cc.s
 
 generated/schur_eliminator_4_4_3.o: generated/schur_eliminator_4_4_3.cc.o
@@ -2566,7 +2566,7 @@ generated/schur_eliminator_4_4_3.o: generated/schur_eliminator_4_4_3.cc.o
 
 # target to build an object file
 generated/schur_eliminator_4_4_3.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_3.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_3.cc.o
 .PHONY : generated/schur_eliminator_4_4_3.cc.o
 
 generated/schur_eliminator_4_4_3.i: generated/schur_eliminator_4_4_3.cc.i
@@ -2574,7 +2574,7 @@ generated/schur_eliminator_4_4_3.i: generated/schur_eliminator_4_4_3.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_4_4_3.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_3.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_3.cc.i
 .PHONY : generated/schur_eliminator_4_4_3.cc.i
 
 generated/schur_eliminator_4_4_3.s: generated/schur_eliminator_4_4_3.cc.s
@@ -2582,7 +2582,7 @@ generated/schur_eliminator_4_4_3.s: generated/schur_eliminator_4_4_3.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_4_4_3.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_3.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_3.cc.s
 .PHONY : generated/schur_eliminator_4_4_3.cc.s
 
 generated/schur_eliminator_4_4_4.o: generated/schur_eliminator_4_4_4.cc.o
@@ -2590,7 +2590,7 @@ generated/schur_eliminator_4_4_4.o: generated/schur_eliminator_4_4_4.cc.o
 
 # target to build an object file
 generated/schur_eliminator_4_4_4.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_4.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_4.cc.o
 .PHONY : generated/schur_eliminator_4_4_4.cc.o
 
 generated/schur_eliminator_4_4_4.i: generated/schur_eliminator_4_4_4.cc.i
@@ -2598,7 +2598,7 @@ generated/schur_eliminator_4_4_4.i: generated/schur_eliminator_4_4_4.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_4_4_4.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_4.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_4.cc.i
 .PHONY : generated/schur_eliminator_4_4_4.cc.i
 
 generated/schur_eliminator_4_4_4.s: generated/schur_eliminator_4_4_4.cc.s
@@ -2606,7 +2606,7 @@ generated/schur_eliminator_4_4_4.s: generated/schur_eliminator_4_4_4.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_4_4_4.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_4.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_4.cc.s
 .PHONY : generated/schur_eliminator_4_4_4.cc.s
 
 generated/schur_eliminator_4_4_d.o: generated/schur_eliminator_4_4_d.cc.o
@@ -2614,7 +2614,7 @@ generated/schur_eliminator_4_4_d.o: generated/schur_eliminator_4_4_d.cc.o
 
 # target to build an object file
 generated/schur_eliminator_4_4_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_d.cc.o
 .PHONY : generated/schur_eliminator_4_4_d.cc.o
 
 generated/schur_eliminator_4_4_d.i: generated/schur_eliminator_4_4_d.cc.i
@@ -2622,7 +2622,7 @@ generated/schur_eliminator_4_4_d.i: generated/schur_eliminator_4_4_d.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_4_4_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_d.cc.i
 .PHONY : generated/schur_eliminator_4_4_d.cc.i
 
 generated/schur_eliminator_4_4_d.s: generated/schur_eliminator_4_4_d.cc.s
@@ -2630,7 +2630,7 @@ generated/schur_eliminator_4_4_d.s: generated/schur_eliminator_4_4_d.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_4_4_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_4_4_d.cc.s
 .PHONY : generated/schur_eliminator_4_4_d.cc.s
 
 generated/schur_eliminator_d_d_d.o: generated/schur_eliminator_d_d_d.cc.o
@@ -2638,7 +2638,7 @@ generated/schur_eliminator_d_d_d.o: generated/schur_eliminator_d_d_d.cc.o
 
 # target to build an object file
 generated/schur_eliminator_d_d_d.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_d_d_d.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_d_d_d.cc.o
 .PHONY : generated/schur_eliminator_d_d_d.cc.o
 
 generated/schur_eliminator_d_d_d.i: generated/schur_eliminator_d_d_d.cc.i
@@ -2646,7 +2646,7 @@ generated/schur_eliminator_d_d_d.i: generated/schur_eliminator_d_d_d.cc.i
 
 # target to preprocess a source file
 generated/schur_eliminator_d_d_d.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_d_d_d.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_d_d_d.cc.i
 .PHONY : generated/schur_eliminator_d_d_d.cc.i
 
 generated/schur_eliminator_d_d_d.s: generated/schur_eliminator_d_d_d.cc.s
@@ -2654,7 +2654,7 @@ generated/schur_eliminator_d_d_d.s: generated/schur_eliminator_d_d_d.cc.s
 
 # target to generate assembly for a file
 generated/schur_eliminator_d_d_d.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_d_d_d.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/generated/schur_eliminator_d_d_d.cc.s
 .PHONY : generated/schur_eliminator_d_d_d.cc.s
 
 gradient_checker.o: gradient_checker.cc.o
@@ -2662,7 +2662,7 @@ gradient_checker.o: gradient_checker.cc.o
 
 # target to build an object file
 gradient_checker.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_checker.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_checker.cc.o
 .PHONY : gradient_checker.cc.o
 
 gradient_checker.i: gradient_checker.cc.i
@@ -2670,7 +2670,7 @@ gradient_checker.i: gradient_checker.cc.i
 
 # target to preprocess a source file
 gradient_checker.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_checker.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_checker.cc.i
 .PHONY : gradient_checker.cc.i
 
 gradient_checker.s: gradient_checker.cc.s
@@ -2678,7 +2678,7 @@ gradient_checker.s: gradient_checker.cc.s
 
 # target to generate assembly for a file
 gradient_checker.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_checker.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_checker.cc.s
 .PHONY : gradient_checker.cc.s
 
 gradient_checking_cost_function.o: gradient_checking_cost_function.cc.o
@@ -2686,7 +2686,7 @@ gradient_checking_cost_function.o: gradient_checking_cost_function.cc.o
 
 # target to build an object file
 gradient_checking_cost_function.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_checking_cost_function.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_checking_cost_function.cc.o
 .PHONY : gradient_checking_cost_function.cc.o
 
 gradient_checking_cost_function.i: gradient_checking_cost_function.cc.i
@@ -2694,7 +2694,7 @@ gradient_checking_cost_function.i: gradient_checking_cost_function.cc.i
 
 # target to preprocess a source file
 gradient_checking_cost_function.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_checking_cost_function.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_checking_cost_function.cc.i
 .PHONY : gradient_checking_cost_function.cc.i
 
 gradient_checking_cost_function.s: gradient_checking_cost_function.cc.s
@@ -2702,7 +2702,7 @@ gradient_checking_cost_function.s: gradient_checking_cost_function.cc.s
 
 # target to generate assembly for a file
 gradient_checking_cost_function.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_checking_cost_function.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_checking_cost_function.cc.s
 .PHONY : gradient_checking_cost_function.cc.s
 
 gradient_problem.o: gradient_problem.cc.o
@@ -2710,7 +2710,7 @@ gradient_problem.o: gradient_problem.cc.o
 
 # target to build an object file
 gradient_problem.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_problem.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_problem.cc.o
 .PHONY : gradient_problem.cc.o
 
 gradient_problem.i: gradient_problem.cc.i
@@ -2718,7 +2718,7 @@ gradient_problem.i: gradient_problem.cc.i
 
 # target to preprocess a source file
 gradient_problem.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_problem.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_problem.cc.i
 .PHONY : gradient_problem.cc.i
 
 gradient_problem.s: gradient_problem.cc.s
@@ -2726,7 +2726,7 @@ gradient_problem.s: gradient_problem.cc.s
 
 # target to generate assembly for a file
 gradient_problem.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_problem.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/gradient_problem.cc.s
 .PHONY : gradient_problem.cc.s
 
 gradient_problem_solver.o: gradient_problem_solver.cc.o
@@ -2734,7 +2734,7 @@ gradient_problem_solver.o: gradient_problem_solver.cc.o
 
 # target to build an object file
 gradient_problem_solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_problem_solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_problem_solver.cc.o
 .PHONY : gradient_problem_solver.cc.o
 
 gradient_problem_solver.i: gradient_problem_solver.cc.i
@@ -2742,7 +2742,7 @@ gradient_problem_solver.i: gradient_problem_solver.cc.i
 
 # target to preprocess a source file
 gradient_problem_solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_problem_solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_problem_solver.cc.i
 .PHONY : gradient_problem_solver.cc.i
 
 gradient_problem_solver.s: gradient_problem_solver.cc.s
@@ -2750,7 +2750,7 @@ gradient_problem_solver.s: gradient_problem_solver.cc.s
 
 # target to generate assembly for a file
 gradient_problem_solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_problem_solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/gradient_problem_solver.cc.s
 .PHONY : gradient_problem_solver.cc.s
 
 implicit_schur_complement.o: implicit_schur_complement.cc.o
@@ -2758,7 +2758,7 @@ implicit_schur_complement.o: implicit_schur_complement.cc.o
 
 # target to build an object file
 implicit_schur_complement.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/implicit_schur_complement.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/implicit_schur_complement.cc.o
 .PHONY : implicit_schur_complement.cc.o
 
 implicit_schur_complement.i: implicit_schur_complement.cc.i
@@ -2766,7 +2766,7 @@ implicit_schur_complement.i: implicit_schur_complement.cc.i
 
 # target to preprocess a source file
 implicit_schur_complement.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/implicit_schur_complement.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/implicit_schur_complement.cc.i
 .PHONY : implicit_schur_complement.cc.i
 
 implicit_schur_complement.s: implicit_schur_complement.cc.s
@@ -2774,7 +2774,7 @@ implicit_schur_complement.s: implicit_schur_complement.cc.s
 
 # target to generate assembly for a file
 implicit_schur_complement.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/implicit_schur_complement.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/implicit_schur_complement.cc.s
 .PHONY : implicit_schur_complement.cc.s
 
 inner_product_computer.o: inner_product_computer.cc.o
@@ -2782,7 +2782,7 @@ inner_product_computer.o: inner_product_computer.cc.o
 
 # target to build an object file
 inner_product_computer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/inner_product_computer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/inner_product_computer.cc.o
 .PHONY : inner_product_computer.cc.o
 
 inner_product_computer.i: inner_product_computer.cc.i
@@ -2790,7 +2790,7 @@ inner_product_computer.i: inner_product_computer.cc.i
 
 # target to preprocess a source file
 inner_product_computer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/inner_product_computer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/inner_product_computer.cc.i
 .PHONY : inner_product_computer.cc.i
 
 inner_product_computer.s: inner_product_computer.cc.s
@@ -2798,7 +2798,7 @@ inner_product_computer.s: inner_product_computer.cc.s
 
 # target to generate assembly for a file
 inner_product_computer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/inner_product_computer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/inner_product_computer.cc.s
 .PHONY : inner_product_computer.cc.s
 
 invert_psd_matrix_benchmark.o: invert_psd_matrix_benchmark.cc.o
@@ -2806,7 +2806,7 @@ invert_psd_matrix_benchmark.o: invert_psd_matrix_benchmark.cc.o
 
 # target to build an object file
 invert_psd_matrix_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build.make internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/invert_psd_matrix_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build.make internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/invert_psd_matrix_benchmark.cc.o
 .PHONY : invert_psd_matrix_benchmark.cc.o
 
 invert_psd_matrix_benchmark.i: invert_psd_matrix_benchmark.cc.i
@@ -2814,7 +2814,7 @@ invert_psd_matrix_benchmark.i: invert_psd_matrix_benchmark.cc.i
 
 # target to preprocess a source file
 invert_psd_matrix_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build.make internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/invert_psd_matrix_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build.make internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/invert_psd_matrix_benchmark.cc.i
 .PHONY : invert_psd_matrix_benchmark.cc.i
 
 invert_psd_matrix_benchmark.s: invert_psd_matrix_benchmark.cc.s
@@ -2822,7 +2822,7 @@ invert_psd_matrix_benchmark.s: invert_psd_matrix_benchmark.cc.s
 
 # target to generate assembly for a file
 invert_psd_matrix_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build.make internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/invert_psd_matrix_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/build.make internal/ceres/CMakeFiles/invert_psd_matrix_benchmark.dir/invert_psd_matrix_benchmark.cc.s
 .PHONY : invert_psd_matrix_benchmark.cc.s
 
 is_close.o: is_close.cc.o
@@ -2830,7 +2830,7 @@ is_close.o: is_close.cc.o
 
 # target to build an object file
 is_close.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/is_close.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/is_close.cc.o
 .PHONY : is_close.cc.o
 
 is_close.i: is_close.cc.i
@@ -2838,7 +2838,7 @@ is_close.i: is_close.cc.i
 
 # target to preprocess a source file
 is_close.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/is_close.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/is_close.cc.i
 .PHONY : is_close.cc.i
 
 is_close.s: is_close.cc.s
@@ -2846,7 +2846,7 @@ is_close.s: is_close.cc.s
 
 # target to generate assembly for a file
 is_close.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/is_close.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/is_close.cc.s
 .PHONY : is_close.cc.s
 
 iteration_callback.o: iteration_callback.cc.o
@@ -2854,7 +2854,7 @@ iteration_callback.o: iteration_callback.cc.o
 
 # target to build an object file
 iteration_callback.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iteration_callback.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iteration_callback.cc.o
 .PHONY : iteration_callback.cc.o
 
 iteration_callback.i: iteration_callback.cc.i
@@ -2862,7 +2862,7 @@ iteration_callback.i: iteration_callback.cc.i
 
 # target to preprocess a source file
 iteration_callback.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iteration_callback.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iteration_callback.cc.i
 .PHONY : iteration_callback.cc.i
 
 iteration_callback.s: iteration_callback.cc.s
@@ -2870,7 +2870,7 @@ iteration_callback.s: iteration_callback.cc.s
 
 # target to generate assembly for a file
 iteration_callback.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iteration_callback.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iteration_callback.cc.s
 .PHONY : iteration_callback.cc.s
 
 iterative_refiner.o: iterative_refiner.cc.o
@@ -2878,7 +2878,7 @@ iterative_refiner.o: iterative_refiner.cc.o
 
 # target to build an object file
 iterative_refiner.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_refiner.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_refiner.cc.o
 .PHONY : iterative_refiner.cc.o
 
 iterative_refiner.i: iterative_refiner.cc.i
@@ -2886,7 +2886,7 @@ iterative_refiner.i: iterative_refiner.cc.i
 
 # target to preprocess a source file
 iterative_refiner.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_refiner.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_refiner.cc.i
 .PHONY : iterative_refiner.cc.i
 
 iterative_refiner.s: iterative_refiner.cc.s
@@ -2894,7 +2894,7 @@ iterative_refiner.s: iterative_refiner.cc.s
 
 # target to generate assembly for a file
 iterative_refiner.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_refiner.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_refiner.cc.s
 .PHONY : iterative_refiner.cc.s
 
 iterative_schur_complement_solver.o: iterative_schur_complement_solver.cc.o
@@ -2902,7 +2902,7 @@ iterative_schur_complement_solver.o: iterative_schur_complement_solver.cc.o
 
 # target to build an object file
 iterative_schur_complement_solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_schur_complement_solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_schur_complement_solver.cc.o
 .PHONY : iterative_schur_complement_solver.cc.o
 
 iterative_schur_complement_solver.i: iterative_schur_complement_solver.cc.i
@@ -2910,7 +2910,7 @@ iterative_schur_complement_solver.i: iterative_schur_complement_solver.cc.i
 
 # target to preprocess a source file
 iterative_schur_complement_solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_schur_complement_solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_schur_complement_solver.cc.i
 .PHONY : iterative_schur_complement_solver.cc.i
 
 iterative_schur_complement_solver.s: iterative_schur_complement_solver.cc.s
@@ -2918,7 +2918,7 @@ iterative_schur_complement_solver.s: iterative_schur_complement_solver.cc.s
 
 # target to generate assembly for a file
 iterative_schur_complement_solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_schur_complement_solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/iterative_schur_complement_solver.cc.s
 .PHONY : iterative_schur_complement_solver.cc.s
 
 jet_operator_benchmark.o: jet_operator_benchmark.cc.o
@@ -2926,7 +2926,7 @@ jet_operator_benchmark.o: jet_operator_benchmark.cc.o
 
 # target to build an object file
 jet_operator_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build.make internal/ceres/CMakeFiles/jet_operator_benchmark.dir/jet_operator_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build.make internal/ceres/CMakeFiles/jet_operator_benchmark.dir/jet_operator_benchmark.cc.o
 .PHONY : jet_operator_benchmark.cc.o
 
 jet_operator_benchmark.i: jet_operator_benchmark.cc.i
@@ -2934,7 +2934,7 @@ jet_operator_benchmark.i: jet_operator_benchmark.cc.i
 
 # target to preprocess a source file
 jet_operator_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build.make internal/ceres/CMakeFiles/jet_operator_benchmark.dir/jet_operator_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build.make internal/ceres/CMakeFiles/jet_operator_benchmark.dir/jet_operator_benchmark.cc.i
 .PHONY : jet_operator_benchmark.cc.i
 
 jet_operator_benchmark.s: jet_operator_benchmark.cc.s
@@ -2942,7 +2942,7 @@ jet_operator_benchmark.s: jet_operator_benchmark.cc.s
 
 # target to generate assembly for a file
 jet_operator_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build.make internal/ceres/CMakeFiles/jet_operator_benchmark.dir/jet_operator_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/jet_operator_benchmark.dir/build.make internal/ceres/CMakeFiles/jet_operator_benchmark.dir/jet_operator_benchmark.cc.s
 .PHONY : jet_operator_benchmark.cc.s
 
 levenberg_marquardt_strategy.o: levenberg_marquardt_strategy.cc.o
@@ -2950,7 +2950,7 @@ levenberg_marquardt_strategy.o: levenberg_marquardt_strategy.cc.o
 
 # target to build an object file
 levenberg_marquardt_strategy.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/levenberg_marquardt_strategy.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/levenberg_marquardt_strategy.cc.o
 .PHONY : levenberg_marquardt_strategy.cc.o
 
 levenberg_marquardt_strategy.i: levenberg_marquardt_strategy.cc.i
@@ -2958,7 +2958,7 @@ levenberg_marquardt_strategy.i: levenberg_marquardt_strategy.cc.i
 
 # target to preprocess a source file
 levenberg_marquardt_strategy.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/levenberg_marquardt_strategy.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/levenberg_marquardt_strategy.cc.i
 .PHONY : levenberg_marquardt_strategy.cc.i
 
 levenberg_marquardt_strategy.s: levenberg_marquardt_strategy.cc.s
@@ -2966,7 +2966,7 @@ levenberg_marquardt_strategy.s: levenberg_marquardt_strategy.cc.s
 
 # target to generate assembly for a file
 levenberg_marquardt_strategy.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/levenberg_marquardt_strategy.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/levenberg_marquardt_strategy.cc.s
 .PHONY : levenberg_marquardt_strategy.cc.s
 
 line_search.o: line_search.cc.o
@@ -2974,7 +2974,7 @@ line_search.o: line_search.cc.o
 
 # target to build an object file
 line_search.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search.cc.o
 .PHONY : line_search.cc.o
 
 line_search.i: line_search.cc.i
@@ -2982,7 +2982,7 @@ line_search.i: line_search.cc.i
 
 # target to preprocess a source file
 line_search.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search.cc.i
 .PHONY : line_search.cc.i
 
 line_search.s: line_search.cc.s
@@ -2990,7 +2990,7 @@ line_search.s: line_search.cc.s
 
 # target to generate assembly for a file
 line_search.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search.cc.s
 .PHONY : line_search.cc.s
 
 line_search_direction.o: line_search_direction.cc.o
@@ -2998,7 +2998,7 @@ line_search_direction.o: line_search_direction.cc.o
 
 # target to build an object file
 line_search_direction.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_direction.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_direction.cc.o
 .PHONY : line_search_direction.cc.o
 
 line_search_direction.i: line_search_direction.cc.i
@@ -3006,7 +3006,7 @@ line_search_direction.i: line_search_direction.cc.i
 
 # target to preprocess a source file
 line_search_direction.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_direction.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_direction.cc.i
 .PHONY : line_search_direction.cc.i
 
 line_search_direction.s: line_search_direction.cc.s
@@ -3014,7 +3014,7 @@ line_search_direction.s: line_search_direction.cc.s
 
 # target to generate assembly for a file
 line_search_direction.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_direction.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_direction.cc.s
 .PHONY : line_search_direction.cc.s
 
 line_search_minimizer.o: line_search_minimizer.cc.o
@@ -3022,7 +3022,7 @@ line_search_minimizer.o: line_search_minimizer.cc.o
 
 # target to build an object file
 line_search_minimizer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_minimizer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_minimizer.cc.o
 .PHONY : line_search_minimizer.cc.o
 
 line_search_minimizer.i: line_search_minimizer.cc.i
@@ -3030,7 +3030,7 @@ line_search_minimizer.i: line_search_minimizer.cc.i
 
 # target to preprocess a source file
 line_search_minimizer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_minimizer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_minimizer.cc.i
 .PHONY : line_search_minimizer.cc.i
 
 line_search_minimizer.s: line_search_minimizer.cc.s
@@ -3038,7 +3038,7 @@ line_search_minimizer.s: line_search_minimizer.cc.s
 
 # target to generate assembly for a file
 line_search_minimizer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_minimizer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_minimizer.cc.s
 .PHONY : line_search_minimizer.cc.s
 
 line_search_preprocessor.o: line_search_preprocessor.cc.o
@@ -3046,7 +3046,7 @@ line_search_preprocessor.o: line_search_preprocessor.cc.o
 
 # target to build an object file
 line_search_preprocessor.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_preprocessor.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_preprocessor.cc.o
 .PHONY : line_search_preprocessor.cc.o
 
 line_search_preprocessor.i: line_search_preprocessor.cc.i
@@ -3054,7 +3054,7 @@ line_search_preprocessor.i: line_search_preprocessor.cc.i
 
 # target to preprocess a source file
 line_search_preprocessor.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_preprocessor.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_preprocessor.cc.i
 .PHONY : line_search_preprocessor.cc.i
 
 line_search_preprocessor.s: line_search_preprocessor.cc.s
@@ -3062,7 +3062,7 @@ line_search_preprocessor.s: line_search_preprocessor.cc.s
 
 # target to generate assembly for a file
 line_search_preprocessor.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_preprocessor.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/line_search_preprocessor.cc.s
 .PHONY : line_search_preprocessor.cc.s
 
 linear_least_squares_problems.o: linear_least_squares_problems.cc.o
@@ -3070,7 +3070,7 @@ linear_least_squares_problems.o: linear_least_squares_problems.cc.o
 
 # target to build an object file
 linear_least_squares_problems.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_least_squares_problems.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_least_squares_problems.cc.o
 .PHONY : linear_least_squares_problems.cc.o
 
 linear_least_squares_problems.i: linear_least_squares_problems.cc.i
@@ -3078,7 +3078,7 @@ linear_least_squares_problems.i: linear_least_squares_problems.cc.i
 
 # target to preprocess a source file
 linear_least_squares_problems.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_least_squares_problems.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_least_squares_problems.cc.i
 .PHONY : linear_least_squares_problems.cc.i
 
 linear_least_squares_problems.s: linear_least_squares_problems.cc.s
@@ -3086,7 +3086,7 @@ linear_least_squares_problems.s: linear_least_squares_problems.cc.s
 
 # target to generate assembly for a file
 linear_least_squares_problems.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_least_squares_problems.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_least_squares_problems.cc.s
 .PHONY : linear_least_squares_problems.cc.s
 
 linear_operator.o: linear_operator.cc.o
@@ -3094,7 +3094,7 @@ linear_operator.o: linear_operator.cc.o
 
 # target to build an object file
 linear_operator.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_operator.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_operator.cc.o
 .PHONY : linear_operator.cc.o
 
 linear_operator.i: linear_operator.cc.i
@@ -3102,7 +3102,7 @@ linear_operator.i: linear_operator.cc.i
 
 # target to preprocess a source file
 linear_operator.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_operator.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_operator.cc.i
 .PHONY : linear_operator.cc.i
 
 linear_operator.s: linear_operator.cc.s
@@ -3110,7 +3110,7 @@ linear_operator.s: linear_operator.cc.s
 
 # target to generate assembly for a file
 linear_operator.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_operator.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_operator.cc.s
 .PHONY : linear_operator.cc.s
 
 linear_solver.o: linear_solver.cc.o
@@ -3118,7 +3118,7 @@ linear_solver.o: linear_solver.cc.o
 
 # target to build an object file
 linear_solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o
 .PHONY : linear_solver.cc.o
 
 linear_solver.i: linear_solver.cc.i
@@ -3126,7 +3126,7 @@ linear_solver.i: linear_solver.cc.i
 
 # target to preprocess a source file
 linear_solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.i
 .PHONY : linear_solver.cc.i
 
 linear_solver.s: linear_solver.cc.s
@@ -3134,7 +3134,7 @@ linear_solver.s: linear_solver.cc.s
 
 # target to generate assembly for a file
 linear_solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.s
 .PHONY : linear_solver.cc.s
 
 loss_function.o: loss_function.cc.o
@@ -3142,7 +3142,7 @@ loss_function.o: loss_function.cc.o
 
 # target to build an object file
 loss_function.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/loss_function.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/loss_function.cc.o
 .PHONY : loss_function.cc.o
 
 loss_function.i: loss_function.cc.i
@@ -3150,7 +3150,7 @@ loss_function.i: loss_function.cc.i
 
 # target to preprocess a source file
 loss_function.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/loss_function.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/loss_function.cc.i
 .PHONY : loss_function.cc.i
 
 loss_function.s: loss_function.cc.s
@@ -3158,7 +3158,7 @@ loss_function.s: loss_function.cc.s
 
 # target to generate assembly for a file
 loss_function.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/loss_function.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/loss_function.cc.s
 .PHONY : loss_function.cc.s
 
 low_rank_inverse_hessian.o: low_rank_inverse_hessian.cc.o
@@ -3166,7 +3166,7 @@ low_rank_inverse_hessian.o: low_rank_inverse_hessian.cc.o
 
 # target to build an object file
 low_rank_inverse_hessian.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/low_rank_inverse_hessian.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/low_rank_inverse_hessian.cc.o
 .PHONY : low_rank_inverse_hessian.cc.o
 
 low_rank_inverse_hessian.i: low_rank_inverse_hessian.cc.i
@@ -3174,7 +3174,7 @@ low_rank_inverse_hessian.i: low_rank_inverse_hessian.cc.i
 
 # target to preprocess a source file
 low_rank_inverse_hessian.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/low_rank_inverse_hessian.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/low_rank_inverse_hessian.cc.i
 .PHONY : low_rank_inverse_hessian.cc.i
 
 low_rank_inverse_hessian.s: low_rank_inverse_hessian.cc.s
@@ -3182,7 +3182,7 @@ low_rank_inverse_hessian.s: low_rank_inverse_hessian.cc.s
 
 # target to generate assembly for a file
 low_rank_inverse_hessian.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/low_rank_inverse_hessian.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/low_rank_inverse_hessian.cc.s
 .PHONY : low_rank_inverse_hessian.cc.s
 
 manifold.o: manifold.cc.o
@@ -3190,7 +3190,7 @@ manifold.o: manifold.cc.o
 
 # target to build an object file
 manifold.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/manifold.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/manifold.cc.o
 .PHONY : manifold.cc.o
 
 manifold.i: manifold.cc.i
@@ -3198,7 +3198,7 @@ manifold.i: manifold.cc.i
 
 # target to preprocess a source file
 manifold.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/manifold.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/manifold.cc.i
 .PHONY : manifold.cc.i
 
 manifold.s: manifold.cc.s
@@ -3206,7 +3206,7 @@ manifold.s: manifold.cc.s
 
 # target to generate assembly for a file
 manifold.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/manifold.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/manifold.cc.s
 .PHONY : manifold.cc.s
 
 minimizer.o: minimizer.cc.o
@@ -3214,7 +3214,7 @@ minimizer.o: minimizer.cc.o
 
 # target to build an object file
 minimizer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/minimizer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/minimizer.cc.o
 .PHONY : minimizer.cc.o
 
 minimizer.i: minimizer.cc.i
@@ -3222,7 +3222,7 @@ minimizer.i: minimizer.cc.i
 
 # target to preprocess a source file
 minimizer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/minimizer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/minimizer.cc.i
 .PHONY : minimizer.cc.i
 
 minimizer.s: minimizer.cc.s
@@ -3230,7 +3230,7 @@ minimizer.s: minimizer.cc.s
 
 # target to generate assembly for a file
 minimizer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/minimizer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/minimizer.cc.s
 .PHONY : minimizer.cc.s
 
 normal_prior.o: normal_prior.cc.o
@@ -3238,7 +3238,7 @@ normal_prior.o: normal_prior.cc.o
 
 # target to build an object file
 normal_prior.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/normal_prior.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/normal_prior.cc.o
 .PHONY : normal_prior.cc.o
 
 normal_prior.i: normal_prior.cc.i
@@ -3246,7 +3246,7 @@ normal_prior.i: normal_prior.cc.i
 
 # target to preprocess a source file
 normal_prior.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/normal_prior.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/normal_prior.cc.i
 .PHONY : normal_prior.cc.i
 
 normal_prior.s: normal_prior.cc.s
@@ -3254,7 +3254,7 @@ normal_prior.s: normal_prior.cc.s
 
 # target to generate assembly for a file
 normal_prior.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/normal_prior.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/normal_prior.cc.s
 .PHONY : normal_prior.cc.s
 
 parallel_for_benchmark.o: parallel_for_benchmark.cc.o
@@ -3262,7 +3262,7 @@ parallel_for_benchmark.o: parallel_for_benchmark.cc.o
 
 # target to build an object file
 parallel_for_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_for_benchmark.dir/parallel_for_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_for_benchmark.dir/parallel_for_benchmark.cc.o
 .PHONY : parallel_for_benchmark.cc.o
 
 parallel_for_benchmark.i: parallel_for_benchmark.cc.i
@@ -3270,7 +3270,7 @@ parallel_for_benchmark.i: parallel_for_benchmark.cc.i
 
 # target to preprocess a source file
 parallel_for_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_for_benchmark.dir/parallel_for_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_for_benchmark.dir/parallel_for_benchmark.cc.i
 .PHONY : parallel_for_benchmark.cc.i
 
 parallel_for_benchmark.s: parallel_for_benchmark.cc.s
@@ -3278,7 +3278,7 @@ parallel_for_benchmark.s: parallel_for_benchmark.cc.s
 
 # target to generate assembly for a file
 parallel_for_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_for_benchmark.dir/parallel_for_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_for_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_for_benchmark.dir/parallel_for_benchmark.cc.s
 .PHONY : parallel_for_benchmark.cc.s
 
 parallel_invoke.o: parallel_invoke.cc.o
@@ -3286,7 +3286,7 @@ parallel_invoke.o: parallel_invoke.cc.o
 
 # target to build an object file
 parallel_invoke.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_invoke.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_invoke.cc.o
 .PHONY : parallel_invoke.cc.o
 
 parallel_invoke.i: parallel_invoke.cc.i
@@ -3294,7 +3294,7 @@ parallel_invoke.i: parallel_invoke.cc.i
 
 # target to preprocess a source file
 parallel_invoke.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_invoke.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_invoke.cc.i
 .PHONY : parallel_invoke.cc.i
 
 parallel_invoke.s: parallel_invoke.cc.s
@@ -3302,7 +3302,7 @@ parallel_invoke.s: parallel_invoke.cc.s
 
 # target to generate assembly for a file
 parallel_invoke.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_invoke.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_invoke.cc.s
 .PHONY : parallel_invoke.cc.s
 
 parallel_utils.o: parallel_utils.cc.o
@@ -3310,7 +3310,7 @@ parallel_utils.o: parallel_utils.cc.o
 
 # target to build an object file
 parallel_utils.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_utils.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_utils.cc.o
 .PHONY : parallel_utils.cc.o
 
 parallel_utils.i: parallel_utils.cc.i
@@ -3318,7 +3318,7 @@ parallel_utils.i: parallel_utils.cc.i
 
 # target to preprocess a source file
 parallel_utils.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_utils.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_utils.cc.i
 .PHONY : parallel_utils.cc.i
 
 parallel_utils.s: parallel_utils.cc.s
@@ -3326,7 +3326,7 @@ parallel_utils.s: parallel_utils.cc.s
 
 # target to generate assembly for a file
 parallel_utils.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_utils.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_utils.cc.s
 .PHONY : parallel_utils.cc.s
 
 parallel_vector_operations_benchmark.o: parallel_vector_operations_benchmark.cc.o
@@ -3334,7 +3334,7 @@ parallel_vector_operations_benchmark.o: parallel_vector_operations_benchmark.cc.
 
 # target to build an object file
 parallel_vector_operations_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/parallel_vector_operations_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/parallel_vector_operations_benchmark.cc.o
 .PHONY : parallel_vector_operations_benchmark.cc.o
 
 parallel_vector_operations_benchmark.i: parallel_vector_operations_benchmark.cc.i
@@ -3342,7 +3342,7 @@ parallel_vector_operations_benchmark.i: parallel_vector_operations_benchmark.cc.
 
 # target to preprocess a source file
 parallel_vector_operations_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/parallel_vector_operations_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/parallel_vector_operations_benchmark.cc.i
 .PHONY : parallel_vector_operations_benchmark.cc.i
 
 parallel_vector_operations_benchmark.s: parallel_vector_operations_benchmark.cc.s
@@ -3350,7 +3350,7 @@ parallel_vector_operations_benchmark.s: parallel_vector_operations_benchmark.cc.
 
 # target to generate assembly for a file
 parallel_vector_operations_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/parallel_vector_operations_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/build.make internal/ceres/CMakeFiles/parallel_vector_operations_benchmark.dir/parallel_vector_operations_benchmark.cc.s
 .PHONY : parallel_vector_operations_benchmark.cc.s
 
 parallel_vector_ops.o: parallel_vector_ops.cc.o
@@ -3358,7 +3358,7 @@ parallel_vector_ops.o: parallel_vector_ops.cc.o
 
 # target to build an object file
 parallel_vector_ops.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_vector_ops.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_vector_ops.cc.o
 .PHONY : parallel_vector_ops.cc.o
 
 parallel_vector_ops.i: parallel_vector_ops.cc.i
@@ -3366,7 +3366,7 @@ parallel_vector_ops.i: parallel_vector_ops.cc.i
 
 # target to preprocess a source file
 parallel_vector_ops.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_vector_ops.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_vector_ops.cc.i
 .PHONY : parallel_vector_ops.cc.i
 
 parallel_vector_ops.s: parallel_vector_ops.cc.s
@@ -3374,7 +3374,7 @@ parallel_vector_ops.s: parallel_vector_ops.cc.s
 
 # target to generate assembly for a file
 parallel_vector_ops.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_vector_ops.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parallel_vector_ops.cc.s
 .PHONY : parallel_vector_ops.cc.s
 
 parameter_block_ordering.o: parameter_block_ordering.cc.o
@@ -3382,7 +3382,7 @@ parameter_block_ordering.o: parameter_block_ordering.cc.o
 
 # target to build an object file
 parameter_block_ordering.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parameter_block_ordering.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parameter_block_ordering.cc.o
 .PHONY : parameter_block_ordering.cc.o
 
 parameter_block_ordering.i: parameter_block_ordering.cc.i
@@ -3390,7 +3390,7 @@ parameter_block_ordering.i: parameter_block_ordering.cc.i
 
 # target to preprocess a source file
 parameter_block_ordering.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parameter_block_ordering.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parameter_block_ordering.cc.i
 .PHONY : parameter_block_ordering.cc.i
 
 parameter_block_ordering.s: parameter_block_ordering.cc.s
@@ -3398,7 +3398,7 @@ parameter_block_ordering.s: parameter_block_ordering.cc.s
 
 # target to generate assembly for a file
 parameter_block_ordering.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parameter_block_ordering.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/parameter_block_ordering.cc.s
 .PHONY : parameter_block_ordering.cc.s
 
 partitioned_matrix_view.o: partitioned_matrix_view.cc.o
@@ -3406,7 +3406,7 @@ partitioned_matrix_view.o: partitioned_matrix_view.cc.o
 
 # target to build an object file
 partitioned_matrix_view.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/partitioned_matrix_view.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/partitioned_matrix_view.cc.o
 .PHONY : partitioned_matrix_view.cc.o
 
 partitioned_matrix_view.i: partitioned_matrix_view.cc.i
@@ -3414,7 +3414,7 @@ partitioned_matrix_view.i: partitioned_matrix_view.cc.i
 
 # target to preprocess a source file
 partitioned_matrix_view.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/partitioned_matrix_view.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/partitioned_matrix_view.cc.i
 .PHONY : partitioned_matrix_view.cc.i
 
 partitioned_matrix_view.s: partitioned_matrix_view.cc.s
@@ -3422,7 +3422,7 @@ partitioned_matrix_view.s: partitioned_matrix_view.cc.s
 
 # target to generate assembly for a file
 partitioned_matrix_view.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/partitioned_matrix_view.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/partitioned_matrix_view.cc.s
 .PHONY : partitioned_matrix_view.cc.s
 
 polynomial.o: polynomial.cc.o
@@ -3430,7 +3430,7 @@ polynomial.o: polynomial.cc.o
 
 # target to build an object file
 polynomial.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/polynomial.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/polynomial.cc.o
 .PHONY : polynomial.cc.o
 
 polynomial.i: polynomial.cc.i
@@ -3438,7 +3438,7 @@ polynomial.i: polynomial.cc.i
 
 # target to preprocess a source file
 polynomial.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/polynomial.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/polynomial.cc.i
 .PHONY : polynomial.cc.i
 
 polynomial.s: polynomial.cc.s
@@ -3446,7 +3446,7 @@ polynomial.s: polynomial.cc.s
 
 # target to generate assembly for a file
 polynomial.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/polynomial.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/polynomial.cc.s
 .PHONY : polynomial.cc.s
 
 power_series_expansion_preconditioner.o: power_series_expansion_preconditioner.cc.o
@@ -3454,7 +3454,7 @@ power_series_expansion_preconditioner.o: power_series_expansion_preconditioner.c
 
 # target to build an object file
 power_series_expansion_preconditioner.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/power_series_expansion_preconditioner.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/power_series_expansion_preconditioner.cc.o
 .PHONY : power_series_expansion_preconditioner.cc.o
 
 power_series_expansion_preconditioner.i: power_series_expansion_preconditioner.cc.i
@@ -3462,7 +3462,7 @@ power_series_expansion_preconditioner.i: power_series_expansion_preconditioner.c
 
 # target to preprocess a source file
 power_series_expansion_preconditioner.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/power_series_expansion_preconditioner.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/power_series_expansion_preconditioner.cc.i
 .PHONY : power_series_expansion_preconditioner.cc.i
 
 power_series_expansion_preconditioner.s: power_series_expansion_preconditioner.cc.s
@@ -3470,7 +3470,7 @@ power_series_expansion_preconditioner.s: power_series_expansion_preconditioner.c
 
 # target to generate assembly for a file
 power_series_expansion_preconditioner.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/power_series_expansion_preconditioner.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/power_series_expansion_preconditioner.cc.s
 .PHONY : power_series_expansion_preconditioner.cc.s
 
 preconditioner.o: preconditioner.cc.o
@@ -3478,7 +3478,7 @@ preconditioner.o: preconditioner.cc.o
 
 # target to build an object file
 preconditioner.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preconditioner.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preconditioner.cc.o
 .PHONY : preconditioner.cc.o
 
 preconditioner.i: preconditioner.cc.i
@@ -3486,7 +3486,7 @@ preconditioner.i: preconditioner.cc.i
 
 # target to preprocess a source file
 preconditioner.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preconditioner.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preconditioner.cc.i
 .PHONY : preconditioner.cc.i
 
 preconditioner.s: preconditioner.cc.s
@@ -3494,7 +3494,7 @@ preconditioner.s: preconditioner.cc.s
 
 # target to generate assembly for a file
 preconditioner.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preconditioner.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preconditioner.cc.s
 .PHONY : preconditioner.cc.s
 
 preprocessor.o: preprocessor.cc.o
@@ -3502,7 +3502,7 @@ preprocessor.o: preprocessor.cc.o
 
 # target to build an object file
 preprocessor.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preprocessor.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preprocessor.cc.o
 .PHONY : preprocessor.cc.o
 
 preprocessor.i: preprocessor.cc.i
@@ -3510,7 +3510,7 @@ preprocessor.i: preprocessor.cc.i
 
 # target to preprocess a source file
 preprocessor.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preprocessor.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preprocessor.cc.i
 .PHONY : preprocessor.cc.i
 
 preprocessor.s: preprocessor.cc.s
@@ -3518,7 +3518,7 @@ preprocessor.s: preprocessor.cc.s
 
 # target to generate assembly for a file
 preprocessor.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preprocessor.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/preprocessor.cc.s
 .PHONY : preprocessor.cc.s
 
 problem.o: problem.cc.o
@@ -3526,7 +3526,7 @@ problem.o: problem.cc.o
 
 # target to build an object file
 problem.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/problem.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/problem.cc.o
 .PHONY : problem.cc.o
 
 problem.i: problem.cc.i
@@ -3534,7 +3534,7 @@ problem.i: problem.cc.i
 
 # target to preprocess a source file
 problem.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/problem.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/problem.cc.i
 .PHONY : problem.cc.i
 
 problem.s: problem.cc.s
@@ -3542,7 +3542,7 @@ problem.s: problem.cc.s
 
 # target to generate assembly for a file
 problem.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/problem.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/problem.cc.s
 .PHONY : problem.cc.s
 
 problem_impl.o: problem_impl.cc.o
@@ -3550,7 +3550,7 @@ problem_impl.o: problem_impl.cc.o
 
 # target to build an object file
 problem_impl.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/problem_impl.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/problem_impl.cc.o
 .PHONY : problem_impl.cc.o
 
 problem_impl.i: problem_impl.cc.i
@@ -3558,7 +3558,7 @@ problem_impl.i: problem_impl.cc.i
 
 # target to preprocess a source file
 problem_impl.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/problem_impl.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/problem_impl.cc.i
 .PHONY : problem_impl.cc.i
 
 problem_impl.s: problem_impl.cc.s
@@ -3566,7 +3566,7 @@ problem_impl.s: problem_impl.cc.s
 
 # target to generate assembly for a file
 problem_impl.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/problem_impl.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/problem_impl.cc.s
 .PHONY : problem_impl.cc.s
 
 program.o: program.cc.o
@@ -3574,7 +3574,7 @@ program.o: program.cc.o
 
 # target to build an object file
 program.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/program.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/program.cc.o
 .PHONY : program.cc.o
 
 program.i: program.cc.i
@@ -3582,7 +3582,7 @@ program.i: program.cc.i
 
 # target to preprocess a source file
 program.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/program.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/program.cc.i
 .PHONY : program.cc.i
 
 program.s: program.cc.s
@@ -3590,7 +3590,7 @@ program.s: program.cc.s
 
 # target to generate assembly for a file
 program.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/program.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/program.cc.s
 .PHONY : program.cc.s
 
 reorder_program.o: reorder_program.cc.o
@@ -3598,7 +3598,7 @@ reorder_program.o: reorder_program.cc.o
 
 # target to build an object file
 reorder_program.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/reorder_program.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/reorder_program.cc.o
 .PHONY : reorder_program.cc.o
 
 reorder_program.i: reorder_program.cc.i
@@ -3606,7 +3606,7 @@ reorder_program.i: reorder_program.cc.i
 
 # target to preprocess a source file
 reorder_program.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/reorder_program.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/reorder_program.cc.i
 .PHONY : reorder_program.cc.i
 
 reorder_program.s: reorder_program.cc.s
@@ -3614,7 +3614,7 @@ reorder_program.s: reorder_program.cc.s
 
 # target to generate assembly for a file
 reorder_program.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/reorder_program.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/reorder_program.cc.s
 .PHONY : reorder_program.cc.s
 
 residual_block.o: residual_block.cc.o
@@ -3622,7 +3622,7 @@ residual_block.o: residual_block.cc.o
 
 # target to build an object file
 residual_block.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block.cc.o
 .PHONY : residual_block.cc.o
 
 residual_block.i: residual_block.cc.i
@@ -3630,7 +3630,7 @@ residual_block.i: residual_block.cc.i
 
 # target to preprocess a source file
 residual_block.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block.cc.i
 .PHONY : residual_block.cc.i
 
 residual_block.s: residual_block.cc.s
@@ -3638,7 +3638,7 @@ residual_block.s: residual_block.cc.s
 
 # target to generate assembly for a file
 residual_block.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block.cc.s
 .PHONY : residual_block.cc.s
 
 residual_block_utils.o: residual_block_utils.cc.o
@@ -3646,7 +3646,7 @@ residual_block_utils.o: residual_block_utils.cc.o
 
 # target to build an object file
 residual_block_utils.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block_utils.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block_utils.cc.o
 .PHONY : residual_block_utils.cc.o
 
 residual_block_utils.i: residual_block_utils.cc.i
@@ -3654,7 +3654,7 @@ residual_block_utils.i: residual_block_utils.cc.i
 
 # target to preprocess a source file
 residual_block_utils.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block_utils.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block_utils.cc.i
 .PHONY : residual_block_utils.cc.i
 
 residual_block_utils.s: residual_block_utils.cc.s
@@ -3662,7 +3662,7 @@ residual_block_utils.s: residual_block_utils.cc.s
 
 # target to generate assembly for a file
 residual_block_utils.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block_utils.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/residual_block_utils.cc.s
 .PHONY : residual_block_utils.cc.s
 
 schur_complement_solver.o: schur_complement_solver.cc.o
@@ -3670,7 +3670,7 @@ schur_complement_solver.o: schur_complement_solver.cc.o
 
 # target to build an object file
 schur_complement_solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_complement_solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_complement_solver.cc.o
 .PHONY : schur_complement_solver.cc.o
 
 schur_complement_solver.i: schur_complement_solver.cc.i
@@ -3678,7 +3678,7 @@ schur_complement_solver.i: schur_complement_solver.cc.i
 
 # target to preprocess a source file
 schur_complement_solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_complement_solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_complement_solver.cc.i
 .PHONY : schur_complement_solver.cc.i
 
 schur_complement_solver.s: schur_complement_solver.cc.s
@@ -3686,7 +3686,7 @@ schur_complement_solver.s: schur_complement_solver.cc.s
 
 # target to generate assembly for a file
 schur_complement_solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_complement_solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_complement_solver.cc.s
 .PHONY : schur_complement_solver.cc.s
 
 schur_eliminator.o: schur_eliminator.cc.o
@@ -3694,7 +3694,7 @@ schur_eliminator.o: schur_eliminator.cc.o
 
 # target to build an object file
 schur_eliminator.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_eliminator.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_eliminator.cc.o
 .PHONY : schur_eliminator.cc.o
 
 schur_eliminator.i: schur_eliminator.cc.i
@@ -3702,7 +3702,7 @@ schur_eliminator.i: schur_eliminator.cc.i
 
 # target to preprocess a source file
 schur_eliminator.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_eliminator.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_eliminator.cc.i
 .PHONY : schur_eliminator.cc.i
 
 schur_eliminator.s: schur_eliminator.cc.s
@@ -3710,7 +3710,7 @@ schur_eliminator.s: schur_eliminator.cc.s
 
 # target to generate assembly for a file
 schur_eliminator.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_eliminator.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_eliminator.cc.s
 .PHONY : schur_eliminator.cc.s
 
 schur_eliminator_benchmark.o: schur_eliminator_benchmark.cc.o
@@ -3718,7 +3718,7 @@ schur_eliminator_benchmark.o: schur_eliminator_benchmark.cc.o
 
 # target to build an object file
 schur_eliminator_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build.make internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/schur_eliminator_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build.make internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/schur_eliminator_benchmark.cc.o
 .PHONY : schur_eliminator_benchmark.cc.o
 
 schur_eliminator_benchmark.i: schur_eliminator_benchmark.cc.i
@@ -3726,7 +3726,7 @@ schur_eliminator_benchmark.i: schur_eliminator_benchmark.cc.i
 
 # target to preprocess a source file
 schur_eliminator_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build.make internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/schur_eliminator_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build.make internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/schur_eliminator_benchmark.cc.i
 .PHONY : schur_eliminator_benchmark.cc.i
 
 schur_eliminator_benchmark.s: schur_eliminator_benchmark.cc.s
@@ -3734,7 +3734,7 @@ schur_eliminator_benchmark.s: schur_eliminator_benchmark.cc.s
 
 # target to generate assembly for a file
 schur_eliminator_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build.make internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/schur_eliminator_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/build.make internal/ceres/CMakeFiles/schur_eliminator_benchmark.dir/schur_eliminator_benchmark.cc.s
 .PHONY : schur_eliminator_benchmark.cc.s
 
 schur_jacobi_preconditioner.o: schur_jacobi_preconditioner.cc.o
@@ -3742,7 +3742,7 @@ schur_jacobi_preconditioner.o: schur_jacobi_preconditioner.cc.o
 
 # target to build an object file
 schur_jacobi_preconditioner.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_jacobi_preconditioner.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_jacobi_preconditioner.cc.o
 .PHONY : schur_jacobi_preconditioner.cc.o
 
 schur_jacobi_preconditioner.i: schur_jacobi_preconditioner.cc.i
@@ -3750,7 +3750,7 @@ schur_jacobi_preconditioner.i: schur_jacobi_preconditioner.cc.i
 
 # target to preprocess a source file
 schur_jacobi_preconditioner.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_jacobi_preconditioner.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_jacobi_preconditioner.cc.i
 .PHONY : schur_jacobi_preconditioner.cc.i
 
 schur_jacobi_preconditioner.s: schur_jacobi_preconditioner.cc.s
@@ -3758,7 +3758,7 @@ schur_jacobi_preconditioner.s: schur_jacobi_preconditioner.cc.s
 
 # target to generate assembly for a file
 schur_jacobi_preconditioner.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_jacobi_preconditioner.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_jacobi_preconditioner.cc.s
 .PHONY : schur_jacobi_preconditioner.cc.s
 
 schur_templates.o: schur_templates.cc.o
@@ -3766,7 +3766,7 @@ schur_templates.o: schur_templates.cc.o
 
 # target to build an object file
 schur_templates.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_templates.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_templates.cc.o
 .PHONY : schur_templates.cc.o
 
 schur_templates.i: schur_templates.cc.i
@@ -3774,7 +3774,7 @@ schur_templates.i: schur_templates.cc.i
 
 # target to preprocess a source file
 schur_templates.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_templates.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_templates.cc.i
 .PHONY : schur_templates.cc.i
 
 schur_templates.s: schur_templates.cc.s
@@ -3782,7 +3782,7 @@ schur_templates.s: schur_templates.cc.s
 
 # target to generate assembly for a file
 schur_templates.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_templates.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/schur_templates.cc.s
 .PHONY : schur_templates.cc.s
 
 scratch_evaluate_preparer.o: scratch_evaluate_preparer.cc.o
@@ -3790,7 +3790,7 @@ scratch_evaluate_preparer.o: scratch_evaluate_preparer.cc.o
 
 # target to build an object file
 scratch_evaluate_preparer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/scratch_evaluate_preparer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/scratch_evaluate_preparer.cc.o
 .PHONY : scratch_evaluate_preparer.cc.o
 
 scratch_evaluate_preparer.i: scratch_evaluate_preparer.cc.i
@@ -3798,7 +3798,7 @@ scratch_evaluate_preparer.i: scratch_evaluate_preparer.cc.i
 
 # target to preprocess a source file
 scratch_evaluate_preparer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/scratch_evaluate_preparer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/scratch_evaluate_preparer.cc.i
 .PHONY : scratch_evaluate_preparer.cc.i
 
 scratch_evaluate_preparer.s: scratch_evaluate_preparer.cc.s
@@ -3806,7 +3806,7 @@ scratch_evaluate_preparer.s: scratch_evaluate_preparer.cc.s
 
 # target to generate assembly for a file
 scratch_evaluate_preparer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/scratch_evaluate_preparer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/scratch_evaluate_preparer.cc.s
 .PHONY : scratch_evaluate_preparer.cc.s
 
 single_linkage_clustering.o: single_linkage_clustering.cc.o
@@ -3814,7 +3814,7 @@ single_linkage_clustering.o: single_linkage_clustering.cc.o
 
 # target to build an object file
 single_linkage_clustering.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/single_linkage_clustering.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/single_linkage_clustering.cc.o
 .PHONY : single_linkage_clustering.cc.o
 
 single_linkage_clustering.i: single_linkage_clustering.cc.i
@@ -3822,7 +3822,7 @@ single_linkage_clustering.i: single_linkage_clustering.cc.i
 
 # target to preprocess a source file
 single_linkage_clustering.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/single_linkage_clustering.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/single_linkage_clustering.cc.i
 .PHONY : single_linkage_clustering.cc.i
 
 single_linkage_clustering.s: single_linkage_clustering.cc.s
@@ -3830,7 +3830,7 @@ single_linkage_clustering.s: single_linkage_clustering.cc.s
 
 # target to generate assembly for a file
 single_linkage_clustering.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/single_linkage_clustering.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/single_linkage_clustering.cc.s
 .PHONY : single_linkage_clustering.cc.s
 
 small_blas_gemm_benchmark.o: small_blas_gemm_benchmark.cc.o
@@ -3838,7 +3838,7 @@ small_blas_gemm_benchmark.o: small_blas_gemm_benchmark.cc.o
 
 # target to build an object file
 small_blas_gemm_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/small_blas_gemm_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/small_blas_gemm_benchmark.cc.o
 .PHONY : small_blas_gemm_benchmark.cc.o
 
 small_blas_gemm_benchmark.i: small_blas_gemm_benchmark.cc.i
@@ -3846,7 +3846,7 @@ small_blas_gemm_benchmark.i: small_blas_gemm_benchmark.cc.i
 
 # target to preprocess a source file
 small_blas_gemm_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/small_blas_gemm_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/small_blas_gemm_benchmark.cc.i
 .PHONY : small_blas_gemm_benchmark.cc.i
 
 small_blas_gemm_benchmark.s: small_blas_gemm_benchmark.cc.s
@@ -3854,7 +3854,7 @@ small_blas_gemm_benchmark.s: small_blas_gemm_benchmark.cc.s
 
 # target to generate assembly for a file
 small_blas_gemm_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/small_blas_gemm_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemm_benchmark.dir/small_blas_gemm_benchmark.cc.s
 .PHONY : small_blas_gemm_benchmark.cc.s
 
 small_blas_gemv_benchmark.o: small_blas_gemv_benchmark.cc.o
@@ -3862,7 +3862,7 @@ small_blas_gemv_benchmark.o: small_blas_gemv_benchmark.cc.o
 
 # target to build an object file
 small_blas_gemv_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/small_blas_gemv_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/small_blas_gemv_benchmark.cc.o
 .PHONY : small_blas_gemv_benchmark.cc.o
 
 small_blas_gemv_benchmark.i: small_blas_gemv_benchmark.cc.i
@@ -3870,7 +3870,7 @@ small_blas_gemv_benchmark.i: small_blas_gemv_benchmark.cc.i
 
 # target to preprocess a source file
 small_blas_gemv_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/small_blas_gemv_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/small_blas_gemv_benchmark.cc.i
 .PHONY : small_blas_gemv_benchmark.cc.i
 
 small_blas_gemv_benchmark.s: small_blas_gemv_benchmark.cc.s
@@ -3878,7 +3878,7 @@ small_blas_gemv_benchmark.s: small_blas_gemv_benchmark.cc.s
 
 # target to generate assembly for a file
 small_blas_gemv_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/small_blas_gemv_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/build.make internal/ceres/CMakeFiles/small_blas_gemv_benchmark.dir/small_blas_gemv_benchmark.cc.s
 .PHONY : small_blas_gemv_benchmark.cc.s
 
 solver.o: solver.cc.o
@@ -3886,7 +3886,7 @@ solver.o: solver.cc.o
 
 # target to build an object file
 solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/solver.cc.o
 .PHONY : solver.cc.o
 
 solver.i: solver.cc.i
@@ -3894,7 +3894,7 @@ solver.i: solver.cc.i
 
 # target to preprocess a source file
 solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/solver.cc.i
 .PHONY : solver.cc.i
 
 solver.s: solver.cc.s
@@ -3902,7 +3902,7 @@ solver.s: solver.cc.s
 
 # target to generate assembly for a file
 solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/solver.cc.s
 .PHONY : solver.cc.s
 
 solver_utils.o: solver_utils.cc.o
@@ -3910,7 +3910,7 @@ solver_utils.o: solver_utils.cc.o
 
 # target to build an object file
 solver_utils.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/solver_utils.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/solver_utils.cc.o
 .PHONY : solver_utils.cc.o
 
 solver_utils.i: solver_utils.cc.i
@@ -3918,7 +3918,7 @@ solver_utils.i: solver_utils.cc.i
 
 # target to preprocess a source file
 solver_utils.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/solver_utils.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/solver_utils.cc.i
 .PHONY : solver_utils.cc.i
 
 solver_utils.s: solver_utils.cc.s
@@ -3926,7 +3926,7 @@ solver_utils.s: solver_utils.cc.s
 
 # target to generate assembly for a file
 solver_utils.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/solver_utils.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/solver_utils.cc.s
 .PHONY : solver_utils.cc.s
 
 sparse_cholesky.o: sparse_cholesky.cc.o
@@ -3934,7 +3934,7 @@ sparse_cholesky.o: sparse_cholesky.cc.o
 
 # target to build an object file
 sparse_cholesky.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_cholesky.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_cholesky.cc.o
 .PHONY : sparse_cholesky.cc.o
 
 sparse_cholesky.i: sparse_cholesky.cc.i
@@ -3942,7 +3942,7 @@ sparse_cholesky.i: sparse_cholesky.cc.i
 
 # target to preprocess a source file
 sparse_cholesky.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_cholesky.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_cholesky.cc.i
 .PHONY : sparse_cholesky.cc.i
 
 sparse_cholesky.s: sparse_cholesky.cc.s
@@ -3950,7 +3950,7 @@ sparse_cholesky.s: sparse_cholesky.cc.s
 
 # target to generate assembly for a file
 sparse_cholesky.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_cholesky.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_cholesky.cc.s
 .PHONY : sparse_cholesky.cc.s
 
 sparse_matrix.o: sparse_matrix.cc.o
@@ -3958,7 +3958,7 @@ sparse_matrix.o: sparse_matrix.cc.o
 
 # target to build an object file
 sparse_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_matrix.cc.o
 .PHONY : sparse_matrix.cc.o
 
 sparse_matrix.i: sparse_matrix.cc.i
@@ -3966,7 +3966,7 @@ sparse_matrix.i: sparse_matrix.cc.i
 
 # target to preprocess a source file
 sparse_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_matrix.cc.i
 .PHONY : sparse_matrix.cc.i
 
 sparse_matrix.s: sparse_matrix.cc.s
@@ -3974,7 +3974,7 @@ sparse_matrix.s: sparse_matrix.cc.s
 
 # target to generate assembly for a file
 sparse_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_matrix.cc.s
 .PHONY : sparse_matrix.cc.s
 
 sparse_normal_cholesky_solver.o: sparse_normal_cholesky_solver.cc.o
@@ -3982,7 +3982,7 @@ sparse_normal_cholesky_solver.o: sparse_normal_cholesky_solver.cc.o
 
 # target to build an object file
 sparse_normal_cholesky_solver.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_normal_cholesky_solver.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_normal_cholesky_solver.cc.o
 .PHONY : sparse_normal_cholesky_solver.cc.o
 
 sparse_normal_cholesky_solver.i: sparse_normal_cholesky_solver.cc.i
@@ -3990,7 +3990,7 @@ sparse_normal_cholesky_solver.i: sparse_normal_cholesky_solver.cc.i
 
 # target to preprocess a source file
 sparse_normal_cholesky_solver.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_normal_cholesky_solver.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_normal_cholesky_solver.cc.i
 .PHONY : sparse_normal_cholesky_solver.cc.i
 
 sparse_normal_cholesky_solver.s: sparse_normal_cholesky_solver.cc.s
@@ -3998,7 +3998,7 @@ sparse_normal_cholesky_solver.s: sparse_normal_cholesky_solver.cc.s
 
 # target to generate assembly for a file
 sparse_normal_cholesky_solver.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_normal_cholesky_solver.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/sparse_normal_cholesky_solver.cc.s
 .PHONY : sparse_normal_cholesky_solver.cc.s
 
 spmv_benchmark.o: spmv_benchmark.cc.o
@@ -4006,7 +4006,7 @@ spmv_benchmark.o: spmv_benchmark.cc.o
 
 # target to build an object file
 spmv_benchmark.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/spmv_benchmark.dir/build.make internal/ceres/CMakeFiles/spmv_benchmark.dir/spmv_benchmark.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/spmv_benchmark.dir/build.make internal/ceres/CMakeFiles/spmv_benchmark.dir/spmv_benchmark.cc.o
 .PHONY : spmv_benchmark.cc.o
 
 spmv_benchmark.i: spmv_benchmark.cc.i
@@ -4014,7 +4014,7 @@ spmv_benchmark.i: spmv_benchmark.cc.i
 
 # target to preprocess a source file
 spmv_benchmark.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/spmv_benchmark.dir/build.make internal/ceres/CMakeFiles/spmv_benchmark.dir/spmv_benchmark.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/spmv_benchmark.dir/build.make internal/ceres/CMakeFiles/spmv_benchmark.dir/spmv_benchmark.cc.i
 .PHONY : spmv_benchmark.cc.i
 
 spmv_benchmark.s: spmv_benchmark.cc.s
@@ -4022,7 +4022,7 @@ spmv_benchmark.s: spmv_benchmark.cc.s
 
 # target to generate assembly for a file
 spmv_benchmark.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/spmv_benchmark.dir/build.make internal/ceres/CMakeFiles/spmv_benchmark.dir/spmv_benchmark.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/spmv_benchmark.dir/build.make internal/ceres/CMakeFiles/spmv_benchmark.dir/spmv_benchmark.cc.s
 .PHONY : spmv_benchmark.cc.s
 
 stringprintf.o: stringprintf.cc.o
@@ -4030,7 +4030,7 @@ stringprintf.o: stringprintf.cc.o
 
 # target to build an object file
 stringprintf.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/stringprintf.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/stringprintf.cc.o
 .PHONY : stringprintf.cc.o
 
 stringprintf.i: stringprintf.cc.i
@@ -4038,7 +4038,7 @@ stringprintf.i: stringprintf.cc.i
 
 # target to preprocess a source file
 stringprintf.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/stringprintf.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/stringprintf.cc.i
 .PHONY : stringprintf.cc.i
 
 stringprintf.s: stringprintf.cc.s
@@ -4046,7 +4046,7 @@ stringprintf.s: stringprintf.cc.s
 
 # target to generate assembly for a file
 stringprintf.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/stringprintf.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/stringprintf.cc.s
 .PHONY : stringprintf.cc.s
 
 subset_preconditioner.o: subset_preconditioner.cc.o
@@ -4054,7 +4054,7 @@ subset_preconditioner.o: subset_preconditioner.cc.o
 
 # target to build an object file
 subset_preconditioner.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/subset_preconditioner.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/subset_preconditioner.cc.o
 .PHONY : subset_preconditioner.cc.o
 
 subset_preconditioner.i: subset_preconditioner.cc.i
@@ -4062,7 +4062,7 @@ subset_preconditioner.i: subset_preconditioner.cc.i
 
 # target to preprocess a source file
 subset_preconditioner.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/subset_preconditioner.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/subset_preconditioner.cc.i
 .PHONY : subset_preconditioner.cc.i
 
 subset_preconditioner.s: subset_preconditioner.cc.s
@@ -4070,7 +4070,7 @@ subset_preconditioner.s: subset_preconditioner.cc.s
 
 # target to generate assembly for a file
 subset_preconditioner.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/subset_preconditioner.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/subset_preconditioner.cc.s
 .PHONY : subset_preconditioner.cc.s
 
 suitesparse.o: suitesparse.cc.o
@@ -4078,7 +4078,7 @@ suitesparse.o: suitesparse.cc.o
 
 # target to build an object file
 suitesparse.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/suitesparse.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/suitesparse.cc.o
 .PHONY : suitesparse.cc.o
 
 suitesparse.i: suitesparse.cc.i
@@ -4086,7 +4086,7 @@ suitesparse.i: suitesparse.cc.i
 
 # target to preprocess a source file
 suitesparse.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/suitesparse.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/suitesparse.cc.i
 .PHONY : suitesparse.cc.i
 
 suitesparse.s: suitesparse.cc.s
@@ -4094,7 +4094,7 @@ suitesparse.s: suitesparse.cc.s
 
 # target to generate assembly for a file
 suitesparse.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/suitesparse.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/suitesparse.cc.s
 .PHONY : suitesparse.cc.s
 
 thread_pool.o: thread_pool.cc.o
@@ -4102,7 +4102,7 @@ thread_pool.o: thread_pool.cc.o
 
 # target to build an object file
 thread_pool.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_pool.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_pool.cc.o
 .PHONY : thread_pool.cc.o
 
 thread_pool.i: thread_pool.cc.i
@@ -4110,7 +4110,7 @@ thread_pool.i: thread_pool.cc.i
 
 # target to preprocess a source file
 thread_pool.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_pool.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_pool.cc.i
 .PHONY : thread_pool.cc.i
 
 thread_pool.s: thread_pool.cc.s
@@ -4118,7 +4118,7 @@ thread_pool.s: thread_pool.cc.s
 
 # target to generate assembly for a file
 thread_pool.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_pool.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_pool.cc.s
 .PHONY : thread_pool.cc.s
 
 thread_token_provider.o: thread_token_provider.cc.o
@@ -4126,7 +4126,7 @@ thread_token_provider.o: thread_token_provider.cc.o
 
 # target to build an object file
 thread_token_provider.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_token_provider.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_token_provider.cc.o
 .PHONY : thread_token_provider.cc.o
 
 thread_token_provider.i: thread_token_provider.cc.i
@@ -4134,7 +4134,7 @@ thread_token_provider.i: thread_token_provider.cc.i
 
 # target to preprocess a source file
 thread_token_provider.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_token_provider.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_token_provider.cc.i
 .PHONY : thread_token_provider.cc.i
 
 thread_token_provider.s: thread_token_provider.cc.s
@@ -4142,7 +4142,7 @@ thread_token_provider.s: thread_token_provider.cc.s
 
 # target to generate assembly for a file
 thread_token_provider.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_token_provider.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/thread_token_provider.cc.s
 .PHONY : thread_token_provider.cc.s
 
 triplet_sparse_matrix.o: triplet_sparse_matrix.cc.o
@@ -4150,7 +4150,7 @@ triplet_sparse_matrix.o: triplet_sparse_matrix.cc.o
 
 # target to build an object file
 triplet_sparse_matrix.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/triplet_sparse_matrix.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/triplet_sparse_matrix.cc.o
 .PHONY : triplet_sparse_matrix.cc.o
 
 triplet_sparse_matrix.i: triplet_sparse_matrix.cc.i
@@ -4158,7 +4158,7 @@ triplet_sparse_matrix.i: triplet_sparse_matrix.cc.i
 
 # target to preprocess a source file
 triplet_sparse_matrix.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/triplet_sparse_matrix.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/triplet_sparse_matrix.cc.i
 .PHONY : triplet_sparse_matrix.cc.i
 
 triplet_sparse_matrix.s: triplet_sparse_matrix.cc.s
@@ -4166,7 +4166,7 @@ triplet_sparse_matrix.s: triplet_sparse_matrix.cc.s
 
 # target to generate assembly for a file
 triplet_sparse_matrix.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/triplet_sparse_matrix.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/triplet_sparse_matrix.cc.s
 .PHONY : triplet_sparse_matrix.cc.s
 
 trust_region_minimizer.o: trust_region_minimizer.cc.o
@@ -4174,7 +4174,7 @@ trust_region_minimizer.o: trust_region_minimizer.cc.o
 
 # target to build an object file
 trust_region_minimizer.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_minimizer.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_minimizer.cc.o
 .PHONY : trust_region_minimizer.cc.o
 
 trust_region_minimizer.i: trust_region_minimizer.cc.i
@@ -4182,7 +4182,7 @@ trust_region_minimizer.i: trust_region_minimizer.cc.i
 
 # target to preprocess a source file
 trust_region_minimizer.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_minimizer.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_minimizer.cc.i
 .PHONY : trust_region_minimizer.cc.i
 
 trust_region_minimizer.s: trust_region_minimizer.cc.s
@@ -4190,7 +4190,7 @@ trust_region_minimizer.s: trust_region_minimizer.cc.s
 
 # target to generate assembly for a file
 trust_region_minimizer.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_minimizer.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_minimizer.cc.s
 .PHONY : trust_region_minimizer.cc.s
 
 trust_region_preprocessor.o: trust_region_preprocessor.cc.o
@@ -4198,7 +4198,7 @@ trust_region_preprocessor.o: trust_region_preprocessor.cc.o
 
 # target to build an object file
 trust_region_preprocessor.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_preprocessor.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_preprocessor.cc.o
 .PHONY : trust_region_preprocessor.cc.o
 
 trust_region_preprocessor.i: trust_region_preprocessor.cc.i
@@ -4206,7 +4206,7 @@ trust_region_preprocessor.i: trust_region_preprocessor.cc.i
 
 # target to preprocess a source file
 trust_region_preprocessor.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_preprocessor.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_preprocessor.cc.i
 .PHONY : trust_region_preprocessor.cc.i
 
 trust_region_preprocessor.s: trust_region_preprocessor.cc.s
@@ -4214,7 +4214,7 @@ trust_region_preprocessor.s: trust_region_preprocessor.cc.s
 
 # target to generate assembly for a file
 trust_region_preprocessor.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_preprocessor.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_preprocessor.cc.s
 .PHONY : trust_region_preprocessor.cc.s
 
 trust_region_step_evaluator.o: trust_region_step_evaluator.cc.o
@@ -4222,7 +4222,7 @@ trust_region_step_evaluator.o: trust_region_step_evaluator.cc.o
 
 # target to build an object file
 trust_region_step_evaluator.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_step_evaluator.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_step_evaluator.cc.o
 .PHONY : trust_region_step_evaluator.cc.o
 
 trust_region_step_evaluator.i: trust_region_step_evaluator.cc.i
@@ -4230,7 +4230,7 @@ trust_region_step_evaluator.i: trust_region_step_evaluator.cc.i
 
 # target to preprocess a source file
 trust_region_step_evaluator.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_step_evaluator.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_step_evaluator.cc.i
 .PHONY : trust_region_step_evaluator.cc.i
 
 trust_region_step_evaluator.s: trust_region_step_evaluator.cc.s
@@ -4238,7 +4238,7 @@ trust_region_step_evaluator.s: trust_region_step_evaluator.cc.s
 
 # target to generate assembly for a file
 trust_region_step_evaluator.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_step_evaluator.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_step_evaluator.cc.s
 .PHONY : trust_region_step_evaluator.cc.s
 
 trust_region_strategy.o: trust_region_strategy.cc.o
@@ -4246,7 +4246,7 @@ trust_region_strategy.o: trust_region_strategy.cc.o
 
 # target to build an object file
 trust_region_strategy.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_strategy.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_strategy.cc.o
 .PHONY : trust_region_strategy.cc.o
 
 trust_region_strategy.i: trust_region_strategy.cc.i
@@ -4254,7 +4254,7 @@ trust_region_strategy.i: trust_region_strategy.cc.i
 
 # target to preprocess a source file
 trust_region_strategy.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_strategy.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_strategy.cc.i
 .PHONY : trust_region_strategy.cc.i
 
 trust_region_strategy.s: trust_region_strategy.cc.s
@@ -4262,7 +4262,7 @@ trust_region_strategy.s: trust_region_strategy.cc.s
 
 # target to generate assembly for a file
 trust_region_strategy.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_strategy.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/trust_region_strategy.cc.s
 .PHONY : trust_region_strategy.cc.s
 
 types.o: types.cc.o
@@ -4270,7 +4270,7 @@ types.o: types.cc.o
 
 # target to build an object file
 types.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/types.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/types.cc.o
 .PHONY : types.cc.o
 
 types.i: types.cc.i
@@ -4278,7 +4278,7 @@ types.i: types.cc.i
 
 # target to preprocess a source file
 types.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/types.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/types.cc.i
 .PHONY : types.cc.i
 
 types.s: types.cc.s
@@ -4286,7 +4286,7 @@ types.s: types.cc.s
 
 # target to generate assembly for a file
 types.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/types.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres.dir/build.make internal/ceres/CMakeFiles/ceres.dir/types.cc.s
 .PHONY : types.cc.s
 
 visibility.o: visibility.cc.o
@@ -4294,7 +4294,7 @@ visibility.o: visibility.cc.o
 
 # target to build an object file
 visibility.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility.cc.o
 .PHONY : visibility.cc.o
 
 visibility.i: visibility.cc.i
@@ -4302,7 +4302,7 @@ visibility.i: visibility.cc.i
 
 # target to preprocess a source file
 visibility.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility.cc.i
 .PHONY : visibility.cc.i
 
 visibility.s: visibility.cc.s
@@ -4310,7 +4310,7 @@ visibility.s: visibility.cc.s
 
 # target to generate assembly for a file
 visibility.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility.cc.s
 .PHONY : visibility.cc.s
 
 visibility_based_preconditioner.o: visibility_based_preconditioner.cc.o
@@ -4318,7 +4318,7 @@ visibility_based_preconditioner.o: visibility_based_preconditioner.cc.o
 
 # target to build an object file
 visibility_based_preconditioner.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility_based_preconditioner.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility_based_preconditioner.cc.o
 .PHONY : visibility_based_preconditioner.cc.o
 
 visibility_based_preconditioner.i: visibility_based_preconditioner.cc.i
@@ -4326,7 +4326,7 @@ visibility_based_preconditioner.i: visibility_based_preconditioner.cc.i
 
 # target to preprocess a source file
 visibility_based_preconditioner.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility_based_preconditioner.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility_based_preconditioner.cc.i
 .PHONY : visibility_based_preconditioner.cc.i
 
 visibility_based_preconditioner.s: visibility_based_preconditioner.cc.s
@@ -4334,7 +4334,7 @@ visibility_based_preconditioner.s: visibility_based_preconditioner.cc.s
 
 # target to generate assembly for a file
 visibility_based_preconditioner.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility_based_preconditioner.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/visibility_based_preconditioner.cc.s
 .PHONY : visibility_based_preconditioner.cc.s
 
 wall_time.o: wall_time.cc.o
@@ -4342,7 +4342,7 @@ wall_time.o: wall_time.cc.o
 
 # target to build an object file
 wall_time.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/wall_time.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/wall_time.cc.o
 .PHONY : wall_time.cc.o
 
 wall_time.i: wall_time.cc.i
@@ -4350,7 +4350,7 @@ wall_time.i: wall_time.cc.i
 
 # target to preprocess a source file
 wall_time.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/wall_time.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/wall_time.cc.i
 .PHONY : wall_time.cc.i
 
 wall_time.s: wall_time.cc.s
@@ -4358,7 +4358,7 @@ wall_time.s: wall_time.cc.s
 
 # target to generate assembly for a file
 wall_time.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/wall_time.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(MAKE) $(MAKESILENT) -f internal/ceres/CMakeFiles/ceres_internal.dir/build.make internal/ceres/CMakeFiles/ceres_internal.dir/wall_time.cc.s
 .PHONY : wall_time.cc.s
 
 # Help Target
@@ -4899,6 +4899,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin1 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin1 && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

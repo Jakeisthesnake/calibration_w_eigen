@@ -1,8 +1,8 @@
-# Install script for directory: /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples
+# Install script for directory: /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/jake/calibration_w_eigan/third_party/ceres-bin/install")
+  set(CMAKE_INSTALL_PREFIX "/home/jake/calibration_w_eigen/third_party/ceres-bin/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -44,11 +44,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/jake/calibration_w_eigan/third_party/ceres-bin/examples/sampled_function/cmake_install.cmake")
+  include("/home/jake/calibration_w_eigen/third_party/ceres-bin/examples/sampled_function/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/jake/calibration_w_eigan/third_party/ceres-bin/examples/slam/cmake_install.cmake")
+  include("/home/jake/calibration_w_eigen/third_party/ceres-bin/examples/slam/cmake_install.cmake")
 endif()
 

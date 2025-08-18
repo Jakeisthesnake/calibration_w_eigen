@@ -1,5 +1,5 @@
 examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc \
  /usr/include/stdc-predef.h /usr/include/c++/11/cmath \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -104,8 +104,8 @@ examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: \
  /usr/include/c++/11/bits/hash_bytes.h \
  /usr/include/c++/11/bits/range_access.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/ceres.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/autodiff_cost_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/ceres.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/autodiff_cost_function.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -157,10 +157,10 @@ examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/autodiff.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/autodiff.h \
  /usr/include/c++/11/cstddef \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/array_selector.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/fixed_array.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/array_selector.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/fixed_array.h \
  /usr/include/eigen3/Eigen/Core \
  /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
  /usr/include/eigen3/Eigen/src/Core/util/Macros.h \
@@ -363,7 +363,7 @@ examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: \
  /usr/include/eigen3/Eigen/src/Core/StlIterators.h \
  /usr/include/eigen3/Eigen/src/Core/GlobalFunctions.h \
  /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/memory.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/memory.h \
  /usr/include/glog/logging.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -376,40 +376,40 @@ examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: \
  /usr/include/gflags/gflags.h /usr/include/gflags/gflags_declare.h \
  /usr/include/gflags/gflags_gflags.h /usr/include/glog/log_severity.h \
  /usr/include/glog/vlog_is_on.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/types.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
- /home/jake/calibration_w_eigan/third_party/ceres-bin/include/ceres/internal/export.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/eigen.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/parameter_dims.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/integer_sequence_algorithm.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/jet_fwd.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/variadic_evaluate.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/cost_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/jet.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/types.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-bin/include/ceres/internal/export.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/eigen.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/parameter_dims.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/integer_sequence_algorithm.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/jet_fwd.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/variadic_evaluate.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/cost_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/jet.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/numeric \
  /usr/include/c++/11/bits/stl_numeric.h \
  /usr/include/c++/11/pstl/glue_numeric_defs.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/jet_traits.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/port.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/sized_cost_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/parameter_dims.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/autodiff_first_order_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/first_order_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/autodiff_manifold.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/manifold.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/conditioned_cost_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/constants.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/context.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/cost_function_to_functor.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/dynamic_cost_function_to_functor.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/dynamic_cost_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/covariance.h \
- /home/jake/calibration_w_eigan/third_party/ceres-bin/include/ceres/internal/config.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/crs_matrix.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/dynamic_autodiff_cost_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/dynamic_numeric_diff_cost_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/numeric_diff.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/jet_traits.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/port.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/sized_cost_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/parameter_dims.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/autodiff_first_order_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/first_order_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/autodiff_manifold.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/manifold.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/conditioned_cost_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/constants.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/context.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/cost_function_to_functor.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/dynamic_cost_function_to_functor.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/dynamic_cost_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/covariance.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-bin/include/ceres/internal/config.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/crs_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/dynamic_autodiff_cost_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/dynamic_numeric_diff_cost_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/numeric_diff.h \
  /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /usr/include/eigen3/Eigen/LU /usr/include/eigen3/Eigen/src/misc/Kernel.h \
  /usr/include/eigen3/Eigen/src/misc/Image.h \
@@ -472,28 +472,28 @@ examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: \
  /usr/include/eigen3/Eigen/StdVector \
  /usr/include/eigen3/Eigen/src/StlSupport/StdVector.h \
  /usr/include/eigen3/Eigen/src/StlSupport/details.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/numeric_diff_options.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/evaluation_callback.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/gradient_checker.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/gradient_problem.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/gradient_problem_solver.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/iteration_callback.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/line_manifold.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/householder_vector.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/sphere_manifold_functions.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/loss_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/numeric_diff_cost_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/numeric_diff_first_order_function.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/ordered_groups.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/numeric_diff_options.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/evaluation_callback.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/gradient_checker.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/gradient_problem.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/gradient_problem_solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/iteration_callback.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/line_manifold.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/householder_vector.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/sphere_manifold_functions.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/loss_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/numeric_diff_cost_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/numeric_diff_first_order_function.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/ordered_groups.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h /usr/include/c++/11/set \
  /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/problem.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/product_manifold.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/problem.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/product_manifold.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/solver.h \
  /usr/include/c++/11/unordered_set \
  /usr/include/c++/11/bits/unordered_set.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/sphere_manifold.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/version.h
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/sphere_manifold.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/version.h

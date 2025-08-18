@@ -1109,7 +1109,7 @@ int main(int argc, char** argv) {
     // Load the AprilTag board geometry
 
     std::vector<Eigen::Vector3d> board_points;
-    board_points = loadAprilTagBoardFlat("/home/jake/calibration_w_eigan/apiril_tag_board.json");
+    board_points = loadAprilTagBoardFlat("/home/jake/calibration_w_eigen/apiril_tag_board.json");
 
     // Step 1: Load and process CSV data for all cameras
     auto [obj_pts_list_0, img_pts_list_0, corner_ids_list_0, timestamp_list_0] = processCSV(data_file, 0);
@@ -1153,7 +1153,7 @@ int main(int argc, char** argv) {
     double rvec_cam_1[3], tvec_cam_1[3];
     double rvec_cam_2[3], tvec_cam_2[3];
 
-    if (!LoadCalibrationResult("/home/jake/calibration_w_eigan/calibration_output.json",
+    if (!LoadCalibrationResult("/home/jake/calibration_w_eigen/calibration_output.json",
         intrinsic_0, dist_0, extrinsics_0, timestamps_0,
         intrinsic_1, dist_1,
         intrinsic_2, dist_2,
@@ -1318,24 +1318,24 @@ int main(int argc, char** argv) {
 
     VisualizeStereoReprojectionTuner(
     // AprilTag board geometry (object points in board/target frame; order must match detections)
-    const std::vector<Eigen::Vector3d>& board_points,
+    board_points,
 
     // Per-frame detections for each camera (same indexing across cams; empty vectors allowed when not detected)
-    const std::vector<FrameDetections>& frames_cam0,
-    const std::vector<FrameDetections>& frames_cam1,
-    const std::vector<FrameDetections>& frames_cam2,
+    frames_cam0,
+    frames_cam1,
+    frames_cam2,
 
     // Initial intrinsics & fisheye params for each camera
-    const CameraInit& cam0_init,
-    const CameraInit& cam1_init,
-    const CameraInit& cam2_init,
+    cam0_init,
+    cam1_init,
+    cam2_init,
 
     // Initial inter-camera transforms (cam1->cam0, cam2->cam0)
-    const InterCamInit& cam1_to_cam0_init,
-    const InterCamInit& cam2_to_cam0_init,
+    cam1_to_cam0_init,
+    cam2_to_cam0_init,
 
     // Initial board poses target->cam0 per frame (same size as frames)
-    const std::vector<BoardPoseInit>& board_poses_init
+    board_poses_init
     ) {
 
     return 0;  // Return early to avoid running the rest of the main

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DGFLAGS_IS_A_DLL=0 -DGOOGLE_GLOG_DLL_DECL="" -DGOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=""
 
-CXX_INCLUDES = -I/home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include -I/home/jake/calibration_w_eigan/third_party/ceres-bin/include -isystem /usr/include/eigen3
+CXX_INCLUDES = -I/home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include -I/home/jake/calibration_w_eigen/third_party/ceres-bin/include -isystem /usr/include/eigen3
 
 CXX_FLAGS =   -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers -O3 -DNDEBUG -fPIE -fvisibility=hidden -fvisibility-inlines-hidden
 

@@ -1,7 +1,7 @@
 internal/ceres/CMakeFiles/ceres.dir/manifold.cc.o: \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/manifold.cc \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/manifold.cc \
  /usr/include/stdc-predef.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/manifold.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/manifold.h \
  /usr/include/eigen3/Eigen/Core \
  /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
  /usr/include/eigen3/Eigen/src/Core/util/Macros.h \
@@ -361,10 +361,10 @@ internal/ceres/CMakeFiles/ceres.dir/manifold.cc.o: \
  /usr/include/c++/11/bits/shared_ptr_atomic.h \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
- /home/jake/calibration_w_eigan/third_party/ceres-bin/include/ceres/internal/export.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/types.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-bin/include/ceres/internal/export.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/types.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h \
  /usr/include/glog/logging.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -377,6 +377,6 @@ internal/ceres/CMakeFiles/ceres.dir/manifold.cc.o: \
  /usr/include/gflags/gflags.h /usr/include/gflags/gflags_declare.h \
  /usr/include/gflags/gflags_gflags.h /usr/include/glog/log_severity.h \
  /usr/include/glog/vlog_is_on.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/eigen.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/fixed_array.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/memory.h
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/eigen.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/fixed_array.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/memory.h

@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/3.24.0/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/3.24.0/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/c++ 
@@ -23,13 +23,13 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/3.24.0/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/3.24.0/CompilerIdCXX/a.out"
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0dd56/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0dd56.dir/build.make CMakeFiles/cmTC_0dd56.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_0dd56.dir/CMakeCCompilerABI.c.o
 /usr/bin/cc   -v -o CMakeFiles/cmTC_0dd56.dir/CMakeCCompilerABI.c.o -c /opt/cmake-3.24.0-linux-x86_64/share/cmake-3.24/Modules/CMakeCCompilerABI.c
 Using built-in specs.
@@ -86,7 +86,7 @@ LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_0dd56' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_0dd56.'
  /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccGpZA6t.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_0dd56 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_0dd56.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_0dd56' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_0dd56.'
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 
@@ -107,10 +107,10 @@ Parsed C implicit include dir info from above output: rv=done
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp]
   ignore line: []
   ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0dd56/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0dd56.dir/build.make CMakeFiles/cmTC_0dd56.dir/build]
-  ignore line: [gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp']
+  ignore line: [gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp']
   ignore line: [Building C object CMakeFiles/cmTC_0dd56.dir/CMakeCCompilerABI.c.o]
   ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_0dd56.dir/CMakeCCompilerABI.c.o -c /opt/cmake-3.24.0-linux-x86_64/share/cmake-3.24/Modules/CMakeCCompilerABI.c]
   ignore line: [Using built-in specs.]
@@ -232,10 +232,10 @@ Parsed C implicit link information from above output:
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9b27e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9b27e.dir/build.make CMakeFiles/cmTC_9b27e.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_9b27e.dir/CMakeCXXCompilerABI.cpp.o
 /usr/bin/c++   -v -o CMakeFiles/cmTC_9b27e.dir/CMakeCXXCompilerABI.cpp.o -c /opt/cmake-3.24.0-linux-x86_64/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp
 Using built-in specs.
@@ -296,7 +296,7 @@ LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9b27e' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9b27e.'
  /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccRLswnk.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_9b27e /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_9b27e.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9b27e' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9b27e.'
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 
@@ -323,10 +323,10 @@ Parsed CXX implicit include dir info from above output: rv=done
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp]
   ignore line: []
   ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9b27e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9b27e.dir/build.make CMakeFiles/cmTC_9b27e.dir/build]
-  ignore line: [gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp']
+  ignore line: [gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp']
   ignore line: [Building CXX object CMakeFiles/cmTC_9b27e.dir/CMakeCXXCompilerABI.cpp.o]
   ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_9b27e.dir/CMakeCXXCompilerABI.cpp.o -c /opt/cmake-3.24.0-linux-x86_64/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp]
   ignore line: [Using built-in specs.]
@@ -448,10 +448,10 @@ Parsed CXX implicit link information from above output:
 
 
 Determining if the function pow exists in the m passed with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_1fb46/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_1fb46.dir/build.make CMakeFiles/cmTC_1fb46.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_1fb46.dir/CheckFunctionExists.c.o
 /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pow -fPIE -o CMakeFiles/cmTC_1fb46.dir/CheckFunctionExists.c.o -c /opt/cmake-3.24.0-linux-x86_64/share/cmake-3.24/Modules/CheckFunctionExists.c
 <command-line>: warning: conflicting types for built-in function ‘pow’; expected ‘double(double,  double)’ [-Wbuiltin-declaration-mismatch]
@@ -464,21 +464,21 @@ Building C object CMakeFiles/cmTC_1fb46.dir/CheckFunctionExists.c.o
 Linking C executable cmTC_1fb46
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1fb46.dir/link.txt --verbose=1
 /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pow CMakeFiles/cmTC_1fb46.dir/CheckFunctionExists.c.o -o cmTC_1fb46  -lm 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_97c4d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_97c4d.dir/build.make CMakeFiles/cmTC_97c4d.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_97c4d.dir/src.c.o
-/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -fPIE -o CMakeFiles/cmTC_97c4d.dir/src.c.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.c
+/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -fPIE -o CMakeFiles/cmTC_97c4d.dir/src.c.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.c
 Linking C executable cmTC_97c4d
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_97c4d.dir/link.txt --verbose=1
 /usr/bin/cc CMakeFiles/cmTC_97c4d.dir/src.c.o -o cmTC_97c4d 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:
@@ -503,188 +503,188 @@ int main(void)
 }
 
 Determining if the function sgemm_ exists passed with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_f4e1a/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_f4e1a.dir/build.make CMakeFiles/cmTC_f4e1a.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_f4e1a.dir/CheckFunctionExists.c.o
 /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_ -fPIE -o CMakeFiles/cmTC_f4e1a.dir/CheckFunctionExists.c.o -c /opt/cmake-3.24.0-linux-x86_64/share/cmake-3.24/Modules/CheckFunctionExists.c
 Linking C executable cmTC_f4e1a
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f4e1a.dir/link.txt --verbose=1
 /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sgemm_ CMakeFiles/cmTC_f4e1a.dir/CheckFunctionExists.c.o -o cmTC_f4e1a  /usr/lib/x86_64-linux-gnu/libopenblas.so 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 
 Determining if the function cheev_ exists passed with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a19f2/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a19f2.dir/build.make CMakeFiles/cmTC_a19f2.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_a19f2.dir/CheckFunctionExists.c.o
 /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=cheev_ -fPIE -o CMakeFiles/cmTC_a19f2.dir/CheckFunctionExists.c.o -c /opt/cmake-3.24.0-linux-x86_64/share/cmake-3.24/Modules/CheckFunctionExists.c
 Linking C executable cmTC_a19f2
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a19f2.dir/link.txt --verbose=1
 /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=cheev_ CMakeFiles/cmTC_a19f2.dir/CheckFunctionExists.c.o -o cmTC_a19f2  /usr/lib/x86_64-linux-gnu/libopenblas.so -lm -ldl 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 
 Determining if the function shm_open exists in the rt passed with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_57e6c/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_57e6c.dir/build.make CMakeFiles/cmTC_57e6c.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_57e6c.dir/CheckFunctionExists.c.o
 /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shm_open -fPIE -o CMakeFiles/cmTC_57e6c.dir/CheckFunctionExists.c.o -c /opt/cmake-3.24.0-linux-x86_64/share/cmake-3.24/Modules/CheckFunctionExists.c
 Linking C executable cmTC_57e6c
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_57e6c.dir/link.txt --verbose=1
 /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=shm_open CMakeFiles/cmTC_57e6c.dir/CheckFunctionExists.c.o -o cmTC_57e6c  -lrt 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 
 Performing C++ SOURCE FILE Test CHECK_CXX_FLAG_Wmissing_declarations succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a398d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a398d.dir/build.make CMakeFiles/cmTC_a398d.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_a398d.dir/src.cxx.o
-/usr/bin/c++ -DCHECK_CXX_FLAG_Wmissing_declarations  -fPIE   -Wmissing-declarations -o CMakeFiles/cmTC_a398d.dir/src.cxx.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
+/usr/bin/c++ -DCHECK_CXX_FLAG_Wmissing_declarations  -fPIE   -Wmissing-declarations -o CMakeFiles/cmTC_a398d.dir/src.cxx.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
 Linking CXX executable cmTC_a398d
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a398d.dir/link.txt --verbose=1
 /usr/bin/c++ CMakeFiles/cmTC_a398d.dir/src.cxx.o -o cmTC_a398d 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test CHECK_CXX_FLAG_Wno_unknown_pragmas succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_049f4/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_049f4.dir/build.make CMakeFiles/cmTC_049f4.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_049f4.dir/src.cxx.o
-/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_unknown_pragmas  -fPIE   -Wno-unknown-pragmas -o CMakeFiles/cmTC_049f4.dir/src.cxx.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
+/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_unknown_pragmas  -fPIE   -Wno-unknown-pragmas -o CMakeFiles/cmTC_049f4.dir/src.cxx.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
 Linking CXX executable cmTC_049f4
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_049f4.dir/link.txt --verbose=1
 /usr/bin/c++ CMakeFiles/cmTC_049f4.dir/src.cxx.o -o cmTC_049f4 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test CHECK_CXX_FLAG_Wno_sign_compare succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_e2962/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_e2962.dir/build.make CMakeFiles/cmTC_e2962.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_e2962.dir/src.cxx.o
-/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_sign_compare  -fPIE   -Wno-sign-compare -o CMakeFiles/cmTC_e2962.dir/src.cxx.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
+/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_sign_compare  -fPIE   -Wno-sign-compare -o CMakeFiles/cmTC_e2962.dir/src.cxx.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
 Linking CXX executable cmTC_e2962
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e2962.dir/link.txt --verbose=1
 /usr/bin/c++ CMakeFiles/cmTC_e2962.dir/src.cxx.o -o cmTC_e2962 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test CHECK_CXX_FLAG_Wno_unused_parameter succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_cef15/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_cef15.dir/build.make CMakeFiles/cmTC_cef15.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_cef15.dir/src.cxx.o
-/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_unused_parameter  -fPIE   -Wno-unused-parameter -o CMakeFiles/cmTC_cef15.dir/src.cxx.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
+/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_unused_parameter  -fPIE   -Wno-unused-parameter -o CMakeFiles/cmTC_cef15.dir/src.cxx.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
 Linking CXX executable cmTC_cef15
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cef15.dir/link.txt --verbose=1
 /usr/bin/c++ CMakeFiles/cmTC_cef15.dir/src.cxx.o -o cmTC_cef15 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test CHECK_CXX_FLAG_Wno_missing_field_initializers succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9f76a/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9f76a.dir/build.make CMakeFiles/cmTC_9f76a.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_9f76a.dir/src.cxx.o
-/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_missing_field_initializers  -fPIE   -Wno-missing-field-initializers -o CMakeFiles/cmTC_9f76a.dir/src.cxx.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
+/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_missing_field_initializers  -fPIE   -Wno-missing-field-initializers -o CMakeFiles/cmTC_9f76a.dir/src.cxx.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
 Linking CXX executable cmTC_9f76a
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9f76a.dir/link.txt --verbose=1
 /usr/bin/c++ CMakeFiles/cmTC_9f76a.dir/src.cxx.o -o cmTC_9f76a 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test CHECK_CXX_FLAG_Wno_missing_declarations succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_92a13/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_92a13.dir/build.make CMakeFiles/cmTC_92a13.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_92a13.dir/src.cxx.o
-/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_missing_declarations  -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  -fPIE   -Wno-missing-declarations -o CMakeFiles/cmTC_92a13.dir/src.cxx.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
+/usr/bin/c++ -DCHECK_CXX_FLAG_Wno_missing_declarations  -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  -fPIE   -Wno-missing-declarations -o CMakeFiles/cmTC_92a13.dir/src.cxx.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
 Linking CXX executable cmTC_92a13
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92a13.dir/link.txt --verbose=1
 /usr/bin/c++   -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  CMakeFiles/cmTC_92a13.dir/src.cxx.o -o cmTC_92a13 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test COMPILER_HAS_HIDDEN_VISIBILITY succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0d590/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0d590.dir/build.make CMakeFiles/cmTC_0d590.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_0d590.dir/src.cxx.o
-/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_VISIBILITY  -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  -fPIE   -fvisibility=hidden -o CMakeFiles/cmTC_0d590.dir/src.cxx.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
+/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_VISIBILITY  -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  -fPIE   -fvisibility=hidden -o CMakeFiles/cmTC_0d590.dir/src.cxx.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
 Linking CXX executable cmTC_0d590
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0d590.dir/link.txt --verbose=1
 /usr/bin/c++   -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  CMakeFiles/cmTC_0d590.dir/src.cxx.o -o cmTC_0d590 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_73f1c/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_73f1c.dir/build.make CMakeFiles/cmTC_73f1c.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_73f1c.dir/src.cxx.o
-/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY  -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  -fPIE   -fvisibility-inlines-hidden -o CMakeFiles/cmTC_73f1c.dir/src.cxx.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
+/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY  -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  -fPIE   -fvisibility-inlines-hidden -o CMakeFiles/cmTC_73f1c.dir/src.cxx.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
 Linking CXX executable cmTC_73f1c
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73f1c.dir/link.txt --verbose=1
 /usr/bin/c++   -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  CMakeFiles/cmTC_73f1c.dir/src.cxx.o -o cmTC_73f1c 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED_ATTR succeeded with the following output:
-Change Dir: /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp
+Change Dir: /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp
 
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_44ef3/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_44ef3.dir/build.make CMakeFiles/cmTC_44ef3.dir/build
-gmake[1]: Entering directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Entering directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_44ef3.dir/src.cxx.o
-/usr/bin/c++ -DCOMPILER_HAS_DEPRECATED_ATTR  -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  -fPIE -o CMakeFiles/cmTC_44ef3.dir/src.cxx.o -c /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
-/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx:1:37: warning: no previous declaration for ‘int somefunc()’ [-Wmissing-declarations]
+/usr/bin/c++ -DCOMPILER_HAS_DEPRECATED_ATTR  -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  -fPIE -o CMakeFiles/cmTC_44ef3.dir/src.cxx.o -c /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx
+/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx:1:37: warning: no previous declaration for ‘int somefunc()’ [-Wmissing-declarations]
     1 | __attribute__((__deprecated__)) int somefunc() { return 0; }
       |                                     ^~~~~~~~
-/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
-/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx:2:33: warning: ‘int somefunc()’ is deprecated [-Wdeprecated-declarations]
+/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
+/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx:2:33: warning: ‘int somefunc()’ is deprecated [-Wdeprecated-declarations]
     2 |     int main() { return somefunc();}
       |                         ~~~~~~~~^~
-/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx:1:37: note: declared here
+/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp/src.cxx:1:37: note: declared here
     1 | __attribute__((__deprecated__)) int somefunc() { return 0; }
       |                                     ^~~~~~~~
 Linking CXX executable cmTC_44ef3
 /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_44ef3.dir/link.txt --verbose=1
 /usr/bin/c++   -Wmissing-declarations -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers  CMakeFiles/cmTC_44ef3.dir/src.cxx.o -o cmTC_44ef3 
-gmake[1]: Leaving directory '/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/CMakeTmp'
 
 
 Source file was:

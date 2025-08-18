@@ -57,10 +57,10 @@ RM = /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0
+CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jake/calibration_w_eigan/third_party/ceres-bin
+CMAKE_BINARY_DIR = /home/jake/calibration_w_eigen/third_party/ceres-bin
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles /home/jake/calibration_w_eigan/third_party/ceres-bin/examples//CMakeFiles/progress.marks
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles 0
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles /home/jake/calibration_w_eigen/third_party/ceres-bin/examples//CMakeFiles/progress.marks
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/clean
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 examples/CMakeFiles/helloworld.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/helloworld.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/helloworld.dir/rule
 .PHONY : examples/CMakeFiles/helloworld.dir/rule
 
 # Convenience name for target.
@@ -182,12 +182,12 @@ helloworld: examples/CMakeFiles/helloworld.dir/rule
 
 # fast build rule for target.
 helloworld/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld.dir/build.make examples/CMakeFiles/helloworld.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld.dir/build.make examples/CMakeFiles/helloworld.dir/build
 .PHONY : helloworld/fast
 
 # Convenience name for target.
 examples/CMakeFiles/helloworld_numeric_diff.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/helloworld_numeric_diff.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/helloworld_numeric_diff.dir/rule
 .PHONY : examples/CMakeFiles/helloworld_numeric_diff.dir/rule
 
 # Convenience name for target.
@@ -196,12 +196,12 @@ helloworld_numeric_diff: examples/CMakeFiles/helloworld_numeric_diff.dir/rule
 
 # fast build rule for target.
 helloworld_numeric_diff/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_numeric_diff.dir/build.make examples/CMakeFiles/helloworld_numeric_diff.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_numeric_diff.dir/build.make examples/CMakeFiles/helloworld_numeric_diff.dir/build
 .PHONY : helloworld_numeric_diff/fast
 
 # Convenience name for target.
 examples/CMakeFiles/helloworld_analytic_diff.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/helloworld_analytic_diff.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/helloworld_analytic_diff.dir/rule
 .PHONY : examples/CMakeFiles/helloworld_analytic_diff.dir/rule
 
 # Convenience name for target.
@@ -210,12 +210,12 @@ helloworld_analytic_diff: examples/CMakeFiles/helloworld_analytic_diff.dir/rule
 
 # fast build rule for target.
 helloworld_analytic_diff/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_analytic_diff.dir/build.make examples/CMakeFiles/helloworld_analytic_diff.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_analytic_diff.dir/build.make examples/CMakeFiles/helloworld_analytic_diff.dir/build
 .PHONY : helloworld_analytic_diff/fast
 
 # Convenience name for target.
 examples/CMakeFiles/curve_fitting.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/curve_fitting.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/curve_fitting.dir/rule
 .PHONY : examples/CMakeFiles/curve_fitting.dir/rule
 
 # Convenience name for target.
@@ -224,12 +224,12 @@ curve_fitting: examples/CMakeFiles/curve_fitting.dir/rule
 
 # fast build rule for target.
 curve_fitting/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting.dir/build.make examples/CMakeFiles/curve_fitting.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting.dir/build.make examples/CMakeFiles/curve_fitting.dir/build
 .PHONY : curve_fitting/fast
 
 # Convenience name for target.
 examples/CMakeFiles/rosenbrock.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/rosenbrock.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/rosenbrock.dir/rule
 .PHONY : examples/CMakeFiles/rosenbrock.dir/rule
 
 # Convenience name for target.
@@ -238,12 +238,12 @@ rosenbrock: examples/CMakeFiles/rosenbrock.dir/rule
 
 # fast build rule for target.
 rosenbrock/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock.dir/build.make examples/CMakeFiles/rosenbrock.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock.dir/build.make examples/CMakeFiles/rosenbrock.dir/build
 .PHONY : rosenbrock/fast
 
 # Convenience name for target.
 examples/CMakeFiles/rosenbrock_analytic_diff.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/rosenbrock_analytic_diff.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/rosenbrock_analytic_diff.dir/rule
 .PHONY : examples/CMakeFiles/rosenbrock_analytic_diff.dir/rule
 
 # Convenience name for target.
@@ -252,12 +252,12 @@ rosenbrock_analytic_diff: examples/CMakeFiles/rosenbrock_analytic_diff.dir/rule
 
 # fast build rule for target.
 rosenbrock_analytic_diff/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_analytic_diff.dir/build.make examples/CMakeFiles/rosenbrock_analytic_diff.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_analytic_diff.dir/build.make examples/CMakeFiles/rosenbrock_analytic_diff.dir/build
 .PHONY : rosenbrock_analytic_diff/fast
 
 # Convenience name for target.
 examples/CMakeFiles/rosenbrock_numeric_diff.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/rosenbrock_numeric_diff.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/rosenbrock_numeric_diff.dir/rule
 .PHONY : examples/CMakeFiles/rosenbrock_numeric_diff.dir/rule
 
 # Convenience name for target.
@@ -266,12 +266,12 @@ rosenbrock_numeric_diff: examples/CMakeFiles/rosenbrock_numeric_diff.dir/rule
 
 # fast build rule for target.
 rosenbrock_numeric_diff/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_numeric_diff.dir/build.make examples/CMakeFiles/rosenbrock_numeric_diff.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_numeric_diff.dir/build.make examples/CMakeFiles/rosenbrock_numeric_diff.dir/build
 .PHONY : rosenbrock_numeric_diff/fast
 
 # Convenience name for target.
 examples/CMakeFiles/curve_fitting_c.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/curve_fitting_c.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/curve_fitting_c.dir/rule
 .PHONY : examples/CMakeFiles/curve_fitting_c.dir/rule
 
 # Convenience name for target.
@@ -280,12 +280,12 @@ curve_fitting_c: examples/CMakeFiles/curve_fitting_c.dir/rule
 
 # fast build rule for target.
 curve_fitting_c/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting_c.dir/build.make examples/CMakeFiles/curve_fitting_c.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting_c.dir/build.make examples/CMakeFiles/curve_fitting_c.dir/build
 .PHONY : curve_fitting_c/fast
 
 # Convenience name for target.
 examples/CMakeFiles/ellipse_approximation.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/ellipse_approximation.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/ellipse_approximation.dir/rule
 .PHONY : examples/CMakeFiles/ellipse_approximation.dir/rule
 
 # Convenience name for target.
@@ -294,12 +294,12 @@ ellipse_approximation: examples/CMakeFiles/ellipse_approximation.dir/rule
 
 # fast build rule for target.
 ellipse_approximation/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ellipse_approximation.dir/build.make examples/CMakeFiles/ellipse_approximation.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ellipse_approximation.dir/build.make examples/CMakeFiles/ellipse_approximation.dir/build
 .PHONY : ellipse_approximation/fast
 
 # Convenience name for target.
 examples/CMakeFiles/robust_curve_fitting.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/robust_curve_fitting.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/robust_curve_fitting.dir/rule
 .PHONY : examples/CMakeFiles/robust_curve_fitting.dir/rule
 
 # Convenience name for target.
@@ -308,12 +308,12 @@ robust_curve_fitting: examples/CMakeFiles/robust_curve_fitting.dir/rule
 
 # fast build rule for target.
 robust_curve_fitting/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/robust_curve_fitting.dir/build.make examples/CMakeFiles/robust_curve_fitting.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/robust_curve_fitting.dir/build.make examples/CMakeFiles/robust_curve_fitting.dir/build
 .PHONY : robust_curve_fitting/fast
 
 # Convenience name for target.
 examples/CMakeFiles/simple_bundle_adjuster.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/simple_bundle_adjuster.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/simple_bundle_adjuster.dir/rule
 .PHONY : examples/CMakeFiles/simple_bundle_adjuster.dir/rule
 
 # Convenience name for target.
@@ -322,12 +322,12 @@ simple_bundle_adjuster: examples/CMakeFiles/simple_bundle_adjuster.dir/rule
 
 # fast build rule for target.
 simple_bundle_adjuster/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/simple_bundle_adjuster.dir/build.make examples/CMakeFiles/simple_bundle_adjuster.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/simple_bundle_adjuster.dir/build.make examples/CMakeFiles/simple_bundle_adjuster.dir/build
 .PHONY : simple_bundle_adjuster/fast
 
 # Convenience name for target.
 examples/CMakeFiles/bicubic_interpolation.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/bicubic_interpolation.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/bicubic_interpolation.dir/rule
 .PHONY : examples/CMakeFiles/bicubic_interpolation.dir/rule
 
 # Convenience name for target.
@@ -336,12 +336,12 @@ bicubic_interpolation: examples/CMakeFiles/bicubic_interpolation.dir/rule
 
 # fast build rule for target.
 bicubic_interpolation/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation.dir/build.make examples/CMakeFiles/bicubic_interpolation.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation.dir/build.make examples/CMakeFiles/bicubic_interpolation.dir/build
 .PHONY : bicubic_interpolation/fast
 
 # Convenience name for target.
 examples/CMakeFiles/bicubic_interpolation_analytic.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/bicubic_interpolation_analytic.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/bicubic_interpolation_analytic.dir/rule
 .PHONY : examples/CMakeFiles/bicubic_interpolation_analytic.dir/rule
 
 # Convenience name for target.
@@ -350,12 +350,12 @@ bicubic_interpolation_analytic: examples/CMakeFiles/bicubic_interpolation_analyt
 
 # fast build rule for target.
 bicubic_interpolation_analytic/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation_analytic.dir/build.make examples/CMakeFiles/bicubic_interpolation_analytic.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation_analytic.dir/build.make examples/CMakeFiles/bicubic_interpolation_analytic.dir/build
 .PHONY : bicubic_interpolation_analytic/fast
 
 # Convenience name for target.
 examples/CMakeFiles/iteration_callback_example.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/iteration_callback_example.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/iteration_callback_example.dir/rule
 .PHONY : examples/CMakeFiles/iteration_callback_example.dir/rule
 
 # Convenience name for target.
@@ -364,12 +364,12 @@ iteration_callback_example: examples/CMakeFiles/iteration_callback_example.dir/r
 
 # fast build rule for target.
 iteration_callback_example/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/iteration_callback_example.dir/build.make examples/CMakeFiles/iteration_callback_example.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/iteration_callback_example.dir/build.make examples/CMakeFiles/iteration_callback_example.dir/build
 .PHONY : iteration_callback_example/fast
 
 # Convenience name for target.
 examples/CMakeFiles/evaluation_callback_example.dir/rule:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/evaluation_callback_example.dir/rule
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/evaluation_callback_example.dir/rule
 .PHONY : examples/CMakeFiles/evaluation_callback_example.dir/rule
 
 # Convenience name for target.
@@ -378,7 +378,7 @@ evaluation_callback_example: examples/CMakeFiles/evaluation_callback_example.dir
 
 # fast build rule for target.
 evaluation_callback_example/fast:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/evaluation_callback_example.dir/build.make examples/CMakeFiles/evaluation_callback_example.dir/build
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/evaluation_callback_example.dir/build.make examples/CMakeFiles/evaluation_callback_example.dir/build
 .PHONY : evaluation_callback_example/fast
 
 bicubic_interpolation.o: bicubic_interpolation.cc.o
@@ -386,7 +386,7 @@ bicubic_interpolation.o: bicubic_interpolation.cc.o
 
 # target to build an object file
 bicubic_interpolation.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation.dir/build.make examples/CMakeFiles/bicubic_interpolation.dir/bicubic_interpolation.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation.dir/build.make examples/CMakeFiles/bicubic_interpolation.dir/bicubic_interpolation.cc.o
 .PHONY : bicubic_interpolation.cc.o
 
 bicubic_interpolation.i: bicubic_interpolation.cc.i
@@ -394,7 +394,7 @@ bicubic_interpolation.i: bicubic_interpolation.cc.i
 
 # target to preprocess a source file
 bicubic_interpolation.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation.dir/build.make examples/CMakeFiles/bicubic_interpolation.dir/bicubic_interpolation.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation.dir/build.make examples/CMakeFiles/bicubic_interpolation.dir/bicubic_interpolation.cc.i
 .PHONY : bicubic_interpolation.cc.i
 
 bicubic_interpolation.s: bicubic_interpolation.cc.s
@@ -402,7 +402,7 @@ bicubic_interpolation.s: bicubic_interpolation.cc.s
 
 # target to generate assembly for a file
 bicubic_interpolation.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation.dir/build.make examples/CMakeFiles/bicubic_interpolation.dir/bicubic_interpolation.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation.dir/build.make examples/CMakeFiles/bicubic_interpolation.dir/bicubic_interpolation.cc.s
 .PHONY : bicubic_interpolation.cc.s
 
 bicubic_interpolation_analytic.o: bicubic_interpolation_analytic.cc.o
@@ -410,7 +410,7 @@ bicubic_interpolation_analytic.o: bicubic_interpolation_analytic.cc.o
 
 # target to build an object file
 bicubic_interpolation_analytic.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation_analytic.dir/build.make examples/CMakeFiles/bicubic_interpolation_analytic.dir/bicubic_interpolation_analytic.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation_analytic.dir/build.make examples/CMakeFiles/bicubic_interpolation_analytic.dir/bicubic_interpolation_analytic.cc.o
 .PHONY : bicubic_interpolation_analytic.cc.o
 
 bicubic_interpolation_analytic.i: bicubic_interpolation_analytic.cc.i
@@ -418,7 +418,7 @@ bicubic_interpolation_analytic.i: bicubic_interpolation_analytic.cc.i
 
 # target to preprocess a source file
 bicubic_interpolation_analytic.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation_analytic.dir/build.make examples/CMakeFiles/bicubic_interpolation_analytic.dir/bicubic_interpolation_analytic.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation_analytic.dir/build.make examples/CMakeFiles/bicubic_interpolation_analytic.dir/bicubic_interpolation_analytic.cc.i
 .PHONY : bicubic_interpolation_analytic.cc.i
 
 bicubic_interpolation_analytic.s: bicubic_interpolation_analytic.cc.s
@@ -426,7 +426,7 @@ bicubic_interpolation_analytic.s: bicubic_interpolation_analytic.cc.s
 
 # target to generate assembly for a file
 bicubic_interpolation_analytic.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation_analytic.dir/build.make examples/CMakeFiles/bicubic_interpolation_analytic.dir/bicubic_interpolation_analytic.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/bicubic_interpolation_analytic.dir/build.make examples/CMakeFiles/bicubic_interpolation_analytic.dir/bicubic_interpolation_analytic.cc.s
 .PHONY : bicubic_interpolation_analytic.cc.s
 
 curve_fitting.o: curve_fitting.c.o
@@ -434,7 +434,7 @@ curve_fitting.o: curve_fitting.c.o
 
 # target to build an object file
 curve_fitting.c.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting_c.dir/build.make examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting_c.dir/build.make examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.o
 .PHONY : curve_fitting.c.o
 
 curve_fitting.i: curve_fitting.c.i
@@ -442,7 +442,7 @@ curve_fitting.i: curve_fitting.c.i
 
 # target to preprocess a source file
 curve_fitting.c.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting_c.dir/build.make examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting_c.dir/build.make examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.i
 .PHONY : curve_fitting.c.i
 
 curve_fitting.s: curve_fitting.c.s
@@ -450,7 +450,7 @@ curve_fitting.s: curve_fitting.c.s
 
 # target to generate assembly for a file
 curve_fitting.c.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting_c.dir/build.make examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting_c.dir/build.make examples/CMakeFiles/curve_fitting_c.dir/curve_fitting.c.s
 .PHONY : curve_fitting.c.s
 
 curve_fitting.o: curve_fitting.cc.o
@@ -458,7 +458,7 @@ curve_fitting.o: curve_fitting.cc.o
 
 # target to build an object file
 curve_fitting.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting.dir/build.make examples/CMakeFiles/curve_fitting.dir/curve_fitting.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting.dir/build.make examples/CMakeFiles/curve_fitting.dir/curve_fitting.cc.o
 .PHONY : curve_fitting.cc.o
 
 curve_fitting.i: curve_fitting.cc.i
@@ -466,7 +466,7 @@ curve_fitting.i: curve_fitting.cc.i
 
 # target to preprocess a source file
 curve_fitting.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting.dir/build.make examples/CMakeFiles/curve_fitting.dir/curve_fitting.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting.dir/build.make examples/CMakeFiles/curve_fitting.dir/curve_fitting.cc.i
 .PHONY : curve_fitting.cc.i
 
 curve_fitting.s: curve_fitting.cc.s
@@ -474,7 +474,7 @@ curve_fitting.s: curve_fitting.cc.s
 
 # target to generate assembly for a file
 curve_fitting.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting.dir/build.make examples/CMakeFiles/curve_fitting.dir/curve_fitting.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/curve_fitting.dir/build.make examples/CMakeFiles/curve_fitting.dir/curve_fitting.cc.s
 .PHONY : curve_fitting.cc.s
 
 ellipse_approximation.o: ellipse_approximation.cc.o
@@ -482,7 +482,7 @@ ellipse_approximation.o: ellipse_approximation.cc.o
 
 # target to build an object file
 ellipse_approximation.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ellipse_approximation.dir/build.make examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ellipse_approximation.dir/build.make examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o
 .PHONY : ellipse_approximation.cc.o
 
 ellipse_approximation.i: ellipse_approximation.cc.i
@@ -490,7 +490,7 @@ ellipse_approximation.i: ellipse_approximation.cc.i
 
 # target to preprocess a source file
 ellipse_approximation.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ellipse_approximation.dir/build.make examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ellipse_approximation.dir/build.make examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.i
 .PHONY : ellipse_approximation.cc.i
 
 ellipse_approximation.s: ellipse_approximation.cc.s
@@ -498,7 +498,7 @@ ellipse_approximation.s: ellipse_approximation.cc.s
 
 # target to generate assembly for a file
 ellipse_approximation.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ellipse_approximation.dir/build.make examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ellipse_approximation.dir/build.make examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.s
 .PHONY : ellipse_approximation.cc.s
 
 evaluation_callback_example.o: evaluation_callback_example.cc.o
@@ -506,7 +506,7 @@ evaluation_callback_example.o: evaluation_callback_example.cc.o
 
 # target to build an object file
 evaluation_callback_example.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/evaluation_callback_example.dir/build.make examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/evaluation_callback_example.dir/build.make examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o
 .PHONY : evaluation_callback_example.cc.o
 
 evaluation_callback_example.i: evaluation_callback_example.cc.i
@@ -514,7 +514,7 @@ evaluation_callback_example.i: evaluation_callback_example.cc.i
 
 # target to preprocess a source file
 evaluation_callback_example.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/evaluation_callback_example.dir/build.make examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/evaluation_callback_example.dir/build.make examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.i
 .PHONY : evaluation_callback_example.cc.i
 
 evaluation_callback_example.s: evaluation_callback_example.cc.s
@@ -522,7 +522,7 @@ evaluation_callback_example.s: evaluation_callback_example.cc.s
 
 # target to generate assembly for a file
 evaluation_callback_example.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/evaluation_callback_example.dir/build.make examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/evaluation_callback_example.dir/build.make examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.s
 .PHONY : evaluation_callback_example.cc.s
 
 helloworld.o: helloworld.cc.o
@@ -530,7 +530,7 @@ helloworld.o: helloworld.cc.o
 
 # target to build an object file
 helloworld.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld.dir/build.make examples/CMakeFiles/helloworld.dir/helloworld.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld.dir/build.make examples/CMakeFiles/helloworld.dir/helloworld.cc.o
 .PHONY : helloworld.cc.o
 
 helloworld.i: helloworld.cc.i
@@ -538,7 +538,7 @@ helloworld.i: helloworld.cc.i
 
 # target to preprocess a source file
 helloworld.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld.dir/build.make examples/CMakeFiles/helloworld.dir/helloworld.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld.dir/build.make examples/CMakeFiles/helloworld.dir/helloworld.cc.i
 .PHONY : helloworld.cc.i
 
 helloworld.s: helloworld.cc.s
@@ -546,7 +546,7 @@ helloworld.s: helloworld.cc.s
 
 # target to generate assembly for a file
 helloworld.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld.dir/build.make examples/CMakeFiles/helloworld.dir/helloworld.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld.dir/build.make examples/CMakeFiles/helloworld.dir/helloworld.cc.s
 .PHONY : helloworld.cc.s
 
 helloworld_analytic_diff.o: helloworld_analytic_diff.cc.o
@@ -554,7 +554,7 @@ helloworld_analytic_diff.o: helloworld_analytic_diff.cc.o
 
 # target to build an object file
 helloworld_analytic_diff.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_analytic_diff.dir/build.make examples/CMakeFiles/helloworld_analytic_diff.dir/helloworld_analytic_diff.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_analytic_diff.dir/build.make examples/CMakeFiles/helloworld_analytic_diff.dir/helloworld_analytic_diff.cc.o
 .PHONY : helloworld_analytic_diff.cc.o
 
 helloworld_analytic_diff.i: helloworld_analytic_diff.cc.i
@@ -562,7 +562,7 @@ helloworld_analytic_diff.i: helloworld_analytic_diff.cc.i
 
 # target to preprocess a source file
 helloworld_analytic_diff.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_analytic_diff.dir/build.make examples/CMakeFiles/helloworld_analytic_diff.dir/helloworld_analytic_diff.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_analytic_diff.dir/build.make examples/CMakeFiles/helloworld_analytic_diff.dir/helloworld_analytic_diff.cc.i
 .PHONY : helloworld_analytic_diff.cc.i
 
 helloworld_analytic_diff.s: helloworld_analytic_diff.cc.s
@@ -570,7 +570,7 @@ helloworld_analytic_diff.s: helloworld_analytic_diff.cc.s
 
 # target to generate assembly for a file
 helloworld_analytic_diff.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_analytic_diff.dir/build.make examples/CMakeFiles/helloworld_analytic_diff.dir/helloworld_analytic_diff.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_analytic_diff.dir/build.make examples/CMakeFiles/helloworld_analytic_diff.dir/helloworld_analytic_diff.cc.s
 .PHONY : helloworld_analytic_diff.cc.s
 
 helloworld_numeric_diff.o: helloworld_numeric_diff.cc.o
@@ -578,7 +578,7 @@ helloworld_numeric_diff.o: helloworld_numeric_diff.cc.o
 
 # target to build an object file
 helloworld_numeric_diff.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_numeric_diff.dir/build.make examples/CMakeFiles/helloworld_numeric_diff.dir/helloworld_numeric_diff.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_numeric_diff.dir/build.make examples/CMakeFiles/helloworld_numeric_diff.dir/helloworld_numeric_diff.cc.o
 .PHONY : helloworld_numeric_diff.cc.o
 
 helloworld_numeric_diff.i: helloworld_numeric_diff.cc.i
@@ -586,7 +586,7 @@ helloworld_numeric_diff.i: helloworld_numeric_diff.cc.i
 
 # target to preprocess a source file
 helloworld_numeric_diff.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_numeric_diff.dir/build.make examples/CMakeFiles/helloworld_numeric_diff.dir/helloworld_numeric_diff.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_numeric_diff.dir/build.make examples/CMakeFiles/helloworld_numeric_diff.dir/helloworld_numeric_diff.cc.i
 .PHONY : helloworld_numeric_diff.cc.i
 
 helloworld_numeric_diff.s: helloworld_numeric_diff.cc.s
@@ -594,7 +594,7 @@ helloworld_numeric_diff.s: helloworld_numeric_diff.cc.s
 
 # target to generate assembly for a file
 helloworld_numeric_diff.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_numeric_diff.dir/build.make examples/CMakeFiles/helloworld_numeric_diff.dir/helloworld_numeric_diff.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/helloworld_numeric_diff.dir/build.make examples/CMakeFiles/helloworld_numeric_diff.dir/helloworld_numeric_diff.cc.s
 .PHONY : helloworld_numeric_diff.cc.s
 
 iteration_callback_example.o: iteration_callback_example.cc.o
@@ -602,7 +602,7 @@ iteration_callback_example.o: iteration_callback_example.cc.o
 
 # target to build an object file
 iteration_callback_example.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/iteration_callback_example.dir/build.make examples/CMakeFiles/iteration_callback_example.dir/iteration_callback_example.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/iteration_callback_example.dir/build.make examples/CMakeFiles/iteration_callback_example.dir/iteration_callback_example.cc.o
 .PHONY : iteration_callback_example.cc.o
 
 iteration_callback_example.i: iteration_callback_example.cc.i
@@ -610,7 +610,7 @@ iteration_callback_example.i: iteration_callback_example.cc.i
 
 # target to preprocess a source file
 iteration_callback_example.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/iteration_callback_example.dir/build.make examples/CMakeFiles/iteration_callback_example.dir/iteration_callback_example.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/iteration_callback_example.dir/build.make examples/CMakeFiles/iteration_callback_example.dir/iteration_callback_example.cc.i
 .PHONY : iteration_callback_example.cc.i
 
 iteration_callback_example.s: iteration_callback_example.cc.s
@@ -618,7 +618,7 @@ iteration_callback_example.s: iteration_callback_example.cc.s
 
 # target to generate assembly for a file
 iteration_callback_example.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/iteration_callback_example.dir/build.make examples/CMakeFiles/iteration_callback_example.dir/iteration_callback_example.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/iteration_callback_example.dir/build.make examples/CMakeFiles/iteration_callback_example.dir/iteration_callback_example.cc.s
 .PHONY : iteration_callback_example.cc.s
 
 robust_curve_fitting.o: robust_curve_fitting.cc.o
@@ -626,7 +626,7 @@ robust_curve_fitting.o: robust_curve_fitting.cc.o
 
 # target to build an object file
 robust_curve_fitting.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/robust_curve_fitting.dir/build.make examples/CMakeFiles/robust_curve_fitting.dir/robust_curve_fitting.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/robust_curve_fitting.dir/build.make examples/CMakeFiles/robust_curve_fitting.dir/robust_curve_fitting.cc.o
 .PHONY : robust_curve_fitting.cc.o
 
 robust_curve_fitting.i: robust_curve_fitting.cc.i
@@ -634,7 +634,7 @@ robust_curve_fitting.i: robust_curve_fitting.cc.i
 
 # target to preprocess a source file
 robust_curve_fitting.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/robust_curve_fitting.dir/build.make examples/CMakeFiles/robust_curve_fitting.dir/robust_curve_fitting.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/robust_curve_fitting.dir/build.make examples/CMakeFiles/robust_curve_fitting.dir/robust_curve_fitting.cc.i
 .PHONY : robust_curve_fitting.cc.i
 
 robust_curve_fitting.s: robust_curve_fitting.cc.s
@@ -642,7 +642,7 @@ robust_curve_fitting.s: robust_curve_fitting.cc.s
 
 # target to generate assembly for a file
 robust_curve_fitting.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/robust_curve_fitting.dir/build.make examples/CMakeFiles/robust_curve_fitting.dir/robust_curve_fitting.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/robust_curve_fitting.dir/build.make examples/CMakeFiles/robust_curve_fitting.dir/robust_curve_fitting.cc.s
 .PHONY : robust_curve_fitting.cc.s
 
 rosenbrock.o: rosenbrock.cc.o
@@ -650,7 +650,7 @@ rosenbrock.o: rosenbrock.cc.o
 
 # target to build an object file
 rosenbrock.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock.dir/build.make examples/CMakeFiles/rosenbrock.dir/rosenbrock.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock.dir/build.make examples/CMakeFiles/rosenbrock.dir/rosenbrock.cc.o
 .PHONY : rosenbrock.cc.o
 
 rosenbrock.i: rosenbrock.cc.i
@@ -658,7 +658,7 @@ rosenbrock.i: rosenbrock.cc.i
 
 # target to preprocess a source file
 rosenbrock.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock.dir/build.make examples/CMakeFiles/rosenbrock.dir/rosenbrock.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock.dir/build.make examples/CMakeFiles/rosenbrock.dir/rosenbrock.cc.i
 .PHONY : rosenbrock.cc.i
 
 rosenbrock.s: rosenbrock.cc.s
@@ -666,7 +666,7 @@ rosenbrock.s: rosenbrock.cc.s
 
 # target to generate assembly for a file
 rosenbrock.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock.dir/build.make examples/CMakeFiles/rosenbrock.dir/rosenbrock.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock.dir/build.make examples/CMakeFiles/rosenbrock.dir/rosenbrock.cc.s
 .PHONY : rosenbrock.cc.s
 
 rosenbrock_analytic_diff.o: rosenbrock_analytic_diff.cc.o
@@ -674,7 +674,7 @@ rosenbrock_analytic_diff.o: rosenbrock_analytic_diff.cc.o
 
 # target to build an object file
 rosenbrock_analytic_diff.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_analytic_diff.dir/build.make examples/CMakeFiles/rosenbrock_analytic_diff.dir/rosenbrock_analytic_diff.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_analytic_diff.dir/build.make examples/CMakeFiles/rosenbrock_analytic_diff.dir/rosenbrock_analytic_diff.cc.o
 .PHONY : rosenbrock_analytic_diff.cc.o
 
 rosenbrock_analytic_diff.i: rosenbrock_analytic_diff.cc.i
@@ -682,7 +682,7 @@ rosenbrock_analytic_diff.i: rosenbrock_analytic_diff.cc.i
 
 # target to preprocess a source file
 rosenbrock_analytic_diff.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_analytic_diff.dir/build.make examples/CMakeFiles/rosenbrock_analytic_diff.dir/rosenbrock_analytic_diff.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_analytic_diff.dir/build.make examples/CMakeFiles/rosenbrock_analytic_diff.dir/rosenbrock_analytic_diff.cc.i
 .PHONY : rosenbrock_analytic_diff.cc.i
 
 rosenbrock_analytic_diff.s: rosenbrock_analytic_diff.cc.s
@@ -690,7 +690,7 @@ rosenbrock_analytic_diff.s: rosenbrock_analytic_diff.cc.s
 
 # target to generate assembly for a file
 rosenbrock_analytic_diff.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_analytic_diff.dir/build.make examples/CMakeFiles/rosenbrock_analytic_diff.dir/rosenbrock_analytic_diff.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_analytic_diff.dir/build.make examples/CMakeFiles/rosenbrock_analytic_diff.dir/rosenbrock_analytic_diff.cc.s
 .PHONY : rosenbrock_analytic_diff.cc.s
 
 rosenbrock_numeric_diff.o: rosenbrock_numeric_diff.cc.o
@@ -698,7 +698,7 @@ rosenbrock_numeric_diff.o: rosenbrock_numeric_diff.cc.o
 
 # target to build an object file
 rosenbrock_numeric_diff.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_numeric_diff.dir/build.make examples/CMakeFiles/rosenbrock_numeric_diff.dir/rosenbrock_numeric_diff.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_numeric_diff.dir/build.make examples/CMakeFiles/rosenbrock_numeric_diff.dir/rosenbrock_numeric_diff.cc.o
 .PHONY : rosenbrock_numeric_diff.cc.o
 
 rosenbrock_numeric_diff.i: rosenbrock_numeric_diff.cc.i
@@ -706,7 +706,7 @@ rosenbrock_numeric_diff.i: rosenbrock_numeric_diff.cc.i
 
 # target to preprocess a source file
 rosenbrock_numeric_diff.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_numeric_diff.dir/build.make examples/CMakeFiles/rosenbrock_numeric_diff.dir/rosenbrock_numeric_diff.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_numeric_diff.dir/build.make examples/CMakeFiles/rosenbrock_numeric_diff.dir/rosenbrock_numeric_diff.cc.i
 .PHONY : rosenbrock_numeric_diff.cc.i
 
 rosenbrock_numeric_diff.s: rosenbrock_numeric_diff.cc.s
@@ -714,7 +714,7 @@ rosenbrock_numeric_diff.s: rosenbrock_numeric_diff.cc.s
 
 # target to generate assembly for a file
 rosenbrock_numeric_diff.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_numeric_diff.dir/build.make examples/CMakeFiles/rosenbrock_numeric_diff.dir/rosenbrock_numeric_diff.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/rosenbrock_numeric_diff.dir/build.make examples/CMakeFiles/rosenbrock_numeric_diff.dir/rosenbrock_numeric_diff.cc.s
 .PHONY : rosenbrock_numeric_diff.cc.s
 
 simple_bundle_adjuster.o: simple_bundle_adjuster.cc.o
@@ -722,7 +722,7 @@ simple_bundle_adjuster.o: simple_bundle_adjuster.cc.o
 
 # target to build an object file
 simple_bundle_adjuster.cc.o:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/simple_bundle_adjuster.dir/build.make examples/CMakeFiles/simple_bundle_adjuster.dir/simple_bundle_adjuster.cc.o
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/simple_bundle_adjuster.dir/build.make examples/CMakeFiles/simple_bundle_adjuster.dir/simple_bundle_adjuster.cc.o
 .PHONY : simple_bundle_adjuster.cc.o
 
 simple_bundle_adjuster.i: simple_bundle_adjuster.cc.i
@@ -730,7 +730,7 @@ simple_bundle_adjuster.i: simple_bundle_adjuster.cc.i
 
 # target to preprocess a source file
 simple_bundle_adjuster.cc.i:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/simple_bundle_adjuster.dir/build.make examples/CMakeFiles/simple_bundle_adjuster.dir/simple_bundle_adjuster.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/simple_bundle_adjuster.dir/build.make examples/CMakeFiles/simple_bundle_adjuster.dir/simple_bundle_adjuster.cc.i
 .PHONY : simple_bundle_adjuster.cc.i
 
 simple_bundle_adjuster.s: simple_bundle_adjuster.cc.s
@@ -738,7 +738,7 @@ simple_bundle_adjuster.s: simple_bundle_adjuster.cc.s
 
 # target to generate assembly for a file
 simple_bundle_adjuster.cc.s:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/simple_bundle_adjuster.dir/build.make examples/CMakeFiles/simple_bundle_adjuster.dir/simple_bundle_adjuster.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/simple_bundle_adjuster.dir/build.make examples/CMakeFiles/simple_bundle_adjuster.dir/simple_bundle_adjuster.cc.s
 .PHONY : simple_bundle_adjuster.cc.s
 
 # Help Target
@@ -825,6 +825,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

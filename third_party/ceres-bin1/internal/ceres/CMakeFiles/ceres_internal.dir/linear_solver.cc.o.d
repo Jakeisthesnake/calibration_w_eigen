@@ -1,7 +1,7 @@
 internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o: \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/linear_solver.cc \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/linear_solver.cc \
  /usr/include/stdc-predef.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/linear_solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/linear_solver.h \
  /usr/include/c++/11/cstddef \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -162,7 +162,7 @@ internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/block_sparse_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/block_sparse_matrix.h \
  /usr/include/c++/11/random /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -199,12 +199,12 @@ internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o: \
  /usr/include/c++/11/bits/random.tcc /usr/include/c++/11/numeric \
  /usr/include/c++/11/bits/stl_numeric.h \
  /usr/include/c++/11/pstl/glue_numeric_defs.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/block_structure.h \
- /home/jake/calibration_w_eigan/third_party/ceres-bin1/include/ceres/internal/export.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/compressed_row_sparse_matrix.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/sparse_matrix.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/eigen.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/block_structure.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-bin1/include/ceres/internal/export.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/compressed_row_sparse_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/disable_warnings.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/sparse_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/eigen.h \
  /usr/include/eigen3/Eigen/Core \
  /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
  /usr/include/eigen3/Eigen/src/Core/util/Macros.h \
@@ -460,9 +460,9 @@ internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o: \
  /usr/include/eigen3/Eigen/src/Core/StlIterators.h \
  /usr/include/eigen3/Eigen/src/Core/GlobalFunctions.h \
  /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/linear_operator.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/types.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/linear_operator.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/types.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/reenable_warnings.h \
  /usr/include/glog/logging.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -475,10 +475,10 @@ internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o: \
  /usr/include/gflags/gflags.h /usr/include/gflags/gflags_declare.h \
  /usr/include/gflags/gflags_gflags.h /usr/include/glog/log_severity.h \
  /usr/include/glog/vlog_is_on.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/context_impl.h \
- /home/jake/calibration_w_eigan/third_party/ceres-bin1/include/ceres/internal/config.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/context.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/thread_pool.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/context_impl.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-bin1/include/ceres/internal/config.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/context.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/thread_pool.h \
  /usr/include/c++/11/mutex /usr/include/c++/11/chrono \
  /usr/include/c++/11/ratio /usr/include/c++/11/ctime \
  /usr/include/c++/11/bits/parse_numbers.h \
@@ -486,32 +486,32 @@ internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o: \
  /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/thread \
  /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/concurrent_queue.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/concurrent_queue.h \
  /usr/include/c++/11/condition_variable /usr/include/c++/11/queue \
  /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_deque.h \
  /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/bits/stl_queue.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/casts.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/dense_sparse_matrix.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/execution_summary.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/wall_time.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/stringprintf.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/casts.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/dense_sparse_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/execution_summary.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/wall_time.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/stringprintf.h \
  /usr/include/c++/11/cstdarg \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/triplet_sparse_matrix.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/crs_matrix.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/cgnr_solver.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/conjugate_gradients_solver.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/eigen_vector_ops.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/fixed_array.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/include/ceres/internal/memory.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/parallel_for.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/parallel_invoke.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/partition_range_for_parallel_for.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/parallel_vector_ops.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/cuda_sparse_matrix.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/cuda_vector.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/triplet_sparse_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/crs_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/cgnr_solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/conjugate_gradients_solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/eigen_vector_ops.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/fixed_array.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/include/ceres/internal/memory.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/parallel_for.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/parallel_invoke.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/partition_range_for_parallel_for.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/parallel_vector_ops.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/cuda_sparse_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/cuda_vector.h \
  /usr/include/c++/11/math.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/dense_normal_cholesky_solver.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/dense_cholesky.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/dense_normal_cholesky_solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/dense_cholesky.h \
  /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /usr/include/eigen3/Eigen/LU /usr/include/eigen3/Eigen/src/misc/Kernel.h \
  /usr/include/eigen3/Eigen/src/misc/Image.h \
@@ -571,17 +571,17 @@ internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o: \
  /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/./RealQZ.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/cuda_buffer.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/dense_qr_solver.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/dense_qr.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/dynamic_sparse_normal_cholesky_solver.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/iterative_schur_complement_solver.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/schur_complement_solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/cuda_buffer.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/dense_qr_solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/dense_qr.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/dynamic_sparse_normal_cholesky_solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/iterative_schur_complement_solver.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/schur_complement_solver.h \
  /usr/include/c++/11/set /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/block_random_access_diagonal_matrix.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/block_random_access_matrix.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/schur_eliminator.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/block_random_access_diagonal_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/block_random_access_matrix.h \
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/schur_eliminator.h \
  /usr/include/eigen3/Eigen/OrderingMethods \
  /usr/include/eigen3/Eigen/SparseCore \
  /usr/include/eigen3/Eigen/src/SparseCore/SparseUtil.h \
@@ -625,4 +625,4 @@ internal/ceres/CMakeFiles/ceres_internal.dir/linear_solver.cc.o: \
  /usr/include/eigen3/Eigen/OrderingMethods \
  /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky.h \
  /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h \
- /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/sparse_normal_cholesky_solver.h
+ /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/sparse_normal_cholesky_solver.h

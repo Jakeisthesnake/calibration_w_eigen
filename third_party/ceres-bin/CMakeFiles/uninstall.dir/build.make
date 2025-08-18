@@ -53,10 +53,10 @@ RM = /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0
+CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jake/calibration_w_eigan/third_party/ceres-bin
+CMAKE_BINARY_DIR = /home/jake/calibration_w_eigen/third_party/ceres-bin
 
 # Utility rule file for uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/uninstall.dir/compiler_depend.make
 include CMakeFiles/uninstall.dir/progress.make
 
 CMakeFiles/uninstall:
-	/opt/cmake-3.24.0-linux-x86_64/bin/cmake -P /home/jake/calibration_w_eigan/third_party/ceres-bin/cmake/uninstall.cmake
+	/opt/cmake-3.24.0-linux-x86_64/bin/cmake -P /home/jake/calibration_w_eigen/third_party/ceres-bin/cmake/uninstall.cmake
 
 uninstall: CMakeFiles/uninstall
 uninstall: CMakeFiles/uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigan/third_party/ceres-bin /home/jake/calibration_w_eigan/third_party/ceres-bin /home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigen/third_party/ceres-bin /home/jake/calibration_w_eigen/third_party/ceres-bin /home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

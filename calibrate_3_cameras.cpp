@@ -1378,7 +1378,7 @@ void SaveCalibrationResult(
     output["inter_camera"]["camera2_to_camera0"]["translation_vector"] = {tvec_cam_2[0], tvec_cam_2[1], tvec_cam_2[2]};
 
     // --- Write to file ---
-    std::ofstream ofs("/home/jake/calibration_w_eigan/calibration_output.json");
+    std::ofstream ofs("/home/jake/calibration_w_eigen/calibration_output.json");
     ofs << std::setw(4) << output << std::endl;
     std::cout << "Saved calibration results to calibration_output.json" << std::endl;
 }

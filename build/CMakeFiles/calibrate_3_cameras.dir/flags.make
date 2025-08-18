@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jake/calibration_w_eigan/third_party/Pangolin/install/include -I/home/jake/calibration_w_eigan/third_party/ceres-bin1/install/include -I/home/jake/calibration_w_eigan/third_party/eigen-3.4.0 -I/home/jake/calibration_w_eigan/third_party
+CXX_INCLUDES = -I/home/jake/calibration_w_eigen/third_party/Pangolin/install/include -I/home/jake/calibration_w_eigen/third_party/ceres-bin1/install/include -I/home/jake/calibration_w_eigen/third_party/eigen-3.4.0 -I/home/jake/calibration_w_eigen/third_party
 
 CXX_FLAGS = 
 

@@ -53,10 +53,10 @@ RM = /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0
+CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jake/calibration_w_eigan/third_party/ceres-bin
+CMAKE_BINARY_DIR = /home/jake/calibration_w_eigen/third_party/ceres-bin
 
 # Include any dependencies generated for this target.
 include examples/CMakeFiles/evaluation_callback_example.dir/depend.make
@@ -70,18 +70,18 @@ include examples/CMakeFiles/evaluation_callback_example.dir/progress.make
 include examples/CMakeFiles/evaluation_callback_example.dir/flags.make
 
 examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o: examples/CMakeFiles/evaluation_callback_example.dir/flags.make
-examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o: /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/evaluation_callback_example.cc
+examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o: /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/evaluation_callback_example.cc
 examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o: examples/CMakeFiles/evaluation_callback_example.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o -MF CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o.d -o CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o -c /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/evaluation_callback_example.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o"
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o -MF CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o.d -o CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.o -c /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/evaluation_callback_example.cc
 
 examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.i"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/evaluation_callback_example.cc > CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/evaluation_callback_example.cc > CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.i
 
 examples/CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.s"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/evaluation_callback_example.cc -o CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/evaluation_callback_example.cc -o CMakeFiles/evaluation_callback_example.dir/evaluation_callback_example.cc.s
 
 # Object files for target evaluation_callback_example
 evaluation_callback_example_OBJECTS = \
@@ -106,18 +106,18 @@ bin/evaluation_callback_example: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.
 bin/evaluation_callback_example: /usr/lib/x86_64-linux-gnu/libtbb.so
 bin/evaluation_callback_example: /usr/lib/x86_64-linux-gnu/libopenblas.so
 bin/evaluation_callback_example: examples/CMakeFiles/evaluation_callback_example.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bin/evaluation_callback_example"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/evaluation_callback_example.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bin/evaluation_callback_example"
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/evaluation_callback_example.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 examples/CMakeFiles/evaluation_callback_example.dir/build: bin/evaluation_callback_example
 .PHONY : examples/CMakeFiles/evaluation_callback_example.dir/build
 
 examples/CMakeFiles/evaluation_callback_example.dir/clean:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -P CMakeFiles/evaluation_callback_example.dir/cmake_clean.cmake
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -P CMakeFiles/evaluation_callback_example.dir/cmake_clean.cmake
 .PHONY : examples/CMakeFiles/evaluation_callback_example.dir/clean
 
 examples/CMakeFiles/evaluation_callback_example.dir/depend:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples /home/jake/calibration_w_eigan/third_party/ceres-bin /home/jake/calibration_w_eigan/third_party/ceres-bin/examples /home/jake/calibration_w_eigan/third_party/ceres-bin/examples/CMakeFiles/evaluation_callback_example.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples /home/jake/calibration_w_eigen/third_party/ceres-bin /home/jake/calibration_w_eigen/third_party/ceres-bin/examples /home/jake/calibration_w_eigen/third_party/ceres-bin/examples/CMakeFiles/evaluation_callback_example.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : examples/CMakeFiles/evaluation_callback_example.dir/depend
 

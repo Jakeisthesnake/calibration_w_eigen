@@ -1,8 +1,8 @@
-# Install script for directory: /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/internal/ceres/autodiff_benchmarks
+# Install script for directory: /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/internal/ceres/autodiff_benchmarks
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/jake/calibration_w_eigan/third_party/ceres-bin/install")
+  set(CMAKE_INSTALL_PREFIX "/home/jake/calibration_w_eigen/third_party/ceres-bin/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

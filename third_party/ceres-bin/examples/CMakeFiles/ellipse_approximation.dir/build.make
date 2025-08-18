@@ -53,10 +53,10 @@ RM = /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0
+CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jake/calibration_w_eigan/third_party/ceres-bin
+CMAKE_BINARY_DIR = /home/jake/calibration_w_eigen/third_party/ceres-bin
 
 # Include any dependencies generated for this target.
 include examples/CMakeFiles/ellipse_approximation.dir/depend.make
@@ -70,18 +70,18 @@ include examples/CMakeFiles/ellipse_approximation.dir/progress.make
 include examples/CMakeFiles/ellipse_approximation.dir/flags.make
 
 examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: examples/CMakeFiles/ellipse_approximation.dir/flags.make
-examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc
+examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc
 examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o: examples/CMakeFiles/ellipse_approximation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o -MF CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o.d -o CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o -c /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o"
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o -MF CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o.d -o CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.o -c /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc
 
 examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.i"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc > CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.i
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc > CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.i
 
 examples/CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.s"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc -o CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.s
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples/ellipse_approximation.cc -o CMakeFiles/ellipse_approximation.dir/ellipse_approximation.cc.s
 
 # Object files for target ellipse_approximation
 ellipse_approximation_OBJECTS = \
@@ -106,18 +106,18 @@ bin/ellipse_approximation: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
 bin/ellipse_approximation: /usr/lib/x86_64-linux-gnu/libtbb.so
 bin/ellipse_approximation: /usr/lib/x86_64-linux-gnu/libopenblas.so
 bin/ellipse_approximation: examples/CMakeFiles/ellipse_approximation.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/calibration_w_eigan/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bin/ellipse_approximation"
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ellipse_approximation.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/calibration_w_eigen/third_party/ceres-bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bin/ellipse_approximation"
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ellipse_approximation.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 examples/CMakeFiles/ellipse_approximation.dir/build: bin/ellipse_approximation
 .PHONY : examples/CMakeFiles/ellipse_approximation.dir/build
 
 examples/CMakeFiles/ellipse_approximation.dir/clean:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -P CMakeFiles/ellipse_approximation.dir/cmake_clean.cmake
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin/examples && $(CMAKE_COMMAND) -P CMakeFiles/ellipse_approximation.dir/cmake_clean.cmake
 .PHONY : examples/CMakeFiles/ellipse_approximation.dir/clean
 
 examples/CMakeFiles/ellipse_approximation.dir/depend:
-	cd /home/jake/calibration_w_eigan/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigan/third_party/ceres-solver-2.2.0/examples /home/jake/calibration_w_eigan/third_party/ceres-bin /home/jake/calibration_w_eigan/third_party/ceres-bin/examples /home/jake/calibration_w_eigan/third_party/ceres-bin/examples/CMakeFiles/ellipse_approximation.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jake/calibration_w_eigen/third_party/ceres-bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0 /home/jake/calibration_w_eigen/third_party/ceres-solver-2.2.0/examples /home/jake/calibration_w_eigen/third_party/ceres-bin /home/jake/calibration_w_eigen/third_party/ceres-bin/examples /home/jake/calibration_w_eigen/third_party/ceres-bin/examples/CMakeFiles/ellipse_approximation.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : examples/CMakeFiles/ellipse_approximation.dir/depend
 

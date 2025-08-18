@@ -57,10 +57,10 @@ RM = /opt/cmake-3.24.0-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigan
+CMAKE_SOURCE_DIR = /home/jake/calibration_w_eigen
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jake/calibration_w_eigan/build
+CMAKE_BINARY_DIR = /home/jake/calibration_w_eigen/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/build/CMakeFiles /home/jake/calibration_w_eigan/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/build/CMakeFiles /home/jake/calibration_w_eigen/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigan/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jake/calibration_w_eigen/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,6 +142,19 @@ calibrate_3_cameras/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/calibrate_3_cameras.dir/build.make CMakeFiles/calibrate_3_cameras.dir/build
 .PHONY : calibrate_3_cameras/fast
 
+#=============================================================================
+# Target rules for targets named vizualize_3_cameras_data
+
+# Build rule for target.
+vizualize_3_cameras_data: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vizualize_3_cameras_data
+.PHONY : vizualize_3_cameras_data
+
+# fast build rule for target.
+vizualize_3_cameras_data/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vizualize_3_cameras_data.dir/build.make CMakeFiles/vizualize_3_cameras_data.dir/build
+.PHONY : vizualize_3_cameras_data/fast
+
 calibrate_2_cameras.o: calibrate_2_cameras.cpp.o
 .PHONY : calibrate_2_cameras.o
 
@@ -190,6 +203,30 @@ calibrate_3_cameras.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/calibrate_3_cameras.dir/build.make CMakeFiles/calibrate_3_cameras.dir/calibrate_3_cameras.cpp.s
 .PHONY : calibrate_3_cameras.cpp.s
 
+vizualize_3_cameras_data.o: vizualize_3_cameras_data.cpp.o
+.PHONY : vizualize_3_cameras_data.o
+
+# target to build an object file
+vizualize_3_cameras_data.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vizualize_3_cameras_data.dir/build.make CMakeFiles/vizualize_3_cameras_data.dir/vizualize_3_cameras_data.cpp.o
+.PHONY : vizualize_3_cameras_data.cpp.o
+
+vizualize_3_cameras_data.i: vizualize_3_cameras_data.cpp.i
+.PHONY : vizualize_3_cameras_data.i
+
+# target to preprocess a source file
+vizualize_3_cameras_data.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vizualize_3_cameras_data.dir/build.make CMakeFiles/vizualize_3_cameras_data.dir/vizualize_3_cameras_data.cpp.i
+.PHONY : vizualize_3_cameras_data.cpp.i
+
+vizualize_3_cameras_data.s: vizualize_3_cameras_data.cpp.s
+.PHONY : vizualize_3_cameras_data.s
+
+# target to generate assembly for a file
+vizualize_3_cameras_data.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vizualize_3_cameras_data.dir/build.make CMakeFiles/vizualize_3_cameras_data.dir/vizualize_3_cameras_data.cpp.s
+.PHONY : vizualize_3_cameras_data.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -200,12 +237,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... calibrate_2_cameras"
 	@echo "... calibrate_3_cameras"
+	@echo "... vizualize_3_cameras_data"
 	@echo "... calibrate_2_cameras.o"
 	@echo "... calibrate_2_cameras.i"
 	@echo "... calibrate_2_cameras.s"
 	@echo "... calibrate_3_cameras.o"
 	@echo "... calibrate_3_cameras.i"
 	@echo "... calibrate_3_cameras.s"
+	@echo "... vizualize_3_cameras_data.o"
+	@echo "... vizualize_3_cameras_data.i"
+	@echo "... vizualize_3_cameras_data.s"
 .PHONY : help
 
 
