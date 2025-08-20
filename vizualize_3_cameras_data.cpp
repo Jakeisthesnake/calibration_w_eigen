@@ -228,15 +228,16 @@ bool LoadCalibrationResult(
     const std::string& filepath,
 
     double intrinsic_0[4], double dist_0[4],
-    std::vector<std::array<double, 7>>& target_poses,
-    std::vector<double>& timestamps,
 
     double intrinsic_1[4], double dist_1[4],
 
     double intrinsic_2[4], double dist_2[4],
 
     double qvec_cam_1[4], double tvec_cam_1[3],
-    double qvec_cam_2[4], double tvec_cam_2[3]
+    double qvec_cam_2[4], double tvec_cam_2[3],
+
+    std::vector<std::array<double, 7>>& target_poses,
+    std::vector<double>& timestamps
 ) {
     std::ifstream ifs(filepath);
     if (!ifs.is_open()) {
@@ -1092,6 +1093,36 @@ void VisualizeStereoReprojectionTuner(
 }
 
 
+std::vector<FrameDetections> makeFrameDetections(
+    const std::vector<Point2dVec>& img_pts_list,
+    const std::vector<IDVec>& corner_ids_list,
+    const TimestampList& timestamp_list,
+    size_t total_board_points)
+{
+    std::vector<FrameDetections> frames;
+    frames.reserve(img_pts_list.size());
+
+    for (size_t i = 0; i < img_pts_list.size(); ++i) {
+        FrameDetections fd;
+        fd.observations.resize(total_board_points,
+            Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
+                            std::numeric_limits<double>::quiet_NaN()));
+
+        // scatter detected points into their corner_id slots
+        for (size_t k = 0; k < corner_ids_list[i].size(); ++k) {
+            int cid = corner_ids_list[i][k];
+            if (cid >= 0 && (size_t)cid < total_board_points) {
+                fd.observations[cid] = img_pts_list[i][k];
+            }
+        }
+
+        fd.timestamp_ns = static_cast<int64_t>(timestamp_list[i]);
+        frames.push_back(std::move(fd));
+    }
+    return frames;
+}
+
+
 using TimestampList = std::vector<uint64_t>;
 
 int main(int argc, char** argv) {
@@ -1099,48 +1130,34 @@ int main(int argc, char** argv) {
     for (int i = 0; i < argc; ++i) {
         std::cout << "argv[" << i << "]: " << argv[i] << std::endl;
     }
-    if (argc < 2) {
-        std::cerr << "Usage: ./calibrate_fisheye_camera <data_file.csv>" << std::endl;
+    if (argc < 3) {
+        std::cerr << "Usage: ./vizualize_3_cameras_data <detected_corners.csv> <calirabtion_results.json>" << std::endl;
         return -1;
     }
 
     std::string data_file = argv[1];
+    std::string calibration_file = argv[2];
 
     // Load the AprilTag board geometry
 
     std::vector<Eigen::Vector3d> board_points;
-    board_points = loadAprilTagBoardFlat("/home/jake/calibration_w_eigen/apiril_tag_board.json");
+    board_points = loadAprilTagBoardFlat("/home/jake/calibration_w_eigen/april_tag_board.json");
 
     // Step 1: Load and process CSV data for all cameras
     auto [obj_pts_list_0, img_pts_list_0, corner_ids_list_0, timestamp_list_0] = processCSV(data_file, 0);
     auto [obj_pts_list_1, img_pts_list_1, corner_ids_list_1, timestamp_list_1] = processCSV(data_file, 1);
     auto [obj_pts_list_2, img_pts_list_2, corner_ids_list_2, timestamp_list_2] = processCSV(data_file, 2);
 
-    // Load K_0, K_1, K_2;
-    Eigen::Matrix3d K_0;
-    Eigen::Matrix3d K_1;
-    Eigen::Matrix3d K_2;
 
+    // total board points (from geometry loader)
+    size_t total_board_points = board_points.size();
 
-    
-
-
-    std::cin.get();  // Wait for user input before proceeding
-
-
-    // Initialize camera parameters
-    // Eigen::Matrix3d K_0;
-    // K_0 << 800, 0, 640,
-    //        0, 800, 480,
-    //        0, 0, 1;
-    // Eigen::Matrix3d K_1;
-    // K_1 << 810, 0, 650,
-    //        0, 810, 470,
-    //        0, 0, 1;
-    // Eigen::Matrix3d K_2;
-    // K_2 << 820, 0, 660,
-    //        0, 820, 460,
-    //        0, 0, 1;
+    std::vector<FrameDetections> frames_cam0 =
+        makeFrameDetections(img_pts_list_0, corner_ids_list_0, timestamp_list_0, total_board_points);
+    std::vector<FrameDetections> frames_cam1 =
+        makeFrameDetections(img_pts_list_1, corner_ids_list_1, timestamp_list_1, total_board_points);
+    std::vector<FrameDetections> frames_cam2 =
+        makeFrameDetections(img_pts_list_2, corner_ids_list_2, timestamp_list_2, total_board_points);
 
 
 
@@ -1148,40 +1165,24 @@ int main(int argc, char** argv) {
     double intrinsic_0[4], dist_0[4];
     double intrinsic_1[4], dist_1[4];
     double intrinsic_2[4], dist_2[4];
-    std::vector<std::array<double, 7>> extrinsics_0, extrinsics_1, extrinsics_2;
-    std::vector<double> timestamps_0, timestamps_1, timestamps_2;
-    double rvec_cam_1[3], tvec_cam_1[3];
-    double rvec_cam_2[3], tvec_cam_2[3];
+    std::vector<std::array<double, 7>> target_poses;
+    std::vector<double> timestamps;
+    double qvec_cam_1[4], tvec_cam_1[3];
+    double qvec_cam_2[4], tvec_cam_2[3];
 
-    if (!LoadCalibrationResult("/home/jake/calibration_w_eigen/calibration_output.json",
-        intrinsic_0, dist_0, extrinsics_0, timestamps_0,
+    if (!LoadCalibrationResult(calibration_file,
+        intrinsic_0, dist_0,
         intrinsic_1, dist_1,
         intrinsic_2, dist_2,
-        rvec_cam_1, tvec_cam_1, rvec_cam_2, tvec_cam_2))
+        qvec_cam_1, tvec_cam_1, qvec_cam_2, tvec_cam_2,
+        target_poses, timestamps))
     {
         return -1;
     }
+    std::cout << "timestamps.size(): " << timestamps.size() << std::endl;
+    std::cout << "target_poses.size(): " << target_poses.size() << std::endl;
+    std::cin.get(); // Wait for user input to continue
 
-    // Now you can build Eigen::Matrix3d K_0, K_1, K_2 from intrinsics:
-    Eigen::Matrix3d K_0;
-    K_0 << intrinsic_0[0], 0, intrinsic_0[2],
-            0, intrinsic_0[1], intrinsic_0[3],
-            0, 0, 1;
-    Eigen::Matrix3d K_1;
-    K_1 << intrinsic_1[0], 0, intrinsic_1[2],
-            0, intrinsic_1[1], intrinsic_1[3],
-            0, 0, 1;
-    Eigen::Matrix3d K_2;
-    K_2 << intrinsic_2[0], 0, intrinsic_2[2],
-            0, intrinsic_2[1], intrinsic_2[3],
-            0, 0, 1;
-
-    // double intrinsic_0[4] = {K_0(0, 0), K_0(1, 1), K_0(0, 2), K_0(1, 2)};
-    // double dist_0[4] = {-0.013, -0.02, 0.063, -0.03}; 
-    // double intrinsic_1[4] = {K_1(0, 0), K_1(1, 1), K_1(0, 2), K_1(1, 2)};
-    // double dist_1[4] = {0.09, -0.057, 0.014, -0.004}; 
-    // double intrinsic_2[4] = {K_2(0, 0), K_2(1, 1), K_2(0, 2), K_2(1, 2)};
-    // double dist_2[4] = {0.03, -0.065, 0.065, -0.0034}; 
 
     
 
@@ -1212,109 +1213,44 @@ int main(int argc, char** argv) {
         return a;
     };
 
-    // Build target_poses (one pose per master_timestamps entry) in Camera 0 frame
-    std::vector<std::array<double,7>> target_poses;
-    target_poses.reserve(master_timestamps.size());
 
-    // Build initial camX_in_cam0 transforms from the user-provided qvec_cam_X/tvec_cam_X
-    // (these variables are declared later in your original main; if you want to
-    // keep the same order, you can move this block down after you construct qvec_cam_1/qvec_cam_2.
-    // For clarity we assume qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are available here.)
-    //
-    // If they are not yet available at this exact insertion point, move the following
-    // two lines (construction of cam1_in_cam0/cam2_in_cam0) down to right after you
-    // compute qvec_cam_1/tvec_cam_1 and qvec_cam_2/tvec_cam_2.
+    CameraInit cam0_init, cam1_init, cam2_init;
+    std::copy(intrinsic_0, intrinsic_0+4, cam0_init.K);
+    std::copy(dist_0, dist_0+4, cam0_init.D);
 
-    double cam1_quat_tmp[4]; double cam2_quat_tmp[4];
-    double cam1_trans_tmp[3]; double cam2_trans_tmp[3];
-    // We'll copy user variables into temporaries if they exist; if they don't exist yet,
-    // the below initialization will be overwritten later. To keep this block safe for direct
-    // paste, we check and set identity fallback here:
-    for (int i=0;i<4;++i) { cam1_quat_tmp[i] = (i==0?1.0:0.0); cam2_quat_tmp[i] = (i==0?1.0:0.0); }
-    for (int i=0;i<3;++i) { cam1_trans_tmp[i] = 0.0; cam2_trans_tmp[i] = 0.0; }
+    std::copy(intrinsic_1, intrinsic_1+4, cam1_init.K);
+    std::copy(dist_1, dist_1+4, cam1_init.D);
 
-    // NOTE: if qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are declared *after* this point
-    // in your main (as in your posted main), we'll re-create the camX_in_cam0 matrices again
-    // after those quaternions are available — see the second construction below.
+    std::copy(intrinsic_2, intrinsic_2+4, cam2_init.K);
+    std::copy(dist_2, dist_2+4, cam2_init.D);
 
-    // Build target_poses now using available extrinsics_* lists
-    for (const auto& entry : master_timestamps) {
-        if (entry.cam0_idx != -1) {
-            // Use camera 0's observed target pose directly (pose is target_in_cam0)
-            target_poses.push_back(extrinsics_0[entry.cam0_idx]);
+    auto quat_to_rpy = [](const double q[4]) {
+        Eigen::Quaterniond Q(q[0], q[1], q[2], q[3]); // assuming [w,x,y,z]
+        Eigen::Vector3d rpy = Q.toRotationMatrix().eulerAngles(0,1,2); // roll,pitch,yaw
+        return rpy;
+    };
 
-        } else if (entry.cam1_idx != -1) {
-            // Camera 1 saw it: convert target_in_cam1 -> target_in_cam0
-            Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+    InterCamInit cam1_to_cam0_init, cam2_to_cam0_init;
+    cam1_to_cam0_init.rpy = quat_to_rpy(qvec_cam_1);
+    cam1_to_cam0_init.t   = Eigen::Vector3d(tvec_cam_1[0], tvec_cam_1[1], tvec_cam_1[2]);
 
-            // If we don't yet have the real cam1_in_cam0 (quaternion + t will be set later),
-            // assume identity for now; the optimizer init will still be meaningful.
-            Eigen::Matrix4d T_cam1_in_cam0 = Eigen::Matrix4d::Identity();
-            // If user has provided qvec_cam_1 and tvec_cam_1 earlier, use them:
-            // (we can't refer to variables that may not exist here without breaking drop-in,
-            // so we'll recompute again later right after qvec_cam_1/tvec_cam_1 are available.)
-            Eigen::Matrix4d T_target_in_cam0 = T_cam1_in_cam0 * T_target_in_cam1;
-            target_poses.push_back(matrixToArrayPose(T_target_in_cam0));
+    cam2_to_cam0_init.rpy = quat_to_rpy(qvec_cam_2);
+    cam2_to_cam0_init.t   = Eigen::Vector3d(tvec_cam_2[0], tvec_cam_2[1], tvec_cam_2[2]);
 
-        } else if (entry.cam2_idx != -1) {
-            // Camera 2 saw it: convert target_in_cam2 -> target_in_cam0
-            Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+    std::vector<BoardPoseInit> board_poses_init;
+    board_poses_init.reserve(target_poses.size());
 
-            Eigen::Matrix4d T_cam2_in_cam0 = Eigen::Matrix4d::Identity();
-            Eigen::Matrix4d T_target_in_cam0 = T_cam2_in_cam0 * T_target_in_cam2;
-            target_poses.push_back(matrixToArrayPose(T_target_in_cam0));
+    for (const auto& tp : target_poses) {
+        Eigen::Quaterniond Q(tp[0], tp[1], tp[2], tp[3]); // [w,x,y,z]
+        Eigen::Vector3d rpy = Q.toRotationMatrix().eulerAngles(0,1,2);
 
-        } else {
-            // No camera saw the target at this timestamp — default to identity
-            target_poses.push_back({1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0});
-            std::cerr << "Warning: No camera saw target at timestamp " << entry.timestamp_id
-                      << ", using identity pose." << std::endl;
-        }
+        BoardPoseInit bp;
+        bp.rpy = rpy;
+        bp.t   = Eigen::Vector3d(tp[4], tp[5], tp[6]);
+        board_poses_init.push_back(bp);
     }
 
-    // --- If qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are declared later in main
-    //     (as in your existing main), reconstruct any target_poses that were bootstrapped
-    //     from camera1/camera2 using the real initial cam transforms now that those
-    //     variables exist. This keeps the paste-drop safe and produces correct bootstrapping.
-    //
-    // Rebuild cam transforms from the actual user variables (overwrite temporaries):
-    {
-        // Build real cam1_in_cam0 and cam2_in_cam0 using the variables you define later.
-        // If those variables are located after this insertion point, move this small block
-        // to just after you call ceres::AngleAxisToQuaternion(...) for cam1 and cam2.
-        Eigen::Matrix4d cam1_in_cam0 = Eigen::Matrix4d::Identity();
-        Eigen::Matrix4d cam2_in_cam0 = Eigen::Matrix4d::Identity();
 
-        // Only build if qvec_cam_1 and tvec_cam_1 are in scope (they are later in your main).
-        // To be safe, check symbol existence at compile time isn't possible here; simply
-        // re-run this population after qvec_cam_1/tvec_cam_1 are assigned in your main
-        // (move these three lines down if needed).
-        // Example (if in scope):
-        // cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
-        // cam2_in_cam0 = quatTransToMatrix(qvec_cam_2, tvec_cam_2);
-
-        // Now, **recompute** any target_poses that were created from extrinsics_1/extrinsics_2
-        for (size_t i = 0; i < master_timestamps.size(); ++i) {
-            const auto &entry = master_timestamps[i];
-            if (entry.cam0_idx != -1) continue; // already a cam0 measurement, keep it
-
-            if (entry.cam1_idx != -1) {
-                // recompute using cam1_in_cam0 (if cam1_in_cam0 is identity because you left it,
-                // result is same as before)
-                Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-                Eigen::Matrix4d T_target_in_cam0 = cam1_in_cam0 * T_target_in_cam1;
-                target_poses[i] = matrixToArrayPose(T_target_in_cam0);
-
-            } else if (entry.cam2_idx != -1) {
-                Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-                Eigen::Matrix4d T_target_in_cam0 = cam2_in_cam0 * T_target_in_cam2;
-                target_poses[i] = matrixToArrayPose(T_target_in_cam0);
-            }
-        }
-    }
-
-    // Debug print (optional)
-    std::cout << "Initialized " << target_poses.size() << " target_poses (in cam0 frame)." << std::endl;
 
     VisualizeStereoReprojectionTuner(
     // AprilTag board geometry (object points in board/target frame; order must match detections)
@@ -1336,7 +1272,7 @@ int main(int argc, char** argv) {
 
     // Initial board poses target->cam0 per frame (same size as frames)
     board_poses_init
-    ) {
+    ) ;
 
     return 0;  // Return early to avoid running the rest of the main
 }

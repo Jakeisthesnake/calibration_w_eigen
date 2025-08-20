@@ -3,11 +3,12 @@ Todo
     - load intrinsics and extrinsics DONE
     - load data and target           DONE?
     - project target onto data using int/ext DONE?
-    - Make Frame_data (detected points + timestamp) from loaded points and feed into vizualization
-    - Build poses?
-    - Make sure all the input args for the vizualization of calculated in main
-    - modify vizulaizer to allow on screen modification of int/ext while updating error and vizuals
-- Generate perfect synthetic 3d data
+    - Make Frame_data (detected points + timestamp) from loaded points and feed into vizualization DONE
+    - Build poses? DONE
+    - Make sure all the input args for the vizualization of calculated in main DONE
+    - modify vizulaizer to allow on screen modification of int/ext while updating error and vizuals DONE (needs error)
+- Generate perfect synthetic 3d data DONE?
+- Get frames and timestamps to sync up
 - get very low error initializing with intrinsics used to generate data
 - get low error initializing close, but not exactly the intriniscs used to gerenate data
 - gererate synthetic data 3d data with noise
