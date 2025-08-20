@@ -1,5 +1,0 @@
-/home/jake/calibration_w_eigen/build/CMakeFiles/calibrate_2_cameras.dir
-/home/jake/calibration_w_eigen/build/CMakeFiles/calibrate_3_cameras.dir
-/home/jake/calibration_w_eigen/build/CMakeFiles/vizualize_3_cameras_data.dir
-/home/jake/calibration_w_eigen/build/CMakeFiles/edit_cache.dir
-/home/jake/calibration_w_eigen/build/CMakeFiles/rebuild_cache.dir

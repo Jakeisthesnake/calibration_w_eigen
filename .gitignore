@@ -1,0 +1,32 @@
+# ---------------------------
+# Build artifacts
+# ---------------------------
+/build/
+/calibrate_2_cameras
+/calibrate_3_cameras
+/vizualize_3_cameras_data
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# ---------------------------
+# Temporary or log files
+# ---------------------------
+*.log
+*.tmp
+*.swp
+*~
+
+# ---------------------------
+# OS-specific files
+# ---------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------
+# IDE/editor folders
+# ---------------------------
+.vscode/
+.idea/
+
