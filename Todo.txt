@@ -7,8 +7,10 @@ Todo
     - Build poses? DONE
     - Make sure all the input args for the vizualization of calculated in main DONE
     - modify vizulaizer to allow on screen modification of int/ext while updating error and vizuals DONE (needs error)
+    - Check 
 - Generate perfect synthetic 3d data DONE?
-- Get frames and timestamps to sync up
+- Get frames and timestamps to sync up DONE?
+- Check vizualized tranforms based on what the data waht gereated with
 - get very low error initializing with intrinsics used to generate data
 - get low error initializing close, but not exactly the intriniscs used to gerenate data
 - gererate synthetic data 3d data with noise

@@ -811,8 +811,9 @@ void VisualizeStereoReprojectionTuner(
     // Initial board poses target->cam0 per frame (same size as frames)
     const std::vector<BoardPoseInit>& board_poses_init
 ) {
-    // Basic checks (soft)
-    const size_t N = std::max(frames_cam0.size(), std::max(frames_cam1.size(), frames_cam2.size()));
+    // Initialize N to the total number of timestamps across all cameras
+    const size_t N = board_poses_init.size();
+    // const size_t N = std::max(frames_cam0.size(), std::max(frames_cam1.size(), frames_cam2.size()));
     if (board_poses_init.size() != N) {
         std::cerr << "Warning: board_poses_init size != number of frames; clamping to min.\n";
     }
@@ -1159,6 +1160,26 @@ int main(int argc, char** argv) {
     std::vector<FrameDetections> frames_cam2 =
         makeFrameDetections(img_pts_list_2, corner_ids_list_2, timestamp_list_2, total_board_points);
 
+    // Prin out all timestamps for each camera
+    std::cout << "Camera 0 timestamps: ";
+    for (const auto& ts : timestamp_list_0) {
+        std::cout << ts << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Camera 1 timestamps: ";
+    for (const auto& ts : timestamp_list_1) {
+        std::cout << ts << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Camera 2 timestamps: ";
+    for (const auto& ts : timestamp_list_2) {
+        std::cout << ts << " ";
+    }
+    std::cout << std::endl;
+
+
 
 
 
@@ -1180,6 +1201,11 @@ int main(int argc, char** argv) {
         return -1;
     }
     std::cout << "timestamps.size(): " << timestamps.size() << std::endl;
+    //Print out all timestamps
+    for (const auto& ts : timestamps) {
+        std::cout << ts << " ";
+    }
+    std::cout << std::endl;
     std::cout << "target_poses.size(): " << target_poses.size() << std::endl;
     std::cin.get(); // Wait for user input to continue
 
