@@ -196,6 +196,20 @@ std::tuple<
         group.img_points.push_back(img_pt);
         group.obj_points.push_back(obj_pt);
         group.corner_ids.push_back(row.corner_id);
+        std::cout << "Processed row: timestamp=" << row.timestamp_ns
+                  << ", cam_id=" << row.camera_id
+                  << ", corner_id=" << row.corner_id
+                  << ", img_pt=(" << row.x << ", " << row.y << ")"
+                  << ", obj_pt=(" << obj_pt.transpose() << ")"
+                  << std::endl;
+        std::cin.get(); // Pause for user input
+    }
+
+    for (const auto& [timestamp, data] : grouped_data) {
+        std::cout << "Timestamp " << timestamp
+                << " has " << data.corner_ids.size() << " corners: ";
+        for (auto id : data.corner_ids) std::cout << id << " ";
+        std::cout << std::endl;
     }
 
     // Sort timestamps
@@ -218,6 +232,10 @@ std::tuple<
         img_pts_list.push_back(data.img_points);
         corner_ids_list.push_back(data.corner_ids);
         timestamp_list.push_back(timestamp);
+        std::cout << "Grouped data for timestamp " << timestamp
+                  << ": " << data.obj_points.size() << " points." << std::endl;
+        std::cin.get(); // Pause for user input
+
     }
 
     return {obj_pts_list, img_pts_list, corner_ids_list, timestamp_list};
@@ -742,6 +760,10 @@ inline bool ProjectFisheyeKB(
 
     const double k1 = D[0], k2 = D[1], k3 = D[2], k4 = D[3];
     const double theta_d = theta * (1.0 + k1*theta2 + k2*theta4 + k3*theta6 + k4*theta8);
+    std::cout << "theta = " << theta << ", theta_d = " << theta_d << std::endl;
+    std::cout << "r = " << r << std::endl;
+    //x y z
+    std::cout << "Pc = [" << X << ", " << Y << ", " << Z << "]" << std::endl;
 
     double scale = (r > 1e-12) ? (theta_d / r) : 0.0;
     double xd = X * scale;
@@ -975,6 +997,10 @@ void VisualizeStereoReprojectionTuner(
         const std::vector<Eigen::Vector2d>* obs0 = (i < (int)frames_cam0.size() ? &frames_cam0[i].observations : nullptr);
         const std::vector<Eigen::Vector2d>* obs1 = (i < (int)frames_cam1.size() ? &frames_cam1[i].observations : nullptr);
         const std::vector<Eigen::Vector2d>* obs2 = (i < (int)frames_cam2.size() ? &frames_cam2[i].observations : nullptr);
+        // print first observation for cam 0
+        if (obs0 && !obs0->empty()) {
+            std::cout << "Frame " << i << " Cam0 first obs: " << (*obs0)[0].transpose() << std::endl;
+        }
 
         // Project for each camera
         std::vector<Eigen::Vector2d> proj0, proj1, proj2;
@@ -988,6 +1014,9 @@ void VisualizeStereoReprojectionTuner(
 
             // cam0 projection
             Eigen::Vector2d u0; bool ok0 = ProjectFisheyeKB(Xc0, K0, D0, u0);
+            std::cout << "Point " << j << " in cam0 frame: " << Xc0.transpose() << ", proj: ";
+            if (ok0) { std::cout << u0.transpose() << std::endl; }
+            else { std::cout << "(invalid)" << std::endl; }
             if (!ok0) u0 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
                                            std::numeric_limits<double>::quiet_NaN());
             proj0.push_back(u0);
@@ -1006,6 +1035,45 @@ void VisualizeStereoReprojectionTuner(
                                            std::numeric_limits<double>::quiet_NaN());
             proj2.push_back(u2);
         }
+
+        if (!board_points.empty()) {
+            int j = 0; // first point ID
+            std::cout << "Frame " << i << " - Point ID " << j << std::endl;
+
+            // Cam0
+            if (obs0 && obs0->size() > j) {
+                std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
+            } else {
+                std::cout << "  Cam0 obs:  (none)";
+            }
+            if (proj0.size() > j) {
+                std::cout << "  proj: " << proj0[j].transpose();
+            }
+            std::cout << std::endl;
+
+            // Cam1
+            if (obs1 && obs1->size() > j) {
+                std::cout << "  Cam1 obs:  " << (*obs1)[j].transpose();
+            } else {
+                std::cout << "  Cam1 obs:  (none)";
+            }
+            if (proj1.size() > j) {
+                std::cout << "  proj: " << proj1[j].transpose();
+            }
+            std::cout << std::endl;
+
+            // Cam2
+            if (obs2 && obs2->size() > j) {
+                std::cout << "  Cam2 obs:  " << (*obs2)[j].transpose();
+            } else {
+                std::cout << "  Cam2 obs:  (none)";
+            }
+            if (proj2.size() > j) {
+                std::cout << "  proj: " << proj2[j].transpose();
+            }
+            std::cout << std::endl;
+        }
+
 
         // Compute errors (RMS) for frames that have observations
         double e0 = 0, e1 = 0, e2 = 0, etot = 0;
@@ -1090,6 +1158,7 @@ void VisualizeStereoReprojectionTuner(
         if (obs2) draw_pairs(*obs2, proj2, x2);
 
         pangolin::FinishFrame();
+        std::cin.get();
     }
 }
 
@@ -1114,11 +1183,15 @@ std::vector<FrameDetections> makeFrameDetections(
             int cid = corner_ids_list[i][k];
             if (cid >= 0 && (size_t)cid < total_board_points) {
                 fd.observations[cid] = img_pts_list[i][k];
+                std::cout << "Frame " << i << " - Corner ID " << cid << ": " << img_pts_list[i][k].transpose() << std::endl;
+
             }
         }
 
         fd.timestamp_ns = static_cast<int64_t>(timestamp_list[i]);
+        std::cout << "Frame " << i << " timestamp: " << fd.timestamp_ns << std::endl;
         frames.push_back(std::move(fd));
+        std::cin.get();
     }
     return frames;
 }
@@ -1200,6 +1273,33 @@ int main(int argc, char** argv) {
     {
         return -1;
     }
+    //Display loaded calibration parameters
+    std::cout << "Camera 0 Intrinsics: ";
+    for (const auto& val : intrinsic_0) std::cout << val << " ";
+    std::cout << "\nCamera 0 Distortion: ";
+    for (const auto& val : dist_0) std::cout << val << " ";
+    std::cout << std::endl;
+    std::cout << "Camera 1 Intrinsics: ";
+    for (const auto& val : intrinsic_1) std::cout << val << " ";
+    std::cout << "\nCamera 1 Distortion: ";
+    for (const auto& val : dist_1) std::cout << val << " ";
+    std::cout << std::endl;
+    std::cout << "Camera 2 Intrinsics: ";
+    for (const auto& val : intrinsic_2) std::cout << val << " ";
+    std::cout << "\nCamera 2 Distortion: ";
+    for (const auto& val : dist_2) std::cout << val << " ";
+    std::cout << std::endl;
+    std::cout << "Camera 1 to Camera 0 Rotation (qvec): ";
+    for (const auto& val : qvec_cam_1) std::cout << val << " ";
+    std::cout << "\nCamera 1 to Camera 0 Translation (tvec): ";
+    for (const auto& val : tvec_cam_1) std::cout << val << " ";
+    std::cout << std::endl;
+    std::cout << "Camera 2 to Camera 0 Rotation (qvec): ";
+    for (const auto& val : qvec_cam_2) std::cout << val << " ";
+    std::cout << "\nCamera 2 to Camera 0 Translation (tvec): ";
+    for (const auto& val : tvec_cam_2) std::cout << val << " ";
+    std::cout << std::endl;
+
     std::cout << "timestamps.size(): " << timestamps.size() << std::endl;
     //Print out all timestamps
     for (const auto& ts : timestamps) {
@@ -1207,6 +1307,17 @@ int main(int argc, char** argv) {
     }
     std::cout << std::endl;
     std::cout << "target_poses.size(): " << target_poses.size() << std::endl;
+
+    // Print out first target pose for verification
+    if (!target_poses.empty()) {
+        std::cout << "First target pose (qvec [w,x,y,z], tvec [x,y,z]): ";
+        for (const auto& val : target_poses[0]) std::cout << val << " ";
+        std::cout << std::endl;
+    }
+
+
+
+
     std::cin.get(); // Wait for user input to continue
 
 

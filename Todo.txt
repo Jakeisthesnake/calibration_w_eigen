@@ -10,7 +10,9 @@ Todo
     - Check 
 - Generate perfect synthetic 3d data DONE?
 - Get frames and timestamps to sync up DONE?
+- figureout how to get all points out of the sorting process.
 - Check vizualized tranforms based on what the data waht gereated with
+  -  check that make frames is doing what it is supposed to be doing
 - get very low error initializing with intrinsics used to generate data
 - get low error initializing close, but not exactly the intriniscs used to gerenate data
 - gererate synthetic data 3d data with noise

@@ -14,4 +14,4 @@ export LD_LIBRARY_PATH=/home/jake/calibration_w_eigen/third_party/Pangolin/insta
 
 # Run the executable
 # ./vizualize_3_cameras_data /home/jake/gripper_calib_data/detected_corner_frac.csv /home/jake/calibration_w_eigen/calibration_output.json
-./vizualize_3_cameras_data /home/jake/calibration_w_python/synthetic_data_3_cams.csv /home/jake/calibration_w_python/synthetic_calibration.json
+./vizualize_3_cameras_data /home/jake/calibration_w_python/synthetic_data_3_cams_1_frame.csv /home/jake/calibration_w_python/synthetic_calibration.json
