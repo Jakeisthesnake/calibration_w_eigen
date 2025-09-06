@@ -169,6 +169,78 @@ std::vector<Eigen::Vector3d> loadAprilTagBoardFlat(const std::string& json_path)
 }
 
 
+// std::tuple<
+//     std::vector<Point3dVec>,
+//     std::vector<Point2dVec>,
+//     std::vector<IDVec>,
+//     TimestampList
+// > processCSV(const std::string& file_path, int target_cam_id)
+// {
+//     auto rows = readCSV(file_path);
+
+//     // Grouped output per timestamp
+//     struct DataGroup {
+//         Point3dVec obj_points;
+//         Point2dVec img_points;
+//         IDVec corner_ids;
+//     };
+//     std::unordered_map<uint64_t, DataGroup> grouped_data;
+
+//     for (const auto& row : rows) {
+//         if (row.camera_id != target_cam_id) continue;
+
+//         Eigen::Vector2d img_pt(row.x, row.y);
+//         Eigen::Vector3d obj_pt = get_object_point(row.corner_id);
+
+//         auto& group = grouped_data[row.timestamp_ns];
+//         group.img_points.push_back(img_pt);
+//         group.obj_points.push_back(obj_pt);
+//         group.corner_ids.push_back(row.corner_id);
+//         std::cout << "Processed row: timestamp=" << row.timestamp_ns
+//                   << ", cam_id=" << row.camera_id
+//                   << ", corner_id=" << row.corner_id
+//                   << ", img_pt=(" << row.x << ", " << row.y << ")"
+//                   << ", obj_pt=(" << obj_pt.transpose() << ")"
+//                   << std::endl;
+//         std::cin.get(); // Pause for user input
+//     }
+
+//     for (const auto& [timestamp, data] : grouped_data) {
+//         std::cout << "Timestamp " << timestamp
+//                 << " has " << data.corner_ids.size() << " corners: ";
+//         for (auto id : data.corner_ids) std::cout << id << " ";
+//         std::cout << std::endl;
+//     }
+
+//     // Sort timestamps
+//     std::vector<uint64_t> sorted_timestamps;
+//     sorted_timestamps.reserve(grouped_data.size());
+//     for (const auto& [timestamp, _] : grouped_data) {
+//         sorted_timestamps.push_back(timestamp);
+//     }
+//     std::sort(sorted_timestamps.begin(), sorted_timestamps.end());
+
+//     // Extract data in sorted order
+//     std::vector<Point3dVec> obj_pts_list;
+//     std::vector<Point2dVec> img_pts_list;
+//     std::vector<IDVec> corner_ids_list;
+//     TimestampList timestamp_list;
+
+//     for (const auto& timestamp : sorted_timestamps) {
+//         const auto& data = grouped_data[timestamp];
+//         obj_pts_list.push_back(data.obj_points);
+//         img_pts_list.push_back(data.img_points);
+//         corner_ids_list.push_back(data.corner_ids);
+//         timestamp_list.push_back(timestamp);
+//         std::cout << "Grouped data for timestamp " << timestamp
+//                   << ": " << data.obj_points.size() << " points." << std::endl;
+//         std::cin.get(); // Pause for user input
+
+//     }
+
+//     return {obj_pts_list, img_pts_list, corner_ids_list, timestamp_list};
+// }
+
 std::tuple<
     std::vector<Point3dVec>,
     std::vector<Point2dVec>,
@@ -178,7 +250,6 @@ std::tuple<
 {
     auto rows = readCSV(file_path);
 
-    // Grouped output per timestamp
     struct DataGroup {
         Point3dVec obj_points;
         Point2dVec img_points;
@@ -186,6 +257,7 @@ std::tuple<
     };
     std::unordered_map<uint64_t, DataGroup> grouped_data;
 
+    // Step 1: Group points by timestamp
     for (const auto& row : rows) {
         if (row.camera_id != target_cam_id) continue;
 
@@ -196,23 +268,38 @@ std::tuple<
         group.img_points.push_back(img_pt);
         group.obj_points.push_back(obj_pt);
         group.corner_ids.push_back(row.corner_id);
-        std::cout << "Processed row: timestamp=" << row.timestamp_ns
-                  << ", cam_id=" << row.camera_id
-                  << ", corner_id=" << row.corner_id
-                  << ", img_pt=(" << row.x << ", " << row.y << ")"
-                  << ", obj_pt=(" << obj_pt.transpose() << ")"
-                  << std::endl;
-        std::cin.get(); // Pause for user input
     }
 
-    for (const auto& [timestamp, data] : grouped_data) {
-        std::cout << "Timestamp " << timestamp
-                << " has " << data.corner_ids.size() << " corners: ";
-        for (auto id : data.corner_ids) std::cout << id << " ";
-        std::cout << std::endl;
+    // Step 2: Sort points within each timestamp by corner ID
+    for (auto& [timestamp, data] : grouped_data) {
+        std::vector<size_t> indices(data.corner_ids.size());
+        std::iota(indices.begin(), indices.end(), 0);
+
+        std::sort(indices.begin(), indices.end(),
+                  [&data](size_t i, size_t j) {
+                      return data.corner_ids[i] < data.corner_ids[j];
+                  });
+
+        Point3dVec obj_sorted;
+        Point2dVec img_sorted;
+        IDVec ids_sorted;
+
+        for (size_t idx : indices) {
+            obj_sorted.push_back(data.obj_points[idx]);
+            img_sorted.push_back(data.img_points[idx]);
+            ids_sorted.push_back(data.corner_ids[idx]);
+        }
+
+        data.obj_points = std::move(obj_sorted);
+        data.img_points = std::move(img_sorted);
+        data.corner_ids = std::move(ids_sorted);
+
+        // Assert sizes are consistent
+        assert(data.obj_points.size() == data.img_points.size());
+        assert(data.obj_points.size() == data.corner_ids.size());
     }
 
-    // Sort timestamps
+    // Step 3: Sort timestamps
     std::vector<uint64_t> sorted_timestamps;
     sorted_timestamps.reserve(grouped_data.size());
     for (const auto& [timestamp, _] : grouped_data) {
@@ -220,26 +307,46 @@ std::tuple<
     }
     std::sort(sorted_timestamps.begin(), sorted_timestamps.end());
 
-    // Extract data in sorted order
+    // Step 4: Extract sorted data into vectors
     std::vector<Point3dVec> obj_pts_list;
     std::vector<Point2dVec> img_pts_list;
     std::vector<IDVec> corner_ids_list;
     TimestampList timestamp_list;
 
+    size_t total_points = 0;
+
     for (const auto& timestamp : sorted_timestamps) {
         const auto& data = grouped_data[timestamp];
+
+        // Final size consistency check before pushing
+        assert(data.obj_points.size() == data.img_points.size());
+        assert(data.obj_points.size() == data.corner_ids.size());
+
         obj_pts_list.push_back(data.obj_points);
         img_pts_list.push_back(data.img_points);
         corner_ids_list.push_back(data.corner_ids);
         timestamp_list.push_back(timestamp);
-        std::cout << "Grouped data for timestamp " << timestamp
-                  << ": " << data.obj_points.size() << " points." << std::endl;
-        std::cin.get(); // Pause for user input
 
+        total_points += data.obj_points.size();
+
+        // std::cout << " contains " << data.obj_points.size() << " points." << std::endl;
     }
+
+    std::cout << "\nTotal points processed for camera " << target_cam_id
+              << ": " << total_points << std::endl;
+    
+    for (size_t i = 0; i < obj_pts_list.size(); ++i) {
+        std::cout << "Timestamp " << timestamp_list[i] << " sorted corners: ";
+        for (auto cid : corner_ids_list[i]) std::cout << cid << " ";
+        std::cout << std::endl;
+    }
+
 
     return {obj_pts_list, img_pts_list, corner_ids_list, timestamp_list};
 }
+
+
+
 
 
 bool LoadCalibrationResult(
@@ -286,6 +393,7 @@ bool LoadCalibrationResult(
     // --- Target poses in world frame ---
     target_poses.clear();
     timestamps.clear();
+    int counter = 0;
     for (const auto& pose : input["target_poses"]) {
         std::array<double, 7> tp{};
         // quaternion
@@ -294,6 +402,8 @@ bool LoadCalibrationResult(
         for (int i = 0; i < 3; ++i) tp[4 + i] = pose["translation"][i].get<double>();
         target_poses.push_back(tp);
         timestamps.push_back(pose["timestamp"].get<double>());
+        std::cout << "Loaded pose " << counter << " with timestamp " << timestamps.back() << std::endl;
+        counter++;
     }
 
     // --- Inter-camera transforms (quaternions + translations) ---
@@ -416,83 +526,6 @@ Eigen::Matrix<double, 6, 1> logSE3(const Eigen::Matrix4d& T) {
     result.tail<3>() = upsilon;
 
     return result;
-}
-
-void visualize_camera_data(
-    const std::vector<Eigen::Vector3d>& obj_pts_list_0,
-    const std::vector<Eigen::Vector2d>& img_pts_list_0,
-    const std::vector<Eigen::Vector2d>& projected_pts_0,
-    const std::vector<Eigen::Vector3d>& obj_pts_list_1,
-    const std::vector<Eigen::Vector2d>& img_pts_list_1,
-    const std::vector<Eigen::Vector2d>& projected_pts_1)
-{
-    pangolin::CreateWindowAndBind("Camera Calibration Visualization", 1280, 720);
-    glEnable(GL_DEPTH_TEST);
-
-    pangolin::OpenGlRenderState s_cam(
-        pangolin::ProjectionMatrix(1280, 720, 500, 500, 640, 360, 0.1, 100),
-        pangolin::ModelViewLookAt(1, -2, 3, 0, 0, 0, pangolin::AxisY)
-    );
-
-    pangolin::Handler3D handler(s_cam);
-    pangolin::View& d_cam = pangolin::CreateDisplay()
-                                .SetBounds(0.0, 1.0, 0.0, 0.7, -1280.0/720.0)
-                                .SetHandler(&handler);
-    
-
-    pangolin::View& d_2d = pangolin::CreateDisplay()
-                                .SetBounds(0.0, 1.0, 0.7, 1.0)
-                                .SetLayout(pangolin::LayoutEqual);
-
-    while (!pangolin::ShouldQuit()) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        // Draw 3D view
-        d_cam.Activate(s_cam);
-        glPointSize(5.0);
-
-        // Draw Camera 0 Object Points
-        glColor3f(0.0, 0.0, 1.0);
-        glBegin(GL_POINTS);
-        for (const auto& pt : obj_pts_list_0)
-            glVertex3d(pt[0], pt[1], pt[2]);
-        glEnd();
-
-        // Draw Camera 1 Object Points
-        glColor3f(0.5, 0.5, 1.0);
-        glBegin(GL_POINTS);
-        for (const auto& pt : obj_pts_list_1)
-            glVertex3d(pt[0], pt[1], pt[2]);
-        glEnd();
-
-        // 2D Viewport for image vs. projected
-        d_2d.Activate();
-
-        glPointSize(3.0);
-        glBegin(GL_POINTS);
-        // Camera 0 - Image Points (Red)
-        glColor3f(1.0, 0.0, 0.0);
-        for (const auto& pt : img_pts_list_0)
-            glVertex2d(pt[0], pt[1]);
-
-        // Camera 0 - Projected Points (Green)
-        glColor3f(0.0, 1.0, 0.0);
-        for (const auto& pt : projected_pts_0)
-            glVertex2d(pt[0], pt[1]);
-
-        // Camera 1 - Image Points (Orange)
-        glColor3f(1.0, 0.5, 0.0);
-        for (const auto& pt : img_pts_list_1)
-            glVertex2d(pt[0], pt[1]);
-
-        // Camera 1 - Projected Points (Cyan)
-        glColor3f(0.0, 1.0, 1.0);
-        for (const auto& pt : projected_pts_1)
-            glVertex2d(pt[0], pt[1]);
-        glEnd();
-
-        pangolin::FinishFrame();
-    }
 }
 
 Eigen::VectorXd fisheye_reprojection_error(
@@ -746,7 +779,8 @@ inline bool ProjectFisheyeKB(
     const Eigen::Vector3d& Pc,          // point in camera frame
     const double K[4],                  // fx,fy,cx,cy
     const double D[4],                  // k1..k4
-    Eigen::Vector2d& uv                 // output pixel
+    Eigen::Vector2d& uv,                 // output pixel
+    bool verbose = false
 ) {
     const double X = Pc.x(), Y = Pc.y(), Z = Pc.z();
     if (Z <= 1e-9) return false; // behind camera or too close to plane
@@ -760,10 +794,12 @@ inline bool ProjectFisheyeKB(
 
     const double k1 = D[0], k2 = D[1], k3 = D[2], k4 = D[3];
     const double theta_d = theta * (1.0 + k1*theta2 + k2*theta4 + k3*theta6 + k4*theta8);
-    std::cout << "theta = " << theta << ", theta_d = " << theta_d << std::endl;
-    std::cout << "r = " << r << std::endl;
-    //x y z
-    std::cout << "Pc = [" << X << ", " << Y << ", " << Z << "]" << std::endl;
+    // if (verbose) {
+    //     std::cout << "theta = " << theta << ", theta_d = " << theta_d << std::endl;
+    //     std::cout << "r = " << r << std::endl;
+    //     //x y z
+    //     std::cout << "Pc = [" << X << ", " << Y << ", " << Z << "]" << std::endl;
+    // }
 
     double scale = (r > 1e-12) ? (theta_d / r) : 0.0;
     double xd = X * scale;
@@ -960,6 +996,7 @@ void VisualizeStereoReprojectionTuner(
         b_tz = board_poses_init[idx].t.z();
     };
     set_board_sliders_from_frame(frame_idx);
+    bool display_p = false; // verbose projection debug output
 
     while (!pangolin::ShouldQuit()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -985,6 +1022,8 @@ void VisualizeStereoReprojectionTuner(
 
         // Poses
         Eigen::Matrix3d R0 = R_from_rpy(Eigen::Vector3d(b_r, b_p, b_y));
+        //print out matrix
+        std::cout << "R0:\n" << R0 << std::endl;
         Eigen::Vector3d t0(b_tx, b_ty, b_tz);
 
         Eigen::Matrix3d R10 = R_from_rpy(Eigen::Vector3d(c10_r, c10_p, c10_y));
@@ -1011,67 +1050,87 @@ void VisualizeStereoReprojectionTuner(
         for (size_t j = 0; j < board_points.size(); ++j) {
             // target -> cam0
             Eigen::Vector3d Xc0 = ToCam0(R0, t0, board_points[j]);
+            //set display_p true for first point of first frame
+            if (i == 0 && j == 0){
+                display_p = true;
+            }
+            else{
+                display_p = false;
+            }
+            std::cout << "Frame " << i << " - Point ID " << j << "- Xc0: " << Xc0.transpose() << "- t0: " << t0.transpose() << " - board point: " << board_points[j].transpose() << std::endl;
 
             // cam0 projection
-            Eigen::Vector2d u0; bool ok0 = ProjectFisheyeKB(Xc0, K0, D0, u0);
-            std::cout << "Point " << j << " in cam0 frame: " << Xc0.transpose() << ", proj: ";
-            if (ok0) { std::cout << u0.transpose() << std::endl; }
-            else { std::cout << "(invalid)" << std::endl; }
-            if (!ok0) u0 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
-                                           std::numeric_limits<double>::quiet_NaN());
+            Eigen::Vector2d u0; bool ok0 = ProjectFisheyeKB(Xc0, K0, D0, u0, display_p);
+            // std::cout << "Point " << j << " in cam0 frame: " << Xc0.transpose() << ", proj: ";
+            // if (ok0) { std::cout << u0.transpose() << std::endl; }
+            // else { std::cout << "(invalid)" << std::endl; }
+            // if (!ok0) u0 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
+            //                                std::numeric_limits<double>::quiet_NaN());
+            if (!ok0) u0 = Eigen::Vector2d(1.0, 1.0);
             proj0.push_back(u0);
 
             // target -> cam1
             Eigen::Vector3d Xc1 = ToCamX_fromCam0(R10, t10, Xc0);
-            Eigen::Vector2d u1; bool ok1 = ProjectFisheyeKB(Xc1, K1, D1, u1);
-            if (!ok1) u1 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
-                                           std::numeric_limits<double>::quiet_NaN());
+            Eigen::Vector2d u1; bool ok1 = ProjectFisheyeKB(Xc1, K1, D1, u1, display_p);
+            // if (!ok1) u1 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
+            //                                std::numeric_limits<double>::quiet_NaN());
+            if (!ok1) u1 = Eigen::Vector2d(1.0, 1.0);
             proj1.push_back(u1);
 
             // target -> cam2
             Eigen::Vector3d Xc2 = ToCamX_fromCam0(R20, t20, Xc0);
-            Eigen::Vector2d u2; bool ok2 = ProjectFisheyeKB(Xc2, K2, D2, u2);
-            if (!ok2) u2 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
-                                           std::numeric_limits<double>::quiet_NaN());
+            Eigen::Vector2d u2; bool ok2 = ProjectFisheyeKB(Xc2, K2, D2, u2, display_p);
+            // if (!ok2) u2 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
+            //                                std::numeric_limits<double>::quiet_NaN());
+            if (!ok2) u2 = Eigen::Vector2d(1.0, 1.0);
             proj2.push_back(u2);
         }
-
+        // Print all observations and projections for each camera
         if (!board_points.empty()) {
-            int j = 0; // first point ID
-            std::cout << "Frame " << i << " - Point ID " << j << std::endl;
+            for (size_t j = 0; j < board_points.size(); ++j){
+                // std::cout << "Frame " << i << " - Point ID " << j << std::endl;
+                // Print observed and projected points for each camera if obs is not nan
+                if (obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) {
+                    std::cout << "Frame " << i << " - Point ID " << j << std::endl;
+                    std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
+                } else {
+                    // std::cout << "  Cam0 obs:  (none)";
+                }
 
-            // Cam0
-            if (obs0 && obs0->size() > j) {
-                std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
-            } else {
-                std::cout << "  Cam0 obs:  (none)";
-            }
-            if (proj0.size() > j) {
-                std::cout << "  proj: " << proj0[j].transpose();
-            }
-            std::cout << std::endl;
+                // // Cam0
+                // if (obs0 && obs0->size() > j) {
+                //     std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
+                // } else {
+                //     std::cout << "  Cam0 obs:  (none)";
+                // }
+                if ((obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) && (proj0.size() > j)) {
+                    std::cout << "  proj: " << proj0[j].transpose();
+                    std::cout << std::endl;
+                }
+                // std::cout << std::endl;
 
-            // Cam1
-            if (obs1 && obs1->size() > j) {
-                std::cout << "  Cam1 obs:  " << (*obs1)[j].transpose();
-            } else {
-                std::cout << "  Cam1 obs:  (none)";
-            }
-            if (proj1.size() > j) {
-                std::cout << "  proj: " << proj1[j].transpose();
-            }
-            std::cout << std::endl;
+                // Cam1
+                // if (obs1 && obs1->size() > j) {
+                //     std::cout << "  Cam1 obs:  " << (*obs1)[j].transpose();
+                // } else {
+                //     std::cout << "  Cam1 obs:  (none)";
+                // }
+                // if (proj1.size() > j) {
+                //     std::cout << "  proj: " << proj1[j].transpose();
+                // }
+                // std::cout << std::endl;
 
-            // Cam2
-            if (obs2 && obs2->size() > j) {
-                std::cout << "  Cam2 obs:  " << (*obs2)[j].transpose();
-            } else {
-                std::cout << "  Cam2 obs:  (none)";
+                // // Cam2
+                // if (obs2 && obs2->size() > j) {
+                //     std::cout << "  Cam2 obs:  " << (*obs2)[j].transpose();
+                // } else {
+                //     std::cout << "  Cam2 obs:  (none)";
+                // }
+                // if (proj2.size() > j) {
+                //     std::cout << "  proj: " << proj2[j].transpose();
+                // }
+                // std::cout << std::endl;
             }
-            if (proj2.size() > j) {
-                std::cout << "  proj: " << proj2[j].transpose();
-            }
-            std::cout << std::endl;
         }
 
 
@@ -1158,7 +1217,7 @@ void VisualizeStereoReprojectionTuner(
         if (obs2) draw_pairs(*obs2, proj2, x2);
 
         pangolin::FinishFrame();
-        std::cin.get();
+        // std::cin.get();
     }
 }
 
@@ -1171,6 +1230,8 @@ std::vector<FrameDetections> makeFrameDetections(
 {
     std::vector<FrameDetections> frames;
     frames.reserve(img_pts_list.size());
+    // std::cout << "Total board points: " << total_board_points << std::endl;
+
 
     for (size_t i = 0; i < img_pts_list.size(); ++i) {
         FrameDetections fd;
@@ -1183,15 +1244,15 @@ std::vector<FrameDetections> makeFrameDetections(
             int cid = corner_ids_list[i][k];
             if (cid >= 0 && (size_t)cid < total_board_points) {
                 fd.observations[cid] = img_pts_list[i][k];
-                std::cout << "Frame " << i << " - Corner ID " << cid << ": " << img_pts_list[i][k].transpose() << std::endl;
+                // std::cout << "Frame " << i << " - Corner ID " << cid << ": " << img_pts_list[i][k].transpose() << std::endl;
 
             }
         }
 
         fd.timestamp_ns = static_cast<int64_t>(timestamp_list[i]);
-        std::cout << "Frame " << i << " timestamp: " << fd.timestamp_ns << std::endl;
+        // std::cout << "Frame " << i << " timestamp: " << fd.timestamp_ns << std::endl;
         frames.push_back(std::move(fd));
-        std::cin.get();
+        // std::cin.get();
     }
     return frames;
 }
@@ -1216,6 +1277,12 @@ int main(int argc, char** argv) {
 
     std::vector<Eigen::Vector3d> board_points;
     board_points = loadAprilTagBoardFlat("/home/jake/calibration_w_eigen/april_tag_board.json");
+    // outout board points
+    std::cout << "Loaded " << board_points.size() << " board points:" << std::endl;
+    for (size_t i = 0; i < board_points.size(); ++i) {
+        std::cout << "Point " << i << ": " << board_points[i].transpose() << std::endl;
+    }
+    std::cout << std::endl;
 
     // Step 1: Load and process CSV data for all cameras
     auto [obj_pts_list_0, img_pts_list_0, corner_ids_list_0, timestamp_list_0] = processCSV(data_file, 0);
@@ -1318,7 +1385,7 @@ int main(int argc, char** argv) {
 
 
 
-    std::cin.get(); // Wait for user input to continue
+    // std::cin.get(); // Wait for user input to continue
 
 
     
@@ -1379,7 +1446,11 @@ int main(int argc, char** argv) {
 
     for (const auto& tp : target_poses) {
         Eigen::Quaterniond Q(tp[0], tp[1], tp[2], tp[3]); // [w,x,y,z]
-        Eigen::Vector3d rpy = Q.toRotationMatrix().eulerAngles(0,1,2);
+        // output the rotation matrix and the rpy values
+        Eigen::Vector3d rpy = Q.toRotationMatrix().eulerAngles(2,1,0);
+        std::cout << "Target pose - rpy: " << rpy.transpose()
+                  << ", tvec: [" << tp[4] << ", " << tp[5] << ", " << tp[6] << "]" << std::endl;
+        std::cout << " rotation matrix:\n" << Q.toRotationMatrix() << std::endl;
 
         BoardPoseInit bp;
         bp.rpy = rpy;
@@ -1406,6 +1477,9 @@ int main(int argc, char** argv) {
     // Initial inter-camera transforms (cam1->cam0, cam2->cam0)
     cam1_to_cam0_init,
     cam2_to_cam0_init,
+    //Test with identity transforms
+    // InterCamInit{Eigen::Vector3d(0,0,0), Eigen::Vector3d(0,0,0)},
+    // InterCamInit{Eigen::Vector3d(0,0,0), Eigen::Vector3d(0,0,0)},
 
     // Initial board poses target->cam0 per frame (same size as frames)
     board_poses_init

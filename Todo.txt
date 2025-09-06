@@ -10,7 +10,30 @@ Todo
     - Check 
 - Generate perfect synthetic 3d data DONE?
 - Get frames and timestamps to sync up DONE?
-- figureout how to get all points out of the sorting process.
+- figureout how to get all points out of the sorting process. DONE
+- Work on transforms.
+  - Investigate: Eigen::Matrix3d R0 = R_from_rpy(Eigen::Vector3d(b_r, b_p, b_y)); does this provide the correct tranform?
+
+  timestamps.size(): 1
+1 
+target_poses.size(): 1
+First target pose (qvec [w,x,y,z], tvec [x,y,z]): 0.948516 -0.0354121 0.279055 -0.145571 -0.5 -0.6 0.866025 
+
+Target pose - rpy: 0.0167102  0.570065 -0.309465, tvec: [-0.5, -0.6, 0.866025]
+ rotation matrix:
+  0.801874    0.25639   0.539687
+ -0.295918    0.95511 -0.0140671
+ -0.519067  -0.148423   0.841748
+Frame 0 Cam0 first obs: 248.52  10.22
+Frame 0 - Point ID 0- Xc0:     -0.5     -0.6 0.866025
+Frame 0 - Point ID 1- Xc0: -0.467925 -0.610256  0.844438
+Frame 0 - Point ID 2- Xc0: -0.455401 -0.572271  0.845001
+Frame 0 - Point ID 3- Xc0: -0.487476 -0.562015  0.866588
+Frame 0 - Point ID 4- Xc0: -0.459906 -0.612819  0.839041
+Frame 0 - Point ID 5- Xc0: -0.427831 -0.623075  0.817454
+
+Ok, something is going on with my save in the python scrpt. 
+a
 - Check vizualized tranforms based on what the data waht gereated with
   -  check that make frames is doing what it is supposed to be doing
 - get very low error initializing with intrinsics used to generate data
