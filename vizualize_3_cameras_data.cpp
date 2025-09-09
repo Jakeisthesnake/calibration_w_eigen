@@ -1055,15 +1055,29 @@ void VisualizeStereoReprojectionTuner(
     pangolin::Var<double> err2("ui.error_cam2", 0.0);
     pangolin::Var<double> errTot("ui.error_total", 0.0);
 
-    // Keyboard stepping
+    // // Keyboard stepping
+    // pangolin::RegisterKeyPressCallback('a', [&]() {
+    //     frame_idx = std::max(0, (int)frame_idx.Get() - 1);
+    //     prev_f = true;
+    // });
+    // pangolin::RegisterKeyPressCallback('d', [&]() {
+    //     frame_idx = std::min((int)N-1, (int)frame_idx.Get() + 1);
+    //     next_f = true;
+    // });// Keyboard stepping
+    // pangolin::RegisterKeyPressCallback('a', [&]() {
+    //     frame_idx = std::max(0, (int)frame_idx.Get() - 1);
+    //     prev_f = true;
+    // });
+    // pangolin::RegisterKeyPressCallback('d', [&]() {
+    //     frame_idx = std::min((int)N-1, (int)frame_idx.Get() + 1);
+    //     next_f = true;
+    // });
     pangolin::RegisterKeyPressCallback('a', [&]() {
         frame_idx = std::max(0, (int)frame_idx.Get() - 1);
-        prev_f = true;
     });
     pangolin::RegisterKeyPressCallback('d', [&]() {
         frame_idx = std::min((int)N-1, (int)frame_idx.Get() + 1);
-        next_f = true;
-    });
+    });     
 
     auto set_board_sliders_from_frame = [&](int idx) {
         if (idx < 0 || idx >= (int)board_poses_init.size()) return;
@@ -1076,16 +1090,18 @@ void VisualizeStereoReprojectionTuner(
     };
     set_board_sliders_from_frame(frame_idx);
     bool display_p = false; // verbose projection debug output
+    int last_frame = std::clamp((int)frame_idx.Get(), 0, (int)N-1);
+    set_board_sliders_from_frame(last_frame);
 
     while (!pangolin::ShouldQuit()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         const int i = std::clamp((int)frame_idx.Get(), 0, (int)N-1);
-        if (reset_pose_from_frame.GuiChanged() || prev_f.GuiChanged() || next_f.GuiChanged()) {
+        if (i != last_frame) {
             set_board_sliders_from_frame(i);
-            reset_pose_from_frame = false;
-            prev_f = false;
-            next_f = false;
+            last_frame = i;
+            std::cout << "Switched to frame " << i << " / " << (N-1) << std::endl;
+            // std::cin.get(); // wait for user to press Enter
         }
 
         // Build intrinsics/dist
@@ -1114,10 +1130,26 @@ void VisualizeStereoReprojectionTuner(
         const std::vector<Eigen::Vector2d>* obs0 = (i < (int)frames_cam0.size() ? &frames_cam0[i].observations : nullptr);
         const std::vector<Eigen::Vector2d>* obs1 = (i < (int)frames_cam1.size() ? &frames_cam1[i].observations : nullptr);
         const std::vector<Eigen::Vector2d>* obs2 = (i < (int)frames_cam2.size() ? &frames_cam2[i].observations : nullptr);
-        // print first observation for cam 0
-        if (obs0 && !obs0->empty()) {
-            // std::cout << "Frame " << i << " Cam0 first obs: " << (*obs0)[0].transpose() << std::endl;
-        }
+        // // print observations for each camera if available
+        // if (obs0 && !obs0->empty()) {
+        //     std::cout << "Frame " << i << " - Cam0 observations:\n";
+        //     for (size_t j = 0; j < obs0->size(); ++j) {
+        //         std::cout << "  Point " << j << ": " << (*obs0)[j].transpose() << "\n";
+        //     }
+        // }
+        // if (obs1 && !obs1->empty()) {
+        //     std::cout << "Frame " << i << " - Cam1 observations:\n";
+        //     for (size_t j = 0; j < obs1->size(); ++j) {
+        //         std::cout << "  Point " << j << ": " << (*obs1)[j].transpose() << "\n";
+        //     }
+        // }
+        // if (obs2 && !obs2->empty()) {
+        //     std::cout << "Frame " << i << " - Cam2 observations:\n";
+        //     for (size_t j = 0; j < obs2->size(); ++j) {
+        //         std::cout << "  Point " << j << ": " << (*obs2)[j].transpose() << "\n";
+        //     }
+        // }
+        // std::cin.get(); // wait for user to press Enter
 
         // Project for each camera
         std::vector<Eigen::Vector2d> proj0, proj1, proj2;
@@ -1166,26 +1198,28 @@ void VisualizeStereoReprojectionTuner(
         // Print all observations and projections for each camera
         if (!board_points.empty()) {
             for (size_t j = 0; j < board_points.size(); ++j){
-                // std::cout << "Frame " << i << " - Point ID " << j << std::endl;
+                std::cout << "Frame " << i << " - Point ID " << j << std::endl;
                 // Print observed and projected points for each camera if obs is not nan
-                // if (obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) {
-                //     std::cout << "Frame " << i << " - Point ID " << j << std::endl;
-                //     std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
-                // } else {
-                //     // std::cout << "  Cam0 obs:  (none)";
-                // }
+                if (obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) {
+                    std::cout << "Frame " << i << " - Point ID " << j << std::endl;
+                    std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
+                } else {
+                    // std::cout << "  Cam0 obs:  (none)";
+                }
 
                 // Cam0
                 // if (obs0 && obs0->size() > j) {
-                //     std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
+                //     e {
+                    // std::cout << "  Cam0 obs:  (none)";
+                // }std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
                 // } else {
                 //     std::cout << "  Cam0 obs:  (none)";
                 // }
-                // if ((obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) && (proj0.size() > j)) {
-                //     std::cout << "  proj: " << proj0[j].transpose();
-                //     std::cout << std::endl;
-                // }
-                // std::cout << std::endl;
+                if ((obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) && (proj0.size() > j)) {
+                    std::cout << "  proj: " << proj0[j].transpose();
+                    std::cout << std::endl;
+                }
+                std::cout << std::endl;
 
                 // Cam1
                 // if (obs1 && obs1->size() > j) {
