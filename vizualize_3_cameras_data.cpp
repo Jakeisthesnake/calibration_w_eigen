@@ -847,6 +847,63 @@ inline double ComputeRMSError(
     return (n > 0) ? std::sqrt(sum2 / n) : 0.0;
 }
 
+struct EditableSlider {
+    pangolin::Var<double> slider;
+    pangolin::Var<std::string> text;
+    double minv, maxv;
+
+    EditableSlider(const std::string& name, double init,
+                   double minv_, double maxv_)
+        : slider(name + "_slider", init, minv_, maxv_),
+          text(name + "_text", std::to_string(init)),
+          minv(minv_), maxv(maxv_)
+    {}
+
+    double Get() const { return slider; }
+    operator double() const { return slider; }
+
+    bool Update() {
+        bool changed = false;
+
+        if (slider.GuiChanged()) {
+            text = std::to_string((double)slider);
+            changed = true;
+        }
+
+        if (text.GuiChanged()) {
+            try {
+                double val = std::stod((std::string)text);
+                val = std::clamp(val, minv, maxv);
+                slider = val;
+                changed = true;
+            } catch (...) {}
+        }
+
+        return changed;
+    }
+};
+
+double ComputeFilteredRMSError(const std::vector<Eigen::Vector2d>& obs,
+                               const std::vector<Eigen::Vector2d>& proj) {
+    std::vector<Eigen::Vector2d> valid_obs;
+    std::vector<Eigen::Vector2d> valid_proj;
+
+    // Only include points where obs is not NaN
+    for (size_t i = 0; i < obs.size() && i < proj.size(); ++i) {
+        if (!std::isnan(obs[i].x()) && !std::isnan(obs[i].y())) {
+            valid_obs.push_back(obs[i]);
+            valid_proj.push_back(proj[i]);
+        }
+    }
+
+    if (!valid_obs.empty()) {
+        return ComputeRMSError(valid_obs, valid_proj);
+    } else {
+        return 0.0;
+    }
+}
+
+
 // ---------------------- Visualization ------------------------
 void VisualizeStereoReprojectionTuner(
     // AprilTag board geometry (object points in board/target frame; order must match detections)
@@ -892,24 +949,45 @@ void VisualizeStereoReprojectionTuner(
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    // A simple 2D canvas that spans 3 images in a row
-    // We'll derive a nominal image size from cam0 cx, cy
     const int img_w0 = (int)std::round(2.0 * cam0_init.K[2]);
     const int img_h0 = (int)std::round(2.0 * cam0_init.K[3]);
+    const int img_w1 = (int)std::round(2.0 * cam1_init.K[2]);
+    const int img_h1 = (int)std::round(2.0 * cam1_init.K[3]);
+    const int img_w2 = (int)std::round(2.0 * cam2_init.K[2]);
+    const int img_h2 = (int)std::round(2.0 * cam2_init.K[3]);
     const int panel_w = std::max(img_w0, 640);
     const int panel_h = std::max(img_h0, 480);
 
-    pangolin::OpenGlRenderState s_cam(
-        pangolin::ProjectionMatrixOrthographic(0, 3.0*panel_w, panel_h, 0, -1, 1)
+    // Left side UI panel
+    pangolin::CreatePanel("ui").SetBounds(0.0, 1.0, 0.0, pangolin::Attach::Pix(300));
+
+   
+    pangolin::View& container = pangolin::Display("multi")
+        .SetBounds(0.0, 1.0, pangolin::Attach::Pix(300), 1.0)
+        .SetLayout(pangolin::LayoutEqual);
+
+    pangolin::View& v_cam0 = pangolin::Display("cam0");
+    pangolin::View& v_cam1 = pangolin::Display("cam1");
+    pangolin::View& v_cam2 = pangolin::Display("cam2");
+
+    container.AddDisplay(v_cam0);
+    container.AddDisplay(v_cam1);
+    container.AddDisplay(v_cam2);
+
+
+    // Simple orthographic projection for 2D image plane
+    pangolin::OpenGlRenderState s_cam0(
+        pangolin::ProjectionMatrixOrthographic(0, img_w0, img_h0, 0, -1, 1)
+    );
+    pangolin::OpenGlRenderState s_cam1(
+        pangolin::ProjectionMatrixOrthographic(0, img_w1, img_h1, 0, -1, 1)
+    );
+    pangolin::OpenGlRenderState s_cam2(
+        pangolin::ProjectionMatrixOrthographic(0, img_w2, img_h2, 0, -1, 1)
     );
 
-    pangolin::View& d_cam = pangolin::CreateDisplay()
-        .SetBounds(0.0, 1.0, pangolin::Attach::Pix(300), 1.0) // leave space on the left for UI
-        .SetAspect( (float)(3.0*panel_w) / (float)panel_h )
-        .SetHandler(&pangolin::StaticHandler);
 
     // ---------------- UI Sliders ----------------
-    pangolin::CreatePanel("ui").SetBounds(0.0, 1.0, 0.0, pangolin::Attach::Pix(300));
 
     // Frame control
     pangolin::Var<int> frame_idx("ui.frame", 0, 0, (int)std::max<int>(0, (int)N-1));
@@ -917,7 +995,8 @@ void VisualizeStereoReprojectionTuner(
     pangolin::Var<bool> next_f("ui.next_frame", false, false);
 
     // Cam0 intrinsics & distortion
-    pangolin::Var<double> fx0("ui.fx0", cam0_init.K[0], 50, 5000);
+    // pangolin::Var<double> fx0("ui.fx0", cam0_init.K[0], 50, 5000);
+    EditableSlider fx0("ui.fx0", cam0_init.K[0], 50, 5000);
     pangolin::Var<double> fy0("ui.fy0", cam0_init.K[1], 50, 5000);
     pangolin::Var<double> cx0("ui.cx0", cam0_init.K[2], 0, 4000);
     pangolin::Var<double> cy0("ui.cy0", cam0_init.K[3], 0, 4000);
@@ -1000,7 +1079,6 @@ void VisualizeStereoReprojectionTuner(
 
     while (!pangolin::ShouldQuit()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        d_cam.Activate(s_cam);
 
         const int i = std::clamp((int)frame_idx.Get(), 0, (int)N-1);
         if (reset_pose_from_frame.GuiChanged() || prev_f.GuiChanged() || next_f.GuiChanged()) {
@@ -1023,7 +1101,7 @@ void VisualizeStereoReprojectionTuner(
         // Poses
         Eigen::Matrix3d R0 = R_from_rpy(Eigen::Vector3d(b_r, b_p, b_y));
         //print out matrix
-        std::cout << "R0:\n" << R0 << std::endl;
+        // std::cout << "R0:\n" << R0 << std::endl;
         Eigen::Vector3d t0(b_tx, b_ty, b_tz);
 
         Eigen::Matrix3d R10 = R_from_rpy(Eigen::Vector3d(c10_r, c10_p, c10_y));
@@ -1038,7 +1116,7 @@ void VisualizeStereoReprojectionTuner(
         const std::vector<Eigen::Vector2d>* obs2 = (i < (int)frames_cam2.size() ? &frames_cam2[i].observations : nullptr);
         // print first observation for cam 0
         if (obs0 && !obs0->empty()) {
-            std::cout << "Frame " << i << " Cam0 first obs: " << (*obs0)[0].transpose() << std::endl;
+            // std::cout << "Frame " << i << " Cam0 first obs: " << (*obs0)[0].transpose() << std::endl;
         }
 
         // Project for each camera
@@ -1057,7 +1135,7 @@ void VisualizeStereoReprojectionTuner(
             else{
                 display_p = false;
             }
-            std::cout << "Frame " << i << " - Point ID " << j << "- Xc0: " << Xc0.transpose() << "- t0: " << t0.transpose() << " - board point: " << board_points[j].transpose() << std::endl;
+            // std::cout << "Frame " << i << " - Point ID " << j << "- Xc0: " << Xc0.transpose() << "- t0: " << t0.transpose() << " - board point: " << board_points[j].transpose() << std::endl;
 
             // cam0 projection
             Eigen::Vector2d u0; bool ok0 = ProjectFisheyeKB(Xc0, K0, D0, u0, display_p);
@@ -1090,23 +1168,23 @@ void VisualizeStereoReprojectionTuner(
             for (size_t j = 0; j < board_points.size(); ++j){
                 // std::cout << "Frame " << i << " - Point ID " << j << std::endl;
                 // Print observed and projected points for each camera if obs is not nan
-                if (obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) {
-                    std::cout << "Frame " << i << " - Point ID " << j << std::endl;
-                    std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
-                } else {
-                    // std::cout << "  Cam0 obs:  (none)";
-                }
+                // if (obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) {
+                //     std::cout << "Frame " << i << " - Point ID " << j << std::endl;
+                //     std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
+                // } else {
+                //     // std::cout << "  Cam0 obs:  (none)";
+                // }
 
-                // // Cam0
+                // Cam0
                 // if (obs0 && obs0->size() > j) {
                 //     std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
                 // } else {
                 //     std::cout << "  Cam0 obs:  (none)";
                 // }
-                if ((obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) && (proj0.size() > j)) {
-                    std::cout << "  proj: " << proj0[j].transpose();
-                    std::cout << std::endl;
-                }
+                // if ((obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) && (proj0.size() > j)) {
+                //     std::cout << "  proj: " << proj0[j].transpose();
+                //     std::cout << std::endl;
+                // }
                 // std::cout << std::endl;
 
                 // Cam1
@@ -1137,87 +1215,100 @@ void VisualizeStereoReprojectionTuner(
         // Compute errors (RMS) for frames that have observations
         double e0 = 0, e1 = 0, e2 = 0, etot = 0;
         size_t cams_count = 0;
+        // //print out obs0
+        // for (size_t idx = 0; idx < board_points.size(); ++idx) {
+        //     if (obs0 && idx < obs0->size()) {
+        //         std::cout << "obs0[" << idx << "] = " << (*obs0)[idx].transpose() << std::endl;
+        //     }
+        // }
+        // //print out obs0 size and proj0 size
+        // if (obs0) {
+        //     std::cout << "obs0 size: " << obs0->size() << std::endl;
+        // }
+        // std::cout << "proj0 size: " << proj0.size() << std::endl;    
 
-        if (obs0 && obs0->size() == proj0.size() && !obs0->empty()) {
-            e0 = ComputeRMSError(*obs0, proj0);
-            err0 = e0; etot += e0; cams_count++;
-        } else { err0 = 0.0; }
+        // if (obs0 && obs0->size() == proj0.size() && !obs0->empty()) {
+        //     e0 = ComputeRMSError(*obs0, proj0);
+        //     err0 = e0; etot += e0; cams_count++;
+        // } else { err0 = 0.0; }
+        if (obs0 && !obs0->empty()) {
+            e0 = ComputeFilteredRMSError(*obs0, proj0);
+            err0 = e0; 
+            if (e0 > 0.0) { etot += e0; cams_count++; }
+        } else {
+            err0 = 0.0;
+        }
 
-        if (obs1 && obs1->size() == proj1.size() && !obs1->empty()) {
-            e1 = ComputeRMSError(*obs1, proj1);
-            err1 = e1; etot += e1; cams_count++;
-        } else { err1 = 0.0; }
+        // if (obs1 && obs1->size() == proj1.size() && !obs1->empty()) {
+        //     e1 = ComputeRMSError(*obs1, proj1);
+        //     err1 = e1; etot += e1; cams_count++;
+        // } else { err1 = 0.0; }
+        if (obs1 && !obs1->empty()) {
+            e1 = ComputeFilteredRMSError(*obs1, proj1);
+            err1 = e1; 
+            if (e1 > 0.0) { etot += e1; cams_count++; }
+        } else {
+            err1 = 0.0;
+        }
 
-        if (obs2 && obs2->size() == proj2.size() && !obs2->empty()) {
-            e2 = ComputeRMSError(*obs2, proj2);
-            err2 = e2; etot += e2; cams_count++;
-        } else { err2 = 0.0; }
+        // if (obs2 && obs2->size() == proj2.size() && !obs2->empty()) {
+        //     e2 = ComputeRMSError(*obs2, proj2);
+        //     err2 = e2; etot += e2; cams_count++;
+        // } else { err2 = 0.0; }
+        if (obs2 && !obs2->empty()) {
+            e2 = ComputeFilteredRMSError(*obs2, proj2);
+            err2 = e2; 
+            if (e2 > 0.0) { etot += e2; cams_count++; }
+        } else {
+            err2 = 0.0;
+        }
 
         errTot = (cams_count ? etot / cams_count : 0.0);
 
         // ----------------- Draw 2D panels side-by-side -----------------
-        auto draw_points = [](const std::vector<Eigen::Vector2d>& pts, float xoff) {
+        fx0.Update();
+        auto draw_points = [](const std::vector<Eigen::Vector2d>& pts) {
             glBegin(GL_POINTS);
             for (const auto& p : pts) {
                 if (!std::isfinite(p.x()) || !std::isfinite(p.y())) continue;
-                glVertex2f((float)(p.x() + xoff), (float)p.y());
+                glVertex2f((float)p.x(), (float)p.y());
             }
             glEnd();
         };
         auto draw_pairs = [](const std::vector<Eigen::Vector2d>& obs,
-                             const std::vector<Eigen::Vector2d>& prj,
-                             float xoff) {
+                            const std::vector<Eigen::Vector2d>& prj) {
             const size_t n = std::min(obs.size(), prj.size());
             glBegin(GL_LINES);
             for (size_t i = 0; i < n; ++i) {
                 if (!std::isfinite(prj[i].x()) || !std::isfinite(prj[i].y())) continue;
-                glVertex2f((float)(obs[i].x() + xoff), (float)obs[i].y());
-                glVertex2f((float)(prj[i].x() + xoff), (float)prj[i].y());
+                glVertex2f((float)obs[i].x(), (float)obs[i].y());
+                glVertex2f((float)prj[i].x(), (float)prj[i].y());
             }
             glEnd();
         };
 
-        const float x0 = 0.0f;
-        const float x1 = (float)panel_w;
-        const float x2 = (float)(2*panel_w);
-
         glPointSize(4.0f);
 
-        // Cam0
-        if (obs0) {
-            glColor3f(0.0f, 1.0f, 0.0f); // observed
-            draw_points(*obs0, x0);
-        }
-        glColor3f(1.0f, 0.0f, 0.0f); // projected
-        draw_points(proj0, x0);
+        // ---- Cam0 view ----
+        v_cam0.Activate(s_cam0);
+        if (obs0) { glColor3f(0,1,0); draw_points(*obs0); }
+        glColor3f(1,0,0); draw_points(proj0);
+        glColor3f(1,1,0); if (obs0) draw_pairs(*obs0, proj0);
 
-        glColor3f(1.0f, 1.0f, 0.0f); // error lines
-        if (obs0) draw_pairs(*obs0, proj0, x0);
+        // ---- Cam1 view ----
+        v_cam1.Activate(s_cam1);
+        if (obs1) { glColor3f(0,1,0); draw_points(*obs1); }
+        glColor3f(1,0,0); draw_points(proj1);
+        glColor3f(1,1,0); if (obs1) draw_pairs(*obs1, proj1);
 
-        // Cam1
-        if (obs1) {
-            glColor3f(0.0f, 1.0f, 0.0f);
-            draw_points(*obs1, x1);
-        }
-        glColor3f(1.0f, 0.0f, 0.0f);
-        draw_points(proj1, x1);
-
-        glColor3f(1.0f, 1.0f, 0.0f);
-        if (obs1) draw_pairs(*obs1, proj1, x1);
-
-        // Cam2
-        if (obs2) {
-            glColor3f(0.0f, 1.0f, 0.0f);
-            draw_points(*obs2, x2);
-        }
-        glColor3f(1.0f, 0.0f, 0.0f);
-        draw_points(proj2, x2);
-
-        glColor3f(1.0f, 1.0f, 0.0f);
-        if (obs2) draw_pairs(*obs2, proj2, x2);
+        // ---- Cam2 view ----
+        v_cam2.Activate(s_cam2);
+        if (obs2) { glColor3f(0,1,0); draw_points(*obs2); }
+        glColor3f(1,0,0); draw_points(proj2);
+        glColor3f(1,1,0); if (obs2) draw_pairs(*obs2, proj2);
 
         pangolin::FinishFrame();
-        // std::cin.get();
+        // std::cin.get(); // wait for enter key to proceed to next frame
     }
 }
 
@@ -1278,16 +1369,26 @@ int main(int argc, char** argv) {
     std::vector<Eigen::Vector3d> board_points;
     board_points = loadAprilTagBoardFlat("/home/jake/calibration_w_eigen/april_tag_board.json");
     // outout board points
-    std::cout << "Loaded " << board_points.size() << " board points:" << std::endl;
-    for (size_t i = 0; i < board_points.size(); ++i) {
-        std::cout << "Point " << i << ": " << board_points[i].transpose() << std::endl;
-    }
-    std::cout << std::endl;
+    // std::cout << "Loaded " << board_points.size() << " board points:" << std::endl;
+    // for (size_t i = 0; i < board_points.size(); ++i) {
+    //     std::cout << "Point " << i << ": " << board_points[i].transpose() << std::endl;
+    // }
+    // std::cout << std::endl;
 
     // Step 1: Load and process CSV data for all cameras
     auto [obj_pts_list_0, img_pts_list_0, corner_ids_list_0, timestamp_list_0] = processCSV(data_file, 0);
     auto [obj_pts_list_1, img_pts_list_1, corner_ids_list_1, timestamp_list_1] = processCSV(data_file, 1);
     auto [obj_pts_list_2, img_pts_list_2, corner_ids_list_2, timestamp_list_2] = processCSV(data_file, 2);
+
+    //print size of img_pts_list_0
+    // std::cout << "Camera 0 - img_pts_list_0 size: " << img_pts_list_0.size() << std::endl;
+    // //print img_pts_list_0
+    // for (size_t i = 0; i < img_pts_list_0.size(); ++i) {
+    //     std::cout << "Camera 0 - Frame " << i << " image points:" << std::endl;
+    //     for (size_t j = 0; j < img_pts_list_0[i].size(); ++j) {
+    //         std::cout << "  Point " << j << ": " << img_pts_list_0[i][j].transpose() << std::endl;
+    //     }
+    // }
 
 
     // total board points (from geometry loader)
