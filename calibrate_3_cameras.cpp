@@ -973,6 +973,9 @@ void OptimizeFishEyeParameters(
                                          intrinsic_0, dist_0,
                                          target_q, target_t,
                                          cam0_q, cam0_t);
+                // fix intrinsics of cam0 if desired:
+                problem.SetParameterBlockConstant(intrinsic_0);
+                problem.SetParameterBlockConstant(dist_0);
             }
         }
 
@@ -994,6 +997,9 @@ void OptimizeFishEyeParameters(
                                          intrinsic_1, dist_1,
                                          target_q, target_t,
                                          qvec_cam_1, tvec_cam_1);
+                // fix intrinsics of cam1 if desired:
+                problem.SetParameterBlockConstant(intrinsic_1);
+                problem.SetParameterBlockConstant(dist_1);
             }
         }
 
@@ -1015,6 +1021,9 @@ void OptimizeFishEyeParameters(
                                          intrinsic_2, dist_2,
                                          target_q, target_t,
                                          qvec_cam_2, tvec_cam_2);
+                // fix intrinsics of cam2 if desired:
+                problem.SetParameterBlockConstant(intrinsic_2);
+                problem.SetParameterBlockConstant(dist_2);
             }
         }
     }
@@ -1161,178 +1170,6 @@ std::vector<FrameData> GenerateReprojectionErrorData(
 
 
 using FrameMap = std::unordered_map<int64_t, FrameData>;
-
-void VisualizeStereoReprojectionError(
-    const std::vector<FrameData>& frames_cam0,
-    const std::vector<FrameData>& frames_cam1,
-    const std::vector<FrameData>& frames_cam2,
-    const double* intrinsic_0,
-    const double* dist_0,
-    const double* intrinsic_1,
-    const double* dist_1,
-    const double* intrinsic_2,
-    const double* dist_2)
-{
-    // Build timestamp -> frame map
-    FrameMap map_cam0, map_cam1, map_cam2;
-    std::set<int64_t> all_timestamps;
-
-    for (const auto& f : frames_cam0) {
-        map_cam0[f.timestamp_ns] = f;
-        all_timestamps.insert(f.timestamp_ns);
-    }
-
-    for (const auto& f : frames_cam1) {
-        map_cam1[f.timestamp_ns] = f;
-        all_timestamps.insert(f.timestamp_ns);
-    }
-
-    for (const auto& f : frames_cam2) {
-        map_cam2[f.timestamp_ns] = f;
-        all_timestamps.insert(f.timestamp_ns);
-    }
-
-    std::vector<int64_t> timestamps(all_timestamps.begin(), all_timestamps.end());
-
-    // Window setup
-    pangolin::CreateWindowAndBind("Stereo Reprojection Error Viewer", 1600, 800);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    // Assume same fx/fy/cx/cy for all cameras
-    int img_w = static_cast<int>(2 * intrinsic_0[2]);
-    int img_h = static_cast<int>(2 * intrinsic_0[3]);
-
-    pangolin::OpenGlRenderState s_cam(
-        pangolin::ProjectionMatrixOrthographic(0, 3 * img_w, img_h, 0, -1, 1)
-    );
-
-    pangolin::View& d_cam = pangolin::CreateDisplay()
-        .SetBounds(0.0, 1.0, 0.0, 1.0)
-        .SetAspect(static_cast<float>(3 * img_w) / img_h)
-        .SetHandler(&pangolin::StaticHandler);  
-
-    size_t current_index = 0;
-    int64_t ts = 0;
-
-    pangolin::RegisterKeyPressCallback('a', [&]() {
-        if (current_index > 0) current_index--;
-        ts = timestamps[current_index];
-        std::cout << "Current index: " << ts << std::endl;
-        std::cout << "Frame error: " 
-                  << (map_cam0.count(ts) ? map_cam0[ts].error_sum : 0.0) << " (Cam0), "
-                  << (map_cam1.count(ts) ? map_cam1[ts].error_sum : 0.0) << " (Cam1), "
-                  << (map_cam2.count(ts) ? map_cam2[ts].error_sum : 0.0) << " (Cam2)" << std::endl;
-
-    });
-
-    pangolin::RegisterKeyPressCallback('d', [&]() {
-        if (current_index + 1 < timestamps.size()) current_index++;
-        ts = timestamps[current_index];
-        std::cout << "Current index: " << ts << std::endl;
-        std::cout << "Frame error: " 
-                  << (map_cam0.count(ts) ? map_cam0[ts].error_sum : 0.0) << " (Cam0), "
-                  << (map_cam1.count(ts) ? map_cam1[ts].error_sum : 0.0) << " (Cam1), "
-                  << (map_cam2.count(ts) ? map_cam2[ts].error_sum : 0.0) << " (Cam2)" << std::endl;
-    });
-
-    while (!pangolin::ShouldQuit()) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        d_cam.Activate(s_cam);
-
-        ts = timestamps[current_index];
-
-        if (map_cam0.count(ts)) {
-            const FrameData& f0 = map_cam0[ts];
-            for (size_t i = 0; i < f0.observed_pts.size(); ++i) {
-                const auto& obs = f0.observed_pts[i];
-                const auto& proj = f0.projected_pts[i];
-
-                // Observed (green)
-                glColor3f(0.0f, 1.0f, 0.0f);
-                glPointSize(4.0f);
-                glBegin(GL_POINTS);
-                glVertex2f(obs[0], obs[1]);
-                glEnd();
-
-                // Projected (red)
-                glColor3f(1.0f, 0.0f, 0.0f);
-                glBegin(GL_POINTS);
-                glVertex2f(proj[0], proj[1]);
-                glEnd();
-
-                // Line (yellow)
-                glColor3f(1.0f, 1.0f, 0.0f);
-                glBegin(GL_LINES);
-                glVertex2f(obs[0], obs[1]);
-                glVertex2f(proj[0], proj[1]);
-                glEnd();
-            }
-        }
-
-        if (map_cam1.count(ts)) {
-            const FrameData& f1 = map_cam1[ts];
-            for (size_t i = 0; i < f1.observed_pts.size(); ++i) {
-                const auto& obs = f1.observed_pts[i];
-                const auto& proj = f1.projected_pts[i];
-
-                float offset = static_cast<float>(img_w);  // shift right
-
-                // Observed (green)
-                glColor3f(0.0f, 1.0f, 0.0f);
-                glPointSize(4.0f);
-                glBegin(GL_POINTS);
-                glVertex2f(obs[0] + offset, obs[1]);
-                glEnd();
-
-                // Projected (red)
-                glColor3f(1.0f, 0.0f, 0.0f);
-                glBegin(GL_POINTS);
-                glVertex2f(proj[0] + offset, proj[1]);
-                glEnd();
-
-                // Line (yellow)
-                glColor3f(1.0f, 1.0f, 0.0f);
-                glBegin(GL_LINES);
-                glVertex2f(obs[0] + offset, obs[1]);
-                glVertex2f(proj[0] + offset, proj[1]);
-                glEnd();
-            }
-        }
-
-        if (map_cam2.count(ts)) {
-            const FrameData& f2 = map_cam2[ts];
-            for (size_t i = 0; i < f2.observed_pts.size(); ++i) {
-                const auto& obs = f2.observed_pts[i];
-                const auto& proj = f2.projected_pts[i];
-
-                float offset = static_cast<float>(2 * img_w);  // shift right
-
-                // Observed (green)
-                glColor3f(0.0f, 1.0f, 0.0f);
-                glPointSize(4.0f);
-                glBegin(GL_POINTS);
-                glVertex2f(obs[0] + offset, obs[1]);
-                glEnd();
-
-                // Projected (red)
-                glColor3f(1.0f, 0.0f, 0.0f);
-                glBegin(GL_POINTS);
-                glVertex2f(proj[0] + offset, proj[1]);
-                glEnd();
-
-                // Line (yellow)
-                glColor3f(1.0f, 1.0f, 0.0f);
-                glBegin(GL_LINES);
-                glVertex2f(obs[0] + offset, obs[1]);
-                glVertex2f(proj[0] + offset, proj[1]);
-                glEnd();
-            }
-        }
-
-        pangolin::FinishFrame();
-    }
-}
 
 
 void SaveCalibrationResult(
@@ -1497,42 +1334,50 @@ int main(int argc, char** argv) {
 
 
     // Initialize camera parameters
-    // Eigen::Matrix3d K_0;
-    // K_0 << 800, 0, 640,
-    //        0, 800, 480,
-    //        0, 0, 1;
-    // Eigen::Matrix3d K_1;
-    // K_1 << 810, 0, 650,
-    //        0, 810, 470,
-    //        0, 0, 1;
-    // Eigen::Matrix3d K_2;
-    // K_2 << 820, 0, 660,
-    //        0, 820, 460,
-    //        0, 0, 1;
+    
 
-
-
-
+    // python  known paramemters
     Eigen::Matrix3d K_0;
-    K_0 << 610, 0, 688,
-            0, 756, 524,
+    K_0 << 800, 0, 640,
+            0, 800, 480,
             0, 0, 1;
     Eigen::Matrix3d K_1;
-    K_1 << 802, 0, 662,
-            0, 825, 502,
+    K_1 << 800, 0, 640,
+            0, 800, 480,
             0, 0, 1;
     Eigen::Matrix3d K_2;
-    K_2 << 671, 0, 648,
-            0, 841, 475,
+    K_2 << 800, 0, 640,
+            0, 800, 480,
             0, 0, 1;
-
-
     double intrinsic_0[4] = {K_0(0, 0), K_0(1, 1), K_0(0, 2), K_0(1, 2)};
-    double dist_0[4] = {-0.013, -0.02, 0.063, -0.03}; 
+    double dist_0[4] = {-0.2, -0.05, 0.02, -0.01}; 
     double intrinsic_1[4] = {K_1(0, 0), K_1(1, 1), K_1(0, 2), K_1(1, 2)};
-    double dist_1[4] = {0.09, -0.057, 0.014, -0.004}; 
+    double dist_1[4] = {-0.2, -0.05, 0.02, -0.01}; 
     double intrinsic_2[4] = {K_2(0, 0), K_2(1, 1), K_2(0, 2), K_2(1, 2)};
-    double dist_2[4] = {0.03, -0.065, 0.065, -0.0034}; 
+    double dist_2[4] = {-0.2, -0.05, 0.02, -0.01};
+    
+
+    // // calib  known paramemters
+    // Eigen::Matrix3d K_0;
+    // K_0 << 930, 0, 930,
+    //         0, 507, 777,
+    //         0, 0, 1;
+    // Eigen::Matrix3d K_1;
+    // K_1 << 741, 0, 939
+    //         0, 741, 761,
+    //         0, 0, 1;
+    // Eigen::Matrix3d K_2;
+    // K_2 << 930, 0, 930,
+    //         0, 507, 777,
+    //         0, 0, 1;
+
+
+    // double intrinsic_0[4] = {K_0(0, 0), K_0(1, 1), K_0(0, 2), K_0(1, 2)};
+    // double dist_0[4] = {0.14, -0.046, 0.005, -0.0003}; 
+    // double intrinsic_1[4] = {K_1(0, 0), K_1(1, 1), K_1(0, 2), K_1(1, 2)};
+    // double dist_1[4] = {-0.03, 0.02, -0.0015, -0.0001}; 
+    // double intrinsic_2[4] = {K_2(0, 0), K_2(1, 1), K_2(0, 2), K_2(1, 2)};
+    // double dist_2[4] ={0.14, -0.046, 0.005, -0.0003}; 
 
     // Add extrinsics for all cameras
     std::vector<std::array<double, 7>> extrinsics_0, extrinsics_1, extrinsics_2;
@@ -1584,6 +1429,8 @@ int main(int argc, char** argv) {
         return T;
     };
 
+
+    // --- Helpers ---
     auto arrayPoseToMatrix = [](const std::array<double,7>& a) {
         Eigen::Quaterniond q(a[0], a[1], a[2], a[3]); // [w,x,y,z]
         Eigen::Matrix4d T = Eigen::Matrix4d::Identity();
@@ -1593,71 +1440,99 @@ int main(int argc, char** argv) {
     };
 
     auto matrixToArrayPose = [](const Eigen::Matrix4d& T) {
-        Eigen::Matrix3d R = T.block<3,3>(0,0);
-        Eigen::Quaterniond q(R);
+        Eigen::Quaterniond q(T.block<3,3>(0,0));
         std::array<double,7> a;
-        a[0] = q.w(); a[1] = q.x(); a[2] = q.y(); a[3] = q.z();
-        a[4] = T(0,3); a[5] = T(1,3); a[6] = T(2,3);
+        a[0]=q.w(); a[1]=q.x(); a[2]=q.y(); a[3]=q.z();
+        a[4]=T(0,3); a[5]=T(1,3); a[6]=T(2,3);
         return a;
     };
 
-    // Build target_poses (one pose per master_timestamps entry) in Camera 0 frame
+    // Log/exp helpers for averaging rotations
+    auto logSO3 = [](const Eigen::Matrix3d& R) {
+        Eigen::AngleAxisd aa(R);
+        return aa.angle() * aa.axis();
+    };
+    auto expSO3 = [](const Eigen::Vector3d& r) -> Eigen::Matrix3d {
+        double theta = r.norm();
+        if (theta < 1e-12) return Eigen::Matrix3d::Identity();
+        Eigen::AngleAxisd aa(theta, r.normalized());
+        return aa.toRotationMatrix();
+    };
+
+    // Average SE(3) transforms
+    auto averagePoses = [&](const std::vector<Eigen::Matrix4d>& Ts) {
+        Eigen::Vector3d t_avg = Eigen::Vector3d::Zero();
+        Eigen::Vector3d r_accum = Eigen::Vector3d::Zero();
+        for (const auto& T : Ts) {
+            t_avg += T.block<3,1>(0,3);
+            r_accum += logSO3(T.block<3,3>(0,0));
+        }
+        t_avg /= Ts.size();
+        r_accum /= Ts.size();
+        Eigen::Matrix4d T_avg = Eigen::Matrix4d::Identity();
+        T_avg.block<3,3>(0,0) = expSO3(r_accum);
+        T_avg.block<3,1>(0,3) = t_avg;
+        return T_avg;
+    };
+
+    // --- Step 1: Camera->Target extrinsics are already computed as extrinsics_0,1,2 ---
+
+    // --- Step 2: Estimate inter-camera transforms ---
+    std::vector<Eigen::Matrix4d> cam0_to_cam1_list, cam1_to_cam2_list;
+
+    // For frames where cam0 and cam1 both saw the board
+    for (size_t i = 0; i < master_timestamps.size(); ++i) {
+        const auto& entry = master_timestamps[i];
+        if (entry.cam0_idx != -1 && entry.cam1_idx != -1) {
+            Eigen::Matrix4d T_t_in_c0 = arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]); // target in cam0
+            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]); // target in cam1
+            Eigen::Matrix4d T_c1_in_c0 = T_t_in_c0 * T_t_in_c1.inverse();
+            cam0_to_cam1_list.push_back(T_c1_in_c0);
+        }
+    }
+
+    // Average these
+    Eigen::Matrix4d cam1_in_cam0 = averagePoses(cam0_to_cam1_list);
+
+    // For frames where cam1 and cam2 both saw the board
+    for (size_t i = 0; i < master_timestamps.size(); ++i) {
+        const auto& entry = master_timestamps[i];
+        if (entry.cam1_idx != -1 && entry.cam2_idx != -1) {
+            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+            Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+            Eigen::Matrix4d T_c2_in_c1 = T_t_in_c1 * T_t_in_c2.inverse();
+            cam1_to_cam2_list.push_back(T_c2_in_c1);
+        }
+    }
+
+    Eigen::Matrix4d cam2_in_cam1 = averagePoses(cam1_to_cam2_list);
+    Eigen::Matrix4d cam2_in_cam0 = cam1_in_cam0 * cam2_in_cam1;
+
+    // --- Step 3: Build target poses in cam0 frame ---
     std::vector<std::array<double,7>> target_poses;
     target_poses.reserve(master_timestamps.size());
 
-    // Build initial camX_in_cam0 transforms from the user-provided qvec_cam_X/tvec_cam_X
-    // (these variables are declared later in your original main; if you want to
-    // keep the same order, you can move this block down after you construct qvec_cam_1/qvec_cam_2.
-    // For clarity we assume qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are available here.)
-    //
-    // If they are not yet available at this exact insertion point, move the following
-    // two lines (construction of cam1_in_cam0/cam2_in_cam0) down to right after you
-    // compute qvec_cam_1/tvec_cam_1 and qvec_cam_2/tvec_cam_2.
-
-    double cam1_quat_tmp[4]; double cam2_quat_tmp[4];
-    double cam1_trans_tmp[3]; double cam2_trans_tmp[3];
-    // We'll copy user variables into temporaries if they exist; if they don't exist yet,
-    // the below initialization will be overwritten later. To keep this block safe for direct
-    // paste, we check and set identity fallback here:
-    for (int i=0;i<4;++i) { cam1_quat_tmp[i] = (i==0?1.0:0.0); cam2_quat_tmp[i] = (i==0?1.0:0.0); }
-    for (int i=0;i<3;++i) { cam1_trans_tmp[i] = 0.0; cam2_trans_tmp[i] = 0.0; }
-
-    // NOTE: if qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are declared *after* this point
-    // in your main (as in your posted main), we'll re-create the camX_in_cam0 matrices again
-    // after those quaternions are available — see the second construction below.
-
-    // Build target_poses now using available extrinsics_* lists
     for (const auto& entry : master_timestamps) {
+        std::vector<Eigen::Matrix4d> estimates;
+
         if (entry.cam0_idx != -1) {
-            // Use camera 0's observed target pose directly (pose is target_in_cam0)
-            target_poses.push_back(extrinsics_0[entry.cam0_idx]);
+            estimates.push_back(arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]));
+        }
+        if (entry.cam1_idx != -1) {
+            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+            estimates.push_back(cam1_in_cam0 * T_t_in_c1);
+        }
+        if (entry.cam2_idx != -1) {
+            Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+            estimates.push_back(cam2_in_cam0 * T_t_in_c2);
+        }
 
-        } else if (entry.cam1_idx != -1) {
-            // Camera 1 saw it: convert target_in_cam1 -> target_in_cam0
-            Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-
-            // If we don't yet have the real cam1_in_cam0 (quaternion + t will be set later),
-            // assume identity for now; the optimizer init will still be meaningful.
-            Eigen::Matrix4d T_cam1_in_cam0 = Eigen::Matrix4d::Identity();
-            // If user has provided qvec_cam_1 and tvec_cam_1 earlier, use them:
-            // (we can't refer to variables that may not exist here without breaking drop-in,
-            // so we'll recompute again later right after qvec_cam_1/tvec_cam_1 are available.)
-            Eigen::Matrix4d T_target_in_cam0 = T_cam1_in_cam0 * T_target_in_cam1;
-            target_poses.push_back(matrixToArrayPose(T_target_in_cam0));
-
-        } else if (entry.cam2_idx != -1) {
-            // Camera 2 saw it: convert target_in_cam2 -> target_in_cam0
-            Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-
-            Eigen::Matrix4d T_cam2_in_cam0 = Eigen::Matrix4d::Identity();
-            Eigen::Matrix4d T_target_in_cam0 = T_cam2_in_cam0 * T_target_in_cam2;
-            target_poses.push_back(matrixToArrayPose(T_target_in_cam0));
-
+        if (!estimates.empty()) {
+            Eigen::Matrix4d T_avg = averagePoses(estimates);
+            target_poses.push_back(matrixToArrayPose(T_avg));
         } else {
-            // No camera saw the target at this timestamp — default to identity
-            target_poses.push_back({1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0});
-            std::cerr << "Warning: No camera saw target at timestamp " << entry.timestamp_id
-                      << ", using identity pose." << std::endl;
+            // fallback: identity
+            target_poses.push_back({1.0,0.0,0.0,0.0,0.0,0.0,0.0});
         }
     }
 
@@ -1748,8 +1623,7 @@ int main(int argc, char** argv) {
     auto cam2_data = GenerateReprojectionErrorData(
         intrinsic_2, dist_2, extrinsics_2, img_pts_list_2, obj_pts_list_2, filtered_timestamp_list_2);
 
-    VisualizeStereoReprojectionError(cam0_data, cam1_data, cam2_data, intrinsic_0, dist_0, intrinsic_1, dist_1, intrinsic_2, dist_2);
-
+    
     // Output refined parameters
     std::cout << "Refined Intrinsic Parameters for Camera 0:\n";
     std::cout << "fx: " << intrinsic_0[0] << ", fy: " << intrinsic_0[1]
