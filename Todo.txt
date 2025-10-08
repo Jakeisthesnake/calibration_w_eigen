@@ -8,17 +8,23 @@ Todo
     - Make sure all the input args for the vizualization of calculated in main DONE
     - modify vizulaizer to allow on screen modification of int/ext while updating error and vizuals DONE (needs error)
     - Check against synthetic data
+    - ALso figure out how to trim projections to what is realistic?
 - Generate perfect synthetic 3d data DONE?
 - Get frames and timestamps to sync up DONE?
 - figureout how to get all points out of the sorting process. DONE
 - Figure out python script transforming point to image.DONE
 - figure out error computation DONE
 - get 2 frames of sym data working DONE
+- Hmmm vizualization seems briken. Fix.
 - Try loading data set with know good calibration numbers (first against python set) export extrinsics to set as prior for optimization ... and fix? Just to check if things look right on the other side of the pipeline?
 - - initialize inter camera extrinisics uses extrinisics estimate from homography
 - - then use that initialize inter cam extriniscs to initial target poses
 - Check vizualized tranforms based on what the data waht gereated with
   -  check that make frames is doing what it is supposed to be doing
+  - why am i seeing frames with no data in vizualization? DONE
+  - Now figure out how to show data when there are less than 10 points
+  - 10/7 Is it bad if the rotation matirx is the transpose? DONE
+- Fix distortion wrap around checking in simulator, visuzlizer and calibrator
 - get very low error initializing with intrinsics used to generate data
 - get low error initializing close, but not exactly the intriniscs used to gerenate data
 - gererate synthetic data 3d data with noise

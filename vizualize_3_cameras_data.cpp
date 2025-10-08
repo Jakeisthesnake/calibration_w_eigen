@@ -26,6 +26,8 @@
 #include <iostream>
 #include <pangolin/handler/handler.h>
 #include <GL/freeglut.h>
+#include <set>
+#include <map>
 
 
 // loadAprilTagBoardFlat
@@ -35,6 +37,8 @@ using json = nlohmann::json;
 using Point2dVec = std::vector<Eigen::Vector2d>;
 using Point3dVec = std::vector<Eigen::Vector3d>;
 using HomographyList = std::vector<Eigen::Matrix3d>;
+
+using TimestampIndexMap = std::unordered_map<int64_t, size_t>;
 
 // filterDataByTimestamps
 // using Point2dVec = std::vector<Eigen::Vector2d>;
@@ -49,7 +53,13 @@ using IDVec = std::vector<int>;
 using TimestampList = std::vector<uint64_t>;
 
 
-
+TimestampIndexMap buildIndexMap(const TimestampList& timestamps) {
+    TimestampIndexMap m;
+    for (size_t i = 0; i < timestamps.size(); ++i) {
+        m[static_cast<int64_t>(timestamps[i])] = i;
+    }
+    return m;
+}
 
 
 struct CSVRow {
@@ -604,25 +614,25 @@ Eigen::VectorXd fisheye_reprojection_error(
                 total_error.push_back(err(j));
         }
 
-        if (cam_0_index != -1 && cam_1_index != -1) {
-            Eigen::Matrix4d T_0 = Eigen::Matrix4d::Identity();
-            T_0.topLeftCorner<3, 3>() = R0;
-            T_0.topRightCorner<3, 1>() = t0;
+        // if (cam_0_index != -1 && cam_1_index != -1) {
+        //     Eigen::Matrix4d T_0 = Eigen::Matrix4d::Identity();
+        //     T_0.topLeftCorner<3, 3>() = R0;
+        //     T_0.topRightCorner<3, 1>() = t0;
 
-            Eigen::Matrix4d T_1 = Eigen::Matrix4d::Identity();
-            T_1.topLeftCorner<3, 3>() = R1;
-            T_1.topRightCorner<3, 1>() = t1;
+        //     Eigen::Matrix4d T_1 = Eigen::Matrix4d::Identity();
+        //     T_1.topLeftCorner<3, 3>() = R1;
+        //     T_1.topRightCorner<3, 1>() = t1;
 
-            Eigen::Matrix4d T_01_obs = Eigen::Matrix4d::Identity();
-            T_01_obs.topLeftCorner<3, 3>() = R_matrix_cam_1;
-            T_01_obs.topRightCorner<3, 1>() = tvec_cam_1;
+        //     Eigen::Matrix4d T_01_obs = Eigen::Matrix4d::Identity();
+        //     T_01_obs.topLeftCorner<3, 3>() = R_matrix_cam_1;
+        //     T_01_obs.topRightCorner<3, 1>() = tvec_cam_1;
 
-            Eigen::Matrix4d T_01_est = T_0 * T_1.inverse();
+        //     Eigen::Matrix4d T_01_est = T_0 * T_1.inverse();
 
-            Eigen::VectorXd pose_error = logSE3(T_01_obs * T_01_est.inverse());
-            for (int j = 0; j < pose_error.size(); ++j)
-                total_error.push_back(pose_error(j));
-        }
+        //     Eigen::VectorXd pose_error = logSE3(T_01_obs * T_01_est.inverse());
+        //     for (int j = 0; j < pose_error.size(); ++j)
+        //         total_error.push_back(pose_error(j));
+        // }
     }
 
     Eigen::VectorXd result(total_error.size());
@@ -768,9 +778,14 @@ inline Eigen::Matrix3d R_from_rpy(const Eigen::Vector3d& rpy) {
     double cy = std::cos(rpy.z()), sy = std::sin(rpy.z());
     // ZYX yaw-pitch-roll
     Eigen::Matrix3d R;
-    R << cy*cp,  cy*sp*sr - sy*cr,  cy*sp*cr + sy*sr,
-         sy*cp,  sy*sp*sr + cy*cr,  sy*sp*cr - cy*sr,
-         -sp,        cp*sr,              cp*cr;
+    // R << cy*cp,  cy*sp*sr - sy*cr,  cy*sp*cr + sy*sr,
+    //      sy*cp,  sy*sp*sr + cy*cr,  sy*sp*cr - cy*sr,
+    //      -sp,        cp*sr,              cp*cr;
+    // Try row major saving them
+    R << cp*cr, sy*sp*cr - cy*sr, cy*sp*cr + sy*sr,
+         cp*sr, sy*sp*sr + cy*cr, cy*sp*sr - sy*cr,
+         -sp,        sy*cp,              cy*cp;
+
     return R;
 }
 
@@ -903,6 +918,35 @@ double ComputeFilteredRMSError(const std::vector<Eigen::Vector2d>& obs,
     }
 }
 
+double ComputeMaxValidTheta(const double D[4], double fov_max) {
+    // sample derivative until it goes negative
+    double last_theta = 0.0;
+    for (double th = 1e-3; th < fov_max; th += 1e-3) {
+        double th2 = th*th;
+        double th4 = th2*th2;
+        double th6 = th4*th2;
+        double th8 = th4*th4;
+        // double th3 = th2*th;
+        // double th5 = th3*th2;
+        // double th7 = th5*th2;
+        // double th9 = th7*th2;
+
+        // KB projection polynomial: r = theta + k1*theta^3 + k2*theta^5 + ...
+        // derivative: dr/dtheta
+        double dr = 1 + 3*D[0]*th2 + 5*D[1]*th4 + 7*D[2]*th6 + 9*D[3]*th8;
+        if (dr <= 0) break;
+        last_theta = th;
+    }
+    return last_theta;
+}
+
+bool frame_has_valid(const FrameDetections& fd) {
+    for (const auto& p : fd.observations) {
+        if (std::isfinite(p.x()) && std::isfinite(p.y())) return true;
+    }
+    return false;
+}
+
 
 // ---------------------- Visualization ------------------------
 void VisualizeStereoReprojectionTuner(
@@ -933,6 +977,17 @@ void VisualizeStereoReprojectionTuner(
         std::cerr << "Warning: board_poses_init size != number of frames; clamping to min.\n";
     }
 
+    //print sizes of each frame for every timestamp
+    for (size_t i = 0; i < N; ++i) {
+        size_t c0 = (i < frames_cam0.size()) ? frames_cam0[i].observations.size() : 0;
+        size_t c1 = (i < frames_cam1.size()) ? frames_cam1[i].observations.size() : 0;
+        size_t c2 = (i < frames_cam2.size()) ? frames_cam2[i].observations.size() : 0;
+        // std::cout << "Frame " << i << ": cam0 detections = " << c0 << "timestamp = " << (i < frames_cam0.size() ? std::to_string(frames_cam0[i].timestamp_ns) : "N/A")
+        //           << ", cam1 detections = " << c1 << "timestamp = " << (i < frames_cam1.size() ? std::to_string(frames_cam1[i].timestamp_ns) : "N/A")
+        //           << ", cam2 detections = " << c2 << "timestamp = " << (i < frames_cam2.size() ? std::to_string(frames_cam2[i].timestamp_ns) : "N/A")
+        //           << std::endl;
+    } 
+
     // Build union of timestamps for stepping (optional; we’ll just use index)
     std::vector<int64_t> timestamps;
     timestamps.reserve(N);
@@ -955,8 +1010,8 @@ void VisualizeStereoReprojectionTuner(
     const int img_h1 = (int)std::round(2.0 * cam1_init.K[3]);
     const int img_w2 = (int)std::round(2.0 * cam2_init.K[2]);
     const int img_h2 = (int)std::round(2.0 * cam2_init.K[3]);
-    const int panel_w = std::max(img_w0, 640);
-    const int panel_h = std::max(img_h0, 480);
+    const int panel_w = std::max({640, img_w0, img_w1, img_w2});
+    const int panel_h = std::max({480, img_h0, img_h1, img_h2});
 
     // Left side UI panel
     pangolin::CreatePanel("ui").SetBounds(0.0, 1.0, 0.0, pangolin::Attach::Pix(300));
@@ -977,13 +1032,13 @@ void VisualizeStereoReprojectionTuner(
 
     // Simple orthographic projection for 2D image plane
     pangolin::OpenGlRenderState s_cam0(
-        pangolin::ProjectionMatrixOrthographic(0, img_w0, img_h0, 0, -1, 1)
+        pangolin::ProjectionMatrixOrthographic(0, panel_w, panel_h, 0, -1, 1)
     );
     pangolin::OpenGlRenderState s_cam1(
-        pangolin::ProjectionMatrixOrthographic(0, img_w1, img_h1, 0, -1, 1)
+        pangolin::ProjectionMatrixOrthographic(0, panel_w, panel_h, 0, -1, 1)
     );
     pangolin::OpenGlRenderState s_cam2(
-        pangolin::ProjectionMatrixOrthographic(0, img_w2, img_h2, 0, -1, 1)
+        pangolin::ProjectionMatrixOrthographic(0, panel_w, panel_h, 0, -1, 1)
     );
 
 
@@ -1100,7 +1155,7 @@ void VisualizeStereoReprojectionTuner(
         if (i != last_frame) {
             set_board_sliders_from_frame(i);
             last_frame = i;
-            std::cout << "Switched to frame " << i << " / " << (N-1) << std::endl;
+            // std::cout << "Switched to frame " << i << " / " << (N-1) << std::endl;
             // std::cin.get(); // wait for user to press Enter
         }
 
@@ -1114,10 +1169,18 @@ void VisualizeStereoReprojectionTuner(
         double K2[4] = {fx2, fy2, cx2, cy2};
         double D2[4] = {k2_1, k2_2, k2_3, k2_4};
 
+        // Valid theta limits
+        double max_valid_theta0 = ComputeMaxValidTheta(D0, M_PI);
+        double valid_theta0 = std::min(M_PI, max_valid_theta0);
+        double max_valid_theta1 = ComputeMaxValidTheta(D1, M_PI);
+        double valid_theta1 = std::min(M_PI, max_valid_theta1);
+        double max_valid_theta2 = ComputeMaxValidTheta(D2, M_PI);
+        double valid_theta2 = std::min(M_PI, max_valid_theta2);
+
         // Poses
         Eigen::Matrix3d R0 = R_from_rpy(Eigen::Vector3d(b_r, b_p, b_y));
         //print out matrix
-        // std::cout << "R0:\n" << R0 << std::endl;
+        std::cout << "R0:\n" << R0 << std::endl;
         Eigen::Vector3d t0(b_tx, b_ty, b_tz);
 
         Eigen::Matrix3d R10 = R_from_rpy(Eigen::Vector3d(c10_r, c10_p, c10_y));
@@ -1127,9 +1190,18 @@ void VisualizeStereoReprojectionTuner(
         Eigen::Vector3d t20(c20_tx, c20_ty, c20_tz);
 
         // Fetch observations (may be empty)
-        const std::vector<Eigen::Vector2d>* obs0 = (i < (int)frames_cam0.size() ? &frames_cam0[i].observations : nullptr);
-        const std::vector<Eigen::Vector2d>* obs1 = (i < (int)frames_cam1.size() ? &frames_cam1[i].observations : nullptr);
-        const std::vector<Eigen::Vector2d>* obs2 = (i < (int)frames_cam2.size() ? &frames_cam2[i].observations : nullptr);
+        const std::vector<Eigen::Vector2d>* obs0 = (i < (int)frames_cam0.size() && frame_has_valid(frames_cam0[i]) ? &frames_cam0[i].observations : nullptr);
+        const std::vector<Eigen::Vector2d>* obs1 = (i < (int)frames_cam1.size() && frame_has_valid(frames_cam1[i]) ? &frames_cam1[i].observations : nullptr);
+        const std::vector<Eigen::Vector2d>* obs2 = (i < (int)frames_cam2.size() && frame_has_valid(frames_cam2[i]) ? &frames_cam2[i].observations : nullptr);
+        // const std::vector<Eigen::Vector2d>* obs0 = (i < (int)frames_cam0.size() ? &frames_cam0[i].observations : nullptr);
+        // const std::vector<Eigen::Vector2d>* obs1 = (i < (int)frames_cam1.size() ? &frames_cam1[i].observations : nullptr);
+        // const std::vector<Eigen::Vector2d>* obs2 = (i < (int)frames_cam2.size() ? &frames_cam2[i].observations : nullptr);
+        //output size of each observation vector
+        // std::cout << "Frame " << i << " observations sizes: "
+        //           << (obs0 ? std::to_string(obs0->size()) : "null") << ", "
+        //           << (obs1 ? std::to_string(obs1->size()) : "null") << ", "
+        //           << (obs2 ? std::to_string(obs2->size()) : "null") << std::endl;
+        // output frames_cam0 size
         // // print observations for each camera if available
         // if (obs0 && !obs0->empty()) {
         //     std::cout << "Frame " << i << " - Cam0 observations:\n";
@@ -1156,6 +1228,11 @@ void VisualizeStereoReprojectionTuner(
         proj0.reserve(board_points.size());
         proj1.reserve(board_points.size());
         proj2.reserve(board_points.size());
+        //bool for whether projected point has valid theta
+        std::vector<bool> valid_proj0, valid_proj1, valid_proj2;
+        valid_proj0.reserve(board_points.size());
+        valid_proj1.reserve(board_points.size());
+        valid_proj2.reserve(board_points.size());
 
         for (size_t j = 0; j < board_points.size(); ++j) {
             // target -> cam0
@@ -1177,7 +1254,10 @@ void VisualizeStereoReprojectionTuner(
             // if (!ok0) u0 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
             //                                std::numeric_limits<double>::quiet_NaN());
             if (!ok0) u0 = Eigen::Vector2d(1.0, 1.0);
+            double theta0 = std::atan2(std::sqrt(Xc0.x()*Xc0.x() + Xc0.y()*Xc0.y()), Xc0.z());
+            bool valid0 = ok0 && (theta0 <= valid_theta0);
             proj0.push_back(u0);
+            valid_proj0.push_back(valid0);
 
             // target -> cam1
             Eigen::Vector3d Xc1 = ToCamX_fromCam0(R10, t10, Xc0);
@@ -1185,6 +1265,9 @@ void VisualizeStereoReprojectionTuner(
             // if (!ok1) u1 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
             //                                std::numeric_limits<double>::quiet_NaN());
             if (!ok1) u1 = Eigen::Vector2d(1.0, 1.0);
+            double theta1 = std::atan2(std::sqrt(Xc1.x()*Xc1.x() + Xc1.y()*Xc1.y()), Xc1.z());
+            bool valid1 = ok1 && (theta1 <= valid_theta1);
+            valid_proj1.push_back(valid1);
             proj1.push_back(u1);
 
             // target -> cam2
@@ -1193,16 +1276,19 @@ void VisualizeStereoReprojectionTuner(
             // if (!ok2) u2 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
             //                                std::numeric_limits<double>::quiet_NaN());
             if (!ok2) u2 = Eigen::Vector2d(1.0, 1.0);
+            double theta2 = std::atan2(std::sqrt(Xc2.x()*Xc2.x() + Xc2.y()*Xc2.y()), Xc2.z());
+            bool valid2 = ok2 && (theta2 <= valid_theta2);
+            valid_proj2.push_back(valid2);
             proj2.push_back(u2);
         }
         // Print all observations and projections for each camera
         if (!board_points.empty()) {
             for (size_t j = 0; j < board_points.size(); ++j){
-                std::cout << "Frame " << i << " - Point ID " << j << std::endl;
+                // std::cout << "Frame " << i << " - Point ID " << j << std::endl;
                 // Print observed and projected points for each camera if obs is not nan
                 if (obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) {
-                    std::cout << "Frame " << i << " - Point ID " << j << std::endl;
-                    std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
+                    // std::cout << "Frame " << i << " - Point ID " << j << std::endl;
+                    // std::cout << "  Cam0 obs:  " << (*obs0)[j].transpose();
                 } else {
                     // std::cout << "  Cam0 obs:  (none)";
                 }
@@ -1215,11 +1301,11 @@ void VisualizeStereoReprojectionTuner(
                 // } else {
                 //     std::cout << "  Cam0 obs:  (none)";
                 // }
-                if ((obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) && (proj0.size() > j)) {
-                    std::cout << "  proj: " << proj0[j].transpose();
-                    std::cout << std::endl;
-                }
-                std::cout << std::endl;
+                // if ((obs0 && obs0->size() > j && (!std::isnan((*obs0)[j].x()) && !std::isnan((*obs0)[j].y()))) && (proj0.size() > j)) {
+                //     std::cout << "  proj: " << proj0[j].transpose();
+                //     std::cout << std::endl;
+                // }
+                // std::cout << std::endl;
 
                 // Cam1
                 // if (obs1 && obs1->size() > j) {
@@ -1264,12 +1350,14 @@ void VisualizeStereoReprojectionTuner(
         // if (obs0 && obs0->size() == proj0.size() && !obs0->empty()) {
         //     e0 = ComputeRMSError(*obs0, proj0);
         //     err0 = e0; etot += e0; cams_count++;
-        // } else { err0 = 0.0; }
+        // }
+        // else { err0 = 0.0; }
         if (obs0 && !obs0->empty()) {
             e0 = ComputeFilteredRMSError(*obs0, proj0);
             err0 = e0; 
             if (e0 > 0.0) { etot += e0; cams_count++; }
-        } else {
+        }
+        else {
             err0 = 0.0;
         }
 
@@ -1297,10 +1385,11 @@ void VisualizeStereoReprojectionTuner(
             err2 = 0.0;
         }
 
-        errTot = (cams_count ? etot / cams_count : 0.0);
+        errTot = etot; // (cams_count ? etot / cams_count : 0.0);
 
         // ----------------- Draw 2D panels side-by-side -----------------
         fx0.Update();
+
         auto draw_points = [](const std::vector<Eigen::Vector2d>& pts) {
             glBegin(GL_POINTS);
             for (const auto& p : pts) {
@@ -1309,12 +1398,29 @@ void VisualizeStereoReprojectionTuner(
             }
             glEnd();
         };
+        auto draw_points_masked = [](const std::vector<Eigen::Vector2d>& pts,
+                             const std::vector<bool>& valid_mask) {
+            glBegin(GL_POINTS);
+            for (size_t i = 0; i < pts.size(); ++i) {
+                if (!std::isfinite(pts[i].x()) || !std::isfinite(pts[i].y())) continue;
+                if (valid_mask[i]) glColor3f(0,1,1);   // cyan for valid
+                else               glColor3f(1,0,1);   // magenta for invalid
+                glVertex2f((float)pts[i].x(), (float)pts[i].y());
+            }
+            glEnd();
+        };
         auto draw_pairs = [](const std::vector<Eigen::Vector2d>& obs,
-                            const std::vector<Eigen::Vector2d>& prj) {
+                            const std::vector<Eigen::Vector2d>& prj,
+                            const std::vector<bool>& valid_mask) {
             const size_t n = std::min(obs.size(), prj.size());
             glBegin(GL_LINES);
             for (size_t i = 0; i < n; ++i) {
-                if (!std::isfinite(prj[i].x()) || !std::isfinite(prj[i].y())) continue;
+                // output prj x and y if neither are nan and obs
+                if (!std::isnan(prj[i].x()) || !std::isnan(prj[i].y())) {
+                    // std::cout << "prj[" << i << "] = (" << prj[i].x() << ", " << prj[i].y() << ")" << std::endl;
+                    // std::cout << "obs[" << i << "] = (" << obs[i].x() << ", " << obs[i].y() << ")" << std::endl;
+                } 
+                if (valid_mask[i] && (!std::isfinite(prj[i].x()) || !std::isfinite(prj[i].y())) || (prj[i].x() == 0 && prj[i].y() == 0)) continue;
                 glVertex2f((float)obs[i].x(), (float)obs[i].y());
                 glVertex2f((float)prj[i].x(), (float)prj[i].y());
             }
@@ -1325,21 +1431,50 @@ void VisualizeStereoReprojectionTuner(
 
         // ---- Cam0 view ----
         v_cam0.Activate(s_cam0);
-        if (obs0) { glColor3f(0,1,0); draw_points(*obs0); }
-        glColor3f(1,0,0); draw_points(proj0);
-        glColor3f(1,1,0); if (obs0) draw_pairs(*obs0, proj0);
+        if (obs0) {
+            glColor3f(0,1,0);
+            draw_points(*obs0);
+        }
+        draw_points_masked(proj0, valid_proj0);
+        glColor3f(1,1,0);
+        if (obs0) draw_pairs(*obs0, proj0, valid_proj0);
 
         // ---- Cam1 view ----
         v_cam1.Activate(s_cam1);
-        if (obs1) { glColor3f(0,1,0); draw_points(*obs1); }
-        glColor3f(1,0,0); draw_points(proj1);
-        glColor3f(1,1,0); if (obs1) draw_pairs(*obs1, proj1);
+        if (obs1) {
+            glColor3f(0,1,0);
+            draw_points(*obs1);
+        }
+        draw_points_masked(proj1, valid_proj1);
+        glColor3f(1,1,0);
+        if (obs1) draw_pairs(*obs1, proj1, valid_proj1);
 
         // ---- Cam2 view ----
         v_cam2.Activate(s_cam2);
-        if (obs2) { glColor3f(0,1,0); draw_points(*obs2); }
-        glColor3f(1,0,0); draw_points(proj2);
-        glColor3f(1,1,0); if (obs2) draw_pairs(*obs2, proj2);
+        if (obs2) {
+            glColor3f(0,1,0);
+            draw_points(*obs2);
+        }
+        draw_points_masked(proj2, valid_proj2);
+        glColor3f(1,1,0);
+        if (obs2) draw_pairs(*obs2, proj2, valid_proj2);
+
+        // v_cam0.Activate(s_cam0);
+        // if (obs0) { glColor3f(0,1,0); draw_points(*obs0); }
+        // glColor3f(1,0,0); draw_points(proj0);
+        // glColor3f(1,1,0); if (obs0) draw_pairs(*obs0, proj0);
+
+        // // ---- Cam1 view ----
+        // v_cam1.Activate(s_cam1);
+        // if (obs1) { glColor3f(0,1,0); draw_points(*obs1); }
+        // glColor3f(1,0,0); draw_points(proj1);
+        // glColor3f(1,1,0); if (obs1) draw_pairs(*obs1, proj1);
+
+        // // ---- Cam2 view ----
+        // v_cam2.Activate(s_cam2);
+        // if (obs2) { glColor3f(0,1,0); draw_points(*obs2); }
+        // glColor3f(1,0,0); draw_points(proj2);
+        // glColor3f(1,1,0); if (obs2) draw_pairs(*obs2, proj2);
 
         pangolin::FinishFrame();
         // std::cin.get(); // wait for enter key to proceed to next frame
@@ -1347,37 +1482,43 @@ void VisualizeStereoReprojectionTuner(
 }
 
 
-std::vector<FrameDetections> makeFrameDetections(
+std::vector<FrameDetections> makeFrameDetectionsFromUnion(
+    const std::set<int64_t>& all_timestamps,
     const std::vector<Point2dVec>& img_pts_list,
     const std::vector<IDVec>& corner_ids_list,
     const TimestampList& timestamp_list,
     size_t total_board_points)
 {
     std::vector<FrameDetections> frames;
-    frames.reserve(img_pts_list.size());
-    // std::cout << "Total board points: " << total_board_points << std::endl;
+    frames.reserve(all_timestamps.size());
 
+    //output size of img_pts_list, corner_ids_list, timestamp_list
+    std::cout << "img_pts_list size: " << img_pts_list.size() << std::endl;
+    std::cout << "corner_ids_list size: " << corner_ids_list.size() << std::endl;
+    std::cout << "timestamp_list size: " << timestamp_list.size() << std::endl;
 
-    for (size_t i = 0; i < img_pts_list.size(); ++i) {
+    // Build quick lookup for this camera
+    auto index_map = buildIndexMap(timestamp_list);
+
+    for (int64_t ts : all_timestamps) {
         FrameDetections fd;
+        fd.timestamp_ns = ts;
         fd.observations.resize(total_board_points,
             Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
                             std::numeric_limits<double>::quiet_NaN()));
 
-        // scatter detected points into their corner_id slots
-        for (size_t k = 0; k < corner_ids_list[i].size(); ++k) {
-            int cid = corner_ids_list[i][k];
-            if (cid >= 0 && (size_t)cid < total_board_points) {
-                fd.observations[cid] = img_pts_list[i][k];
-                // std::cout << "Frame " << i << " - Corner ID " << cid << ": " << img_pts_list[i][k].transpose() << std::endl;
-
+        auto it = index_map.find(ts);
+        if (it != index_map.end()) {
+            size_t idx = it->second;
+            for (size_t k = 0; k < corner_ids_list[idx].size(); ++k) {
+                int cid = corner_ids_list[idx][k];
+                if (cid >= 0 && (size_t)cid < total_board_points) {
+                    fd.observations[cid] = img_pts_list[idx][k];
+                }
             }
         }
-
-        fd.timestamp_ns = static_cast<int64_t>(timestamp_list[i]);
-        // std::cout << "Frame " << i << " timestamp: " << fd.timestamp_ns << std::endl;
+        // if timestamp missing in this camera, stays NaN
         frames.push_back(std::move(fd));
-        // std::cin.get();
     }
     return frames;
 }
@@ -1414,26 +1555,27 @@ int main(int argc, char** argv) {
     auto [obj_pts_list_1, img_pts_list_1, corner_ids_list_1, timestamp_list_1] = processCSV(data_file, 1);
     auto [obj_pts_list_2, img_pts_list_2, corner_ids_list_2, timestamp_list_2] = processCSV(data_file, 2);
 
-    //print size of img_pts_list_0
-    // std::cout << "Camera 0 - img_pts_list_0 size: " << img_pts_list_0.size() << std::endl;
-    // //print img_pts_list_0
-    // for (size_t i = 0; i < img_pts_list_0.size(); ++i) {
-    //     std::cout << "Camera 0 - Frame " << i << " image points:" << std::endl;
-    //     for (size_t j = 0; j < img_pts_list_0[i].size(); ++j) {
-    //         std::cout << "  Point " << j << ": " << img_pts_list_0[i][j].transpose() << std::endl;
-    //     }
-    // }
+    std::set<int64_t> all_timestamps;
+    for (auto ts : timestamp_list_0) all_timestamps.insert(static_cast<int64_t>(ts));
+    for (auto ts : timestamp_list_1) all_timestamps.insert(static_cast<int64_t>(ts));
+    for (auto ts : timestamp_list_2) all_timestamps.insert(static_cast<int64_t>(ts));
+
+    std::cout << "Total unique timestamps: " << all_timestamps.size() << std::endl;
+
 
 
     // total board points (from geometry loader)
     size_t total_board_points = board_points.size();
 
     std::vector<FrameDetections> frames_cam0 =
-        makeFrameDetections(img_pts_list_0, corner_ids_list_0, timestamp_list_0, total_board_points);
+        makeFrameDetectionsFromUnion(all_timestamps, img_pts_list_0, corner_ids_list_0, timestamp_list_0, total_board_points);
+
     std::vector<FrameDetections> frames_cam1 =
-        makeFrameDetections(img_pts_list_1, corner_ids_list_1, timestamp_list_1, total_board_points);
+        makeFrameDetectionsFromUnion(all_timestamps, img_pts_list_1, corner_ids_list_1, timestamp_list_1, total_board_points);
+
     std::vector<FrameDetections> frames_cam2 =
-        makeFrameDetections(img_pts_list_2, corner_ids_list_2, timestamp_list_2, total_board_points);
+        makeFrameDetectionsFromUnion(all_timestamps, img_pts_list_2, corner_ids_list_2, timestamp_list_2, total_board_points);
+
 
     // Prin out all timestamps for each camera
     std::cout << "Camera 0 timestamps: ";
@@ -1583,9 +1725,9 @@ int main(int argc, char** argv) {
         Eigen::Quaterniond Q(tp[0], tp[1], tp[2], tp[3]); // [w,x,y,z]
         // output the rotation matrix and the rpy values
         Eigen::Vector3d rpy = Q.toRotationMatrix().eulerAngles(2,1,0);
-        std::cout << "Target pose - rpy: " << rpy.transpose()
-                  << ", tvec: [" << tp[4] << ", " << tp[5] << ", " << tp[6] << "]" << std::endl;
-        std::cout << " rotation matrix:\n" << Q.toRotationMatrix() << std::endl;
+        // std::cout << "Target pose - rpy: " << rpy.transpose()
+                //   << ", tvec: [" << tp[4] << ", " << tp[5] << ", " << tp[6] << "]" << std::endl;
+        // std::cout << " rotation matrix:\n" << Q.toRotationMatrix() << std::endl;
 
         BoardPoseInit bp;
         bp.rpy = rpy;
