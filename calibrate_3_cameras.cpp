@@ -915,6 +915,111 @@ struct TimestampEntry {
     int cam2_idx;  // -1 if missing
 };
 
+void SaveCalibrationResult(
+    const std::string& filename,
+    const double intrinsic_0[4], const double dist_0[4],
+    const double intrinsic_1[4], const double dist_1[4],
+    const double intrinsic_2[4], const double dist_2[4],
+
+    const double qvec_cam_1[4], const double tvec_cam_1[3],
+    const double qvec_cam_2[4], const double tvec_cam_2[3],
+
+    const std::vector<std::array<double, 7>>& target_poses, // target→world
+    const std::vector<TimestampEntry>& master_timestamps
+) {
+    json output;
+
+    // --- Intrinsics & Distortion ---
+    output["camera0"]["intrinsics"] = {intrinsic_0[0], intrinsic_0[1], intrinsic_0[2], intrinsic_0[3]};
+    output["camera0"]["distortion"] = {dist_0[0], dist_0[1], dist_0[2], dist_0[3]};
+
+    output["camera1"]["intrinsics"] = {intrinsic_1[0], intrinsic_1[1], intrinsic_1[2], intrinsic_1[3]};
+    output["camera1"]["distortion"] = {dist_1[0], dist_1[1], dist_1[2], dist_1[3]};
+
+    output["camera2"]["intrinsics"] = {intrinsic_2[0], intrinsic_2[1], intrinsic_2[2], intrinsic_2[3]};
+    output["camera2"]["distortion"] = {dist_2[0], dist_2[1], dist_2[2], dist_2[3]};
+
+    // --- Target poses (in world frame) ---
+    for (size_t i = 0; i < target_poses.size(); ++i) {
+        const auto& tp = target_poses[i];
+        double timestamp = master_timestamps[i].timestamp_id;
+
+        json pose;
+        pose["timestamp"]   = timestamp;
+        pose["quaternion"]  = {tp[0], tp[1], tp[2], tp[3]};
+        pose["translation"] = {tp[4], tp[5], tp[6]};
+        output["target_poses"].push_back(pose);
+    }
+
+    // --- Inter-Camera Transforms ---
+    output["inter_camera"]["camera1_to_camera0"]["quaternion"]         = {qvec_cam_1[0], qvec_cam_1[1], qvec_cam_1[2], qvec_cam_1[3]};
+    output["inter_camera"]["camera1_to_camera0"]["translation_vector"] = {tvec_cam_1[0], tvec_cam_1[1], tvec_cam_1[2]};
+
+    output["inter_camera"]["camera2_to_camera0"]["quaternion"]         = {qvec_cam_2[0], qvec_cam_2[1], qvec_cam_2[2], qvec_cam_2[3]};
+    output["inter_camera"]["camera2_to_camera0"]["translation_vector"] = {tvec_cam_2[0], tvec_cam_2[1], tvec_cam_2[2]};
+
+    // --- Write to file ---
+    std::ofstream ofs(filename);
+    ofs << std::setw(4) << output << std::endl;
+    std::cout << "Saved calibration results to " << filename << std::endl;
+}
+
+class SaveIterationCallback : public ceres::IterationCallback {
+public:
+    // References to the variables to be saved
+    const double* intrinsic_0;
+    const double* dist_0;
+    const double* intrinsic_1;
+    const double* dist_1;
+    const double* intrinsic_2;
+    const double* dist_2;
+
+    const double* qvec_cam_1;
+    const double* tvec_cam_1;
+    const double* qvec_cam_2;
+    const double* tvec_cam_2;
+
+    const std::vector<std::array<double, 7>>* target_poses;
+    const std::vector<TimestampEntry>* master_timestamps;
+
+    std::string output_dir;
+
+    SaveIterationCallback(
+        const double* intrinsic_0, const double* dist_0,
+        const double* intrinsic_1, const double* dist_1,
+        const double* intrinsic_2, const double* dist_2,
+        const double* qvec_cam_1, const double* tvec_cam_1,
+        const double* qvec_cam_2, const double* tvec_cam_2,
+        const std::vector<std::array<double, 7>>* target_poses,
+        const std::vector<TimestampEntry>* master_timestamps,
+        const std::string& output_dir)
+        : intrinsic_0(intrinsic_0), dist_0(dist_0),
+          intrinsic_1(intrinsic_1), dist_1(dist_1),
+          intrinsic_2(intrinsic_2), dist_2(dist_2),
+          qvec_cam_1(qvec_cam_1), tvec_cam_1(tvec_cam_1),
+          qvec_cam_2(qvec_cam_2), tvec_cam_2(tvec_cam_2),
+          target_poses(target_poses), master_timestamps(master_timestamps),
+          output_dir(output_dir) {}
+
+    ceres::CallbackReturnType operator()(const ceres::IterationSummary& summary) override {
+        std::string filename = output_dir + "/calibration_iter_" + std::to_string(summary.iteration) + ".json";
+
+        SaveCalibrationResult(
+            filename,
+            intrinsic_0, dist_0,
+            intrinsic_1, dist_1,
+            intrinsic_2, dist_2,
+            qvec_cam_1, tvec_cam_1,
+            qvec_cam_2, tvec_cam_2,
+            *target_poses, *master_timestamps
+        );
+
+        return ceres::SOLVER_CONTINUE;
+    }
+};
+
+
+
 void OptimizeFishEyeParameters(
     double intrinsic_0[4], double dist_0[4],
     // remove extrinsics_0 from being optimized; we use target_poses instead
@@ -1073,6 +1178,20 @@ void OptimizeFishEyeParameters(
     options.linear_solver_type = ceres::SPARSE_SCHUR;
     options.minimizer_progress_to_stdout = true;
     // tune as you like (max_num_iterations, trust_region settings...)
+    options.update_state_every_iteration = true;
+
+// Add your save callback
+    options.callbacks.push_back(
+        new SaveIterationCallback(
+            intrinsic_0, dist_0,
+            intrinsic_1, dist_1,
+            intrinsic_2, dist_2,
+            qvec_cam_1, tvec_cam_1,
+            qvec_cam_2, tvec_cam_2,
+            &target_poses, &master_timestamps,
+            "/home/jake/calibration_w_eigen"
+        )
+    );
 
     ceres::Solver::Summary summary;
     ceres::Solve(options, &problem, &summary);
@@ -1173,53 +1292,6 @@ std::vector<FrameData> GenerateReprojectionErrorData(
 using FrameMap = std::unordered_map<int64_t, FrameData>;
 
 
-void SaveCalibrationResult(
-    const double intrinsic_0[4], const double dist_0[4],
-    const double intrinsic_1[4], const double dist_1[4],
-    const double intrinsic_2[4], const double dist_2[4],
-
-    const double qvec_cam_1[4], const double tvec_cam_1[3],
-    const double qvec_cam_2[4], const double tvec_cam_2[3],
-
-    const std::vector<std::array<double, 7>>& target_poses, // target→world
-    const std::vector<TimestampEntry>& master_timestamps
-) {
-    json output;
-
-    // --- Intrinsics & Distortion ---
-    output["camera0"]["intrinsics"] = {intrinsic_0[0], intrinsic_0[1], intrinsic_0[2], intrinsic_0[3]};
-    output["camera0"]["distortion"] = {dist_0[0], dist_0[1], dist_0[2], dist_0[3]};
-
-    output["camera1"]["intrinsics"] = {intrinsic_1[0], intrinsic_1[1], intrinsic_1[2], intrinsic_1[3]};
-    output["camera1"]["distortion"] = {dist_1[0], dist_1[1], dist_1[2], dist_1[3]};
-
-    output["camera2"]["intrinsics"] = {intrinsic_2[0], intrinsic_2[1], intrinsic_2[2], intrinsic_2[3]};
-    output["camera2"]["distortion"] = {dist_2[0], dist_2[1], dist_2[2], dist_2[3]};
-
-    // --- Target poses (in world frame) ---
-    for (size_t i = 0; i < target_poses.size(); ++i) {
-        const auto& tp = target_poses[i];
-        double timestamp = master_timestamps[i].timestamp_id; // assuming .timestamp exists
-
-        json pose;
-        pose["timestamp"]   = timestamp;
-        pose["quaternion"]  = {tp[0], tp[1], tp[2], tp[3]};
-        pose["translation"] = {tp[4], tp[5], tp[6]};
-        output["target_poses"].push_back(pose);
-    }
-
-    // --- Inter-Camera Transforms (still valid) ---
-    output["inter_camera"]["camera1_to_camera0"]["quaternion"]         = {qvec_cam_1[0], qvec_cam_1[1], qvec_cam_1[2], qvec_cam_1[3]};
-    output["inter_camera"]["camera1_to_camera0"]["translation_vector"] = {tvec_cam_1[0], tvec_cam_1[1], tvec_cam_1[2]};
-
-    output["inter_camera"]["camera2_to_camera0"]["quaternion"]         = {qvec_cam_2[0], qvec_cam_2[1], qvec_cam_2[2], qvec_cam_2[3]};
-    output["inter_camera"]["camera2_to_camera0"]["translation_vector"] = {tvec_cam_2[0], tvec_cam_2[1], tvec_cam_2[2]};
-
-    // --- Write to file ---
-    std::ofstream ofs("/home/jake/calibration_w_eigen/calibration_output.json");
-    ofs << std::setw(4) << output << std::endl;
-    std::cout << "Saved calibration results to calibration_output.json" << std::endl;
-}
 
 
 
@@ -1571,121 +1643,123 @@ int main(int argc, char** argv) {
 
     // --- Step 1: Camera->Target extrinsics are already computed as extrinsics_0,1,2 ---
 
-    // // --- Step 2: Estimate inter-camera transforms ---
-    // std::vector<Eigen::Matrix4d> cam0_to_cam1_list, cam1_to_cam2_list;
+    // --- Step 2: Estimate inter-camera transforms ---
+    std::vector<Eigen::Matrix4d> cam0_to_cam1_list, cam1_to_cam2_list;
 
-    // // For frames where cam0 and cam1 both saw the board
-    // for (size_t i = 0; i < master_timestamps.size(); ++i) {
-    //     const auto& entry = master_timestamps[i];
-    //     if (entry.cam0_idx != -1 && entry.cam1_idx != -1) {
-    //         Eigen::Matrix4d T_t_in_c0 = arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]); // target in cam0
-    //         Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]); // target in cam1
-    //         Eigen::Matrix4d T_c1_in_c0 = T_t_in_c0 * T_t_in_c1.inverse();
-    //         cam0_to_cam1_list.push_back(T_c1_in_c0);
-    //     }
-    // }
-
-    // // Average these
-    // Eigen::Matrix4d cam1_in_cam0 = averagePoses(cam0_to_cam1_list);
-
-    // // For frames where cam1 and cam2 both saw the board
-    // for (size_t i = 0; i < master_timestamps.size(); ++i) {
-    //     const auto& entry = master_timestamps[i];
-    //     if (entry.cam1_idx != -1 && entry.cam2_idx != -1) {
-    //         Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-    //         Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-    //         Eigen::Matrix4d T_c2_in_c1 = T_t_in_c1 * T_t_in_c2.inverse();
-    //         cam1_to_cam2_list.push_back(T_c2_in_c1);
-    //     }
-    // }
-
-    // Eigen::Matrix4d cam2_in_cam1 = averagePoses(cam1_to_cam2_list);
-    // Eigen::Matrix4d cam2_in_cam0 = cam1_in_cam0 * cam2_in_cam1;
-
-    // // --- Step 3: Build target poses in cam0 frame ---
-    // std::vector<std::array<double,7>> target_poses;
-    // target_poses.reserve(master_timestamps.size());
-
-    // for (const auto& entry : master_timestamps) {
-    //     std::vector<Eigen::Matrix4d> estimates;
-
-    //     if (entry.cam0_idx != -1) {
-    //         estimates.push_back(arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]));
-    //     }
-    //     if (entry.cam1_idx != -1) {
-    //         Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-    //         estimates.push_back(cam1_in_cam0 * T_t_in_c1);
-    //     }
-    //     if (entry.cam2_idx != -1) {
-    //         Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-    //         estimates.push_back(cam2_in_cam0 * T_t_in_c2);
-    //     }
-
-    //     if (!estimates.empty()) {
-    //         Eigen::Matrix4d T_avg = averagePoses(estimates);
-    //         target_poses.push_back(matrixToArrayPose(T_avg));
-    //     } else {
-    //         // fallback: identity
-    //         target_poses.push_back({1.0,0.0,0.0,0.0,0.0,0.0,0.0});
-    //     }
-    // }
-
-    // // --- If qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are declared later in main
-    // //     (as in your existing main), reconstruct any target_poses that were bootstrapped
-    // //     from camera1/camera2 using the real initial cam transforms now that those
-    // //     variables exist. This keeps the paste-drop safe and produces correct bootstrapping.
-    // //
-    // // Rebuild cam transforms from the actual user variables (overwrite temporaries):
-    // {
-    //     // Build real cam1_in_cam0 and cam2_in_cam0 using the variables you define later.
-    //     // If those variables are located after this insertion point, move this small block
-    //     // to just after you call ceres::AngleAxisToQuaternion(...) for cam1 and cam2.
-    //     Eigen::Matrix4d cam1_in_cam0 = Eigen::Matrix4d::Identity();
-    //     Eigen::Matrix4d cam2_in_cam0 = Eigen::Matrix4d::Identity();
-
-    //     // Only build if qvec_cam_1 and tvec_cam_1 are in scope (they are later in your main).
-    //     // To be safe, check symbol existence at compile time isn't possible here; simply
-    //     // re-run this population after qvec_cam_1/tvec_cam_1 are assigned in your main
-    //     // (move these three lines down if needed).
-    //     // Example (if in scope):
-    //     // cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
-    //     // cam2_in_cam0 = quatTransToMatrix(qvec_cam_2, tvec_cam_2);
-
-    //     // Now, **recompute** any target_poses that were created from extrinsics_1/extrinsics_2
-    //     for (size_t i = 0; i < master_timestamps.size(); ++i) {
-    //         const auto &entry = master_timestamps[i];
-    //         if (entry.cam0_idx != -1) continue; // already a cam0 measurement, keep it
-
-    //         if (entry.cam1_idx != -1) {
-    //             // recompute using cam1_in_cam0 (if cam1_in_cam0 is identity because you left it,
-    //             // result is same as before)
-    //             Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-    //             Eigen::Matrix4d T_target_in_cam0 = cam1_in_cam0 * T_target_in_cam1;
-    //             target_poses[i] = matrixToArrayPose(T_target_in_cam0);
-
-    //         } else if (entry.cam2_idx != -1) {
-    //             Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-    //             Eigen::Matrix4d T_target_in_cam0 = cam2_in_cam0 * T_target_in_cam2;
-    //             target_poses[i] = matrixToArrayPose(T_target_in_cam0);
-    //         }
-    //     }
-    // }
-    std::vector<std::array<double,7>> target_poses;
-    std::vector<double> timestamps;
-    if (LoadTargetPosesFromJson("/home/jake/calibration_w_python/synthetic_calibration.json", target_poses, &timestamps)) {
-        std::cout << "Loaded " << target_poses.size() << " target poses from JSON\n";
-        // If you need them as Eigen matrices
-        std::vector<Eigen::Matrix4d> target_mats;
-        target_mats.reserve(target_poses.size());
-        for (const auto& a : target_poses) {
-            target_mats.push_back(quatTransToMatrixLoaded(a));
+    // For frames where cam0 and cam1 both saw the board
+    for (size_t i = 0; i < master_timestamps.size(); ++i) {
+        const auto& entry = master_timestamps[i];
+        if (entry.cam0_idx != -1 && entry.cam1_idx != -1) {
+            Eigen::Matrix4d T_t_in_c0 = arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]); // target in cam0
+            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]); // target in cam1
+            Eigen::Matrix4d T_c1_in_c0 = T_t_in_c0 * T_t_in_c1.inverse();
+            cam0_to_cam1_list.push_back(T_c1_in_c0);
         }
-        // Now use target_poses (vector of arrays) and target_mats directly in subsequent code,
-        // bypassing the earlier "estimate inter-camera and average" logic.
-    } else {
-        std::cerr << "Failed to load simulated poses; falling back to estimation path\n";
-        // keep your original estimation code here
     }
+
+    // Average these
+    Eigen::Matrix4d cam1_in_cam0 = averagePoses(cam0_to_cam1_list);
+
+    // For frames where cam1 and cam2 both saw the board
+    for (size_t i = 0; i < master_timestamps.size(); ++i) {
+        const auto& entry = master_timestamps[i];
+        if (entry.cam1_idx != -1 && entry.cam2_idx != -1) {
+            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+            Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+            Eigen::Matrix4d T_c2_in_c1 = T_t_in_c1 * T_t_in_c2.inverse();
+            cam1_to_cam2_list.push_back(T_c2_in_c1);
+        }
+    }
+
+    Eigen::Matrix4d cam2_in_cam1 = averagePoses(cam1_to_cam2_list);
+    Eigen::Matrix4d cam2_in_cam0 = cam1_in_cam0 * cam2_in_cam1;
+
+    // --- Step 3: Build target poses in cam0 frame ---
+    std::vector<std::array<double,7>> target_poses;
+    target_poses.reserve(master_timestamps.size());
+
+    for (const auto& entry : master_timestamps) {
+        std::vector<Eigen::Matrix4d> estimates;
+
+        if (entry.cam0_idx != -1) {
+            estimates.push_back(arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]));
+        }
+        if (entry.cam1_idx != -1) {
+            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+            estimates.push_back(cam1_in_cam0 * T_t_in_c1);
+        }
+        if (entry.cam2_idx != -1) {
+            Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+            estimates.push_back(cam2_in_cam0 * T_t_in_c2);
+        }
+
+        if (!estimates.empty()) {
+            Eigen::Matrix4d T_avg = averagePoses(estimates);
+            target_poses.push_back(matrixToArrayPose(T_avg));
+        } else {
+            // fallback: identity
+            target_poses.push_back({1.0,0.0,0.0,0.0,0.0,0.0,0.0});
+        }
+    }
+
+    // --- If qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are declared later in main
+    //     (as in your existing main), reconstruct any target_poses that were bootstrapped
+    //     from camera1/camera2 using the real initial cam transforms now that those
+    //     variables exist. This keeps the paste-drop safe and produces correct bootstrapping.
+    //
+    // Rebuild cam transforms from the actual user variables (overwrite temporaries):
+    {
+        // Build real cam1_in_cam0 and cam2_in_cam0 using the variables you define later.
+        // If those variables are located after this insertion point, move this small block
+        // to just after you call ceres::AngleAxisToQuaternion(...) for cam1 and cam2.
+        Eigen::Matrix4d cam1_in_cam0 = Eigen::Matrix4d::Identity();
+        Eigen::Matrix4d cam2_in_cam0 = Eigen::Matrix4d::Identity();
+
+        // Only build if qvec_cam_1 and tvec_cam_1 are in scope (they are later in your main).
+        // To be safe, check symbol existence at compile time isn't possible here; simply
+        // re-run this population after qvec_cam_1/tvec_cam_1 are assigned in your main
+        // (move these three lines down if needed).
+        // Example (if in scope):
+        // cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
+        // cam2_in_cam0 = quatTransToMatrix(qvec_cam_2, tvec_cam_2);
+
+        // Now, **recompute** any target_poses that were created from extrinsics_1/extrinsics_2
+        for (size_t i = 0; i < master_timestamps.size(); ++i) {
+            const auto &entry = master_timestamps[i];
+            if (entry.cam0_idx != -1) continue; // already a cam0 measurement, keep it
+
+            if (entry.cam1_idx != -1) {
+                // recompute using cam1_in_cam0 (if cam1_in_cam0 is identity because you left it,
+                // result is same as before)
+                Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+                Eigen::Matrix4d T_target_in_cam0 = cam1_in_cam0 * T_target_in_cam1;
+                target_poses[i] = matrixToArrayPose(T_target_in_cam0);
+
+            } else if (entry.cam2_idx != -1) {
+                Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+                Eigen::Matrix4d T_target_in_cam0 = cam2_in_cam0 * T_target_in_cam2;
+                target_poses[i] = matrixToArrayPose(T_target_in_cam0);
+            }
+        }
+    }
+
+    // //Load known simulated target poses from JSON
+    // std::vector<std::array<double,7>> target_poses;
+    // std::vector<double> timestamps;
+    // if (LoadTargetPosesFromJson("/home/jake/calibration_w_python/synthetic_calibration.json", target_poses, &timestamps)) {
+    //     std::cout << "Loaded " << target_poses.size() << " target poses from JSON\n";
+    //     // If you need them as Eigen matrices
+    //     std::vector<Eigen::Matrix4d> target_mats;
+    //     target_mats.reserve(target_poses.size());
+    //     for (const auto& a : target_poses) {
+    //         target_mats.push_back(quatTransToMatrixLoaded(a));
+    //     }
+    //     // Now use target_poses (vector of arrays) and target_mats directly in subsequent code,
+    //     // bypassing the earlier "estimate inter-camera and average" logic.
+    // } else {
+    //     std::cerr << "Failed to load simulated poses; falling back to estimation path\n";
+    //     // keep your original estimation code here
+    // }
 
     //output target poses for verification
     for (size_t i = 0; i < target_poses.size(); ++i) {
@@ -1734,7 +1808,8 @@ int main(int argc, char** argv) {
     std::vector<double> timestamps_2_d(filtered_timestamp_list_2.begin(), filtered_timestamp_list_2.end());
 
     
-    SaveCalibrationResult(intrinsic_0, dist_0,
+    SaveCalibrationResult("calibration_result_final.json",
+        intrinsic_0, dist_0,
         intrinsic_1, dist_1,
         intrinsic_2, dist_2,
         qvec_cam_1, tvec_cam_1,

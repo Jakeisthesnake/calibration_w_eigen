@@ -23,7 +23,8 @@ Todo
   -  check that make frames is doing what it is supposed to be doing
   - why am i seeing frames with no data in vizualization? DONE
   - Now figure out how to show data when there are less than 10 points
-  - 10/7 Is it bad if the rotation matirx is the transpose? DONE
+  - 10/7 Is it bad if the rotation matirx is the transpose? DONE (yes - it was bad)
+  - 10/9 Maybe vizualize each step of optimization? 
 - Fix distortion wrap around checking in simulator, visuzlizer and calibrator
 - get very low error initializing with intrinsics used to generate data
 - get low error initializing close, but not exactly the intriniscs used to gerenate data
