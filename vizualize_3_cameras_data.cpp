@@ -1180,7 +1180,7 @@ void VisualizeStereoReprojectionTuner(
         // Poses
         Eigen::Matrix3d R0 = R_from_rpy(Eigen::Vector3d(b_r, b_p, b_y));
         //print out matrix
-        std::cout << "R0:\n" << R0 << std::endl;
+        // std::cout << "R0:\n" << R0 << std::endl;
         Eigen::Vector3d t0(b_tx, b_ty, b_tz);
 
         Eigen::Matrix3d R10 = R_from_rpy(Eigen::Vector3d(c10_r, c10_p, c10_y));

@@ -24,7 +24,11 @@ Todo
   - why am i seeing frames with no data in vizualization? DONE
   - Now figure out how to show data when there are less than 10 points
   - 10/7 Is it bad if the rotation matirx is the transpose? DONE (yes - it was bad)
-  - 10/9 Maybe vizualize each step of optimization? 
+  - 10/9 Maybe vizualize each step of optimization? DONE
+  - 10/14 Understand optimization... and why it doesn't seem to be happy...
+  - 10/14 Mayb optimize for a single frame and then add other frames in?...
+  - 10/14 save homography generated priors and then optime for one frame, the 2 etc until it bugs out
+    -`10/21 figure out why a single frame doesn't get it dead on
 - Fix distortion wrap around checking in simulator, visuzlizer and calibrator
 - get very low error initializing with intrinsics used to generate data
 - get low error initializing close, but not exactly the intriniscs used to gerenate data

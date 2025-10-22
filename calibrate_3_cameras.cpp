@@ -1040,6 +1040,20 @@ void OptimizeFishEyeParameters(
     const std::vector<TimestampEntry>& master_timestamps
 )
 {
+    //print out all arguments
+    std::cout << "Starting optimization with parameters:" << std::endl;
+    std::cout << "Intrinsic 0: " << intrinsic_0[0] << ", " << intrinsic_0[1] << ", " << intrinsic_0[2] << ", " << intrinsic_0[3] << std::endl;
+    std::cout << "Distortion 0: " << dist_0[0] << ", " << dist_0[1] << ", " << dist_0[2] << ", " << dist_0[3] << std::endl;
+    std::cout << "Intrinsic 1: " << intrinsic_1[0] << ", " << intrinsic_1[1] << ", " << intrinsic_1[2] << ", " << intrinsic_1[3] << std::endl;
+    std::cout << "Distortion 1: " << dist_1[0] << ", " << dist_1[1] << ", " << dist_1[2] << ", " << dist_1[3] << std::endl;
+    std::cout << "Intrinsic 2: " << intrinsic_2[0] << ", " << intrinsic_2[1] << ", " << intrinsic_2[2] << ", " << intrinsic_2[3] << std::endl;
+    std::cout << "Distortion 2: " << dist_2[0] << ", " << dist_2[1] << ", " << dist_2[2] << ", " << dist_2[3] << std::endl;
+    std::cout << "qvec_cam_1: " << qvec_cam_1[0] << ", " << qvec_cam_1[1] << ", " << qvec_cam_1[2] << ", " << qvec_cam_1[3] << std::endl;
+    std::cout << "tvec_cam_1: " << tvec_cam_1[0] << ", " << tvec_cam_1[1] << ", " << tvec_cam_1[2] << std::endl;
+    std::cout << "qvec_cam_2: " << qvec_cam_2[0] << ", " << qvec_cam_2[1] << ", " << qvec_cam_2[2] << ", " << qvec_cam_2[3] << std::endl;
+    std::cout << "tvec_cam_2: " << tvec_cam_2[0] << ", " << tvec_cam_2[1] << ", " << tvec_cam_2[2] << std::endl;
+    std::cout << "Number of target poses: " << target_poses.size() << std::endl;
+    std::cout << "Number of master timestamps: " << master_timestamps.size() << std::endl;
     ceres::Problem problem;
 
     // Bookkeeping which target_poses entries correspond to at least one observation
@@ -1152,13 +1166,23 @@ void OptimizeFishEyeParameters(
     // }
 
     // === Set quaternion manifolds for target_poses and camera quaternions ===
+    // for (size_t i = 0; i < target_poses.size(); ++i) {
+    //     if (!target_pose_used[i]) continue; // only set manifold for used targets
+    //     problem.SetManifold(target_poses[i].data(), new ceres::EigenQuaternionManifold());
+    // }
+
+    // problem.SetManifold(qvec_cam_1, new ceres::EigenQuaternionManifold());
+    // problem.SetManifold(qvec_cam_2, new ceres::EigenQuaternionManifold());
     for (size_t i = 0; i < target_poses.size(); ++i) {
-        if (!target_pose_used[i]) continue; // only set manifold for used targets
-        problem.SetManifold(target_poses[i].data(), new ceres::EigenQuaternionManifold());
+        if (!target_pose_used[i]) continue;
+        problem.AddParameterBlock(target_poses[i].data(), 4, new ceres::EigenQuaternionManifold());
+        problem.AddParameterBlock(target_poses[i].data() + 4, 3);
     }
 
-    problem.SetManifold(qvec_cam_1, new ceres::EigenQuaternionManifold());
-    problem.SetManifold(qvec_cam_2, new ceres::EigenQuaternionManifold());
+    problem.AddParameterBlock(qvec_cam_1, 4, new ceres::EigenQuaternionManifold());
+    problem.AddParameterBlock(tvec_cam_1, 3);
+    problem.AddParameterBlock(qvec_cam_2, 4, new ceres::EigenQuaternionManifold());
+    problem.AddParameterBlock(tvec_cam_2, 3);
 
     // Normalize initial quaternions for target_poses and cam quaternions
     for (auto &tp : target_poses) {
@@ -1433,16 +1457,13 @@ bool LoadTargetPosesFromJson(const std::string& filepath,
 
 
 int main(int argc, char** argv) {
-    std::cout << "Argument count (argc): " << argc << std::endl;
-    for (int i = 0; i < argc; ++i) {
-        std::cout << "argv[" << i << "]: " << argv[i] << std::endl;
-    }
-    if (argc < 2) {
-        std::cerr << "Usage: ./calibrate_fisheye_camera <data_file.csv>" << std::endl;
-        return -1;
-    }
+    // if (argc < 2) {
+    //     std::cerr << "Usage: ./calibrate_fisheye_camera <data_file.csv>" << std::endl;
+    //     return -1;
+    // }
 
     std::string data_file = argv[1];
+    std::string target_poses_file = argv[2];
 
     // Step 1: Load and process CSV data for all cameras
     auto [obj_pts_list_0, img_pts_list_0, corner_ids_list_0, timestamp_list_0] = processCSV(data_file, 0);
@@ -1641,125 +1662,125 @@ int main(int argc, char** argv) {
         return T_avg;
     };
 
-    // --- Step 1: Camera->Target extrinsics are already computed as extrinsics_0,1,2 ---
+    // // --- Step 1: Camera->Target extrinsics are already computed as extrinsics_0,1,2 ---
 
-    // --- Step 2: Estimate inter-camera transforms ---
-    std::vector<Eigen::Matrix4d> cam0_to_cam1_list, cam1_to_cam2_list;
+    // // --- Step 2: Estimate inter-camera transforms ---
+    // std::vector<Eigen::Matrix4d> cam0_to_cam1_list, cam1_to_cam2_list;
 
-    // For frames where cam0 and cam1 both saw the board
-    for (size_t i = 0; i < master_timestamps.size(); ++i) {
-        const auto& entry = master_timestamps[i];
-        if (entry.cam0_idx != -1 && entry.cam1_idx != -1) {
-            Eigen::Matrix4d T_t_in_c0 = arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]); // target in cam0
-            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]); // target in cam1
-            Eigen::Matrix4d T_c1_in_c0 = T_t_in_c0 * T_t_in_c1.inverse();
-            cam0_to_cam1_list.push_back(T_c1_in_c0);
-        }
-    }
-
-    // Average these
-    Eigen::Matrix4d cam1_in_cam0 = averagePoses(cam0_to_cam1_list);
-
-    // For frames where cam1 and cam2 both saw the board
-    for (size_t i = 0; i < master_timestamps.size(); ++i) {
-        const auto& entry = master_timestamps[i];
-        if (entry.cam1_idx != -1 && entry.cam2_idx != -1) {
-            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-            Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-            Eigen::Matrix4d T_c2_in_c1 = T_t_in_c1 * T_t_in_c2.inverse();
-            cam1_to_cam2_list.push_back(T_c2_in_c1);
-        }
-    }
-
-    Eigen::Matrix4d cam2_in_cam1 = averagePoses(cam1_to_cam2_list);
-    Eigen::Matrix4d cam2_in_cam0 = cam1_in_cam0 * cam2_in_cam1;
-
-    // --- Step 3: Build target poses in cam0 frame ---
-    std::vector<std::array<double,7>> target_poses;
-    target_poses.reserve(master_timestamps.size());
-
-    for (const auto& entry : master_timestamps) {
-        std::vector<Eigen::Matrix4d> estimates;
-
-        if (entry.cam0_idx != -1) {
-            estimates.push_back(arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]));
-        }
-        if (entry.cam1_idx != -1) {
-            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-            estimates.push_back(cam1_in_cam0 * T_t_in_c1);
-        }
-        if (entry.cam2_idx != -1) {
-            Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-            estimates.push_back(cam2_in_cam0 * T_t_in_c2);
-        }
-
-        if (!estimates.empty()) {
-            Eigen::Matrix4d T_avg = averagePoses(estimates);
-            target_poses.push_back(matrixToArrayPose(T_avg));
-        } else {
-            // fallback: identity
-            target_poses.push_back({1.0,0.0,0.0,0.0,0.0,0.0,0.0});
-        }
-    }
-
-    // --- If qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are declared later in main
-    //     (as in your existing main), reconstruct any target_poses that were bootstrapped
-    //     from camera1/camera2 using the real initial cam transforms now that those
-    //     variables exist. This keeps the paste-drop safe and produces correct bootstrapping.
-    //
-    // Rebuild cam transforms from the actual user variables (overwrite temporaries):
-    {
-        // Build real cam1_in_cam0 and cam2_in_cam0 using the variables you define later.
-        // If those variables are located after this insertion point, move this small block
-        // to just after you call ceres::AngleAxisToQuaternion(...) for cam1 and cam2.
-        Eigen::Matrix4d cam1_in_cam0 = Eigen::Matrix4d::Identity();
-        Eigen::Matrix4d cam2_in_cam0 = Eigen::Matrix4d::Identity();
-
-        // Only build if qvec_cam_1 and tvec_cam_1 are in scope (they are later in your main).
-        // To be safe, check symbol existence at compile time isn't possible here; simply
-        // re-run this population after qvec_cam_1/tvec_cam_1 are assigned in your main
-        // (move these three lines down if needed).
-        // Example (if in scope):
-        // cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
-        // cam2_in_cam0 = quatTransToMatrix(qvec_cam_2, tvec_cam_2);
-
-        // Now, **recompute** any target_poses that were created from extrinsics_1/extrinsics_2
-        for (size_t i = 0; i < master_timestamps.size(); ++i) {
-            const auto &entry = master_timestamps[i];
-            if (entry.cam0_idx != -1) continue; // already a cam0 measurement, keep it
-
-            if (entry.cam1_idx != -1) {
-                // recompute using cam1_in_cam0 (if cam1_in_cam0 is identity because you left it,
-                // result is same as before)
-                Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-                Eigen::Matrix4d T_target_in_cam0 = cam1_in_cam0 * T_target_in_cam1;
-                target_poses[i] = matrixToArrayPose(T_target_in_cam0);
-
-            } else if (entry.cam2_idx != -1) {
-                Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-                Eigen::Matrix4d T_target_in_cam0 = cam2_in_cam0 * T_target_in_cam2;
-                target_poses[i] = matrixToArrayPose(T_target_in_cam0);
-            }
-        }
-    }
-
-    // //Load known simulated target poses from JSON
-    // std::vector<std::array<double,7>> target_poses;
-    // std::vector<double> timestamps;
-    // if (LoadTargetPosesFromJson("/home/jake/calibration_w_python/synthetic_calibration.json", target_poses, &timestamps)) {
-    //     std::cout << "Loaded " << target_poses.size() << " target poses from JSON\n";
-    //     // If you need them as Eigen matrices
-    //     std::vector<Eigen::Matrix4d> target_mats;
-    //     target_mats.reserve(target_poses.size());
-    //     for (const auto& a : target_poses) {
-    //         target_mats.push_back(quatTransToMatrixLoaded(a));
+    // // For frames where cam0 and cam1 both saw the board
+    // for (size_t i = 0; i < master_timestamps.size(); ++i) {
+    //     const auto& entry = master_timestamps[i];
+    //     if (entry.cam0_idx != -1 && entry.cam1_idx != -1) {
+    //         Eigen::Matrix4d T_t_in_c0 = arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]); // target in cam0
+    //         Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]); // target in cam1
+    //         Eigen::Matrix4d T_c1_in_c0 = T_t_in_c0 * T_t_in_c1.inverse();
+    //         cam0_to_cam1_list.push_back(T_c1_in_c0);
     //     }
-    //     // Now use target_poses (vector of arrays) and target_mats directly in subsequent code,
-    //     // bypassing the earlier "estimate inter-camera and average" logic.
-    // } else {
-    //     std::cerr << "Failed to load simulated poses; falling back to estimation path\n";
-    //     // keep your original estimation code here
     // }
+
+    // // Average these
+    // Eigen::Matrix4d cam1_in_cam0 = averagePoses(cam0_to_cam1_list);
+
+    // // For frames where cam1 and cam2 both saw the board
+    // for (size_t i = 0; i < master_timestamps.size(); ++i) {
+    //     const auto& entry = master_timestamps[i];
+    //     if (entry.cam1_idx != -1 && entry.cam2_idx != -1) {
+    //         Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+    //         Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+    //         Eigen::Matrix4d T_c2_in_c1 = T_t_in_c1 * T_t_in_c2.inverse();
+    //         cam1_to_cam2_list.push_back(T_c2_in_c1);
+    //     }
+    // }
+
+    // Eigen::Matrix4d cam2_in_cam1 = averagePoses(cam1_to_cam2_list);
+    // Eigen::Matrix4d cam2_in_cam0 = cam1_in_cam0 * cam2_in_cam1;
+
+    // // --- Step 3: Build target poses in cam0 frame ---
+    // std::vector<std::array<double,7>> target_poses;
+    // target_poses.reserve(master_timestamps.size());
+
+    // for (const auto& entry : master_timestamps) {
+    //     std::vector<Eigen::Matrix4d> estimates;
+
+    //     if (entry.cam0_idx != -1) {
+    //         estimates.push_back(arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]));
+    //     }
+    //     if (entry.cam1_idx != -1) {
+    //         Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+    //         estimates.push_back(cam1_in_cam0 * T_t_in_c1);
+    //     }
+    //     if (entry.cam2_idx != -1) {
+    //         Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+    //         estimates.push_back(cam2_in_cam0 * T_t_in_c2);
+    //     }
+
+    //     if (!estimates.empty()) {
+    //         Eigen::Matrix4d T_avg = averagePoses(estimates);
+    //         target_poses.push_back(matrixToArrayPose(T_avg));
+    //     } else {
+    //         // fallback: identity
+    //         target_poses.push_back({1.0,0.0,0.0,0.0,0.0,0.0,0.0});
+    //     }
+    // }
+
+    // // --- If qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are declared later in main
+    // //     (as in your existing main), reconstruct any target_poses that were bootstrapped
+    // //     from camera1/camera2 using the real initial cam transforms now that those
+    // //     variables exist. This keeps the paste-drop safe and produces correct bootstrapping.
+    // //
+    // // Rebuild cam transforms from the actual user variables (overwrite temporaries):
+    // {
+    //     // Build real cam1_in_cam0 and cam2_in_cam0 using the variables you define later.
+    //     // If those variables are located after this insertion point, move this small block
+    //     // to just after you call ceres::AngleAxisToQuaternion(...) for cam1 and cam2.
+    //     Eigen::Matrix4d cam1_in_cam0 = Eigen::Matrix4d::Identity();
+    //     Eigen::Matrix4d cam2_in_cam0 = Eigen::Matrix4d::Identity();
+
+    //     // Only build if qvec_cam_1 and tvec_cam_1 are in scope (they are later in your main).
+    //     // To be safe, check symbol existence at compile time isn't possible here; simply
+    //     // re-run this population after qvec_cam_1/tvec_cam_1 are assigned in your main
+    //     // (move these three lines down if needed).
+    //     // Example (if in scope):
+    //     // cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
+    //     // cam2_in_cam0 = quatTransToMatrix(qvec_cam_2, tvec_cam_2);
+
+    //     // Now, **recompute** any target_poses that were created from extrinsics_1/extrinsics_2
+    //     for (size_t i = 0; i < master_timestamps.size(); ++i) {
+    //         const auto &entry = master_timestamps[i];
+    //         if (entry.cam0_idx != -1) continue; // already a cam0 measurement, keep it
+
+    //         if (entry.cam1_idx != -1) {
+    //             // recompute using cam1_in_cam0 (if cam1_in_cam0 is identity because you left it,
+    //             // result is same as before)
+    //             Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+    //             Eigen::Matrix4d T_target_in_cam0 = cam1_in_cam0 * T_target_in_cam1;
+    //             target_poses[i] = matrixToArrayPose(T_target_in_cam0);
+
+    //         } else if (entry.cam2_idx != -1) {
+    //             Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+    //             Eigen::Matrix4d T_target_in_cam0 = cam2_in_cam0 * T_target_in_cam2;
+    //             target_poses[i] = matrixToArrayPose(T_target_in_cam0);
+    //         }
+    //     }
+    // }
+
+    //Load known simulated target poses from JSON
+    std::vector<std::array<double,7>> target_poses;
+    std::vector<double> timestamps;
+    if (LoadTargetPosesFromJson(target_poses_file, target_poses, &timestamps)) {
+        std::cout << "Loaded " << target_poses.size() << " target poses from JSON\n";
+        // If you need them as Eigen matrices
+        std::vector<Eigen::Matrix4d> target_mats;
+        target_mats.reserve(target_poses.size());
+        for (const auto& a : target_poses) {
+            target_mats.push_back(quatTransToMatrixLoaded(a));
+        }
+        // Now use target_poses (vector of arrays) and target_mats directly in subsequent code,
+        // bypassing the earlier "estimate inter-camera and average" logic.
+    } else {
+        std::cerr << "Failed to load simulated poses; falling back to estimation path\n";
+        // keep your original estimation code here
+    }
 
     //output target poses for verification
     for (size_t i = 0; i < target_poses.size(); ++i) {
@@ -1785,6 +1806,16 @@ int main(int argc, char** argv) {
     // Debug print (optional)
     std::cout << "Initialized " << target_poses.size() << " target_poses (in cam0 frame)." << std::endl;
 
+
+    SaveCalibrationResult("calibration_result_initial.json",
+        intrinsic_0, dist_0,
+        intrinsic_1, dist_1,
+        intrinsic_2, dist_2,
+        qvec_cam_1, tvec_cam_1,
+        qvec_cam_2, tvec_cam_2,
+        target_poses, master_timestamps
+    );
+
     // --- END: single-target-pose initialization --------------------------------
 
 
@@ -1808,7 +1839,7 @@ int main(int argc, char** argv) {
     std::vector<double> timestamps_2_d(filtered_timestamp_list_2.begin(), filtered_timestamp_list_2.end());
 
     
-    SaveCalibrationResult("calibration_result_final.json",
+    SaveCalibrationResult("/home/jake/calibration_w_eigen/calibration_result_final.json",
         intrinsic_0, dist_0,
         intrinsic_1, dist_1,
         intrinsic_2, dist_2,
