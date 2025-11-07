@@ -797,6 +797,23 @@ struct FisheyeReproj_TargetInCam0 {
                     const T* cam_t,     // tx,ty,tz of camX_in_cam0 (size 3)
                     T* residuals) const
     {
+        // //outout all arguments for debugging
+        // std::cout << "intrinsic: " << intrinsic[0] << ", " << intrinsic[1] << ", "
+        //           << intrinsic[2] << ", " << intrinsic[3] << std::endl;
+        // std::cout << "dist: " << dist[0] << ", " << dist[1] << ", "
+        //           << dist[2] << ", " << dist[3] << std::endl;
+        // std::cout << "target_q: " << target_q[0] << ", " << target_q[1] << ", "
+        //           << target_q[2] << ", " << target_q[3] << std::endl;
+        // std::cout << "target_t: " << target_t[0] << ", " << target_t[1] << ", "
+        //           << target_t[2] << std::endl;
+        // std::cout << "cam_q: " << cam_q[0] << ", " << cam_q[1] << ", "
+        //           << cam_q[2] << ", " << cam_q[3] << std::endl;
+        // std::cout << "cam_t: " << cam_t[0] << ", " << cam_t[1] << ", "
+        //           <<    cam_t[2] << std::endl;  
+        // //output variables for debugging
+        // std::cout << "obj_pt_: " << obj_pt_(0) << ", " << obj_pt_(1) << ", "
+        //           << obj_pt_(2) << std::endl;
+        // std::cout << "measured_px_: " << measured_px_(0) << ", " << measured_px_(1) << std::endl;
         // 1) compute 3D point in cam0: X_cam0 = R(target_q) * obj_pt + target_t
         T P_obj[3];
         P_obj[0] = T(obj_pt_(0));
@@ -858,6 +875,7 @@ struct FisheyeReproj_TargetInCam0 {
 
         residuals[0] = u - T(measured_px_(0));
         residuals[1] = v - T(measured_px_(1));
+        // std::cout << "residuals (internal): " << residuals[0] << ", " << residuals[1] << std::endl;
         return true;
     }
 
@@ -925,7 +943,9 @@ void SaveCalibrationResult(
     const double qvec_cam_2[4], const double tvec_cam_2[3],
 
     const std::vector<std::array<double, 7>>& target_poses, // target→world
-    const std::vector<TimestampEntry>& master_timestamps
+    const std::vector<TimestampEntry>& master_timestamps,
+
+    const std::vector<double>& frame_errors = {} // optional, length = N*3
 ) {
     json output;
 
@@ -958,65 +978,253 @@ void SaveCalibrationResult(
     output["inter_camera"]["camera2_to_camera0"]["quaternion"]         = {qvec_cam_2[0], qvec_cam_2[1], qvec_cam_2[2], qvec_cam_2[3]};
     output["inter_camera"]["camera2_to_camera0"]["translation_vector"] = {tvec_cam_2[0], tvec_cam_2[1], tvec_cam_2[2]};
 
+    // --- Optional per-frame per-camera errors ---
+    if (!frame_errors.empty()) {
+        size_t N = master_timestamps.size();
+        if (frame_errors.size() != N * 3) {
+            std::cerr << "[SaveCalibrationResult] ERROR: frame_errors must be empty or size == timestamps*3 ("
+                      << frame_errors.size() << " vs " << (N * 3) << ")\n";
+        } else {
+            for (size_t i = 0; i < N; ++i) {
+                json err;
+                err["cam0"] = frame_errors[i * 3 + 0];
+                err["cam1"] = frame_errors[i * 3 + 1];
+                err["cam2"] = frame_errors[i * 3 + 2];
+                output["frame_errors"].push_back(err);
+            }
+        }
+    }
+
     // --- Write to file ---
     std::ofstream ofs(filename);
     ofs << std::setw(4) << output << std::endl;
     std::cout << "Saved calibration results to " << filename << std::endl;
 }
 
-class SaveIterationCallback : public ceres::IterationCallback {
+// struct SaveIterationCallback : public ceres::IterationCallback {
+//     const double* intrinsic_0;
+//     const double* dist_0;
+//     const double* intrinsic_1;
+//     const double* dist_1;
+//     const double* intrinsic_2;
+//     const double* dist_2;
+//     const double* qvec_cam_1;
+//     const double* tvec_cam_1;
+//     const double* qvec_cam_2;
+//     const double* tvec_cam_2;
+//     const std::vector<std::array<double, 7>>* target_poses;
+//     const std::vector<TimestampEntry>* master_timestamps;
+//     const std::string output_dir;
+//     ceres::Problem* problem; // add this!
+
+//     SaveIterationCallback(
+//         const double* intrinsic_0, const double* dist_0,
+//         const double* intrinsic_1, const double* dist_1,
+//         const double* intrinsic_2, const double* dist_2,
+//         const double* qvec_cam_1, const double* tvec_cam_1,
+//         const double* qvec_cam_2, const double* tvec_cam_2,
+//         const std::vector<std::array<double, 7>>* target_poses,
+//         const std::vector<TimestampEntry>* master_timestamps,
+//         const std::string& output_dir,
+//         ceres::Problem* problem)
+//         : intrinsic_0(intrinsic_0), dist_0(dist_0),
+//           intrinsic_1(intrinsic_1), dist_1(dist_1),
+//           intrinsic_2(intrinsic_2), dist_2(dist_2),
+//           qvec_cam_1(qvec_cam_1), tvec_cam_1(tvec_cam_1),
+//           qvec_cam_2(qvec_cam_2), tvec_cam_2(tvec_cam_2),
+//           target_poses(target_poses), master_timestamps(master_timestamps),
+//           output_dir(output_dir), problem(problem) {}
+
+//     ceres::CallbackReturnType operator()(const ceres::IterationSummary& summary) override {
+//         std::string filename = output_dir + "/calibration_iter_" + std::to_string(summary.iteration) + ".json";
+
+//         // Save camera parameters
+//         SaveCalibrationResult(
+//             filename,
+//             intrinsic_0, dist_0,
+//             intrinsic_1, dist_1,
+//             intrinsic_2, dist_2,
+//             qvec_cam_1, tvec_cam_1,
+//             qvec_cam_2, tvec_cam_2,
+//             *target_poses, *master_timestamps
+//         );
+
+//         // --- Evaluate residuals ---
+//         ceres::Problem::EvaluateOptions eval_opts;
+//         eval_opts.apply_loss_function = true;
+//         std::vector<double> residuals;
+//         double cost = 0.0;
+//         problem->Evaluate(eval_opts, &cost, &residuals, nullptr, nullptr);
+
+//         // Save residuals to a file
+//         std::string res_file = output_dir + "/residuals_iter_" + std::to_string(summary.iteration) + ".txt";
+//         std::ofstream fout(res_file);
+//         for (double r : residuals)
+//             fout << r << "\n";
+//         fout.close();
+
+//         return ceres::SOLVER_CONTINUE;
+//     }
+// };
+
+class ResidualEvalCallback : public ceres::IterationCallback {
 public:
-    // References to the variables to be saved
-    const double* intrinsic_0;
-    const double* dist_0;
-    const double* intrinsic_1;
-    const double* dist_1;
-    const double* intrinsic_2;
-    const double* dist_2;
-
-    const double* qvec_cam_1;
-    const double* tvec_cam_1;
-    const double* qvec_cam_2;
-    const double* tvec_cam_2;
-
-    const std::vector<std::array<double, 7>>* target_poses;
-    const std::vector<TimestampEntry>* master_timestamps;
-
-    std::string output_dir;
-
-    SaveIterationCallback(
-        const double* intrinsic_0, const double* dist_0,
-        const double* intrinsic_1, const double* dist_1,
-        const double* intrinsic_2, const double* dist_2,
-        const double* qvec_cam_1, const double* tvec_cam_1,
-        const double* qvec_cam_2, const double* tvec_cam_2,
-        const std::vector<std::array<double, 7>>* target_poses,
-        const std::vector<TimestampEntry>* master_timestamps,
-        const std::string& output_dir)
-        : intrinsic_0(intrinsic_0), dist_0(dist_0),
-          intrinsic_1(intrinsic_1), dist_1(dist_1),
-          intrinsic_2(intrinsic_2), dist_2(dist_2),
-          qvec_cam_1(qvec_cam_1), tvec_cam_1(tvec_cam_1),
-          qvec_cam_2(qvec_cam_2), tvec_cam_2(tvec_cam_2),
-          target_poses(target_poses), master_timestamps(master_timestamps),
-          output_dir(output_dir) {}
+    ResidualEvalCallback(
+        const std::vector<std::vector<Eigen::Vector2d>>& img_pts_0,
+        const std::vector<std::vector<Eigen::Vector3d>>& obj_pts_0,
+        const std::vector<std::vector<Eigen::Vector2d>>& img_pts_1,
+        const std::vector<std::vector<Eigen::Vector3d>>& obj_pts_1,
+        const std::vector<std::vector<Eigen::Vector2d>>& img_pts_2,
+        const std::vector<std::vector<Eigen::Vector3d>>& obj_pts_2,
+        const std::vector<TimestampEntry>& master_timestamps,
+        std::vector<std::array<double,7>>* target_poses,
+        double* intrinsic_0, double* dist_0,
+        double* intrinsic_1, double* dist_1,
+        double* intrinsic_2, double* dist_2,
+        double* qvec_cam_1, double* tvec_cam_1,
+        double* qvec_cam_2, double* tvec_cam_2,
+        std::string log_dir)
+        : img_pts_0_(img_pts_0), obj_pts_0_(obj_pts_0),
+          img_pts_1_(img_pts_1), obj_pts_1_(obj_pts_1),
+          img_pts_2_(img_pts_2), obj_pts_2_(obj_pts_2),
+          master_timestamps_(master_timestamps),
+          target_poses_(*target_poses),
+          intrinsic_0_(intrinsic_0), dist_0_(dist_0),
+          intrinsic_1_(intrinsic_1), dist_1_(dist_1),
+          intrinsic_2_(intrinsic_2), dist_2_(dist_2),
+          qvec_cam_1_(qvec_cam_1), tvec_cam_1_(tvec_cam_1),
+          qvec_cam_2_(qvec_cam_2), tvec_cam_2_(tvec_cam_2),
+          log_dir_(std::move(log_dir))
+    {
+        std::filesystem::create_directories(log_dir_);
+    }
 
     ceres::CallbackReturnType operator()(const ceres::IterationSummary& summary) override {
-        std::string filename = output_dir + "/calibration_iter_" + std::to_string(summary.iteration) + ".json";
+        double total_sq_err = 0.0;
+        int total_pts = 0;
+
+        std::ofstream out(log_dir_ + "/iter_" + std::to_string(summary.iteration) + ".csv");
+        out << "cam,frame,point,res_u,res_v,res_norm\n";
+
+        static const double cam0_q[4] = {1,0,0,0};
+        static const double cam0_t[3] = {0,0,0};
+
+        // Per-frame, per-camera error accumulator (N frames × 3 cameras)
+        const size_t N = master_timestamps_.size();
+        std::vector<double> frame_errors(N * 3, 0.0);
+
+        for (size_t idx = 0; idx < master_timestamps_.size(); ++idx) {
+            const auto& entry = master_timestamps_[idx];
+            const double* tq = target_poses_[idx].data();
+            const double* tt = target_poses_[idx].data() + 4;
+
+            double cam_err_sq[3] = {0.0, 0.0, 0.0};
+            int cam_counts[3] = {0, 0, 0};
+
+            // CAM0
+            if (entry.cam0_idx != -1) {
+                int i = entry.cam0_idx;
+                for (size_t j = 0; j < img_pts_0_[i].size(); ++j) {
+                    FisheyeReproj_TargetInCam0 cost(img_pts_0_[i][j], obj_pts_0_[i][j]);
+                    double res[2];
+                    cost(intrinsic_0_, dist_0_, tq, tt, cam0_q, cam0_t, res);
+                    double n2 = res[0]*res[0] + res[1]*res[1];
+                    cam_err_sq[0] += n2;
+                    cam_counts[0]++;
+                    total_sq_err += n2;
+                    total_pts++;
+
+                    out << "cam0," << i << "," << j << ","
+                        << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
+                }
+            }
+
+            // CAM1
+            if (entry.cam1_idx != -1) {
+                int i = entry.cam1_idx;
+                for (size_t j = 0; j < img_pts_1_[i].size(); ++j) {
+                    FisheyeReproj_TargetInCam0 cost(img_pts_1_[i][j], obj_pts_1_[i][j]);
+                    double res[2];
+                    cost(intrinsic_1_, dist_1_, tq, tt, qvec_cam_1_, tvec_cam_1_, res);
+                    double n2 = res[0]*res[0] + res[1]*res[1];
+                    cam_err_sq[1] += n2;
+                    cam_counts[1]++;
+                    total_sq_err += n2;
+                    total_pts++;
+
+                    out << "cam1," << i << "," << j << ","
+                        << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
+                }
+            }
+
+            // CAM2
+            if (entry.cam2_idx != -1) {
+                int i = entry.cam2_idx;
+                for (size_t j = 0; j < img_pts_2_[i].size(); ++j) {
+                    FisheyeReproj_TargetInCam0 cost(img_pts_2_[i][j], obj_pts_2_[i][j]);
+                    double res[2];
+                    cost(intrinsic_2_, dist_2_, tq, tt, qvec_cam_2_, tvec_cam_2_, res);
+                    double n2 = res[0]*res[0] + res[1]*res[1];
+                    cam_err_sq[2] += n2;
+                    cam_counts[2]++;
+                    total_sq_err += n2;
+                    total_pts++;
+
+                    out << "cam2," << i << "," << j << ","
+                        << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
+                }
+            }
+
+            // Store RMS for each camera that observed the frame
+            for (int cam = 0; cam < 3; ++cam) {
+                double rms = (cam_counts[cam] > 0) ?
+                            std::sqrt(cam_err_sq[cam] / cam_counts[cam]) :
+                            0.0;
+                frame_errors[idx * 3 + cam] = rms;
+            }
+        }
+
+        double rms = std::sqrt(total_sq_err / total_pts);
+        std::cout << "Iteration " << summary.iteration
+                << " RMS reprojection error: " << rms << " px" << std::endl;
+
+        std::string filename = log_dir_ + "/calib_iter_" +
+            std::to_string(summary.iteration) + ".json";
 
         SaveCalibrationResult(
             filename,
-            intrinsic_0, dist_0,
-            intrinsic_1, dist_1,
-            intrinsic_2, dist_2,
-            qvec_cam_1, tvec_cam_1,
-            qvec_cam_2, tvec_cam_2,
-            *target_poses, *master_timestamps
+            intrinsic_0_, dist_0_,
+            intrinsic_1_, dist_1_,
+            intrinsic_2_, dist_2_,
+            qvec_cam_1_, tvec_cam_1_,
+            qvec_cam_2_, tvec_cam_2_,
+            target_poses_,
+            master_timestamps_,
+            frame_errors      // <--- new data!
         );
 
         return ceres::SOLVER_CONTINUE;
     }
+
+
+private:
+    const std::vector<std::vector<Eigen::Vector2d>>& img_pts_0_;
+    const std::vector<std::vector<Eigen::Vector3d>>& obj_pts_0_;
+    const std::vector<std::vector<Eigen::Vector2d>>& img_pts_1_;
+    const std::vector<std::vector<Eigen::Vector3d>>& obj_pts_1_;
+    const std::vector<std::vector<Eigen::Vector2d>>& img_pts_2_;
+    const std::vector<std::vector<Eigen::Vector3d>>& obj_pts_2_;
+    const std::vector<TimestampEntry>& master_timestamps_;
+    std::vector<std::array<double,7>>& target_poses_;
+    double* intrinsic_0_; double* dist_0_;
+    double* intrinsic_1_; double* dist_1_;
+    double* intrinsic_2_; double* dist_2_;
+    double* qvec_cam_1_; double* tvec_cam_1_;
+    double* qvec_cam_2_; double* tvec_cam_2_;
+    std::string log_dir_;
 };
+
+
 
 
 
@@ -1041,19 +1249,19 @@ void OptimizeFishEyeParameters(
 )
 {
     //print out all arguments
-    std::cout << "Starting optimization with parameters:" << std::endl;
-    std::cout << "Intrinsic 0: " << intrinsic_0[0] << ", " << intrinsic_0[1] << ", " << intrinsic_0[2] << ", " << intrinsic_0[3] << std::endl;
-    std::cout << "Distortion 0: " << dist_0[0] << ", " << dist_0[1] << ", " << dist_0[2] << ", " << dist_0[3] << std::endl;
-    std::cout << "Intrinsic 1: " << intrinsic_1[0] << ", " << intrinsic_1[1] << ", " << intrinsic_1[2] << ", " << intrinsic_1[3] << std::endl;
-    std::cout << "Distortion 1: " << dist_1[0] << ", " << dist_1[1] << ", " << dist_1[2] << ", " << dist_1[3] << std::endl;
-    std::cout << "Intrinsic 2: " << intrinsic_2[0] << ", " << intrinsic_2[1] << ", " << intrinsic_2[2] << ", " << intrinsic_2[3] << std::endl;
-    std::cout << "Distortion 2: " << dist_2[0] << ", " << dist_2[1] << ", " << dist_2[2] << ", " << dist_2[3] << std::endl;
-    std::cout << "qvec_cam_1: " << qvec_cam_1[0] << ", " << qvec_cam_1[1] << ", " << qvec_cam_1[2] << ", " << qvec_cam_1[3] << std::endl;
-    std::cout << "tvec_cam_1: " << tvec_cam_1[0] << ", " << tvec_cam_1[1] << ", " << tvec_cam_1[2] << std::endl;
-    std::cout << "qvec_cam_2: " << qvec_cam_2[0] << ", " << qvec_cam_2[1] << ", " << qvec_cam_2[2] << ", " << qvec_cam_2[3] << std::endl;
-    std::cout << "tvec_cam_2: " << tvec_cam_2[0] << ", " << tvec_cam_2[1] << ", " << tvec_cam_2[2] << std::endl;
-    std::cout << "Number of target poses: " << target_poses.size() << std::endl;
-    std::cout << "Number of master timestamps: " << master_timestamps.size() << std::endl;
+    // std::cout << "Starting optimization with parameters:" << std::endl;
+    // std::cout << "Intrinsic 0: " << intrinsic_0[0] << ", " << intrinsic_0[1] << ", " << intrinsic_0[2] << ", " << intrinsic_0[3] << std::endl;
+    // std::cout << "Distortion 0: " << dist_0[0] << ", " << dist_0[1] << ", " << dist_0[2] << ", " << dist_0[3] << std::endl;
+    // std::cout << "Intrinsic 1: " << intrinsic_1[0] << ", " << intrinsic_1[1] << ", " << intrinsic_1[2] << ", " << intrinsic_1[3] << std::endl;
+    // std::cout << "Distortion 1: " << dist_1[0] << ", " << dist_1[1] << ", " << dist_1[2] << ", " << dist_1[3] << std::endl;
+    // std::cout << "Intrinsic 2: " << intrinsic_2[0] << ", " << intrinsic_2[1] << ", " << intrinsic_2[2] << ", " << intrinsic_2[3] << std::endl;
+    // std::cout << "Distortion 2: " << dist_2[0] << ", " << dist_2[1] << ", " << dist_2[2] << ", " << dist_2[3] << std::endl;
+    // std::cout << "qvec_cam_1: " << qvec_cam_1[0] << ", " << qvec_cam_1[1] << ", " << qvec_cam_1[2] << ", " << qvec_cam_1[3] << std::endl;
+    // std::cout << "tvec_cam_1: " << tvec_cam_1[0] << ", " << tvec_cam_1[1] << ", " << tvec_cam_1[2] << std::endl;
+    // std::cout << "qvec_cam_2: " << qvec_cam_2[0] << ", " << qvec_cam_2[1] << ", " << qvec_cam_2[2] << ", " << qvec_cam_2[3] << std::endl;
+    // std::cout << "tvec_cam_2: " << tvec_cam_2[0] << ", " << tvec_cam_2[1] << ", " << tvec_cam_2[2] << std::endl;
+    // std::cout << "Number of target poses: " << target_poses.size() << std::endl;
+    // std::cout << "Number of master timestamps: " << master_timestamps.size() << std::endl;
     ceres::Problem problem;
 
     // Bookkeeping which target_poses entries correspond to at least one observation
@@ -1095,6 +1303,10 @@ void OptimizeFishEyeParameters(
                 // fix intrinsics of cam0 if desired:
                 problem.SetParameterBlockConstant(intrinsic_0);
                 problem.SetParameterBlockConstant(dist_0);
+                problem.AddParameterBlock(cam0_q, 4);
+                problem.SetParameterBlockConstant(cam0_q);
+                problem.AddParameterBlock(cam0_t, 3);
+                problem.SetParameterBlockConstant(cam0_t);
             }
         }
 
@@ -1147,41 +1359,15 @@ void OptimizeFishEyeParameters(
         }
     }
 
-    // // === Temporal smoothness on target_poses (adjacent timestamps) ===
-    // // Keep only where both consecutive target_poses are "used" (observed by at least one camera)
-    // for (size_t i = 1; i < target_poses.size(); ++i) {
-    //     if (!target_pose_used[i-1] || !target_pose_used[i]) continue;
-
-    //     double trans_weight = 1.0;
-    //     double rot_weight = 1.0;
-    //     ceres::CostFunction* smooth_cost = new ceres::AutoDiffCostFunction<TempSmooth, 6, 4, 3, 4, 3>(
-    //         new TempSmooth(trans_weight, rot_weight));
-
-    //     double* q1 = target_poses[i-1].data();
-    //     double* t1 = target_poses[i-1].data() + 4;
-    //     double* q2 = target_poses[i].data();
-    //     double* t2 = target_poses[i].data() + 4;
-
-    //     problem.AddResidualBlock(smooth_cost, nullptr, q1, t1, q2, t2);
-    // }
-
-    // === Set quaternion manifolds for target_poses and camera quaternions ===
-    // for (size_t i = 0; i < target_poses.size(); ++i) {
-    //     if (!target_pose_used[i]) continue; // only set manifold for used targets
-    //     problem.SetManifold(target_poses[i].data(), new ceres::EigenQuaternionManifold());
-    // }
-
-    // problem.SetManifold(qvec_cam_1, new ceres::EigenQuaternionManifold());
-    // problem.SetManifold(qvec_cam_2, new ceres::EigenQuaternionManifold());
     for (size_t i = 0; i < target_poses.size(); ++i) {
         if (!target_pose_used[i]) continue;
-        problem.AddParameterBlock(target_poses[i].data(), 4, new ceres::EigenQuaternionManifold());
+        problem.AddParameterBlock(target_poses[i].data(), 4, new ceres::QuaternionManifold());
         problem.AddParameterBlock(target_poses[i].data() + 4, 3);
     }
 
-    problem.AddParameterBlock(qvec_cam_1, 4, new ceres::EigenQuaternionManifold());
+    problem.AddParameterBlock(qvec_cam_1, 4, new ceres::QuaternionManifold());
     problem.AddParameterBlock(tvec_cam_1, 3);
-    problem.AddParameterBlock(qvec_cam_2, 4, new ceres::EigenQuaternionManifold());
+    problem.AddParameterBlock(qvec_cam_2, 4, new ceres::QuaternionManifold());
     problem.AddParameterBlock(tvec_cam_2, 3);
 
     // Normalize initial quaternions for target_poses and cam quaternions
@@ -1203,23 +1389,40 @@ void OptimizeFishEyeParameters(
     options.minimizer_progress_to_stdout = true;
     // tune as you like (max_num_iterations, trust_region settings...)
     options.update_state_every_iteration = true;
+    options.max_num_iterations = 1000;
+    // options.initial_trust_region_radius = 0.001;
 
 // Add your save callback
-    options.callbacks.push_back(
-        new SaveIterationCallback(
-            intrinsic_0, dist_0,
-            intrinsic_1, dist_1,
-            intrinsic_2, dist_2,
-            qvec_cam_1, tvec_cam_1,
-            qvec_cam_2, tvec_cam_2,
-            &target_poses, &master_timestamps,
-            "/home/jake/calibration_w_eigen"
-        )
-    );
+    // options.callbacks.push_back(
+    //     new SaveIterationCallback(
+    //         intrinsic_0, dist_0,
+    //         intrinsic_1, dist_1,
+    //         intrinsic_2, dist_2,
+    //         qvec_cam_1, tvec_cam_1,
+    //         qvec_cam_2, tvec_cam_2,
+    //         &target_poses, &master_timestamps,
+    //         "/home/jake/calibration_w_eigen",
+    //         &problem
+    //     )
+    // );
+    options.callbacks.push_back(new ResidualEvalCallback(
+        img_pts_0, obj_pts_0,
+        img_pts_1, obj_pts_1,
+        img_pts_2, obj_pts_2,
+        master_timestamps,
+        &target_poses,
+        intrinsic_0, dist_0,
+        intrinsic_1, dist_1,
+        intrinsic_2, dist_2,
+        qvec_cam_1, tvec_cam_1,
+        qvec_cam_2, tvec_cam_2,
+        "/home/jake/calibration_w_eigen"
+    ));
+
 
     ceres::Solver::Summary summary;
     ceres::Solve(options, &problem, &summary);
-    std::cout << summary.BriefReport() << std::endl;
+    std::cout << summary.FullReport() << std::endl;
 }
 
 
