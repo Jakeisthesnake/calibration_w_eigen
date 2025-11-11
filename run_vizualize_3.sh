@@ -9,4 +9,4 @@ export LD_LIBRARY_PATH=/home/jake/calibration_w_eigen/third_party/Pangolin/insta
 # ./vizualize_3_cameras_data /home/jake/calibration_w_python/synthetic_data_3_cams.csv /home/jake/calibration_w_eigen/calibration_result_final.json
 # ./vizualize_3_cameras_data /home/jake/calibration_w_python/synthetic_data_3_cams.csv /home/jake/calibration_w_eigen/calibration_result_initial.json
 # ./vizualize_3_cameras_data /home/jake/calibration_w_python/synthetic_data_3_cams.csv /home/jake/calibration_w_eigen/calibration_result_initial_homg_all.json
-./vizualize_3_cameras_data /home/jake/calibration_w_python/synthetic_data_3_cams.csv /home/jake/calibration_w_eigen/calib_iter_300.json
+./vizualize_3_cameras_data /home/jake/calibration_w_python/synthetic_data_3_cams.csv /home/jake/calibration_w_eigen/calib_iter_0.json

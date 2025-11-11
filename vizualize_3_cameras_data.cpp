@@ -53,6 +53,7 @@ using IDVec = std::vector<int>;
 using TimestampList = std::vector<uint64_t>;
 
 
+
 TimestampIndexMap buildIndexMap(const TimestampList& timestamps) {
     TimestampIndexMap m;
     for (size_t i = 0; i < timestamps.size(); ++i) {
@@ -363,16 +364,19 @@ bool LoadCalibrationResult(
     const std::string& filepath,
 
     double intrinsic_0[4], double dist_0[4],
-
     double intrinsic_1[4], double dist_1[4],
-
     double intrinsic_2[4], double dist_2[4],
 
     double qvec_cam_1[4], double tvec_cam_1[3],
     double qvec_cam_2[4], double tvec_cam_2[3],
 
     std::vector<std::array<double, 7>>& target_poses,
-    std::vector<double>& timestamps
+    std::vector<double>& timestamps,
+
+    // NEW optional error vectors per camera
+    std::vector<double>& frame_errors_cam0,
+    std::vector<double>& frame_errors_cam1,
+    std::vector<double>& frame_errors_cam2
 ) {
     std::ifstream ifs(filepath);
     if (!ifs.is_open()) {
@@ -403,28 +407,49 @@ bool LoadCalibrationResult(
     // --- Target poses in world frame ---
     target_poses.clear();
     timestamps.clear();
+    frame_errors_cam0.clear();
+    frame_errors_cam1.clear();
+    frame_errors_cam2.clear();
+
     int counter = 0;
     for (const auto& pose : input["target_poses"]) {
         std::array<double, 7> tp{};
-        // quaternion
         for (int i = 0; i < 4; ++i) tp[i] = pose["quaternion"][i].get<double>();
-        // translation
         for (int i = 0; i < 3; ++i) tp[4 + i] = pose["translation"][i].get<double>();
         target_poses.push_back(tp);
         timestamps.push_back(pose["timestamp"].get<double>());
-        std::cout << "Loaded pose " << counter << " with timestamp " << timestamps.back() << std::endl;
+
+        std::cout << "Loaded pose " << counter
+                  << " with timestamp " << timestamps.back() << std::endl;
         counter++;
     }
 
-    // --- Inter-camera transforms (quaternions + translations) ---
+    // --- Inter-camera transforms ---
     load_array4(input["inter_camera"]["camera1_to_camera0"]["quaternion"], qvec_cam_1);
     load_array3(input["inter_camera"]["camera1_to_camera0"]["translation_vector"], tvec_cam_1);
 
     load_array4(input["inter_camera"]["camera2_to_camera0"]["quaternion"], qvec_cam_2);
     load_array3(input["inter_camera"]["camera2_to_camera0"]["translation_vector"], tvec_cam_2);
 
+    // --- Optional per-frame camera errors ---
+    if (input.contains("frame_errors")) {
+        const auto& fe = input["frame_errors"];
+
+        frame_errors_cam0.resize(fe.size(), 0.0);
+        frame_errors_cam1.resize(fe.size(), 0.0);
+        frame_errors_cam2.resize(fe.size(), 0.0);
+
+        for (size_t i = 0; i < fe.size(); ++i) {
+            frame_errors_cam0[i] = fe[i].value("cam0", 0.0);
+            frame_errors_cam1[i] = fe[i].value("cam1", 0.0);
+            frame_errors_cam2[i] = fe[i].value("cam2", 0.0);
+        }
+    }
+    // else they remain empty vectors
+
     return true;
 }
+
 
 
 Eigen::MatrixXd kannala_brandt_project(
@@ -968,8 +993,35 @@ void VisualizeStereoReprojectionTuner(
     const InterCamInit& cam2_to_cam0_init,
 
     // Initial board poses target->cam0 per frame (same size as frames)
-    const std::vector<BoardPoseInit>& board_poses_init
+    const std::vector<BoardPoseInit>& board_poses_init,
+
+    const std::vector<double>* external_err_cam0 = nullptr,
+    const std::vector<double>* external_err_cam1 = nullptr,
+    const std::vector<double>* external_err_cam2 = nullptr
+
 ) {
+    //print out external errors (not the size) if provided
+    if (external_err_cam0) {
+        std::cout << "External errors for cam0 entries: ";
+        for (const auto& e : *external_err_cam0) {
+            std::cout << e << " ";
+        }
+        std::cout << std::endl;
+    }
+    if (external_err_cam1) {
+        std::cout << "External errors for cam1 entries: ";
+        for (const auto& e : *external_err_cam1) {
+            std::cout << e << " ";
+        }
+        std::cout << std::endl;
+    }
+    if (external_err_cam2) {
+        std::cout << "External errors for cam2 entries: ";
+        for (const auto& e : *external_err_cam2) {
+            std::cout << e << " ";
+        }
+        std::cout << std::endl;
+    }
     // Initialize N to the total number of timestamps across all cameras
     const size_t N = board_poses_init.size();
     // const size_t N = std::max(frames_cam0.size(), std::max(frames_cam1.size(), frames_cam2.size()));
@@ -1016,6 +1068,13 @@ void VisualizeStereoReprojectionTuner(
     // Left side UI panel
     pangolin::CreatePanel("ui").SetBounds(0.0, 1.0, 0.0, pangolin::Attach::Pix(300));
 
+    pangolin::Var<std::string> stats_cam0("stats.cam0", "");
+    pangolin::Var<std::string> stats_cam1("stats.cam1", "");
+    pangolin::Var<std::string> stats_cam2("stats.cam2", "");
+    pangolin::Var<std::string> stats_total("stats.total", "");
+
+    pangolin::CreatePanel("stats").SetBounds(0.0, 0.3, 0.0, pangolin::Attach::Pix(300));
+
    
     pangolin::View& container = pangolin::Display("multi")
         .SetBounds(0.0, 1.0, pangolin::Attach::Pix(300), 1.0)
@@ -1043,6 +1102,8 @@ void VisualizeStereoReprojectionTuner(
 
 
     // ---------------- UI Sliders ----------------
+    pangolin::Var<bool> show_external_err("ui.show_external_err", false, true);
+
 
     // Frame control
     pangolin::Var<int> frame_idx("ui.frame", 0, 0, (int)std::max<int>(0, (int)N-1));
@@ -1110,23 +1171,7 @@ void VisualizeStereoReprojectionTuner(
     pangolin::Var<double> err2("ui.error_cam2", 0.0);
     pangolin::Var<double> errTot("ui.error_total", 0.0);
 
-    // // Keyboard stepping
-    // pangolin::RegisterKeyPressCallback('a', [&]() {
-    //     frame_idx = std::max(0, (int)frame_idx.Get() - 1);
-    //     prev_f = true;
-    // });
-    // pangolin::RegisterKeyPressCallback('d', [&]() {
-    //     frame_idx = std::min((int)N-1, (int)frame_idx.Get() + 1);
-    //     next_f = true;
-    // });// Keyboard stepping
-    // pangolin::RegisterKeyPressCallback('a', [&]() {
-    //     frame_idx = std::max(0, (int)frame_idx.Get() - 1);
-    //     prev_f = true;
-    // });
-    // pangolin::RegisterKeyPressCallback('d', [&]() {
-    //     frame_idx = std::min((int)N-1, (int)frame_idx.Get() + 1);
-    //     next_f = true;
-    // });
+    
     pangolin::RegisterKeyPressCallback('a', [&]() {
         frame_idx = std::max(0, (int)frame_idx.Get() - 1);
     });
@@ -1193,35 +1238,7 @@ void VisualizeStereoReprojectionTuner(
         const std::vector<Eigen::Vector2d>* obs0 = (i < (int)frames_cam0.size() && frame_has_valid(frames_cam0[i]) ? &frames_cam0[i].observations : nullptr);
         const std::vector<Eigen::Vector2d>* obs1 = (i < (int)frames_cam1.size() && frame_has_valid(frames_cam1[i]) ? &frames_cam1[i].observations : nullptr);
         const std::vector<Eigen::Vector2d>* obs2 = (i < (int)frames_cam2.size() && frame_has_valid(frames_cam2[i]) ? &frames_cam2[i].observations : nullptr);
-        // const std::vector<Eigen::Vector2d>* obs0 = (i < (int)frames_cam0.size() ? &frames_cam0[i].observations : nullptr);
-        // const std::vector<Eigen::Vector2d>* obs1 = (i < (int)frames_cam1.size() ? &frames_cam1[i].observations : nullptr);
-        // const std::vector<Eigen::Vector2d>* obs2 = (i < (int)frames_cam2.size() ? &frames_cam2[i].observations : nullptr);
-        //output size of each observation vector
-        // std::cout << "Frame " << i << " observations sizes: "
-        //           << (obs0 ? std::to_string(obs0->size()) : "null") << ", "
-        //           << (obs1 ? std::to_string(obs1->size()) : "null") << ", "
-        //           << (obs2 ? std::to_string(obs2->size()) : "null") << std::endl;
-        // output frames_cam0 size
-        // // print observations for each camera if available
-        // if (obs0 && !obs0->empty()) {
-        //     std::cout << "Frame " << i << " - Cam0 observations:\n";
-        //     for (size_t j = 0; j < obs0->size(); ++j) {
-        //         std::cout << "  Point " << j << ": " << (*obs0)[j].transpose() << "\n";
-        //     }
-        // }
-        // if (obs1 && !obs1->empty()) {
-        //     std::cout << "Frame " << i << " - Cam1 observations:\n";
-        //     for (size_t j = 0; j < obs1->size(); ++j) {
-        //         std::cout << "  Point " << j << ": " << (*obs1)[j].transpose() << "\n";
-        //     }
-        // }
-        // if (obs2 && !obs2->empty()) {
-        //     std::cout << "Frame " << i << " - Cam2 observations:\n";
-        //     for (size_t j = 0; j < obs2->size(); ++j) {
-        //         std::cout << "  Point " << j << ": " << (*obs2)[j].transpose() << "\n";
-        //     }
-        // }
-        // std::cin.get(); // wait for user to press Enter
+        
 
         // Project for each camera
         std::vector<Eigen::Vector2d> proj0, proj1, proj2;
@@ -1347,11 +1364,7 @@ void VisualizeStereoReprojectionTuner(
         // }
         // std::cout << "proj0 size: " << proj0.size() << std::endl;    
 
-        // if (obs0 && obs0->size() == proj0.size() && !obs0->empty()) {
-        //     e0 = ComputeRMSError(*obs0, proj0);
-        //     err0 = e0; etot += e0; cams_count++;
-        // }
-        // else { err0 = 0.0; }
+
         if (obs0 && !obs0->empty()) {
             e0 = ComputeFilteredRMSError(*obs0, proj0);
             err0 = e0; 
@@ -1361,10 +1374,7 @@ void VisualizeStereoReprojectionTuner(
             err0 = 0.0;
         }
 
-        // if (obs1 && obs1->size() == proj1.size() && !obs1->empty()) {
-        //     e1 = ComputeRMSError(*obs1, proj1);
-        //     err1 = e1; etot += e1; cams_count++;
-        // } else { err1 = 0.0; }
+
         if (obs1 && !obs1->empty()) {
             e1 = ComputeFilteredRMSError(*obs1, proj1);
             err1 = e1; 
@@ -1373,10 +1383,7 @@ void VisualizeStereoReprojectionTuner(
             err1 = 0.0;
         }
 
-        // if (obs2 && obs2->size() == proj2.size() && !obs2->empty()) {
-        //     e2 = ComputeRMSError(*obs2, proj2);
-        //     err2 = e2; etot += e2; cams_count++;
-        // } else { err2 = 0.0; }
+
         if (obs2 && !obs2->empty()) {
             e2 = ComputeFilteredRMSError(*obs2, proj2);
             err2 = e2; 
@@ -1386,6 +1393,21 @@ void VisualizeStereoReprojectionTuner(
         }
 
         errTot = etot; // (cams_count ? etot / cams_count : 0.0);
+
+        double external0 = 0;
+        double external1 = 0;
+        double external2 = 0;
+
+        
+
+        if (show_external_err) {
+            if (external_err_cam0 && i < (int)external_err_cam0->size())
+                external0 = (*external_err_cam0)[i];
+            if (external_err_cam1 && i < (int)external_err_cam1->size())
+                external1 = (*external_err_cam1)[i];
+            if (external_err_cam2 && i < (int)external_err_cam2->size())
+                external2 = (*external_err_cam2)[i];
+        }
 
         // ----------------- Draw 2D panels side-by-side -----------------
         fx0.Update();
@@ -1427,10 +1449,31 @@ void VisualizeStereoReprojectionTuner(
             glEnd();
         };
 
+        auto drawText = [&](pangolin::View& v, const std::string& text) {
+            v.ActivateScissorAndClear();
+            glColor4f(1,1,1,1);
+            stats_cam0 = "Cam0 RMS: " + std::to_string(external0);
+            stats_cam1 = "Cam1 RMS: " + std::to_string(external1);
+            stats_cam2 = "Cam2 RMS: " + std::to_string(external2);
+        };
+
+        std::stringstream s0;
+        s0 << "RMS live: " << err0;
+        if (show_external_err) s0 << " | ext: " << external0;
+
+        std::stringstream s1;
+        s1 << "RMS live: " << err1;
+        if (show_external_err) s1 << " | ext: " << external1;
+
+        std::stringstream s2;
+        s2 << "RMS live: " << err2;
+        if (show_external_err) s2 << " | ext: " << external2;
+
         glPointSize(4.0f);
 
         // ---- Cam0 view ----
         v_cam0.Activate(s_cam0);
+        drawText(v_cam0, s0.str());
         if (obs0) {
             glColor3f(0,1,0);
             draw_points(*obs0);
@@ -1441,6 +1484,7 @@ void VisualizeStereoReprojectionTuner(
 
         // ---- Cam1 view ----
         v_cam1.Activate(s_cam1);
+        drawText(v_cam1, s1.str());
         if (obs1) {
             glColor3f(0,1,0);
             draw_points(*obs1);
@@ -1451,6 +1495,7 @@ void VisualizeStereoReprojectionTuner(
 
         // ---- Cam2 view ----
         v_cam2.Activate(s_cam2);
+        drawText(v_cam2, s2.str());
         if (obs2) {
             glColor3f(0,1,0);
             draw_points(*obs2);
@@ -1607,16 +1652,41 @@ int main(int argc, char** argv) {
     std::vector<double> timestamps;
     double qvec_cam_1[4], tvec_cam_1[3];
     double qvec_cam_2[4], tvec_cam_2[3];
+    std::vector<double> err_per_frame_cam0, err_per_frame_cam1, err_per_frame_cam2;
+
 
     if (!LoadCalibrationResult(calibration_file,
         intrinsic_0, dist_0,
         intrinsic_1, dist_1,
         intrinsic_2, dist_2,
         qvec_cam_1, tvec_cam_1, qvec_cam_2, tvec_cam_2,
-        target_poses, timestamps))
+        target_poses, timestamps,
+        err_per_frame_cam0, err_per_frame_cam1, err_per_frame_cam2))
     {
         return -1;
     }
+    //output err_per_frame_cam0
+    std::cout << "err_per_frame_cam0: ";
+    for (const auto& err : err_per_frame_cam0) {
+        std::cout << err << " ";
+    }
+    std::cout << std::endl;
+
+    const std::vector<double>* p0 = err_per_frame_cam0.empty() ? nullptr : &err_per_frame_cam0;
+    const std::vector<double>* p1 = err_per_frame_cam1.empty() ? nullptr : &err_per_frame_cam1;
+    const std::vector<double>* p2 = err_per_frame_cam2.empty() ? nullptr : &err_per_frame_cam2;
+
+    //output p0
+    std::cout << "p0: ";
+    if (p0) {
+        for (const auto& val : *p0) {
+            std::cout << val << " ";
+        }
+    } else {
+        std::cout << "nullptr";
+    }
+    std::cout << std::endl;
+
     //Display loaded calibration parameters
     std::cout << "Camera 0 Intrinsics: ";
     for (const auto& val : intrinsic_0) std::cout << val << " ";
@@ -1759,7 +1829,8 @@ int main(int argc, char** argv) {
     // InterCamInit{Eigen::Vector3d(0,0,0), Eigen::Vector3d(0,0,0)},
 
     // Initial board poses target->cam0 per frame (same size as frames)
-    board_poses_init
+    board_poses_init,
+    p0, p1, p2
     ) ;
 
     return 0;  // Return early to avoid running the rest of the main

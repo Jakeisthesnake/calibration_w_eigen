@@ -35,6 +35,10 @@ Todo
     - 10/29 look at the optimization sequence and see if error goes down as expected.
     - 10/31 Add damping to beginning. Or maybe outlier rejection?
     - 11/6 discard reprojection if the target is out of view... or figure out why it seems to be acceptable? Maybe vizualize the error for each frame?
+    - 11/7 track why error isn't displayed correctly DONE
+    - 11/10 run the calibration on a few random frames (or better yet, identify the frames that have the lowest average error and use those) and then use that to initialize the full problem.
+
+
 - Fix distortion wrap around checking in simulator, visuzlizer and calibrator
 - get very low error initializing with intrinsics used to generate data
 - get low error initializing close, but not exactly the intriniscs used to gerenate data
