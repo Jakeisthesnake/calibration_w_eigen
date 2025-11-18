@@ -395,6 +395,13 @@ Eigen::Matrix3d compute_intrinsic_params(const std::vector<Eigen::Matrix3d>& H_l
     return K;
 }
 
+struct OptimizationFlags {
+    bool optimize_intrinsics = true;
+    bool optimize_distortion = true;
+    bool optimize_inter_camera = true;
+    bool optimize_target_poses = true;
+};
+
 Eigen::Matrix3d robust_intrinsic_estimation(
     const std::vector<Eigen::Matrix3d>& H_list,
     int max_trials = 10,
@@ -998,7 +1005,7 @@ void SaveCalibrationResult(
     // --- Write to file ---
     std::ofstream ofs(filename);
     ofs << std::setw(4) << output << std::endl;
-    std::cout << "Saved calibration results to " << filename << std::endl;
+    // std::cout << "Saved calibration results to " << filename << std::endl;
 }
 
 // struct SaveIterationCallback : public ceres::IterationCallback {
@@ -1185,8 +1192,8 @@ public:
         }
 
         double rms = std::sqrt(total_sq_err / total_pts);
-        std::cout << "Iteration " << summary.iteration
-                << " RMS reprojection error: " << rms << " px" << std::endl;
+        // std::cout << "Iteration " << summary.iteration
+        //         << " RMS reprojection error: " << rms << " px" << std::endl;
 
         std::string filename = log_dir_ + "/calib_iter_" +
             std::to_string(summary.iteration) + ".json";
@@ -1245,11 +1252,12 @@ void OptimizeFishEyeParameters(
     // NEW: single set of target poses, one per master_timestamps entry.
     // Each array is {qw, qx, qy, qz, tx, ty, tz} representing target->cam0 (X_cam0 = R(q)*X_obj + t)
     std::vector<std::array<double,7>>& target_poses,
-    const std::vector<TimestampEntry>& master_timestamps
+    const std::vector<TimestampEntry>& master_timestamps,
+    const OptimizationFlags& flags = OptimizationFlags()
 )
 {
     //print out all arguments
-    // std::cout << "Starting optimization with parameters:" << std::endl;
+    std::cout << "Starting optimization with parameters:" << std::endl;
     // std::cout << "Intrinsic 0: " << intrinsic_0[0] << ", " << intrinsic_0[1] << ", " << intrinsic_0[2] << ", " << intrinsic_0[3] << std::endl;
     // std::cout << "Distortion 0: " << dist_0[0] << ", " << dist_0[1] << ", " << dist_0[2] << ", " << dist_0[3] << std::endl;
     // std::cout << "Intrinsic 1: " << intrinsic_1[0] << ", " << intrinsic_1[1] << ", " << intrinsic_1[2] << ", " << intrinsic_1[3] << std::endl;
@@ -1266,26 +1274,38 @@ void OptimizeFishEyeParameters(
 
     // Bookkeeping which target_poses entries correspond to at least one observation
     std::vector<bool> target_pose_used(target_poses.size(), false);
+    // output master_timestamps size
+    // std::cout << "Number of master timestamps: " << master_timestamps.size() << std::endl;
 
     // Add reprojection residuals
     for (size_t idx = 0; idx < master_timestamps.size(); ++idx) {
         const auto& entry = master_timestamps[idx];
+        // std::cout << "Processing timestamp index " << idx << std::endl;
 
         // CAM0: direct use of target_poses[idx]
         if (entry.cam0_idx != -1) {
             int cam0_i = entry.cam0_idx;
             target_pose_used[idx] = true;
+            // std::cout << "Processing cam0 for timestamp index " << idx << std::endl;
 
             // For each corner observed by cam0 at that timestamp:
             for (size_t j = 0; j < img_pts_0[cam0_i].size(); ++j) {
+                // std::cout << "Processing cam0, frame " << cam0_i << ", point " << j << std::endl;
+                // std::cout << "img_pts_0 size: " << img_pts_0.size() << std::endl;
+                // std::cout << "obj_pts_0 size: " << obj_pts_0.size() << std::endl;
+                // std::cout << "img_pts_0[cam0_i] size: " << img_pts_0[cam0_i].size() << std::endl;
                 auto measured = img_pts_0[cam0_i][j];
+                // std::cout << "Measured point: " << measured(0) << ", " << measured(1) << std::endl;
                 auto objp = obj_pts_0[cam0_i][j];
+                // std::cout << "Object point: " << objp(0) << ", " << objp(1) << ", " << objp(2) << std::endl;
 
                 // Note: for cam0 we can make cam_q = identity, cam_t = zero so that
                 // transformation via cam inverse is a no-op.
                 // We will pass cam_q_cam0 = (1,0,0,0) and cam_t_cam0 = (0,0,0)
                 static double cam0_q[4] = {1.0, 0.0, 0.0, 0.0};
+                // std::cout << "cam0_q: [" << cam0_q[0] << ", " << cam0_q[1] << ", " << cam0_q[2] << ", " << cam0_q[3] << "]" << std::endl;
                 static double cam0_t[3] = {0.0, 0.0, 0.0};
+                // std::cout << "cam0_q: [" << cam0_q[0] << ", " << cam0_q[1] << ", " << cam0_q[2] << ", " << cam0_q[3] << "]" << std::endl;
 
                 // Create cost function that depends on target_pose (in cam0) and cam0 identity
                 ceres::CostFunction* cost = FisheyeReproj_TargetInCam0::Create(measured, objp);
@@ -1300,13 +1320,20 @@ void OptimizeFishEyeParameters(
                                          intrinsic_0, dist_0,
                                          target_q, target_t,
                                          cam0_q, cam0_t);
+                // std::cout << "Added residual block for cam0, frame " << cam0_i << ", point " << j << std::endl;
                 // fix intrinsics of cam0 if desired:
+                if (!flags.optimize_intrinsics) {
+                    problem.SetParameterBlockConstant(intrinsic_0);
+                    problem.SetParameterBlockConstant(dist_0);
+                }
+                // fix extrinsics of cam0 (identity) - always fixed for cam 0
                 problem.SetParameterBlockConstant(intrinsic_0);
                 problem.SetParameterBlockConstant(dist_0);
                 problem.AddParameterBlock(cam0_q, 4);
                 problem.SetParameterBlockConstant(cam0_q);
                 problem.AddParameterBlock(cam0_t, 3);
                 problem.SetParameterBlockConstant(cam0_t);
+                // std::cout << "Added residual for cam0, frame " << cam0_i << ", point " << j << std::endl;
             }
         }
 
@@ -1329,8 +1356,10 @@ void OptimizeFishEyeParameters(
                                          target_q, target_t,
                                          qvec_cam_1, tvec_cam_1);
                 // fix intrinsics of cam1 if desired:
-                problem.SetParameterBlockConstant(intrinsic_1);
-                problem.SetParameterBlockConstant(dist_1);
+                if (!flags.optimize_intrinsics) {
+                    problem.SetParameterBlockConstant(intrinsic_1);
+                    problem.SetParameterBlockConstant(dist_1);
+                }
             }
         }
 
@@ -1353,11 +1382,17 @@ void OptimizeFishEyeParameters(
                                          target_q, target_t,
                                          qvec_cam_2, tvec_cam_2);
                 // fix intrinsics of cam2 if desired:
-                problem.SetParameterBlockConstant(intrinsic_2);
-                problem.SetParameterBlockConstant(dist_2);
+                if (!flags.optimize_intrinsics) {
+                    problem.SetParameterBlockConstant(intrinsic_2);
+                    problem.SetParameterBlockConstant(dist_2);
+                }
             }
         }
     }
+
+    std::cout << "Total target poses used in observations: "
+              << std::count(target_pose_used.begin(), target_pose_used.end(), true)
+              << " out of " << target_poses.size() << std::endl;
 
     for (size_t i = 0; i < target_poses.size(); ++i) {
         if (!target_pose_used[i]) continue;
@@ -1369,6 +1404,13 @@ void OptimizeFishEyeParameters(
     problem.AddParameterBlock(tvec_cam_1, 3);
     problem.AddParameterBlock(qvec_cam_2, 4, new ceres::QuaternionManifold());
     problem.AddParameterBlock(tvec_cam_2, 3);
+    // Optionally fix inter-camera extrinsics
+    if (!flags.optimize_inter_camera) {
+        problem.SetParameterBlockConstant(qvec_cam_1);
+        problem.SetParameterBlockConstant(tvec_cam_1);
+        problem.SetParameterBlockConstant(qvec_cam_2);
+        problem.SetParameterBlockConstant(tvec_cam_2);
+    }
 
     // Normalize initial quaternions for target_poses and cam quaternions
     for (auto &tp : target_poses) {
@@ -1381,15 +1423,16 @@ void OptimizeFishEyeParameters(
     {
         Eigen::Map<Eigen::Quaterniond> q(qvec_cam_2); q.normalize();
     }
+    std::cout << "Starting Ceres Solver..." << std::endl;
 
     // Solver options
     ceres::Solver::Options options;
     // options.linear_solver_type = ceres::DENSE_SCHUR;
     options.linear_solver_type = ceres::SPARSE_SCHUR;
-    options.minimizer_progress_to_stdout = true;
+    options.minimizer_progress_to_stdout = false;
     // tune as you like (max_num_iterations, trust_region settings...)
     options.update_state_every_iteration = true;
-    options.max_num_iterations = 1000;
+    options.max_num_iterations = 50;
     // options.initial_trust_region_radius = 0.001;
 
 // Add your save callback
@@ -1422,7 +1465,8 @@ void OptimizeFishEyeParameters(
 
     ceres::Solver::Summary summary;
     ceres::Solve(options, &problem, &summary);
-    std::cout << summary.FullReport() << std::endl;
+    // std::cout << summary.FullReport() << std::endl;
+    std::cout << summary.BriefReport() << std::endl;
 }
 
 
@@ -2022,6 +2066,123 @@ int main(int argc, char** argv) {
     // --- END: single-target-pose initialization --------------------------------
 
 
+
+
+
+
+
+
+    // --- Stage 1: Per-frame target pose refinement ---
+    // Optimize each target pose independently using its available camera(s)
+    std::cout << "Stage 1: Refining per-frame target poses individually..." << std::endl;
+
+    OptimizationFlags per_frame_flags;
+    per_frame_flags.optimize_intrinsics = false;
+    per_frame_flags.optimize_distortion = false;
+    per_frame_flags.optimize_inter_camera = false;
+    per_frame_flags.optimize_target_poses = true;  // only these
+
+    for (size_t i = 0; i < master_timestamps.size(); ++i) {
+        // Build per-frame subsets
+        std::vector<std::vector<Eigen::Vector2d>> img_pts_list_0_frame, img_pts_list_1_frame, img_pts_list_2_frame;
+        std::vector<std::vector<Eigen::Vector3d>> obj_pts_list_0_frame, obj_pts_list_1_frame, obj_pts_list_2_frame;
+        std::vector<TimestampEntry> single_timestamp = { master_timestamps[i] };
+        //overwrite valid idexes to be 0 for single frame optimization
+        if (single_timestamp[0].cam0_idx != -1) single_timestamp[0].cam0_idx = 0;
+        if (single_timestamp[0].cam1_idx != -1) single_timestamp[0].cam1_idx = 0;
+        if (single_timestamp[0].cam2_idx != -1) single_timestamp[0].cam2_idx = 0;
+        //output single timestamp for verification
+        std::cout << "Single_timestamp = { "
+                  << "timestamp: " << single_timestamp[0].timestamp_id << ", "
+                  << "cam0_idx: " << single_timestamp[0].cam0_idx << ", "
+                  << "cam1_idx: " << single_timestamp[0].cam1_idx << ", "
+                  << "cam2_idx: " << single_timestamp[0].cam2_idx << " }" << std::endl;
+
+        // Fill per-camera data if available
+        if (master_timestamps[i].cam0_idx != -1) {
+            img_pts_list_0_frame.push_back(img_pts_list_0[master_timestamps[i].cam0_idx]);
+            obj_pts_list_0_frame.push_back(obj_pts_list_0[master_timestamps[i].cam0_idx]);
+        }
+        if (master_timestamps[i].cam1_idx != -1) {
+            img_pts_list_1_frame.push_back(img_pts_list_1[master_timestamps[i].cam1_idx]);
+            obj_pts_list_1_frame.push_back(obj_pts_list_1[master_timestamps[i].cam1_idx]);
+        }
+        if (master_timestamps[i].cam2_idx != -1) {
+            img_pts_list_2_frame.push_back(img_pts_list_2[master_timestamps[i].cam2_idx]);
+            obj_pts_list_2_frame.push_back(obj_pts_list_2[master_timestamps[i].cam2_idx]);
+        }
+        //frame_target_poses
+        std::vector<std::array<double,7>> frame_target_poses = { target_poses[i] };
+
+        //output all image points and object points for verification
+        // std::cout << "Frame " << i << " data:" << std::endl;
+        // if (!img_pts_list_0_frame.empty()) {
+        //     std::cout << "  Camera 0: " << img_pts_list_0_frame[0].size() << " points." << std::endl;
+        //     for (const auto& pt : img_pts_list_0_frame[0]) {
+        //         std::cout << "    Img Pt: [" << pt.x() << ", " << pt.y() << "]" << std::endl;
+        //     }
+        //     for (const auto& pt : obj_pts_list_0_frame[0]) {
+        //         std::cout << "    Obj Pt: [" << pt.x() << ", " << pt.y() << ", " << pt.z() << "]" << std::endl;
+        //     }
+        // }
+        // if (!img_pts_list_1_frame.empty()) {
+        //     std::cout << "  Camera 1: " << img_pts_list_1_frame[0].size() << " points." << std::endl;
+        //     for (const auto& pt : img_pts_list_1_frame[0]) {
+        //         std::cout << "    Img Pt: [" << pt.x() << ", " << pt.y() << "]" << std::endl;
+        //     }
+        //     for (const auto& pt : obj_pts_list_1_frame[0]) {
+        //         std::cout << "    Obj Pt: [" << pt.x() << ", " << pt.y() << ", " << pt.z() << "]" << std::endl;
+        //     }
+        // }
+        // if (!img_pts_list_2_frame.empty()) {
+        //     std::cout << "  Camera 2: " << img_pts_list_2_frame[0].size() << " points." << std::endl;
+        //     for (const auto& pt : img_pts_list_2_frame[0]) {
+        //         std::cout << "    Img Pt: [" << pt.x() << ", " << pt.y() << "]" << std::endl;
+        //     }
+        //     for (const auto& pt : obj_pts_list_2_frame[0]) {
+        //         std::cout << "    Obj Pt: [" << pt.x() << ", " << pt.y() << ", " << pt.z() << "]" << std::endl;
+        //     }
+        // }
+
+        // Optimize only that frame’s target pose
+        OptimizeFishEyeParameters(
+            intrinsic_0, dist_0,
+            img_pts_list_0_frame, obj_pts_list_0_frame,
+            intrinsic_1, dist_1,
+            img_pts_list_1_frame, obj_pts_list_1_frame,
+            intrinsic_2, dist_2,
+            img_pts_list_2_frame, obj_pts_list_2_frame,
+            qvec_cam_1, tvec_cam_1,
+            qvec_cam_2, tvec_cam_2,
+            frame_target_poses,  // local pose only
+            single_timestamp,
+            per_frame_flags
+        );
+        // Update global target poses
+        // std::cout << "Refined target pose for frame" << i << std::endl;
+        target_poses[i] = frame_target_poses[0];
+        // std::cout << "  New pose: [\n";
+        // std::cin.get();  // Wait for user input before proceeding
+    }
+
+    SaveCalibrationResult("/home/jake/calibration_w_eigen/calibration_post_processing.json",
+        intrinsic_0, dist_0,
+        intrinsic_1, dist_1,
+        intrinsic_2, dist_2,
+        qvec_cam_1, tvec_cam_1,
+        qvec_cam_2, tvec_cam_2,
+        target_poses, master_timestamps
+    );
+
+    std::cout << "Stage 2: Global optimization..." << std::endl;
+
+    OptimizationFlags global_flags;
+    global_flags.optimize_intrinsics = true;
+    global_flags.optimize_distortion = true;
+    global_flags.optimize_inter_camera = true;
+    global_flags.optimize_target_poses = true;
+
+
     // Step 7: Optimize fisheye parameters
     OptimizeFishEyeParameters(
         intrinsic_0, dist_0,
@@ -2033,7 +2194,8 @@ int main(int argc, char** argv) {
         qvec_cam_1, tvec_cam_1,
         qvec_cam_2, tvec_cam_2,
         target_poses,
-        master_timestamps
+        master_timestamps,
+        global_flags
     );
 
 
