@@ -2162,8 +2162,9 @@ int main(int argc, char** argv) {
         // std::cout << "Refined target pose for frame" << i << std::endl;
         target_poses[i] = frame_target_poses[0];
         // std::cout << "  New pose: [\n";
-        // std::cin.get();  // Wait for user input before proceeding
+        std::cin.get();  // Wait for user input before proceeding
     }
+    
 
     SaveCalibrationResult("/home/jake/calibration_w_eigen/calibration_post_processing.json",
         intrinsic_0, dist_0,

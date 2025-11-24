@@ -37,6 +37,9 @@ Todo
     - 11/6 discard reprojection if the target is out of view... or figure out why it seems to be acceptable? Maybe vizualize the error for each frame?
     - 11/7 track why error isn't displayed correctly DONE
     - 11/10 run the calibration on a few random frames (or better yet, identify the frames that have the lowest average error and use those) and then use that to initialize the full problem.
+    - figure out correct indexing - set single_timestamp to be 0 or -1? DONE
+    - 11/20 ok, so figure out how to get optimization to work on frame 14 where cam 2 is reasonably initialized and should be able to just scooch its way to 0 error.
+    - 11/21 look into the discrepency in how error is calculated between vizualizer and calibration.
 
 
 - Fix distortion wrap around checking in simulator, visuzlizer and calibrator
