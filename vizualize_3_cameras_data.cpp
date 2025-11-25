@@ -1204,6 +1204,10 @@ void VisualizeStereoReprojectionTuner(
             // std::cin.get(); // wait for user to press Enter
         }
 
+        // DEBUG: Output for frame 0 (or set DEBUG_FRAME to desired frame index)
+        const int DEBUG_FRAME = 0;
+        bool debug_frame = (i == DEBUG_FRAME);
+
         // Build intrinsics/dist
         double K0[4] = {fx0, fy0, cx0, cy0};
         double D0[4] = {k0_1, k0_2, k0_3, k0_4};
@@ -1265,12 +1269,8 @@ void VisualizeStereoReprojectionTuner(
 
             // cam0 projection
             Eigen::Vector2d u0; bool ok0 = ProjectFisheyeKB(Xc0, K0, D0, u0, display_p);
-            // std::cout << "Point " << j << " in cam0 frame: " << Xc0.transpose() << ", proj: ";
-            // if (ok0) { std::cout << u0.transpose() << std::endl; }
-            // else { std::cout << "(invalid)" << std::endl; }
-            // if (!ok0) u0 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
-            //                                std::numeric_limits<double>::quiet_NaN());
-            if (!ok0) u0 = Eigen::Vector2d(1.0, 1.0);
+            if (!ok0) u0 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
+                                           std::numeric_limits<double>::quiet_NaN());
             double theta0 = std::atan2(std::sqrt(Xc0.x()*Xc0.x() + Xc0.y()*Xc0.y()), Xc0.z());
             bool valid0 = ok0 && (theta0 <= valid_theta0);
             proj0.push_back(u0);
@@ -1279,9 +1279,8 @@ void VisualizeStereoReprojectionTuner(
             // target -> cam1
             Eigen::Vector3d Xc1 = ToCamX_fromCam0(R10, t10, Xc0);
             Eigen::Vector2d u1; bool ok1 = ProjectFisheyeKB(Xc1, K1, D1, u1, display_p);
-            // if (!ok1) u1 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
-            //                                std::numeric_limits<double>::quiet_NaN());
-            if (!ok1) u1 = Eigen::Vector2d(1.0, 1.0);
+            if (!ok1) u1 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
+                                           std::numeric_limits<double>::quiet_NaN());
             double theta1 = std::atan2(std::sqrt(Xc1.x()*Xc1.x() + Xc1.y()*Xc1.y()), Xc1.z());
             bool valid1 = ok1 && (theta1 <= valid_theta1);
             valid_proj1.push_back(valid1);
@@ -1290,9 +1289,14 @@ void VisualizeStereoReprojectionTuner(
             // target -> cam2
             Eigen::Vector3d Xc2 = ToCamX_fromCam0(R20, t20, Xc0);
             Eigen::Vector2d u2; bool ok2 = ProjectFisheyeKB(Xc2, K2, D2, u2, display_p);
-            // if (!ok2) u2 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
-            //                                std::numeric_limits<double>::quiet_NaN());
-            if (!ok2) u2 = Eigen::Vector2d(1.0, 1.0);
+            if (!ok2) {
+                u2 = Eigen::Vector2d(std::numeric_limits<double>::quiet_NaN(),
+                                     std::numeric_limits<double>::quiet_NaN());
+                if (debug_frame && j < 5) {
+                    std::cout << "  CAM2 projection FAILED for corner " << j << ": Xc2=[" << Xc2.x() << ", " << Xc2.y() << ", " << Xc2.z() 
+                             << "], Xc0=[" << Xc0.x() << ", " << Xc0.y() << ", " << Xc0.z() << "]" << std::endl;
+                }
+            }
             double theta2 = std::atan2(std::sqrt(Xc2.x()*Xc2.x() + Xc2.y()*Xc2.y()), Xc2.z());
             bool valid2 = ok2 && (theta2 <= valid_theta2);
             valid_proj2.push_back(valid2);
@@ -1352,44 +1356,142 @@ void VisualizeStereoReprojectionTuner(
         // Compute errors (RMS) for frames that have observations
         double e0 = 0, e1 = 0, e2 = 0, etot = 0;
         size_t cams_count = 0;
-        // //print out obs0
-        // for (size_t idx = 0; idx < board_points.size(); ++idx) {
-        //     if (obs0 && idx < obs0->size()) {
-        //         std::cout << "obs0[" << idx << "] = " << (*obs0)[idx].transpose() << std::endl;
-        //     }
-        // }
-        // //print out obs0 size and proj0 size
-        // if (obs0) {
-        //     std::cout << "obs0 size: " << obs0->size() << std::endl;
-        // }
-        // std::cout << "proj0 size: " << proj0.size() << std::endl;    
-
+        
+        if (debug_frame) {
+            std::cout << "\n========== VIZ DEBUG: Frame " << i << " ==========" << std::endl;
+            std::cout << "Board pose (target->cam0): RPY=[" << b_r << ", " << b_p << ", " << b_y 
+                      << "], T=[" << b_tx << ", " << b_ty << ", " << b_tz << "]" << std::endl;
+            std::cout << "Cam0 intrinsics: K=[" << K0[0] << ", " << K0[1] << ", " << K0[2] << ", " << K0[3] << "]" << std::endl;
+            std::cout << "Cam0 distortion: D=[" << D0[0] << ", " << D0[1] << ", " << D0[2] << ", " << D0[3] << "]" << std::endl;
+            std::cout << "Cam1 intrinsics: K=[" << K1[0] << ", " << K1[1] << ", " << K1[2] << ", " << K1[3] << "]" << std::endl;
+            std::cout << "Cam1 distortion: D=[" << D1[0] << ", " << D1[1] << ", " << D1[2] << ", " << D1[3] << "]" << std::endl;
+            std::cout << "Cam1->Cam0 transform: RPY=[" << c10_r << ", " << c10_p << ", " << c10_y 
+                      << "], T=[" << c10_tx << ", " << c10_ty << ", " << c10_tz << "]" << std::endl;
+            std::cout << "Cam2 intrinsics: K=[" << K2[0] << ", " << K2[1] << ", " << K2[2] << ", " << K2[3] << "]" << std::endl;
+            std::cout << "Cam2 distortion: D=[" << D2[0] << ", " << D2[1] << ", " << D2[2] << ", " << D2[3] << "]" << std::endl;
+            std::cout << "Cam2->Cam0 transform: RPY=[" << c20_r << ", " << c20_p << ", " << c20_y 
+                      << "], T=[" << c20_tx << ", " << c20_ty << ", " << c20_tz << "]" << std::endl;
+        }
 
         if (obs0 && !obs0->empty()) {
+            if (debug_frame) {
+                std::cout << "\n--- CAM0 Error Calculation ---" << std::endl;
+                std::cout << "Observed points: " << obs0->size() << ", Projected points: " << proj0.size() << std::endl;
+                double sum_sq = 0.0;
+                int valid_count = 0;
+                for (size_t idx = 0; idx < obs0->size() && idx < proj0.size(); ++idx) {
+                    if (!std::isnan((*obs0)[idx].x()) && !std::isnan((*obs0)[idx].y())) {
+                        Eigen::Vector2d diff = (*obs0)[idx] - proj0[idx];
+                        double err_sq = diff.squaredNorm();
+                        sum_sq += err_sq;
+                        valid_count++;
+                        if (valid_count <= 10) {  // Print first 10 points
+                            std::cout << "  CornerID " << idx << ": obs=[" << (*obs0)[idx].x() << ", " << (*obs0)[idx].y() 
+                                     << "], proj=[" << proj0[idx].x() << ", " << proj0[idx].y() 
+                                     << "], err=[" << diff.x() << ", " << diff.y() << "], err_norm=" << std::sqrt(err_sq) << std::endl;
+                        }
+                    }
+                }
+                std::cout << "Valid points: " << valid_count << ", Sum squared error: " << sum_sq << ", RMS: " << std::sqrt(sum_sq / valid_count) << std::endl;
+            }
             e0 = ComputeFilteredRMSError(*obs0, proj0);
-            err0 = e0; 
+            err0 = e0;
+            if (debug_frame) {
+                std::cout << "CAM0 RMS Error: " << e0 << std::endl;
+            }
             if (e0 > 0.0) { etot += e0; cams_count++; }
         }
         else {
             err0 = 0.0;
+            if (debug_frame) {
+                std::cout << "\n--- CAM0: No observations ---" << std::endl;
+            }
         }
 
-
         if (obs1 && !obs1->empty()) {
+            if (debug_frame) {
+                std::cout << "\n--- CAM1 Error Calculation ---" << std::endl;
+                std::cout << "Observed points: " << obs1->size() << ", Projected points: " << proj1.size() << std::endl;
+                double sum_sq = 0.0;
+                int valid_count = 0;
+                for (size_t idx = 0; idx < obs1->size() && idx < proj1.size(); ++idx) {
+                    if (!std::isnan((*obs1)[idx].x()) && !std::isnan((*obs1)[idx].y())) {
+                        Eigen::Vector2d diff = (*obs1)[idx] - proj1[idx];
+                        double err_sq = diff.squaredNorm();
+                        sum_sq += err_sq;
+                        valid_count++;
+                        if (valid_count <= 10) {  // Print first 10 points
+                            std::cout << "  CornerID " << idx << ": obs=[" << (*obs1)[idx].x() << ", " << (*obs1)[idx].y() 
+                                     << "], proj=[" << proj1[idx].x() << ", " << proj1[idx].y() 
+                                     << "], err=[" << diff.x() << ", " << diff.y() << "], err_norm=" << std::sqrt(err_sq) << std::endl;
+                        }
+                    }
+                }
+                std::cout << "Valid points: " << valid_count << ", Sum squared error: " << sum_sq << ", RMS: " << std::sqrt(sum_sq / valid_count) << std::endl;
+            }
             e1 = ComputeFilteredRMSError(*obs1, proj1);
-            err1 = e1; 
+            err1 = e1;
+            if (debug_frame) {
+                std::cout << "CAM1 RMS Error (from function): " << e1 << std::endl;
+            }
             if (e1 > 0.0) { etot += e1; cams_count++; }
         } else {
             err1 = 0.0;
+            if (debug_frame) {
+                std::cout << "\n--- CAM1: No observations ---" << std::endl;
+            }
         }
 
-
         if (obs2 && !obs2->empty()) {
+            if (debug_frame) {
+                std::cout << "\n--- CAM2 Error Calculation ---" << std::endl;
+                std::cout << "Observed points: " << obs2->size() << ", Projected points: " << proj2.size() << std::endl;
+                double sum_sq = 0.0;
+                int valid_count = 0;
+                std::vector<int> valid_corner_ids;
+                for (size_t idx = 0; idx < obs2->size() && idx < proj2.size(); ++idx) {
+                    if (!std::isnan((*obs2)[idx].x()) && !std::isnan((*obs2)[idx].y())) {
+                        Eigen::Vector2d diff = (*obs2)[idx] - proj2[idx];
+                        double err_sq = diff.squaredNorm();
+                        sum_sq += err_sq;
+                        valid_count++;
+                        valid_corner_ids.push_back(idx);  // idx is the corner ID
+                        if (valid_count <= 10) {  // Print first 10 points
+                            std::cout << "  CornerID " << idx << ": obs=[" << (*obs2)[idx].x() << ", " << (*obs2)[idx].y() 
+                                     << "], proj=[" << proj2[idx].x() << ", " << proj2[idx].y() 
+                                     << "], err=[" << diff.x() << ", " << diff.y() << "], err_norm=" << std::sqrt(err_sq);
+                            if (std::isnan(proj2[idx].x()) || std::isnan(proj2[idx].y())) {
+                                std::cout << " [PROJECTION FAILED - NaN]";
+                            }
+                            std::cout << std::endl;
+                        }
+                    }
+                }
+                if (debug_frame && valid_count > 10) {
+                    std::cout << "  ... (showing first 10 of " << valid_count << " valid corners)" << std::endl;
+                    std::cout << "  First 10 corner IDs: ";
+                    for (size_t k = 0; k < std::min<size_t>(10, valid_corner_ids.size()); ++k) {
+                        std::cout << valid_corner_ids[k] << " ";
+                    }
+                    std::cout << std::endl;
+                }
+                std::cout << "Valid points: " << valid_count << ", Sum squared error: " << sum_sq << ", RMS: " << std::sqrt(sum_sq / valid_count) << std::endl;
+            }
             e2 = ComputeFilteredRMSError(*obs2, proj2);
-            err2 = e2; 
+            err2 = e2;
+            if (debug_frame) {
+                std::cout << "CAM2 RMS Error (from function): " << e2 << std::endl;
+            }
             if (e2 > 0.0) { etot += e2; cams_count++; }
         } else {
             err2 = 0.0;
+            if (debug_frame) {
+                std::cout << "\n--- CAM2: No observations ---" << std::endl;
+            }
+        }
+        
+        if (debug_frame) {
+            std::cout << "========== END VIZ DEBUG ==========\n" << std::endl;
         }
 
         errTot = etot; // (cams_count ? etot / cams_count : 0.0);

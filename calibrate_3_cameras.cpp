@@ -880,8 +880,39 @@ struct FisheyeReproj_TargetInCam0 {
         T u = intrinsic[0] * x_p + intrinsic[2];
         T v = intrinsic[1] * y_p + intrinsic[3];
 
-        residuals[0] = u - T(measured_px_(0));
-        residuals[1] = v - T(measured_px_(1));
+        // Clamp projection to image bounds if point is behind camera or outside image
+        // This prevents optimizer from pushing points outside valid viewing area
+        const T img_min_u = T(0.0);
+        const T img_min_v = T(0.0);
+        // Estimate image size from intrinsics (typically 2*cx width, 2*cy height)
+        const T img_max_u = T(2.0) * intrinsic[2];  // approximate width
+        const T img_max_v = T(2.0) * intrinsic[3];  // approximate height
+        
+        // Clamp projection to image bounds
+        // For points behind camera (Z <= 0) or outside image, clamp to nearest border
+        // This penalizes the optimizer for pushing points outside valid viewing area
+        const T eps_behind = T(1e-9);  // threshold for "behind camera"
+        const T obs_u = T(measured_px_(0));
+        const T obs_v = T(measured_px_(1));
+        
+        // Check if behind camera: if Z <= eps_behind, use border farthest from observation (max penalty)
+        // Otherwise, clamp to nearest border if outside image
+        T behind_camera_penalty_u = (obs_u < (img_max_u + img_min_u) / T(2.0)) ? img_max_u : img_min_u;
+        T behind_camera_penalty_v = (obs_v < (img_max_v + img_min_v) / T(2.0)) ? img_max_v : img_min_v;
+        
+        // Clamp u: if behind camera, use penalty border; otherwise clamp to nearest border
+        T u_clamped = (Z <= eps_behind) ? behind_camera_penalty_u : 
+                      ((u < img_min_u) ? img_min_u : ((u > img_max_u) ? img_max_u : u));
+        
+        // Clamp v: if behind camera, use penalty border; otherwise clamp to nearest border
+        T v_clamped = (Z <= eps_behind) ? behind_camera_penalty_v :
+                      ((v < img_min_v) ? img_min_v : ((v > img_max_v) ? img_max_v : v));
+        
+        // Compute residual using clamped projection
+        // This penalizes points that would project outside the image
+        residuals[0] = u_clamped - T(measured_px_(0));
+        residuals[1] = v_clamped - T(measured_px_(1));
+        
         // std::cout << "residuals (internal): " << residuals[0] << ", " << residuals[1] << std::endl;
         return true;
     }
@@ -1120,10 +1151,34 @@ public:
         const size_t N = master_timestamps_.size();
         std::vector<double> frame_errors(N * 3, 0.0);
 
+        // DEBUG: Output for frame 0 (or set DEBUG_FRAME to desired frame index)
+        const size_t DEBUG_FRAME = 0;
+        bool debug_frame = false;
+
         for (size_t idx = 0; idx < master_timestamps_.size(); ++idx) {
             const auto& entry = master_timestamps_[idx];
             const double* tq = target_poses_[idx].data();
             const double* tt = target_poses_[idx].data() + 4;
+
+            debug_frame = (idx == DEBUG_FRAME);
+            
+            if (debug_frame) {
+                std::cout << "\n========== CALIB DEBUG: Frame " << idx << " (iteration " << summary.iteration << ") ==========" << std::endl;
+                std::cout << "Timestamp ID: " << entry.timestamp_id << std::endl;
+                std::cout << "Camera indices: cam0=" << entry.cam0_idx << ", cam1=" << entry.cam1_idx << ", cam2=" << entry.cam2_idx << std::endl;
+                std::cout << "Target pose (target->cam0): q=[" << tq[0] << ", " << tq[1] << ", " << tq[2] << ", " << tq[3] 
+                          << "], t=[" << tt[0] << ", " << tt[1] << ", " << tt[2] << "]" << std::endl;
+                std::cout << "Cam0 intrinsics: K=[" << intrinsic_0_[0] << ", " << intrinsic_0_[1] << ", " << intrinsic_0_[2] << ", " << intrinsic_0_[3] << "]" << std::endl;
+                std::cout << "Cam0 distortion: D=[" << dist_0_[0] << ", " << dist_0_[1] << ", " << dist_0_[2] << ", " << dist_0_[3] << "]" << std::endl;
+                std::cout << "Cam1 intrinsics: K=[" << intrinsic_1_[0] << ", " << intrinsic_1_[1] << ", " << intrinsic_1_[2] << ", " << intrinsic_1_[3] << "]" << std::endl;
+                std::cout << "Cam1 distortion: D=[" << dist_1_[0] << ", " << dist_1_[1] << ", " << dist_1_[2] << ", " << dist_1_[3] << "]" << std::endl;
+                std::cout << "Cam1->Cam0 transform: q=[" << qvec_cam_1_[0] << ", " << qvec_cam_1_[1] << ", " << qvec_cam_1_[2] << ", " << qvec_cam_1_[3] 
+                          << "], t=[" << tvec_cam_1_[0] << ", " << tvec_cam_1_[1] << ", " << tvec_cam_1_[2] << "]" << std::endl;
+                std::cout << "Cam2 intrinsics: K=[" << intrinsic_2_[0] << ", " << intrinsic_2_[1] << ", " << intrinsic_2_[2] << ", " << intrinsic_2_[3] << "]" << std::endl;
+                std::cout << "Cam2 distortion: D=[" << dist_2_[0] << ", " << dist_2_[1] << ", " << dist_2_[2] << ", " << dist_2_[3] << "]" << std::endl;
+                std::cout << "Cam2->Cam0 transform: q=[" << qvec_cam_2_[0] << ", " << qvec_cam_2_[1] << ", " << qvec_cam_2_[2] << ", " << qvec_cam_2_[3] 
+                          << "], t=[" << tvec_cam_2_[0] << ", " << tvec_cam_2_[1] << ", " << tvec_cam_2_[2] << "]" << std::endl;
+            }
 
             double cam_err_sq[3] = {0.0, 0.0, 0.0};
             int cam_counts[3] = {0, 0, 0};
@@ -1131,6 +1186,10 @@ public:
             // CAM0
             if (entry.cam0_idx != -1) {
                 int i = entry.cam0_idx;
+                if (debug_frame) {
+                    std::cout << "\n--- CAM0 Error Calculation (frame index " << i << ") ---" << std::endl;
+                    std::cout << "Number of points: " << img_pts_0_[i].size() << std::endl;
+                }
                 for (size_t j = 0; j < img_pts_0_[i].size(); ++j) {
                     FisheyeReproj_TargetInCam0 cost(img_pts_0_[i][j], obj_pts_0_[i][j]);
                     double res[2];
@@ -1141,14 +1200,30 @@ public:
                     total_sq_err += n2;
                     total_pts++;
 
+                    if (debug_frame && j < 10) {  // Print first 10 points
+                        std::cout << "  Point " << j << ": obs=[" << img_pts_0_[i][j].x() << ", " << img_pts_0_[i][j].y() 
+                                 << "], obj=[" << obj_pts_0_[i][j].x() << ", " << obj_pts_0_[i][j].y() << ", " << obj_pts_0_[i][j].z() 
+                                 << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
+                    }
+
                     out << "cam0," << i << "," << j << ","
                         << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
                 }
+                if (debug_frame) {
+                    double rms = (cam_counts[0] > 0) ? std::sqrt(cam_err_sq[0] / cam_counts[0]) : 0.0;
+                    std::cout << "CAM0: " << cam_counts[0] << " points, Sum squared error: " << cam_err_sq[0] << ", RMS: " << rms << std::endl;
+                }
+            } else if (debug_frame) {
+                std::cout << "\n--- CAM0: No observations ---" << std::endl;
             }
 
             // CAM1
             if (entry.cam1_idx != -1) {
                 int i = entry.cam1_idx;
+                if (debug_frame) {
+                    std::cout << "\n--- CAM1 Error Calculation (frame index " << i << ") ---" << std::endl;
+                    std::cout << "Number of points: " << img_pts_1_[i].size() << std::endl;
+                }
                 for (size_t j = 0; j < img_pts_1_[i].size(); ++j) {
                     FisheyeReproj_TargetInCam0 cost(img_pts_1_[i][j], obj_pts_1_[i][j]);
                     double res[2];
@@ -1159,14 +1234,30 @@ public:
                     total_sq_err += n2;
                     total_pts++;
 
+                    if (debug_frame && j < 10) {  // Print first 10 points
+                        std::cout << "  Point " << j << ": obs=[" << img_pts_1_[i][j].x() << ", " << img_pts_1_[i][j].y() 
+                                 << "], obj=[" << obj_pts_1_[i][j].x() << ", " << obj_pts_1_[i][j].y() << ", " << obj_pts_1_[i][j].z()
+                                 << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
+                    }
+
                     out << "cam1," << i << "," << j << ","
                         << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
                 }
+                if (debug_frame) {
+                    double rms = (cam_counts[1] > 0) ? std::sqrt(cam_err_sq[1] / cam_counts[1]) : 0.0;
+                    std::cout << "CAM1: " << cam_counts[1] << " points, Sum squared error: " << cam_err_sq[1] << ", RMS: " << rms << std::endl;
+                }
+            } else if (debug_frame) {
+                std::cout << "\n--- CAM1: No observations ---" << std::endl;
             }
 
             // CAM2
             if (entry.cam2_idx != -1) {
                 int i = entry.cam2_idx;
+                if (debug_frame) {
+                    std::cout << "\n--- CAM2 Error Calculation (frame index " << i << ") ---" << std::endl;
+                    std::cout << "Number of points: " << img_pts_2_[i].size() << std::endl;
+                }
                 for (size_t j = 0; j < img_pts_2_[i].size(); ++j) {
                     FisheyeReproj_TargetInCam0 cost(img_pts_2_[i][j], obj_pts_2_[i][j]);
                     double res[2];
@@ -1177,9 +1268,21 @@ public:
                     total_sq_err += n2;
                     total_pts++;
 
+                    if (debug_frame && j < 10) {  // Print first 10 points
+                        std::cout << "  Point " << j << ": obs=[" << img_pts_2_[i][j].x() << ", " << img_pts_2_[i][j].y() 
+                                 << "], obj=[" << obj_pts_2_[i][j].x() << ", " << obj_pts_2_[i][j].y() << ", " << obj_pts_2_[i][j].z()
+                                 << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
+                    }
+
                     out << "cam2," << i << "," << j << ","
                         << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
                 }
+                if (debug_frame) {
+                    double rms = (cam_counts[2] > 0) ? std::sqrt(cam_err_sq[2] / cam_counts[2]) : 0.0;
+                    std::cout << "CAM2: " << cam_counts[2] << " points, Sum squared error: " << cam_err_sq[2] << ", RMS: " << rms << std::endl;
+                }
+            } else if (debug_frame) {
+                std::cout << "\n--- CAM2: No observations ---" << std::endl;
             }
 
             // Store RMS for each camera that observed the frame
@@ -1188,6 +1291,13 @@ public:
                             std::sqrt(cam_err_sq[cam] / cam_counts[cam]) :
                             0.0;
                 frame_errors[idx * 3 + cam] = rms;
+            }
+            
+            if (debug_frame) {
+                std::cout << "Final frame errors: cam0=" << frame_errors[idx * 3 + 0] 
+                         << ", cam1=" << frame_errors[idx * 3 + 1] 
+                         << ", cam2=" << frame_errors[idx * 3 + 2] << std::endl;
+                std::cout << "========== END CALIB DEBUG ==========\n" << std::endl;
             }
         }
 
@@ -1764,7 +1874,7 @@ int main(int argc, char** argv) {
                       filtered_timestamp_list_1,
                       filtered_timestamp_list_2);
 
-    std::cin.get();  // Wait for user input before proceeding
+    // std::cin.get();  // Wait for user input before proceeding
 
 
     // Initialize camera parameters
@@ -2178,8 +2288,8 @@ int main(int argc, char** argv) {
     std::cout << "Stage 2: Global optimization..." << std::endl;
 
     OptimizationFlags global_flags;
-    global_flags.optimize_intrinsics = true;
-    global_flags.optimize_distortion = true;
+    global_flags.optimize_intrinsics = false;
+    global_flags.optimize_distortion = false;
     global_flags.optimize_inter_camera = true;
     global_flags.optimize_target_poses = true;
 
