@@ -1141,8 +1141,8 @@ public:
         double total_sq_err = 0.0;
         int total_pts = 0;
 
-        std::ofstream out(log_dir_ + "/iter_" + std::to_string(summary.iteration) + ".csv");
-        out << "cam,frame,point,res_u,res_v,res_norm\n";
+        // std::ofstream out(log_dir_ + "/iter_" + std::to_string(summary.iteration) + ".csv");
+        // out << "cam,frame,point,res_u,res_v,res_norm\n";
 
         static const double cam0_q[4] = {1,0,0,0};
         static const double cam0_t[3] = {0,0,0};
@@ -1206,8 +1206,8 @@ public:
                                  << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
                     }
 
-                    out << "cam0," << i << "," << j << ","
-                        << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
+                    // out << "cam0," << i << "," << j << ","
+                    //     << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
                 }
                 if (debug_frame) {
                     double rms = (cam_counts[0] > 0) ? std::sqrt(cam_err_sq[0] / cam_counts[0]) : 0.0;
@@ -1240,8 +1240,8 @@ public:
                                  << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
                     }
 
-                    out << "cam1," << i << "," << j << ","
-                        << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
+                    // out << "cam1," << i << "," << j << ","
+                        // << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
                 }
                 if (debug_frame) {
                     double rms = (cam_counts[1] > 0) ? std::sqrt(cam_err_sq[1] / cam_counts[1]) : 0.0;
@@ -1274,8 +1274,8 @@ public:
                                  << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
                     }
 
-                    out << "cam2," << i << "," << j << ","
-                        << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
+                    // out << "cam2," << i << "," << j << ","
+                    //     << res[0] << "," << res[1] << "," << std::sqrt(n2) << "\n";
                 }
                 if (debug_frame) {
                     double rms = (cam_counts[2] > 0) ? std::sqrt(cam_err_sq[2] / cam_counts[2]) : 0.0;
@@ -1539,7 +1539,7 @@ void OptimizeFishEyeParameters(
     ceres::Solver::Options options;
     // options.linear_solver_type = ceres::DENSE_SCHUR;
     options.linear_solver_type = ceres::SPARSE_SCHUR;
-    options.minimizer_progress_to_stdout = false;
+    options.minimizer_progress_to_stdout = true;
     // tune as you like (max_num_iterations, trust_region settings...)
     options.update_state_every_iteration = true;
     options.max_num_iterations = 50;
@@ -1575,7 +1575,7 @@ void OptimizeFishEyeParameters(
 
     ceres::Solver::Summary summary;
     ceres::Solve(options, &problem, &summary);
-    // std::cout << summary.FullReport() << std::endl;
+    std::cout << summary.FullReport() << std::endl;
     std::cout << summary.BriefReport() << std::endl;
 }
 
