@@ -1880,7 +1880,27 @@ int main(int argc, char** argv) {
     // Initialize camera parameters
     
 
-    // python  known paramemters
+    // // python  known paramemters
+    // Eigen::Matrix3d K_0;
+    // K_0 << 800, 0, 640,
+    //         0, 800, 480,
+    //         0, 0, 1;
+    // Eigen::Matrix3d K_1;
+    // K_1 << 800, 0, 640,
+    //         0, 800, 480,
+    //         0, 0, 1;
+    // Eigen::Matrix3d K_2;
+    // K_2 << 800, 0, 640,
+    //         0, 800, 480,
+    //         0, 0, 1;
+    // double intrinsic_0[4] = {K_0(0, 0), K_0(1, 1), K_0(0, 2), K_0(1, 2)};
+    // double dist_0[4] = {-0.04, 0.03, -0.04, 0.015};
+    // double intrinsic_1[4] = {K_1(0, 0), K_1(1, 1), K_1(0, 2), K_1(1, 2)};
+    // double dist_1[4] = {-0.04, 0.03, -0.04, 0.015};
+    // double intrinsic_2[4] = {K_2(0, 0), K_2(1, 1), K_2(0, 2), K_2(1, 2)};
+    // double dist_2[4] = {-0.04, 0.03, -0.04, 0.015};
+
+    // close to real parameters
     Eigen::Matrix3d K_0;
     K_0 << 800, 0, 640,
             0, 800, 480,
@@ -1894,11 +1914,11 @@ int main(int argc, char** argv) {
             0, 800, 480,
             0, 0, 1;
     double intrinsic_0[4] = {K_0(0, 0), K_0(1, 1), K_0(0, 2), K_0(1, 2)};
-    double dist_0[4] = {-0.04, 0.03, -0.04, 0.015};
+    double dist_0[4] = {-0.01, 0.01, -0.01, 0.01};
     double intrinsic_1[4] = {K_1(0, 0), K_1(1, 1), K_1(0, 2), K_1(1, 2)};
-    double dist_1[4] = {-0.04, 0.03, -0.04, 0.015};
+    double dist_1[4] = {-0.01, 0.01, -0.01, 0.01};
     double intrinsic_2[4] = {K_2(0, 0), K_2(1, 1), K_2(0, 2), K_2(1, 2)};
-    double dist_2[4] = {-0.04, 0.03, -0.04, 0.015};
+    double dist_2[4] = {-0.01, 0.01, -0.01, 0.01};
     
 
     // // calib  known paramemters
@@ -2019,125 +2039,125 @@ int main(int argc, char** argv) {
         return T_avg;
     };
 
-    // // --- Step 1: Camera->Target extrinsics are already computed as extrinsics_0,1,2 ---
+    // --- Step 1: Camera->Target extrinsics are already computed as extrinsics_0,1,2 ---
 
-    // // --- Step 2: Estimate inter-camera transforms ---
-    // std::vector<Eigen::Matrix4d> cam0_to_cam1_list, cam1_to_cam2_list;
+    // --- Step 2: Estimate inter-camera transforms ---
+    std::vector<Eigen::Matrix4d> cam0_to_cam1_list, cam1_to_cam2_list;
 
-    // // For frames where cam0 and cam1 both saw the board
-    // for (size_t i = 0; i < master_timestamps.size(); ++i) {
-    //     const auto& entry = master_timestamps[i];
-    //     if (entry.cam0_idx != -1 && entry.cam1_idx != -1) {
-    //         Eigen::Matrix4d T_t_in_c0 = arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]); // target in cam0
-    //         Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]); // target in cam1
-    //         Eigen::Matrix4d T_c1_in_c0 = T_t_in_c0 * T_t_in_c1.inverse();
-    //         cam0_to_cam1_list.push_back(T_c1_in_c0);
-    //     }
-    // }
-
-    // // Average these
-    // Eigen::Matrix4d cam1_in_cam0 = averagePoses(cam0_to_cam1_list);
-
-    // // For frames where cam1 and cam2 both saw the board
-    // for (size_t i = 0; i < master_timestamps.size(); ++i) {
-    //     const auto& entry = master_timestamps[i];
-    //     if (entry.cam1_idx != -1 && entry.cam2_idx != -1) {
-    //         Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-    //         Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-    //         Eigen::Matrix4d T_c2_in_c1 = T_t_in_c1 * T_t_in_c2.inverse();
-    //         cam1_to_cam2_list.push_back(T_c2_in_c1);
-    //     }
-    // }
-
-    // Eigen::Matrix4d cam2_in_cam1 = averagePoses(cam1_to_cam2_list);
-    // Eigen::Matrix4d cam2_in_cam0 = cam1_in_cam0 * cam2_in_cam1;
-
-    // // --- Step 3: Build target poses in cam0 frame ---
-    // std::vector<std::array<double,7>> target_poses;
-    // target_poses.reserve(master_timestamps.size());
-
-    // for (const auto& entry : master_timestamps) {
-    //     std::vector<Eigen::Matrix4d> estimates;
-
-    //     if (entry.cam0_idx != -1) {
-    //         estimates.push_back(arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]));
-    //     }
-    //     if (entry.cam1_idx != -1) {
-    //         Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-    //         estimates.push_back(cam1_in_cam0 * T_t_in_c1);
-    //     }
-    //     if (entry.cam2_idx != -1) {
-    //         Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-    //         estimates.push_back(cam2_in_cam0 * T_t_in_c2);
-    //     }
-
-    //     if (!estimates.empty()) {
-    //         Eigen::Matrix4d T_avg = averagePoses(estimates);
-    //         target_poses.push_back(matrixToArrayPose(T_avg));
-    //     } else {
-    //         // fallback: identity
-    //         target_poses.push_back({1.0,0.0,0.0,0.0,0.0,0.0,0.0});
-    //     }
-    // }
-
-    // // --- If qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are declared later in main
-    // //     (as in your existing main), reconstruct any target_poses that were bootstrapped
-    // //     from camera1/camera2 using the real initial cam transforms now that those
-    // //     variables exist. This keeps the paste-drop safe and produces correct bootstrapping.
-    // //
-    // // Rebuild cam transforms from the actual user variables (overwrite temporaries):
-    // {
-    //     // Build real cam1_in_cam0 and cam2_in_cam0 using the variables you define later.
-    //     // If those variables are located after this insertion point, move this small block
-    //     // to just after you call ceres::AngleAxisToQuaternion(...) for cam1 and cam2.
-    //     Eigen::Matrix4d cam1_in_cam0 = Eigen::Matrix4d::Identity();
-    //     Eigen::Matrix4d cam2_in_cam0 = Eigen::Matrix4d::Identity();
-
-    //     // Only build if qvec_cam_1 and tvec_cam_1 are in scope (they are later in your main).
-    //     // To be safe, check symbol existence at compile time isn't possible here; simply
-    //     // re-run this population after qvec_cam_1/tvec_cam_1 are assigned in your main
-    //     // (move these three lines down if needed).
-    //     // Example (if in scope):
-    //     // cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
-    //     // cam2_in_cam0 = quatTransToMatrix(qvec_cam_2, tvec_cam_2);
-
-    //     // Now, **recompute** any target_poses that were created from extrinsics_1/extrinsics_2
-    //     for (size_t i = 0; i < master_timestamps.size(); ++i) {
-    //         const auto &entry = master_timestamps[i];
-    //         if (entry.cam0_idx != -1) continue; // already a cam0 measurement, keep it
-
-    //         if (entry.cam1_idx != -1) {
-    //             // recompute using cam1_in_cam0 (if cam1_in_cam0 is identity because you left it,
-    //             // result is same as before)
-    //             Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
-    //             Eigen::Matrix4d T_target_in_cam0 = cam1_in_cam0 * T_target_in_cam1;
-    //             target_poses[i] = matrixToArrayPose(T_target_in_cam0);
-
-    //         } else if (entry.cam2_idx != -1) {
-    //             Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
-    //             Eigen::Matrix4d T_target_in_cam0 = cam2_in_cam0 * T_target_in_cam2;
-    //             target_poses[i] = matrixToArrayPose(T_target_in_cam0);
-    //         }
-    //     }
-    // }
-
-    //Load known simulated target poses from JSON
-    std::vector<std::array<double,7>> target_poses;
-    std::vector<double> timestamps;
-    if (LoadTargetPosesFromJson(target_poses_file, target_poses, &timestamps)) {
-        std::cout << "Loaded " << target_poses.size() << " target poses from JSON\n";
-        // If you need them as Eigen matrices
-        std::vector<Eigen::Matrix4d> target_mats;
-        target_mats.reserve(target_poses.size());
-        for (const auto& a : target_poses) {
-            target_mats.push_back(quatTransToMatrixLoaded(a));
+    // For frames where cam0 and cam1 both saw the board
+    for (size_t i = 0; i < master_timestamps.size(); ++i) {
+        const auto& entry = master_timestamps[i];
+        if (entry.cam0_idx != -1 && entry.cam1_idx != -1) {
+            Eigen::Matrix4d T_t_in_c0 = arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]); // target in cam0
+            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]); // target in cam1
+            Eigen::Matrix4d T_c1_in_c0 = T_t_in_c0 * T_t_in_c1.inverse();
+            cam0_to_cam1_list.push_back(T_c1_in_c0);
         }
-        // Now use target_poses (vector of arrays) and target_mats directly in subsequent code,
-        // bypassing the earlier "estimate inter-camera and average" logic.
-    } else {
-        std::cerr << "Failed to load simulated poses; falling back to estimation path\n";
-        // keep your original estimation code here
     }
+
+    // Average these
+    Eigen::Matrix4d cam1_in_cam0 = averagePoses(cam0_to_cam1_list);
+
+    // For frames where cam1 and cam2 both saw the board
+    for (size_t i = 0; i < master_timestamps.size(); ++i) {
+        const auto& entry = master_timestamps[i];
+        if (entry.cam1_idx != -1 && entry.cam2_idx != -1) {
+            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+            Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+            Eigen::Matrix4d T_c2_in_c1 = T_t_in_c1 * T_t_in_c2.inverse();
+            cam1_to_cam2_list.push_back(T_c2_in_c1);
+        }
+    }
+
+    Eigen::Matrix4d cam2_in_cam1 = averagePoses(cam1_to_cam2_list);
+    Eigen::Matrix4d cam2_in_cam0 = cam1_in_cam0 * cam2_in_cam1;
+
+    // --- Step 3: Build target poses in cam0 frame ---
+    std::vector<std::array<double,7>> target_poses;
+    target_poses.reserve(master_timestamps.size());
+
+    for (const auto& entry : master_timestamps) {
+        std::vector<Eigen::Matrix4d> estimates;
+
+        if (entry.cam0_idx != -1) {
+            estimates.push_back(arrayPoseToMatrix(extrinsics_0[entry.cam0_idx]));
+        }
+        if (entry.cam1_idx != -1) {
+            Eigen::Matrix4d T_t_in_c1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+            estimates.push_back(cam1_in_cam0 * T_t_in_c1);
+        }
+        if (entry.cam2_idx != -1) {
+            Eigen::Matrix4d T_t_in_c2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+            estimates.push_back(cam2_in_cam0 * T_t_in_c2);
+        }
+
+        if (!estimates.empty()) {
+            Eigen::Matrix4d T_avg = averagePoses(estimates);
+            target_poses.push_back(matrixToArrayPose(T_avg));
+        } else {
+            // fallback: identity
+            target_poses.push_back({1.0,0.0,0.0,0.0,0.0,0.0,0.0});
+        }
+    }
+
+    // --- If qvec_cam_1/qvec_cam_2 and tvec_cam_1/tvec_cam_2 are declared later in main
+    //     (as in your existing main), reconstruct any target_poses that were bootstrapped
+    //     from camera1/camera2 using the real initial cam transforms now that those
+    //     variables exist. This keeps the paste-drop safe and produces correct bootstrapping.
+    //
+    // Rebuild cam transforms from the actual user variables (overwrite temporaries):
+    {
+        // Build real cam1_in_cam0 and cam2_in_cam0 using the variables you define later.
+        // If those variables are located after this insertion point, move this small block
+        // to just after you call ceres::AngleAxisToQuaternion(...) for cam1 and cam2.
+        Eigen::Matrix4d cam1_in_cam0 = Eigen::Matrix4d::Identity();
+        Eigen::Matrix4d cam2_in_cam0 = Eigen::Matrix4d::Identity();
+
+        // Only build if qvec_cam_1 and tvec_cam_1 are in scope (they are later in your main).
+        // To be safe, check symbol existence at compile time isn't possible here; simply
+        // re-run this population after qvec_cam_1/tvec_cam_1 are assigned in your main
+        // (move these three lines down if needed).
+        // Example (if in scope):
+        // cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
+        // cam2_in_cam0 = quatTransToMatrix(qvec_cam_2, tvec_cam_2);
+
+        // Now, **recompute** any target_poses that were created from extrinsics_1/extrinsics_2
+        for (size_t i = 0; i < master_timestamps.size(); ++i) {
+            const auto &entry = master_timestamps[i];
+            if (entry.cam0_idx != -1) continue; // already a cam0 measurement, keep it
+
+            if (entry.cam1_idx != -1) {
+                // recompute using cam1_in_cam0 (if cam1_in_cam0 is identity because you left it,
+                // result is same as before)
+                Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(extrinsics_1[entry.cam1_idx]);
+                Eigen::Matrix4d T_target_in_cam0 = cam1_in_cam0 * T_target_in_cam1;
+                target_poses[i] = matrixToArrayPose(T_target_in_cam0);
+
+            } else if (entry.cam2_idx != -1) {
+                Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(extrinsics_2[entry.cam2_idx]);
+                Eigen::Matrix4d T_target_in_cam0 = cam2_in_cam0 * T_target_in_cam2;
+                target_poses[i] = matrixToArrayPose(T_target_in_cam0);
+            }
+        }
+    }
+
+    // //Load known simulated target poses from JSON
+    // std::vector<std::array<double,7>> target_poses;
+    // std::vector<double> timestamps;
+    // if (LoadTargetPosesFromJson(target_poses_file, target_poses, &timestamps)) {
+    //     std::cout << "Loaded " << target_poses.size() << " target poses from JSON\n";
+    //     // If you need them as Eigen matrices
+    //     std::vector<Eigen::Matrix4d> target_mats;
+    //     target_mats.reserve(target_poses.size());
+    //     for (const auto& a : target_poses) {
+    //         target_mats.push_back(quatTransToMatrixLoaded(a));
+    //     }
+    //     // Now use target_poses (vector of arrays) and target_mats directly in subsequent code,
+    //     // bypassing the earlier "estimate inter-camera and average" logic.
+    // } else {
+    //     std::cerr << "Failed to load simulated poses; falling back to estimation path\n";
+    //     // keep your original estimation code here
+    // }
 
     //output target poses for verification
     for (size_t i = 0; i < target_poses.size(); ++i) {
@@ -2155,6 +2175,210 @@ int main(int argc, char** argv) {
               << qvec_cam_2[0] << ", " << qvec_cam_2[1] << ", " << qvec_cam_2[2] << ", " << qvec_cam_2[3]
               << "], Translation ["
               << tvec_cam_2[0] << ", " << tvec_cam_2[1] << ", " << tvec_cam_2[2] << "]\n";
+
+    // --- Validate and fix target poses that don't produce valid projections ---
+    
+    // Helper: Create "right in front" pose in a specific camera's frame, then transform to cam0
+    auto createRightInFrontPoseInCam0 = [&](int cam_id) -> std::array<double,7> {
+        // Create pose in the specified camera's frame: identity rotation, 0.5m in front along Z
+        Eigen::Quaterniond q_cam(1.0, 0.0, 0.0, 0.0); // identity rotation
+        Eigen::Vector3d t_cam(0.0, 0.0, 0.5); // 0.5m in front
+        
+        Eigen::Matrix4d T_target_in_cam = Eigen::Matrix4d::Identity();
+        T_target_in_cam.block<3,3>(0,0) = q_cam.toRotationMatrix();
+        T_target_in_cam.block<3,1>(0,3) = t_cam;
+        
+        // Transform to cam0 frame
+        Eigen::Matrix4d T_target_in_cam0;
+        if (cam_id == 0) {
+            // Already in cam0 frame
+            T_target_in_cam0 = T_target_in_cam;
+        } else if (cam_id == 1) {
+            // Transform: target_in_cam0 = cam1_in_cam0 * target_in_cam1
+            Eigen::Matrix4d T_cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
+            T_target_in_cam0 = T_cam1_in_cam0 * T_target_in_cam;
+        } else if (cam_id == 2) {
+            // Transform: target_in_cam0 = cam2_in_cam0 * target_in_cam2
+            Eigen::Matrix4d T_cam2_in_cam0 = quatTransToMatrix(qvec_cam_2, tvec_cam_2);
+            T_target_in_cam0 = T_cam2_in_cam0 * T_target_in_cam;
+        } else {
+            // Fallback: identity
+            T_target_in_cam0 = Eigen::Matrix4d::Identity();
+            T_target_in_cam0(2,3) = 0.5; // 0.5m in front
+        }
+        
+        return matrixToArrayPose(T_target_in_cam0);
+    };
+    
+    // Helper: Validate target pose produces valid projections
+    auto validateTargetPose = [&](size_t frame_idx, const std::array<double,7>& target_pose) -> bool {
+        if (frame_idx >= master_timestamps.size()) return false;
+        
+        const auto& entry = master_timestamps[frame_idx];
+        
+        // Convert target pose to matrix
+        Eigen::Matrix4d T_target_in_cam0 = arrayPoseToMatrix(target_pose);
+        Eigen::Matrix3d R_target = T_target_in_cam0.block<3,3>(0,0);
+        Eigen::Vector3d t_target = T_target_in_cam0.block<3,1>(0,3);
+        
+        // Check each camera that observed this frame
+        bool has_valid_projection = false;
+        
+        // CAM0
+        if (entry.cam0_idx != -1 && !has_valid_projection) {
+            int cam0_i = entry.cam0_idx;
+            if (cam0_i < obj_pts_list_0.size() && cam0_i < img_pts_list_0.size()) {
+                const auto& obj_pts = obj_pts_list_0[cam0_i];
+                
+                // Transform object points to cam0 frame: target→cam0
+                Eigen::MatrixXd points_cam0(obj_pts.size(), 3);
+                for (size_t j = 0; j < obj_pts.size(); ++j) {
+                    Eigen::Vector3d pt_cam0 = R_target * obj_pts[j] + t_target;
+                    points_cam0.row(j) = pt_cam0.transpose();
+                }
+                
+                // Project using Kannala-Brandt
+                Eigen::Vector4d K(intrinsic_0[0], intrinsic_0[1], intrinsic_0[2], intrinsic_0[3]);
+                Eigen::Vector4d D(dist_0[0], dist_0[1], dist_0[2], dist_0[3]);
+                Eigen::MatrixXd projected = kannala_brandt_project(points_cam0, K, D);
+                
+                // Check if at least one point is valid
+                double img_width = 2.0 * intrinsic_0[2];
+                double img_height = 2.0 * intrinsic_0[3];
+                
+                for (int j = 0; j < projected.rows(); ++j) {
+                    double Z = points_cam0(j, 2);
+                    double u = projected(j, 0);
+                    double v = projected(j, 1);
+                    
+                    if (Z > 1e-6 && u >= 0 && u < img_width && v >= 0 && v < img_height) {
+                        has_valid_projection = true;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        // CAM1
+        if (entry.cam1_idx != -1 && !has_valid_projection) {
+            int cam1_i = entry.cam1_idx;
+            if (cam1_i < obj_pts_list_1.size() && cam1_i < img_pts_list_1.size()) {
+                const auto& obj_pts = obj_pts_list_1[cam1_i];
+                
+                // Transform: target→cam0→cam1
+                Eigen::Matrix4d T_cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
+                Eigen::Matrix4d T_cam0_in_cam1 = T_cam1_in_cam0.inverse();
+                
+                Eigen::MatrixXd points_cam1(obj_pts.size(), 3);
+                for (size_t j = 0; j < obj_pts.size(); ++j) {
+                    // First transform to cam0
+                    Eigen::Vector3d pt_cam0 = R_target * obj_pts[j] + t_target;
+                    // Then transform to cam1
+                    Eigen::Vector4d pt_cam0_homog(pt_cam0.x(), pt_cam0.y(), pt_cam0.z(), 1.0);
+                    Eigen::Vector4d pt_cam1_homog = T_cam0_in_cam1 * pt_cam0_homog;
+                    points_cam1.row(j) = pt_cam1_homog.head<3>().transpose();
+                }
+                
+                // Project using Kannala-Brandt
+                Eigen::Vector4d K(intrinsic_1[0], intrinsic_1[1], intrinsic_1[2], intrinsic_1[3]);
+                Eigen::Vector4d D(dist_1[0], dist_1[1], dist_1[2], dist_1[3]);
+                Eigen::MatrixXd projected = kannala_brandt_project(points_cam1, K, D);
+                
+                // Check if at least one point is valid
+                double img_width = 2.0 * intrinsic_1[2];
+                double img_height = 2.0 * intrinsic_1[3];
+                
+                for (int j = 0; j < projected.rows(); ++j) {
+                    double Z = points_cam1(j, 2);
+                    double u = projected(j, 0);
+                    double v = projected(j, 1);
+                    
+                    if (Z > 1e-6 && u >= 0 && u < img_width && v >= 0 && v < img_height) {
+                        has_valid_projection = true;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        // CAM2
+        if (entry.cam2_idx != -1 && !has_valid_projection) {
+            int cam2_i = entry.cam2_idx;
+            if (cam2_i < obj_pts_list_2.size() && cam2_i < img_pts_list_2.size()) {
+                const auto& obj_pts = obj_pts_list_2[cam2_i];
+                
+                // Transform: target→cam0→cam2
+                Eigen::Matrix4d T_cam2_in_cam0 = quatTransToMatrix(qvec_cam_2, tvec_cam_2);
+                Eigen::Matrix4d T_cam0_in_cam2 = T_cam2_in_cam0.inverse();
+                
+                Eigen::MatrixXd points_cam2(obj_pts.size(), 3);
+                for (size_t j = 0; j < obj_pts.size(); ++j) {
+                    // First transform to cam0
+                    Eigen::Vector3d pt_cam0 = R_target * obj_pts[j] + t_target;
+                    // Then transform to cam2
+                    Eigen::Vector4d pt_cam0_homog(pt_cam0.x(), pt_cam0.y(), pt_cam0.z(), 1.0);
+                    Eigen::Vector4d pt_cam2_homog = T_cam0_in_cam2 * pt_cam0_homog;
+                    points_cam2.row(j) = pt_cam2_homog.head<3>().transpose();
+                }
+                
+                // Project using Kannala-Brandt
+                Eigen::Vector4d K(intrinsic_2[0], intrinsic_2[1], intrinsic_2[2], intrinsic_2[3]);
+                Eigen::Vector4d D(dist_2[0], dist_2[1], dist_2[2], dist_2[3]);
+                Eigen::MatrixXd projected = kannala_brandt_project(points_cam2, K, D);
+                
+                // Check if at least one point is valid
+                double img_width = 2.0 * intrinsic_2[2];
+                double img_height = 2.0 * intrinsic_2[3];
+                
+                for (int j = 0; j < projected.rows(); ++j) {
+                    double Z = points_cam2(j, 2);
+                    double u = projected(j, 0);
+                    double v = projected(j, 1);
+                    
+                    if (Z > 1e-6 && u >= 0 && u < img_width && v >= 0 && v < img_height) {
+                        has_valid_projection = true;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        return has_valid_projection;
+    };
+    
+    // Validate and fix target poses
+    int fixed_count = 0;
+    for (size_t i = 0; i < target_poses.size() && i < master_timestamps.size(); ++i) {
+        const auto& entry = master_timestamps[i];
+        
+        if (!validateTargetPose(i, target_poses[i])) {
+            // Find which camera has observations
+            int cam_with_obs = -1;
+            if (entry.cam0_idx != -1) {
+                cam_with_obs = 0;
+            } else if (entry.cam1_idx != -1) {
+                cam_with_obs = 1;
+            } else if (entry.cam2_idx != -1) {
+                cam_with_obs = 2;
+            }
+            
+            if (cam_with_obs != -1) {
+                std::cout << "Warning: Frame " << i << " (timestamp " << entry.timestamp_id 
+                          << ") target pose invalid, initializing to 'right in front' of CAM" 
+                          << cam_with_obs << std::endl;
+                target_poses[i] = createRightInFrontPoseInCam0(cam_with_obs);
+                fixed_count++;
+            } else {
+                // No camera observed this frame - use identity as fallback
+                std::cout << "Warning: Frame " << i << " has no camera observations, using identity pose." << std::endl;
+                target_poses[i] = {1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+            }
+        }
+    }
+    
+    if (fixed_count > 0) {
+        std::cout << "Fixed " << fixed_count << " invalid target pose(s) by initializing to 'right in front' of observing camera." << std::endl;
+    }
 
 
 
@@ -2188,7 +2412,7 @@ int main(int argc, char** argv) {
 
     OptimizationFlags per_frame_flags;
     per_frame_flags.optimize_intrinsics = false;
-    per_frame_flags.optimize_distortion = false;
+    per_frame_flags.optimize_distortion = true;
     per_frame_flags.optimize_inter_camera = false;
     per_frame_flags.optimize_target_poses = true;  // only these
 
@@ -2272,7 +2496,7 @@ int main(int argc, char** argv) {
         // std::cout << "Refined target pose for frame" << i << std::endl;
         target_poses[i] = frame_target_poses[0];
         // std::cout << "  New pose: [\n";
-        std::cin.get();  // Wait for user input before proceeding
+        // std::cin.get();  // Wait for user input before proceeding
     }
     
 
@@ -2289,7 +2513,7 @@ int main(int argc, char** argv) {
 
     OptimizationFlags global_flags;
     global_flags.optimize_intrinsics = false;
-    global_flags.optimize_distortion = false;
+    global_flags.optimize_distortion = true;
     global_flags.optimize_inter_camera = true;
     global_flags.optimize_target_poses = true;
 

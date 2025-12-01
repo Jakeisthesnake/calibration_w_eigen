@@ -343,14 +343,14 @@ std::tuple<
         // std::cout << " contains " << data.obj_points.size() << " points." << std::endl;
     }
 
-    std::cout << "\nTotal points processed for camera " << target_cam_id
-              << ": " << total_points << std::endl;
+    // std::cout << "\nTotal points processed for camera " << target_cam_id
+    //           << ": " << total_points << std::endl;
     
-    for (size_t i = 0; i < obj_pts_list.size(); ++i) {
-        std::cout << "Timestamp " << timestamp_list[i] << " sorted corners: ";
-        for (auto cid : corner_ids_list[i]) std::cout << cid << " ";
-        std::cout << std::endl;
-    }
+    // for (size_t i = 0; i < obj_pts_list.size(); ++i) {
+    //     std::cout << "Timestamp " << timestamp_list[i] << " sorted corners: ";
+    //     for (auto cid : corner_ids_list[i]) std::cout << cid << " ";
+    //     std::cout << std::endl;
+    // }
 
 
     return {obj_pts_list, img_pts_list, corner_ids_list, timestamp_list};
@@ -419,8 +419,8 @@ bool LoadCalibrationResult(
         target_poses.push_back(tp);
         timestamps.push_back(pose["timestamp"].get<double>());
 
-        std::cout << "Loaded pose " << counter
-                  << " with timestamp " << timestamps.back() << std::endl;
+        // std::cout << "Loaded pose " << counter
+        //           << " with timestamp " << timestamps.back() << std::endl;
         counter++;
     }
 
@@ -1205,7 +1205,7 @@ void VisualizeStereoReprojectionTuner(
         }
 
         // DEBUG: Output for frame 0 (or set DEBUG_FRAME to desired frame index)
-        const int DEBUG_FRAME = 0;
+        const int DEBUG_FRAME = 1000;
         bool debug_frame = (i == DEBUG_FRAME);
 
         // Build intrinsics/dist

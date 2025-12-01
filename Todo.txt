@@ -40,6 +40,8 @@ Todo
     - figure out correct indexing - set single_timestamp to be 0 or -1? DONE
     - 11/20 ok, so figure out how to get optimization to work on frame 14 where cam 2 is reasonably initialized and should be able to just scooch its way to 0 error.
     - 11/21 look into the discrepency in how error is calculated between vizualizer and calibration.
+    - 11/26 work on frame 18 and base initialization DONE
+    - 12/1 figure out how to get intrinsics to converge well. Maybe shuffle a few times betweens optimizing intrinsics and extrinsics?
 
 
 - Fix distortion wrap around checking in simulator, visuzlizer and calibrator
