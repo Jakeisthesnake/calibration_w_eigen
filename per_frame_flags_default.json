@@ -1,0 +1,7 @@
+{
+    "optimize_intrinsics": false,
+    "optimize_distortion": true,
+    "optimize_inter_camera": false,
+    "optimize_target_poses": true
+}
+

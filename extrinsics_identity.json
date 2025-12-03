@@ -1,0 +1,31 @@
+{
+    "inter_camera": {
+        "camera1_to_camera0": {
+            "quaternion": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "translation_vector": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        "camera2_to_camera0": {
+            "quaternion": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "translation_vector": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        }
+    }
+}
+

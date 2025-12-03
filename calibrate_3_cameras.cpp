@@ -971,6 +971,202 @@ struct TimestampEntry {
     int cam2_idx;  // -1 if missing
 };
 
+// Load intrinsics and distortion from JSON file (same format as SaveCalibrationResult)
+bool LoadIntrinsicsFromJson(const std::string& filepath,
+                            double intrinsic_0[4], double dist_0[4],
+                            double intrinsic_1[4], double dist_1[4],
+                            double intrinsic_2[4], double dist_2[4]) {
+    std::ifstream ifs(filepath);
+    if (!ifs.good()) {
+        std::cerr << "Failed to open intrinsics file: " << filepath << std::endl;
+        return false;
+    }
+    
+    json j;
+    try {
+        ifs >> j;
+    } catch (const std::exception& e) {
+        std::cerr << "Failed to parse JSON file: " << e.what() << std::endl;
+        return false;
+    }
+    
+    // Helper to load camera intrinsics
+    auto load_camera = [](const json& cam_json, double intrinsic[4], double dist[4]) -> bool {
+        if (!cam_json.contains("intrinsics") || !cam_json.contains("distortion")) {
+            return false;
+        }
+        
+        auto intrin = cam_json["intrinsics"];
+        auto dist_coeffs = cam_json["distortion"];
+        
+        if (intrin.size() != 4 || dist_coeffs.size() != 4) {
+            return false;
+        }
+        
+        for (int i = 0; i < 4; ++i) {
+            intrinsic[i] = intrin[i].get<double>();
+            dist[i] = dist_coeffs[i].get<double>();
+        }
+        
+        return true;
+    };
+    
+    bool success = true;
+    if (j.contains("camera0")) {
+        success = success && load_camera(j["camera0"], intrinsic_0, dist_0);
+    } else {
+        std::cerr << "JSON missing camera0 section" << std::endl;
+        success = false;
+    }
+    
+    if (j.contains("camera1")) {
+        success = success && load_camera(j["camera1"], intrinsic_1, dist_1);
+    } else {
+        std::cerr << "JSON missing camera1 section" << std::endl;
+        success = false;
+    }
+    
+    if (j.contains("camera2")) {
+        success = success && load_camera(j["camera2"], intrinsic_2, dist_2);
+    } else {
+        std::cerr << "JSON missing camera2 section" << std::endl;
+        success = false;
+    }
+    
+    if (success) {
+        std::cout << "Successfully loaded intrinsics from: " << filepath << std::endl;
+    }
+    
+    return success;
+}
+
+// Load optimization flags from JSON file
+bool LoadOptimizationFlagsFromJson(const std::string& filepath,
+                                    OptimizationFlags& flags) {
+    std::ifstream ifs(filepath);
+    if (!ifs.good()) {
+        std::cerr << "Failed to open optimization flags file: " << filepath << std::endl;
+        return false;
+    }
+    
+    json j;
+    try {
+        ifs >> j;
+    } catch (const std::exception& e) {
+        std::cerr << "Failed to parse JSON file: " << e.what() << std::endl;
+        return false;
+    }
+    
+    // Load flags (default to true if not present)
+    if (j.contains("optimize_intrinsics")) {
+        flags.optimize_intrinsics = j["optimize_intrinsics"].get<bool>();
+    }
+    if (j.contains("optimize_distortion")) {
+        flags.optimize_distortion = j["optimize_distortion"].get<bool>();
+    }
+    if (j.contains("optimize_inter_camera")) {
+        flags.optimize_inter_camera = j["optimize_inter_camera"].get<bool>();
+    }
+    if (j.contains("optimize_target_poses")) {
+        flags.optimize_target_poses = j["optimize_target_poses"].get<bool>();
+    }
+    
+    // std::cout << "Successfully loaded optimization flags from: " << filepath << std::endl;
+    // std::cout << "  optimize_intrinsics: " << flags.optimize_intrinsics << std::endl;
+    // std::cout << "  optimize_distortion: " << flags.optimize_distortion << std::endl;
+    // std::cout << "  optimize_inter_camera: " << flags.optimize_inter_camera << std::endl;
+    // std::cout << "  optimize_target_poses: " << flags.optimize_target_poses << std::endl;
+    
+    return true;
+}
+
+// Load inter-camera extrinsics from JSON file (same format as SaveCalibrationResult)
+bool LoadExtrinsicsFromJson(const std::string& filepath,
+                            double qvec_cam_1[4], double tvec_cam_1[3],
+                            double qvec_cam_2[4], double tvec_cam_2[3]) {
+    std::ifstream ifs(filepath);
+    if (!ifs.good()) {
+        std::cerr << "Failed to open extrinsics file: " << filepath << std::endl;
+        return false;
+    }
+    
+    json j;
+    try {
+        ifs >> j;
+    } catch (const std::exception& e) {
+        std::cerr << "Failed to parse JSON file: " << e.what() << std::endl;
+        return false;
+    }
+    
+    if (!j.contains("inter_camera")) {
+        std::cerr << "JSON missing inter_camera section" << std::endl;
+        return false;
+    }
+    
+    auto inter_cam = j["inter_camera"];
+    
+    // Load camera1_to_camera0
+    if (!inter_cam.contains("camera1_to_camera0")) {
+        std::cerr << "JSON missing camera1_to_camera0 section" << std::endl;
+        return false;
+    }
+    
+    auto cam1_to_cam0 = inter_cam["camera1_to_camera0"];
+    if (!cam1_to_cam0.contains("quaternion") || !cam1_to_cam0.contains("translation_vector")) {
+        std::cerr << "camera1_to_camera0 missing quaternion or translation_vector" << std::endl;
+        return false;
+    }
+    
+    auto q1 = cam1_to_cam0["quaternion"];
+    auto t1 = cam1_to_cam0["translation_vector"];
+    if (q1.size() != 4 || t1.size() != 3) {
+        std::cerr << "Invalid quaternion/translation size for camera1_to_camera0" << std::endl;
+        return false;
+    }
+    
+    for (int i = 0; i < 4; ++i) {
+        qvec_cam_1[i] = q1[i].get<double>();
+    }
+    for (int i = 0; i < 3; ++i) {
+        tvec_cam_1[i] = t1[i].get<double>();
+    }
+    
+    // Load camera2_to_camera0
+    if (!inter_cam.contains("camera2_to_camera0")) {
+        std::cerr << "JSON missing camera2_to_camera0 section" << std::endl;
+        return false;
+    }
+    
+    auto cam2_to_cam0 = inter_cam["camera2_to_camera0"];
+    if (!cam2_to_cam0.contains("quaternion") || !cam2_to_cam0.contains("translation_vector")) {
+        std::cerr << "camera2_to_camera0 missing quaternion or translation_vector" << std::endl;
+        return false;
+    }
+    
+    auto q2 = cam2_to_cam0["quaternion"];
+    auto t2 = cam2_to_cam0["translation_vector"];
+    if (q2.size() != 4 || t2.size() != 3) {
+        std::cerr << "Invalid quaternion/translation size for camera2_to_camera0" << std::endl;
+        return false;
+    }
+    
+    for (int i = 0; i < 4; ++i) {
+        qvec_cam_2[i] = q2[i].get<double>();
+    }
+    for (int i = 0; i < 3; ++i) {
+        tvec_cam_2[i] = t2[i].get<double>();
+    }
+    
+    // Normalize quaternions
+    Eigen::Map<Eigen::Quaterniond> q1_map(qvec_cam_1);
+    q1_map.normalize();
+    Eigen::Map<Eigen::Quaterniond> q2_map(qvec_cam_2);
+    q2_map.normalize();
+    
+    std::cout << "Successfully loaded extrinsics from: " << filepath << std::endl;
+    return true;
+}
+
 void SaveCalibrationResult(
     const std::string& filename,
     const double intrinsic_0[4], const double dist_0[4],
@@ -1160,7 +1356,8 @@ public:
             const double* tq = target_poses_[idx].data();
             const double* tt = target_poses_[idx].data() + 4;
 
-            debug_frame = (idx == DEBUG_FRAME);
+            // debug_frame = (idx == DEBUG_FRAME);
+            debug_frame = false;
             
             if (debug_frame) {
                 std::cout << "\n========== CALIB DEBUG: Frame " << idx << " (iteration " << summary.iteration << ") ==========" << std::endl;
@@ -1187,8 +1384,8 @@ public:
             if (entry.cam0_idx != -1) {
                 int i = entry.cam0_idx;
                 if (debug_frame) {
-                    std::cout << "\n--- CAM0 Error Calculation (frame index " << i << ") ---" << std::endl;
-                    std::cout << "Number of points: " << img_pts_0_[i].size() << std::endl;
+                    // std::cout << "\n--- CAM0 Error Calculation (frame index " << i << ") ---" << std::endl;
+                    // std::cout << "Number of points: " << img_pts_0_[i].size() << std::endl;
                 }
                 for (size_t j = 0; j < img_pts_0_[i].size(); ++j) {
                     FisheyeReproj_TargetInCam0 cost(img_pts_0_[i][j], obj_pts_0_[i][j]);
@@ -1201,9 +1398,9 @@ public:
                     total_pts++;
 
                     if (debug_frame && j < 10) {  // Print first 10 points
-                        std::cout << "  Point " << j << ": obs=[" << img_pts_0_[i][j].x() << ", " << img_pts_0_[i][j].y() 
-                                 << "], obj=[" << obj_pts_0_[i][j].x() << ", " << obj_pts_0_[i][j].y() << ", " << obj_pts_0_[i][j].z() 
-                                 << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
+                        // std::cout << "  Point " << j << ": obs=[" << img_pts_0_[i][j].x() << ", " << img_pts_0_[i][j].y() 
+                        //          << "], obj=[" << obj_pts_0_[i][j].x() << ", " << obj_pts_0_[i][j].y() << ", " << obj_pts_0_[i][j].z() 
+                        //          << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
                     }
 
                     // out << "cam0," << i << "," << j << ","
@@ -1221,8 +1418,8 @@ public:
             if (entry.cam1_idx != -1) {
                 int i = entry.cam1_idx;
                 if (debug_frame) {
-                    std::cout << "\n--- CAM1 Error Calculation (frame index " << i << ") ---" << std::endl;
-                    std::cout << "Number of points: " << img_pts_1_[i].size() << std::endl;
+                    // std::cout << "\n--- CAM1 Error Calculation (frame index " << i << ") ---" << std::endl;
+                    // std::cout << "Number of points: " << img_pts_1_[i].size() << std::endl;
                 }
                 for (size_t j = 0; j < img_pts_1_[i].size(); ++j) {
                     FisheyeReproj_TargetInCam0 cost(img_pts_1_[i][j], obj_pts_1_[i][j]);
@@ -1235,9 +1432,9 @@ public:
                     total_pts++;
 
                     if (debug_frame && j < 10) {  // Print first 10 points
-                        std::cout << "  Point " << j << ": obs=[" << img_pts_1_[i][j].x() << ", " << img_pts_1_[i][j].y() 
-                                 << "], obj=[" << obj_pts_1_[i][j].x() << ", " << obj_pts_1_[i][j].y() << ", " << obj_pts_1_[i][j].z()
-                                 << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
+                        // std::cout << "  Point " << j << ": obs=[" << img_pts_1_[i][j].x() << ", " << img_pts_1_[i][j].y() 
+                        //          << "], obj=[" << obj_pts_1_[i][j].x() << ", " << obj_pts_1_[i][j].y() << ", " << obj_pts_1_[i][j].z()
+                        //          << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
                     }
 
                     // out << "cam1," << i << "," << j << ","
@@ -1255,8 +1452,8 @@ public:
             if (entry.cam2_idx != -1) {
                 int i = entry.cam2_idx;
                 if (debug_frame) {
-                    std::cout << "\n--- CAM2 Error Calculation (frame index " << i << ") ---" << std::endl;
-                    std::cout << "Number of points: " << img_pts_2_[i].size() << std::endl;
+                    // std::cout << "\n--- CAM2 Error Calculation (frame index " << i << ") ---" << std::endl;
+                    // std::cout << "Number of points: " << img_pts_2_[i].size() << std::endl;
                 }
                 for (size_t j = 0; j < img_pts_2_[i].size(); ++j) {
                     FisheyeReproj_TargetInCam0 cost(img_pts_2_[i][j], obj_pts_2_[i][j]);
@@ -1269,9 +1466,9 @@ public:
                     total_pts++;
 
                     if (debug_frame && j < 10) {  // Print first 10 points
-                        std::cout << "  Point " << j << ": obs=[" << img_pts_2_[i][j].x() << ", " << img_pts_2_[i][j].y() 
-                                 << "], obj=[" << obj_pts_2_[i][j].x() << ", " << obj_pts_2_[i][j].y() << ", " << obj_pts_2_[i][j].z()
-                                 << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
+                        // std::cout << "  Point " << j << ": obs=[" << img_pts_2_[i][j].x() << ", " << img_pts_2_[i][j].y() 
+                        //          << "], obj=[" << obj_pts_2_[i][j].x() << ", " << obj_pts_2_[i][j].y() << ", " << obj_pts_2_[i][j].z()
+                        //          << "], res=[" << res[0] << ", " << res[1] << "], res_norm=" << std::sqrt(n2) << std::endl;
                     }
 
                     // out << "cam2," << i << "," << j << ","
@@ -1814,13 +2011,96 @@ bool LoadTargetPosesFromJson(const std::string& filepath,
 
 
 int main(int argc, char** argv) {
-    // if (argc < 2) {
-    //     std::cerr << "Usage: ./calibrate_fisheye_camera <data_file.csv>" << std::endl;
-    //     return -1;
-    // }
-
-    std::string data_file = argv[1];
-    std::string target_poses_file = argv[2];
+    // Parse command-line arguments
+    std::string data_file;
+    std::string target_poses_file;
+    std::string intrinsics_file;
+    std::string extrinsics_file;
+    std::string per_frame_flags_file;
+    std::string global_flags_file;
+    
+    // Simple argument parser
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        
+        if (arg == "-datafile") {
+            if (i + 1 < argc) {
+                data_file = argv[++i];
+            } else {
+                std::cerr << "Error: -datafile requires a file path" << std::endl;
+                return -1;
+            }
+        } else if (arg == "-intrinsicsfile") {
+            if (i + 1 < argc) {
+                intrinsics_file = argv[++i];
+            } else {
+                std::cerr << "Error: -intrinsicsfile requires a file path" << std::endl;
+                return -1;
+            }
+        } else if (arg == "-extrinsicsfile") {
+            if (i + 1 < argc) {
+                extrinsics_file = argv[++i];
+            } else {
+                std::cerr << "Error: -extrinsicsfile requires a file path" << std::endl;
+                return -1;
+            }
+        } else if (arg == "-calibrationfile") {
+            if (i + 1 < argc) {
+                target_poses_file = argv[++i];
+            } else {
+                std::cerr << "Error: -calibrationfile requires a file path" << std::endl;
+                return -1;
+            }
+        } else if (arg == "-perframeflags") {
+            if (i + 1 < argc) {
+                per_frame_flags_file = argv[++i];
+            } else {
+                std::cerr << "Error: -perframeflags requires a file path" << std::endl;
+                return -1;
+            }
+        } else if (arg == "-globalflags") {
+            if (i + 1 < argc) {
+                global_flags_file = argv[++i];
+            } else {
+                std::cerr << "Error: -globalflags requires a file path" << std::endl;
+                return -1;
+            }
+        } else if (arg == "--help" || arg == "-h" || arg == "-help") {
+            std::cout << "Usage: " << argv[0] << " -datafile <data_file.csv> [options]\n"
+                      << "Required:\n"
+                      << "  -datafile <file>              CSV data file with corner detections\n"
+                      << "Options:\n"
+                      << "  -intrinsicsfile <file>        (optional) Load initial intrinsics from JSON file\n"
+                      << "  -extrinsicsfile <file>        (optional) Load inter-camera extrinsics from JSON file\n"
+                      << "  -calibrationfile <file>       (optional) Load target poses from JSON file\n"
+                      << "  -perframeflags <file>         (optional) Load per-frame optimization flags from JSON file\n"
+                      << "  -globalflags <file>            (optional) Load global optimization flags from JSON file\n"
+                      << "  -h, --help                    Show this help message\n"
+                      << "\n"
+                      << "Examples:\n"
+                      << "  " << argv[0] << " -datafile data.csv\n"
+                      << "  " << argv[0] << " -datafile data.csv -intrinsicsfile intrinsics.json\n"
+                      << "  " << argv[0] << " -datafile data.csv -extrinsicsfile extrinsics.json\n"
+                      << "  " << argv[0] << " -datafile data.csv -calibrationfile poses.json -intrinsicsfile intrinsics.json -extrinsicsfile extrinsics.json\n"
+                      << "  " << argv[0] << " -datafile data.csv -perframeflags per_frame_flags.json -globalflags global_flags.json\n";
+            return 0;
+        } else {
+            std::cerr << "Error: Unknown option: " << arg << std::endl;
+            std::cerr << "Use -h or --help for usage information" << std::endl;
+            return -1;
+        }
+    }
+    
+    // Check required arguments
+    if (data_file.empty()) {
+        std::cerr << "Error: Missing required argument: -datafile\n"
+                  << "Usage: " << argv[0] << " -datafile <data_file.csv> [options]\n"
+                  << "Use -h or --help for more information" << std::endl;
+        return -1;
+    }
+    
+    // Note: target_poses_file is optional - if not provided, Zhang's method will be used
+    // (when the JSON loading code is commented out)
 
     // Step 1: Load and process CSV data for all cameras
     auto [obj_pts_list_0, img_pts_list_0, corner_ids_list_0, timestamp_list_0] = processCSV(data_file, 0);
@@ -1878,71 +2158,93 @@ int main(int argc, char** argv) {
 
 
     // Initialize camera parameters
+    double intrinsic_0[4];
+    double dist_0[4];
+    double intrinsic_1[4];
+    double dist_1[4];
+    double intrinsic_2[4];
+    double dist_2[4];
     
-
-    // // python  known paramemters
-    // Eigen::Matrix3d K_0;
-    // K_0 << 800, 0, 640,
-    //         0, 800, 480,
-    //         0, 0, 1;
-    // Eigen::Matrix3d K_1;
-    // K_1 << 800, 0, 640,
-    //         0, 800, 480,
-    //         0, 0, 1;
-    // Eigen::Matrix3d K_2;
-    // K_2 << 800, 0, 640,
-    //         0, 800, 480,
-    //         0, 0, 1;
-    // double intrinsic_0[4] = {K_0(0, 0), K_0(1, 1), K_0(0, 2), K_0(1, 2)};
-    // double dist_0[4] = {-0.04, 0.03, -0.04, 0.015};
-    // double intrinsic_1[4] = {K_1(0, 0), K_1(1, 1), K_1(0, 2), K_1(1, 2)};
-    // double dist_1[4] = {-0.04, 0.03, -0.04, 0.015};
-    // double intrinsic_2[4] = {K_2(0, 0), K_2(1, 1), K_2(0, 2), K_2(1, 2)};
-    // double dist_2[4] = {-0.04, 0.03, -0.04, 0.015};
-
-    // close to real parameters
-    Eigen::Matrix3d K_0;
-    K_0 << 800, 0, 640,
-            0, 800, 480,
-            0, 0, 1;
-    Eigen::Matrix3d K_1;
-    K_1 << 800, 0, 640,
-            0, 800, 480,
-            0, 0, 1;
-    Eigen::Matrix3d K_2;
-    K_2 << 800, 0, 640,
-            0, 800, 480,
-            0, 0, 1;
-    double intrinsic_0[4] = {K_0(0, 0), K_0(1, 1), K_0(0, 2), K_0(1, 2)};
-    double dist_0[4] = {-0.01, 0.01, -0.01, 0.01};
-    double intrinsic_1[4] = {K_1(0, 0), K_1(1, 1), K_1(0, 2), K_1(1, 2)};
-    double dist_1[4] = {-0.01, 0.01, -0.01, 0.01};
-    double intrinsic_2[4] = {K_2(0, 0), K_2(1, 1), K_2(0, 2), K_2(1, 2)};
-    double dist_2[4] = {-0.01, 0.01, -0.01, 0.01};
+    // Load intrinsics from file if provided, otherwise use defaults
+    bool intrinsics_loaded = false;
+    if (!intrinsics_file.empty()) {
+        intrinsics_loaded = LoadIntrinsicsFromJson(intrinsics_file,
+                                                    intrinsic_0, dist_0,
+                                                    intrinsic_1, dist_1,
+                                                    intrinsic_2, dist_2);
+    }
     
-
-    // // calib  known paramemters
-    // Eigen::Matrix3d K_0;
-    // K_0 << 930, 0, 930,
-    //         0, 507, 777,
-    //         0, 0, 1;
-    // Eigen::Matrix3d K_1;
-    // K_1 << 741, 0, 939
-    //         0, 741, 761,
-    //         0, 0, 1;
-    // Eigen::Matrix3d K_2;
-    // K_2 << 930, 0, 930,
-    //         0, 507, 777,
-    //         0, 0, 1;
-
-
-    // double intrinsic_0[4] = {K_0(0, 0), K_0(1, 1), K_0(0, 2), K_0(1, 2)};
-    // double dist_0[4] = {0.14, -0.046, 0.005, -0.0003}; 
-    // double intrinsic_1[4] = {K_1(0, 0), K_1(1, 1), K_1(0, 2), K_1(1, 2)};
-    // double dist_1[4] = {-0.03, 0.02, -0.0015, -0.0001}; 
-    // double intrinsic_2[4] = {K_2(0, 0), K_2(1, 1), K_2(0, 2), K_2(1, 2)};
-    // double dist_2[4] ={0.14, -0.046, 0.005, -0.0003}; 
-
+    // If not loaded from file, estimate from homographies using robust_intrinsic_estimation
+    if (!intrinsics_loaded) {
+        std::cout << "Estimating intrinsics from homographies using robust_intrinsic_estimation..." << std::endl;
+        
+        // Estimate intrinsics for each camera from their homographies
+        Eigen::Matrix3d K_0_est = robust_intrinsic_estimation(H_list_0);
+        Eigen::Matrix3d K_1_est = robust_intrinsic_estimation(H_list_1);
+        Eigen::Matrix3d K_2_est = robust_intrinsic_estimation(H_list_2);
+        
+        // Check if estimation succeeded (not identity matrix)
+        bool estimation_succeeded = true;
+        if (K_0_est.isApprox(Eigen::Matrix3d::Identity()) || 
+            K_1_est.isApprox(Eigen::Matrix3d::Identity()) || 
+            K_2_est.isApprox(Eigen::Matrix3d::Identity())) {
+            estimation_succeeded = false;
+        }
+        
+        if (estimation_succeeded) {
+            // Extract intrinsics from estimated K matrices
+            intrinsic_0[0] = K_0_est(0, 0); intrinsic_0[1] = K_0_est(1, 1); intrinsic_0[2] = K_0_est(0, 2); intrinsic_0[3] = K_0_est(1, 2);
+            intrinsic_1[0] = K_1_est(0, 0); intrinsic_1[1] = K_1_est(1, 1); intrinsic_1[2] = K_1_est(0, 2); intrinsic_1[3] = K_1_est(1, 2);
+            intrinsic_2[0] = K_2_est(0, 0); intrinsic_2[1] = K_2_est(1, 1); intrinsic_2[2] = K_2_est(0, 2); intrinsic_2[3] = K_2_est(1, 2);
+            
+            // Initialize distortion coefficients to small values (will be optimized)
+            dist_0[0] = -0.04; dist_0[1] = 0.03; dist_0[2] = -0.04; dist_0[3] = 0.015;
+            dist_1[0] = -0.04; dist_1[1] = 0.03; dist_1[2] = -0.04; dist_1[3] = 0.015;
+            dist_2[0] = -0.04; dist_2[1] = 0.03; dist_2[2] = -0.04; dist_2[3] = 0.015;
+            
+            std::cout << "Successfully estimated intrinsics from homographies." << std::endl;
+            std::cout << "Camera 0: fx=" << intrinsic_0[0] << ", fy=" << intrinsic_0[1] 
+                      << ", cx=" << intrinsic_0[2] << ", cy=" << intrinsic_0[3] << std::endl;
+            std::cout << "Camera 1: fx=" << intrinsic_1[0] << ", fy=" << intrinsic_1[1] 
+                      << ", cx=" << intrinsic_1[2] << ", cy=" << intrinsic_1[3] << std::endl;
+            std::cout << "Camera 2: fx=" << intrinsic_2[0] << ", fy=" << intrinsic_2[1] 
+                      << ", cx=" << intrinsic_2[2] << ", cy=" << intrinsic_2[3] << std::endl;
+        } else {
+            // Fallback to default intrinsics if estimation failed
+            std::cout << "Warning: Intrinsic estimation failed, using default values." << std::endl;
+            Eigen::Matrix3d K_0_default;
+            K_0_default << 800, 0, 640,
+                           0, 800, 480,
+                           0, 0, 1;
+            Eigen::Matrix3d K_1_default;
+            K_1_default << 800, 0, 640,
+                           0, 800, 480,
+                           0, 0, 1;
+            Eigen::Matrix3d K_2_default;
+            K_2_default << 800, 0, 640,
+                           0, 800, 480,
+                           0, 0, 1;
+            intrinsic_0[0] = K_0_default(0, 0); intrinsic_0[1] = K_0_default(1, 1); intrinsic_0[2] = K_0_default(0, 2); intrinsic_0[3] = K_0_default(1, 2);
+            dist_0[0] = -0.04; dist_0[1] = 0.03; dist_0[2] = -0.04; dist_0[3] = 0.015;
+            intrinsic_1[0] = K_1_default(0, 0); intrinsic_1[1] = K_1_default(1, 1); intrinsic_1[2] = K_1_default(0, 2); intrinsic_1[3] = K_1_default(1, 2);
+            dist_1[0] = -0.04; dist_1[1] = 0.03; dist_1[2] = -0.04; dist_1[3] = 0.015;
+            intrinsic_2[0] = K_2_default(0, 0); intrinsic_2[1] = K_2_default(1, 1); intrinsic_2[2] = K_2_default(0, 2); intrinsic_2[3] = K_2_default(1, 2);
+            dist_2[0] = -0.04; dist_2[1] = 0.03; dist_2[2] = -0.04; dist_2[3] = 0.015;
+        }
+    }
+    
+    // Reconstruct K matrices from intrinsics (needed for compute_extrinsic_params)
+    Eigen::Matrix3d K_0, K_1, K_2;
+    K_0 << intrinsic_0[0], 0.0, intrinsic_0[2],
+            0.0, intrinsic_0[1], intrinsic_0[3],
+            0.0, 0.0, 1.0;
+    K_1 << intrinsic_1[0], 0.0, intrinsic_1[2],
+            0.0, intrinsic_1[1], intrinsic_1[3],
+            0.0, 0.0, 1.0;
+    K_2 << intrinsic_2[0], 0.0, intrinsic_2[2],
+            0.0, intrinsic_2[1], intrinsic_2[3],
+            0.0, 0.0, 1.0;
+    
     // Add extrinsics for all cameras
     std::vector<std::array<double, 7>> extrinsics_0, extrinsics_1, extrinsics_2;
     for (const auto& H : H_list_0) {
@@ -1973,15 +2275,12 @@ int main(int argc, char** argv) {
     
 
     // Add transformation parameters for camera 1 and camera 2 (relative to camera 0)
-    double rvec_cam_1[3] = {0, 3.14/3, 0.0};  // No initial rotation
-    double tvec_cam_1[3] = {.1, .1, 0}; // Baseline of 10 cm
+    double rvec_cam_1[3];
+    double tvec_cam_1[3];
     double qvec_cam_1[4];
-    ceres::AngleAxisToQuaternion(rvec_cam_1, qvec_cam_1);  // Converts to [w, x, y, z]
-
-    double rvec_cam_2[3] = {0, 2*3.14/3, 0};  // Different initial rotation
-    double tvec_cam_2[3] = {.2, -0.0, -0.0};  // 20cm baseline
+    double rvec_cam_2[3];
+    double tvec_cam_2[3];
     double qvec_cam_2[4];
-    ceres::AngleAxisToQuaternion(rvec_cam_2, qvec_cam_2);
 
     // --- START: single-target-pose initialization (drop-in) --------------------
 
@@ -2071,6 +2370,56 @@ int main(int argc, char** argv) {
 
     Eigen::Matrix4d cam2_in_cam1 = averagePoses(cam1_to_cam2_list);
     Eigen::Matrix4d cam2_in_cam0 = cam1_in_cam0 * cam2_in_cam1;
+    
+    // Load or compute inter-camera extrinsics
+    bool extrinsics_loaded = false;
+    if (!extrinsics_file.empty()) {
+        extrinsics_loaded = LoadExtrinsicsFromJson(extrinsics_file,
+                                                    qvec_cam_1, tvec_cam_1,
+                                                    qvec_cam_2, tvec_cam_2);
+        if (!extrinsics_loaded) {
+            std::cout << "Warning: Failed to load extrinsics from file, using computed values." << std::endl;
+        }
+    }
+    
+    // If not loaded from file, use the computed values from averaging
+    if (!extrinsics_loaded) {
+        // Check if we have valid computed transforms (non-empty lists)
+        bool has_valid_computation = !cam0_to_cam1_list.empty() && !cam1_to_cam2_list.empty();
+        
+        if (has_valid_computation) {
+            // Convert computed transforms to quaternion and translation
+            Eigen::Quaterniond q1(cam1_in_cam0.block<3,3>(0,0));
+            qvec_cam_1[0] = q1.w(); qvec_cam_1[1] = q1.x(); qvec_cam_1[2] = q1.y(); qvec_cam_1[3] = q1.z();
+            tvec_cam_1[0] = cam1_in_cam0(0,3); tvec_cam_1[1] = cam1_in_cam0(1,3); tvec_cam_1[2] = cam1_in_cam0(2,3);
+            
+            Eigen::Quaterniond q2(cam2_in_cam0.block<3,3>(0,0));
+            qvec_cam_2[0] = q2.w(); qvec_cam_2[1] = q2.x(); qvec_cam_2[2] = q2.y(); qvec_cam_2[3] = q2.z();
+            tvec_cam_2[0] = cam2_in_cam0(0,3); tvec_cam_2[1] = cam2_in_cam0(1,3); tvec_cam_2[2] = cam2_in_cam0(2,3);
+            
+            std::cout << "Using computed inter-camera extrinsics from target poses." << std::endl;
+        } else {
+            // Fallback to default hardcoded values if computation failed
+            std::cout << "Warning: Could not compute extrinsics from target poses (no overlapping frames), using defaults." << std::endl;
+            double rvec_cam_1_default[3] = {0, 3.14/3, 0.0};
+            double tvec_cam_1_default[3] = {.1, .1, 0};
+            ceres::AngleAxisToQuaternion(rvec_cam_1_default, qvec_cam_1);
+            tvec_cam_1[0] = tvec_cam_1_default[0];
+            tvec_cam_1[1] = tvec_cam_1_default[1];
+            tvec_cam_1[2] = tvec_cam_1_default[2];
+            
+            double rvec_cam_2_default[3] = {0, 2*3.14/3, 0};
+            double tvec_cam_2_default[3] = {.2, -0.0, -0.0};
+            ceres::AngleAxisToQuaternion(rvec_cam_2_default, qvec_cam_2);
+            tvec_cam_2[0] = tvec_cam_2_default[0];
+            tvec_cam_2[1] = tvec_cam_2_default[1];
+            tvec_cam_2[2] = tvec_cam_2_default[2];
+        }
+    }
+    
+    // Convert quaternions to angle-axis for display (optional, for compatibility)
+    ceres::QuaternionToAngleAxis(qvec_cam_1, rvec_cam_1);
+    ceres::QuaternionToAngleAxis(qvec_cam_2, rvec_cam_2);
 
     // --- Step 3: Build target poses in cam0 frame ---
     std::vector<std::array<double,7>> target_poses;
@@ -2411,10 +2760,27 @@ int main(int argc, char** argv) {
     std::cout << "Stage 1: Refining per-frame target poses individually..." << std::endl;
 
     OptimizationFlags per_frame_flags;
-    per_frame_flags.optimize_intrinsics = false;
-    per_frame_flags.optimize_distortion = true;
-    per_frame_flags.optimize_inter_camera = false;
-    per_frame_flags.optimize_target_poses = true;  // only these
+    // Load per-frame flags from file if provided, otherwise use defaults
+    bool per_frame_flags_loaded = false;
+    if (!per_frame_flags_file.empty()) {
+        per_frame_flags_loaded = LoadOptimizationFlagsFromJson(per_frame_flags_file, per_frame_flags);
+        if (!per_frame_flags_loaded) {
+            std::cout << "Warning: Failed to load per-frame flags from file, using defaults." << std::endl;
+        }
+    }
+    
+    if (!per_frame_flags_loaded) {
+        // Default per-frame flags
+        per_frame_flags.optimize_intrinsics = false;
+        per_frame_flags.optimize_distortion = true;
+        per_frame_flags.optimize_inter_camera = false;
+        per_frame_flags.optimize_target_poses = true;  // only these
+        std::cout << "Using default per-frame optimization flags:" << std::endl;
+        std::cout << "  optimize_intrinsics: " << per_frame_flags.optimize_intrinsics << std::endl;
+        std::cout << "  optimize_distortion: " << per_frame_flags.optimize_distortion << std::endl;
+        std::cout << "  optimize_inter_camera: " << per_frame_flags.optimize_inter_camera << std::endl;
+        std::cout << "  optimize_target_poses: " << per_frame_flags.optimize_target_poses << std::endl;
+    }
 
     for (size_t i = 0; i < master_timestamps.size(); ++i) {
         // Build per-frame subsets
@@ -2512,10 +2878,27 @@ int main(int argc, char** argv) {
     std::cout << "Stage 2: Global optimization..." << std::endl;
 
     OptimizationFlags global_flags;
-    global_flags.optimize_intrinsics = false;
-    global_flags.optimize_distortion = true;
-    global_flags.optimize_inter_camera = true;
-    global_flags.optimize_target_poses = true;
+    // Load global flags from file if provided, otherwise use defaults
+    bool global_flags_loaded = false;
+    if (!global_flags_file.empty()) {
+        global_flags_loaded = LoadOptimizationFlagsFromJson(global_flags_file, global_flags);
+        if (!global_flags_loaded) {
+            std::cout << "Warning: Failed to load global flags from file, using defaults." << std::endl;
+        }
+    }
+    
+    if (!global_flags_loaded) {
+        // Default global flags
+        global_flags.optimize_intrinsics = false;
+        global_flags.optimize_distortion = true;
+        global_flags.optimize_inter_camera = true;
+        global_flags.optimize_target_poses = true;
+        // std::cout << "Using default global optimization flags:" << std::endl;
+        // std::cout << "  optimize_intrinsics: " << global_flags.optimize_intrinsics << std::endl;
+        // std::cout << "  optimize_distortion: " << global_flags.optimize_distortion << std::endl;
+        // std::cout << "  optimize_inter_camera: " << global_flags.optimize_inter_camera << std::endl;
+        // std::cout << "  optimize_target_poses: " << global_flags.optimize_target_poses << std::endl;
+    }
 
 
     // Step 7: Optimize fisheye parameters
