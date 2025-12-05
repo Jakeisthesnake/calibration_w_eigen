@@ -42,6 +42,8 @@ Todo
     - 11/21 look into the discrepency in how error is calculated between vizualizer and calibration.
     - 11/26 work on frame 18 and base initialization DONE
     - 12/1 figure out how to get intrinsics to converge well. Maybe shuffle a few times betweens optimizing intrinsics and extrinsics?
+    - 12/2 isolate frame 6 and get working since you only have to deal with one camera, then frame 1 with all 3 cameras
+    - 12/3 may initialize intrinisce with each individual frame as well?
 
 
 - Fix distortion wrap around checking in simulator, visuzlizer and calibrator

@@ -1560,7 +1560,9 @@ void OptimizeFishEyeParameters(
     // Each array is {qw, qx, qy, qz, tx, ty, tz} representing target->cam0 (X_cam0 = R(q)*X_obj + t)
     std::vector<std::array<double,7>>& target_poses,
     const std::vector<TimestampEntry>& master_timestamps,
-    const OptimizationFlags& flags = OptimizationFlags()
+    const OptimizationFlags& flags = OptimizationFlags(),
+    bool fix_cam1_extrinsics = false,
+    bool fix_cam2_extrinsics = false
 )
 {
     //print out all arguments
@@ -1717,6 +1719,16 @@ void OptimizeFishEyeParameters(
         problem.SetParameterBlockConstant(tvec_cam_1);
         problem.SetParameterBlockConstant(qvec_cam_2);
         problem.SetParameterBlockConstant(tvec_cam_2);
+    } else {
+        // Selectively fix specific extrinsics if requested
+        if (fix_cam1_extrinsics) {
+            problem.SetParameterBlockConstant(qvec_cam_1);
+            problem.SetParameterBlockConstant(tvec_cam_1);
+        }
+        if (fix_cam2_extrinsics) {
+            problem.SetParameterBlockConstant(qvec_cam_2);
+            problem.SetParameterBlockConstant(tvec_cam_2);
+        }
     }
 
     // Normalize initial quaternions for target_poses and cam quaternions
@@ -2757,7 +2769,7 @@ int main(int argc, char** argv) {
 
     // --- Stage 1: Per-frame target pose refinement ---
     // Optimize each target pose independently using its available camera(s)
-    std::cout << "Stage 1: Refining per-frame target poses individually..." << std::endl;
+    std::cout << "Stage 1: Refining per-frame target poses, intrinsics, and extrinsics individually..." << std::endl;
 
     OptimizationFlags per_frame_flags;
     // Load per-frame flags from file if provided, otherwise use defaults
@@ -2770,17 +2782,22 @@ int main(int argc, char** argv) {
     }
     
     if (!per_frame_flags_loaded) {
-        // Default per-frame flags
-        per_frame_flags.optimize_intrinsics = false;
+        // Default per-frame flags: optimize intrinsics and extrinsics per frame
+        per_frame_flags.optimize_intrinsics = true;
         per_frame_flags.optimize_distortion = true;
-        per_frame_flags.optimize_inter_camera = false;
-        per_frame_flags.optimize_target_poses = true;  // only these
+        per_frame_flags.optimize_inter_camera = true;  // Will be set per frame based on camera visibility
+        per_frame_flags.optimize_target_poses = true;
         std::cout << "Using default per-frame optimization flags:" << std::endl;
         std::cout << "  optimize_intrinsics: " << per_frame_flags.optimize_intrinsics << std::endl;
         std::cout << "  optimize_distortion: " << per_frame_flags.optimize_distortion << std::endl;
-        std::cout << "  optimize_inter_camera: " << per_frame_flags.optimize_inter_camera << std::endl;
+        std::cout << "  optimize_inter_camera: " << per_frame_flags.optimize_inter_camera << " (set per frame)" << std::endl;
         std::cout << "  optimize_target_poses: " << per_frame_flags.optimize_target_poses << std::endl;
     }
+
+    // Storage for per-frame optimized intrinsics and extrinsics
+    std::vector<std::array<double, 4>> frame_intrinsics_0, frame_intrinsics_1, frame_intrinsics_2;
+    std::vector<std::array<double, 4>> frame_dist_0, frame_dist_1, frame_dist_2;
+    std::vector<Eigen::Matrix4d> cam1_to_cam0_list, cam2_to_cam0_list;
 
     for (size_t i = 0; i < master_timestamps.size(); ++i) {
         // Build per-frame subsets
@@ -2844,25 +2861,197 @@ int main(int argc, char** argv) {
         //     }
         // }
 
-        // Optimize only that frame’s target pose
+        // Determine which cameras are present and set extrinsics optimization accordingly
+        bool has_cam0 = master_timestamps[i].cam0_idx != -1;
+        bool has_cam1 = master_timestamps[i].cam1_idx != -1;
+        bool has_cam2 = master_timestamps[i].cam2_idx != -1;
+        
+        int num_cameras = (has_cam0 ? 1 : 0) + (has_cam1 ? 1 : 0) + (has_cam2 ? 1 : 0);
+        
+        // Set extrinsics optimization based on camera visibility
+        OptimizationFlags frame_flags = per_frame_flags;
+        bool fix_cam1_extrinsics = false;
+        bool fix_cam2_extrinsics = false;
+        
+        if (num_cameras < 2) {
+            // Only one camera: don't optimize extrinsics
+            frame_flags.optimize_inter_camera = false;
+        } else if (!has_cam0 && has_cam1 && has_cam2) {
+            // Only cam1 and cam2: fix cam1→cam0, optimize cam2→cam0
+            frame_flags.optimize_inter_camera = true;
+            fix_cam1_extrinsics = true;  // Fix cam1, optimize cam2
+        } else {
+            // Multiple cameras including cam0: optimize extrinsics normally
+            frame_flags.optimize_inter_camera = true;
+        }
+        
+        // Create local copies of intrinsics and extrinsics for this frame
+        double frame_intrinsic_0[4], local_frame_dist_0[4];
+        double frame_intrinsic_1[4], local_frame_dist_1[4];
+        double frame_intrinsic_2[4], local_frame_dist_2[4];
+        double frame_qvec_cam_1[4], frame_tvec_cam_1[3];
+        double frame_qvec_cam_2[4], frame_tvec_cam_2[3];
+        
+        // Initialize from global values
+        std::copy(intrinsic_0, intrinsic_0 + 4, frame_intrinsic_0);
+        std::copy(dist_0, dist_0 + 4, local_frame_dist_0);
+        std::copy(intrinsic_1, intrinsic_1 + 4, frame_intrinsic_1);
+        std::copy(dist_1, dist_1 + 4, local_frame_dist_1);
+        std::copy(intrinsic_2, intrinsic_2 + 4, frame_intrinsic_2);
+        std::copy(dist_2, dist_2 + 4, local_frame_dist_2);
+        std::copy(qvec_cam_1, qvec_cam_1 + 4, frame_qvec_cam_1);
+        std::copy(tvec_cam_1, tvec_cam_1 + 3, frame_tvec_cam_1);
+        std::copy(qvec_cam_2, qvec_cam_2 + 4, frame_qvec_cam_2);
+        std::copy(tvec_cam_2, tvec_cam_2 + 3, frame_tvec_cam_2);
+        
+        // Optimize this frame's parameters
         OptimizeFishEyeParameters(
-            intrinsic_0, dist_0,
+            frame_intrinsic_0, local_frame_dist_0,
             img_pts_list_0_frame, obj_pts_list_0_frame,
-            intrinsic_1, dist_1,
+            frame_intrinsic_1, local_frame_dist_1,
             img_pts_list_1_frame, obj_pts_list_1_frame,
-            intrinsic_2, dist_2,
+            frame_intrinsic_2, local_frame_dist_2,
             img_pts_list_2_frame, obj_pts_list_2_frame,
-            qvec_cam_1, tvec_cam_1,
-            qvec_cam_2, tvec_cam_2,
+            frame_qvec_cam_1, frame_tvec_cam_1,
+            frame_qvec_cam_2, frame_tvec_cam_2,
             frame_target_poses,  // local pose only
             single_timestamp,
-            per_frame_flags
+            frame_flags,
+            fix_cam1_extrinsics,
+            fix_cam2_extrinsics
         );
+        
         // Update global target poses
-        // std::cout << "Refined target pose for frame" << i << std::endl;
         target_poses[i] = frame_target_poses[0];
-        // std::cout << "  New pose: [\n";
-        // std::cin.get();  // Wait for user input before proceeding
+        
+        // Store optimized intrinsics for averaging
+        if (has_cam0) {
+            frame_intrinsics_0.push_back({frame_intrinsic_0[0], frame_intrinsic_0[1], 
+                                         frame_intrinsic_0[2], frame_intrinsic_0[3]});
+            frame_dist_0.push_back({local_frame_dist_0[0], local_frame_dist_0[1], 
+                                   local_frame_dist_0[2], local_frame_dist_0[3]});
+        }
+        if (has_cam1) {
+            frame_intrinsics_1.push_back({frame_intrinsic_1[0], frame_intrinsic_1[1], 
+                                         frame_intrinsic_1[2], frame_intrinsic_1[3]});
+            frame_dist_1.push_back({local_frame_dist_1[0], local_frame_dist_1[1], 
+                                   local_frame_dist_1[2], local_frame_dist_1[3]});
+        }
+        if (has_cam2) {
+            frame_intrinsics_2.push_back({frame_intrinsic_2[0], frame_intrinsic_2[1], 
+                                         frame_intrinsic_2[2], frame_intrinsic_2[3]});
+            frame_dist_2.push_back({local_frame_dist_2[0], local_frame_dist_2[1], 
+                                   local_frame_dist_2[2], local_frame_dist_2[3]});
+        }
+        
+        // Store optimized extrinsics for averaging based on camera visibility
+        if (has_cam0 && has_cam1) {
+            // Direct cam1→cam0 estimate
+            Eigen::Matrix4d T_cam1_in_cam0 = quatTransToMatrix(frame_qvec_cam_1, frame_tvec_cam_1);
+            cam1_to_cam0_list.push_back(T_cam1_in_cam0);
+        }
+        
+        if (has_cam0 && has_cam2) {
+            // Direct cam2→cam0 estimate
+            Eigen::Matrix4d T_cam2_in_cam0 = quatTransToMatrix(frame_qvec_cam_2, frame_tvec_cam_2);
+            cam2_to_cam0_list.push_back(T_cam2_in_cam0);
+        } else if (has_cam1 && has_cam2) {
+            // Indirect cam2→cam0 via cam1→cam0
+            // frame_qvec_cam_1 is fixed (cam1→cam0), so use the value we started with (global)
+            Eigen::Matrix4d T_cam1_in_cam0;
+            if (fix_cam1_extrinsics) {
+                // cam1 was fixed, use the value we started with (global)
+                T_cam1_in_cam0 = quatTransToMatrix(qvec_cam_1, tvec_cam_1);
+            } else {
+                // cam1 was optimized, use optimized value (shouldn't happen if only cam1 and cam2)
+                T_cam1_in_cam0 = quatTransToMatrix(frame_qvec_cam_1, frame_tvec_cam_1);
+            }
+            
+            // frame_qvec_cam_2 is cam2→cam0 (optimized in this frame)
+            Eigen::Matrix4d T_cam2_in_cam0_direct = quatTransToMatrix(frame_qvec_cam_2, frame_tvec_cam_2);
+            
+            // This is already cam2→cam0, so we can use it directly
+            cam2_to_cam0_list.push_back(T_cam2_in_cam0_direct);
+        }
+    }
+    
+    // Average intrinsics across frames for each camera
+    std::cout << "Averaging intrinsics across frames..." << std::endl;
+    
+    if (!frame_intrinsics_0.empty()) {
+        std::array<double, 4> avg_intrinsic_0 = {0, 0, 0, 0};
+        std::array<double, 4> avg_dist_0 = {0, 0, 0, 0};
+        for (const auto& intr : frame_intrinsics_0) {
+            for (int j = 0; j < 4; ++j) avg_intrinsic_0[j] += intr[j];
+        }
+        for (const auto& dist : frame_dist_0) {
+            for (int j = 0; j < 4; ++j) avg_dist_0[j] += dist[j];
+        }
+        double n = frame_intrinsics_0.size();
+        for (int j = 0; j < 4; ++j) {
+            intrinsic_0[j] = avg_intrinsic_0[j] / n;
+            dist_0[j] = avg_dist_0[j] / n;
+        }
+        std::cout << "Camera 0: Averaged " << n << " frame estimates" << std::endl;
+    }
+    
+    if (!frame_intrinsics_1.empty()) {
+        std::array<double, 4> avg_intrinsic_1 = {0, 0, 0, 0};
+        std::array<double, 4> avg_dist_1 = {0, 0, 0, 0};
+        for (const auto& intr : frame_intrinsics_1) {
+            for (int j = 0; j < 4; ++j) avg_intrinsic_1[j] += intr[j];
+        }
+        for (const auto& dist : frame_dist_1) {
+            for (int j = 0; j < 4; ++j) avg_dist_1[j] += dist[j];
+        }
+        double n = frame_intrinsics_1.size();
+        for (int j = 0; j < 4; ++j) {
+            intrinsic_1[j] = avg_intrinsic_1[j] / n;
+            dist_1[j] = avg_dist_1[j] / n;
+        }
+        std::cout << "Camera 1: Averaged " << n << " frame estimates" << std::endl;
+    }
+    
+    if (!frame_intrinsics_2.empty()) {
+        std::array<double, 4> avg_intrinsic_2 = {0, 0, 0, 0};
+        std::array<double, 4> avg_dist_2 = {0, 0, 0, 0};
+        for (const auto& intr : frame_intrinsics_2) {
+            for (int j = 0; j < 4; ++j) avg_intrinsic_2[j] += intr[j];
+        }
+        for (const auto& dist : frame_dist_2) {
+            for (int j = 0; j < 4; ++j) avg_dist_2[j] += dist[j];
+        }
+        double n = frame_intrinsics_2.size();
+        for (int j = 0; j < 4; ++j) {
+            intrinsic_2[j] = avg_intrinsic_2[j] / n;
+            dist_2[j] = avg_dist_2[j] / n;
+        }
+        std::cout << "Camera 2: Averaged " << n << " frame estimates" << std::endl;
+    }
+    
+    // Average extrinsics using hierarchical approach
+    std::cout << "Averaging extrinsics across frames..." << std::endl;
+    
+    // Fix cam0, average cam1→cam0
+    if (!cam1_to_cam0_list.empty()) {
+        Eigen::Matrix4d cam1_in_cam0_avg = averagePoses(cam1_to_cam0_list);
+        Eigen::Quaterniond q1(cam1_in_cam0_avg.block<3,3>(0,0));
+        qvec_cam_1[0] = q1.w(); qvec_cam_1[1] = q1.x(); qvec_cam_1[2] = q1.y(); qvec_cam_1[3] = q1.z();
+        tvec_cam_1[0] = cam1_in_cam0_avg(0,3);
+        tvec_cam_1[1] = cam1_in_cam0_avg(1,3);
+        tvec_cam_1[2] = cam1_in_cam0_avg(2,3);
+        std::cout << "Camera 1→Camera 0: Averaged " << cam1_to_cam0_list.size() << " frame estimates" << std::endl;
+    }
+    
+    // Average cam2→cam0 (direct and indirect)
+    if (!cam2_to_cam0_list.empty()) {
+        Eigen::Matrix4d cam2_in_cam0_avg = averagePoses(cam2_to_cam0_list);
+        Eigen::Quaterniond q2(cam2_in_cam0_avg.block<3,3>(0,0));
+        qvec_cam_2[0] = q2.w(); qvec_cam_2[1] = q2.x(); qvec_cam_2[2] = q2.y(); qvec_cam_2[3] = q2.z();
+        tvec_cam_2[0] = cam2_in_cam0_avg(0,3);
+        tvec_cam_2[1] = cam2_in_cam0_avg(1,3);
+        tvec_cam_2[2] = cam2_in_cam0_avg(2,3);
+        std::cout << "Camera 2→Camera 0: Averaged " << cam2_to_cam0_list.size() << " frame estimates" << std::endl;
     }
     
 
