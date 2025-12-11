@@ -19,7 +19,13 @@ export LD_LIBRARY_PATH=/home/jake/calibration_w_eigen/third_party/Pangolin/insta
 # ./calibrate_3_cameras -datafile /home/jake/gripper_calib_data/detected_corner_frac.csv
 
 #synthetic data_3_cams, synthetic calibration only
-./build/calibrate_3_cameras -datafile /home/jake/calibration_w_python/synthetic_data_3_cams.csv 
+./build/calibrate_3_cameras -datafile /home/jake/calibration_w_python/synthetic_data_3_cams.csv -perframeflags /home/jake/calibration_w_eigen/per_frame_flags_extrinsics_only.json -globalflags /home/jake/calibration_w_eigen/global_flags_default.json
+
+#synthetic data_3_cams, synthetic calibration, only optimize extriniscs per frame
+# ./build/calibrate_3_cameras -datafile /home/jake/calibration_w_python/synthetic_data_3_cams.csv 
+
+#just frame 1,synthetic data_3_cams, synthetic calibration only
+# ./build/calibrate_3_cameras -datafile /home/jake/calibration_w_python/synthetic_data_3_cams_frame_1.csv -perframeflags /home/jake/calibration_w_eigen/per_frame_flags_extrinsics_only.json -globalflags /home/jake/calibration_w_eigen/global_flags_default.json
 
 #synthetic data_3_cams, synthetic calibration, intrinsics default, extrinsics default
 # ./build/calibrate_3_cameras -datafile /home/jake/calibration_w_python/synthetic_data_3_cams.csv -calibrationfile /home/jake/calibration_w_python/synthetic_calibration.json -intrinsicsfile /home/jake/calibration_w_eigen/intrinsics_default.json -extrinsicsfile /home/jake/calibration_w_eigen/extrinsics_default.json
