@@ -44,6 +44,15 @@ Todo
     - 12/1 figure out how to get intrinsics to converge well. Maybe shuffle a few times betweens optimizing intrinsics and extrinsics?
     - 12/2 isolate frame 6 and get working since you only have to deal with one camera, then frame 1 with all 3 cameras
     - 12/3 may initialize intrinisce with each individual frame as well?
+    - 12/8 optimize first frame from initial claibration.
+    - 12/9 optimize per image (not per frame) to get camera iintrinsics and extrinsics with respect to each target an use that to get the inter camera data.
+    - 12/11 fix vizualization crash
+    - 12/16 still try to get a single frame working. It seems that there is a bug that is cause the same data to be shown on all three frames?
+    - 12/23 bit of a goose chase - it seemed to calibrate the frame fine but it suggested that there should be more objects points. Reran the python simulation and I think it made new data. So oh well.
+    - 12/30 running on one frame with no convergence. Well it converges from cam0 but not the other cams. Net step ask cursor to allow enough leeway to get convergence on the other cams
+    - 12/31 hmmm why does cam0 converge but the other two don't? I have added vizualization for the other two, but I haven't yet looked the the results.
+    - 1/26 look at the initialization for cam 1 and 2 and maybe enable stored oprimization frames so we can see why they aren't optimizing.
+    - 1/27 okok so it looks like the initial calibration is decenet. now I should do a much larger set of calibrations and then compared where the reproject the cameras to be and see if taking an average makes sense.
 
 
 - Fix distortion wrap around checking in simulator, visuzlizer and calibrator

@@ -1636,8 +1636,6 @@ void OptimizeFishEyeParameters(
                     problem.SetParameterBlockConstant(dist_0);
                 }
                 // fix extrinsics of cam0 (identity) - always fixed for cam 0
-                problem.SetParameterBlockConstant(intrinsic_0);
-                problem.SetParameterBlockConstant(dist_0);
                 problem.AddParameterBlock(cam0_q, 4);
                 problem.SetParameterBlockConstant(cam0_q);
                 problem.AddParameterBlock(cam0_t, 3);
@@ -2426,6 +2424,14 @@ int main(int argc, char** argv) {
         const auto& entry = master_timestamps[frame_idx];
         std::cout << "\nProcessing frame " << frame_idx << " (timestamp " << entry.timestamp_id << ")..." << std::endl;
         
+        // Track optimized intrinsics for this frame (will be updated as cameras are optimized)
+        double frame_intrinsic_0[4] = {intrinsic_0[0], intrinsic_0[1], intrinsic_0[2], intrinsic_0[3]};
+        double frame_dist_0[4] = {dist_0[0], dist_0[1], dist_0[2], dist_0[3]};
+        double frame_intrinsic_1[4] = {intrinsic_1[0], intrinsic_1[1], intrinsic_1[2], intrinsic_1[3]};
+        double frame_dist_1[4] = {dist_1[0], dist_1[1], dist_1[2], dist_1[3]};
+        double frame_intrinsic_2[4] = {intrinsic_2[0], intrinsic_2[1], intrinsic_2[2], intrinsic_2[3]};
+        double frame_dist_2[4] = {dist_2[0], dist_2[1], dist_2[2], dist_2[3]};
+        
         // Process each camera that has data for this frame
         for (int cam_id = 0; cam_id < 3; ++cam_id) {
             int cam_idx = -1;
@@ -2488,6 +2494,45 @@ int main(int argc, char** argv) {
             double dummy_qvec[4] = {1.0, 0.0, 0.0, 0.0};
             double dummy_tvec[3] = {0.0, 0.0, 0.0};
             
+            // Save calibration results BEFORE optimization
+            {
+                // Prepare intrinsics arrays for save (use current frame intrinsics)
+                double save_intrinsic_0[4] = {frame_intrinsic_0[0], frame_intrinsic_0[1], frame_intrinsic_0[2], frame_intrinsic_0[3]};
+                double save_dist_0[4] = {frame_dist_0[0], frame_dist_0[1], frame_dist_0[2], frame_dist_0[3]};
+                double save_intrinsic_1[4] = {frame_intrinsic_1[0], frame_intrinsic_1[1], frame_intrinsic_1[2], frame_intrinsic_1[3]};
+                double save_dist_1[4] = {frame_dist_1[0], frame_dist_1[1], frame_dist_1[2], frame_dist_1[3]};
+                double save_intrinsic_2[4] = {frame_intrinsic_2[0], frame_intrinsic_2[1], frame_intrinsic_2[2], frame_intrinsic_2[3]};
+                double save_dist_2[4] = {frame_dist_2[0], frame_dist_2[1], frame_dist_2[2], frame_dist_2[3]};
+                
+                // Update the camera being optimized with current local values
+                if (cam_id == 0) {
+                    std::copy(local_intrinsic, local_intrinsic + 4, save_intrinsic_0);
+                    std::copy(local_dist, local_dist + 4, save_dist_0);
+                } else if (cam_id == 1) {
+                    std::copy(local_intrinsic, local_intrinsic + 4, save_intrinsic_1);
+                    std::copy(local_dist, local_dist + 4, save_dist_1);
+                } else {
+                    std::copy(local_intrinsic, local_intrinsic + 4, save_intrinsic_2);
+                    std::copy(local_dist, local_dist + 4, save_dist_2);
+                }
+                
+                // Use initialized pose for this camera (single_timestamp has one entry, so one target pose)
+                std::vector<std::array<double, 7>> frame_target_poses_before = {target_pose_cam_frame};
+                
+                std::string filename_before = "calibration_result_timestamp_" + std::to_string(entry.timestamp_id) + "_cam" + std::to_string(cam_id) + "_before.json";
+                SaveCalibrationResult(
+                    filename_before,
+                    save_intrinsic_0, save_dist_0,
+                    save_intrinsic_1, save_dist_1,
+                    save_intrinsic_2, save_dist_2,
+                    dummy_qvec, dummy_tvec, // cam1 (dummy)
+                    dummy_qvec, dummy_tvec, // cam2 (dummy)
+                    frame_target_poses_before,
+                    single_timestamp
+                );
+                std::cout << "    Saved calibration results BEFORE optimization to " << filename_before << std::endl;
+            }
+            
             // 2d) Optimize intrinsics and target pose for this single camera+frame
             OptimizationFlags single_cam_flags;
             single_cam_flags.optimize_intrinsics = true;
@@ -2549,16 +2594,70 @@ int main(int argc, char** argv) {
                 );
             }
             
+            // Save calibration results AFTER optimization
+            {
+                // Prepare intrinsics arrays for save (use current frame intrinsics)
+                double save_intrinsic_0[4] = {frame_intrinsic_0[0], frame_intrinsic_0[1], frame_intrinsic_0[2], frame_intrinsic_0[3]};
+                double save_dist_0[4] = {frame_dist_0[0], frame_dist_0[1], frame_dist_0[2], frame_dist_0[3]};
+                double save_intrinsic_1[4] = {frame_intrinsic_1[0], frame_intrinsic_1[1], frame_intrinsic_1[2], frame_intrinsic_1[3]};
+                double save_dist_1[4] = {frame_dist_1[0], frame_dist_1[1], frame_dist_1[2], frame_dist_1[3]};
+                double save_intrinsic_2[4] = {frame_intrinsic_2[0], frame_intrinsic_2[1], frame_intrinsic_2[2], frame_intrinsic_2[3]};
+                double save_dist_2[4] = {frame_dist_2[0], frame_dist_2[1], frame_dist_2[2], frame_dist_2[3]};
+                
+                // Update the camera being optimized with optimized local values
+                if (cam_id == 0) {
+                    std::copy(local_intrinsic, local_intrinsic + 4, save_intrinsic_0);
+                    std::copy(local_dist, local_dist + 4, save_dist_0);
+                } else if (cam_id == 1) {
+                    std::copy(local_intrinsic, local_intrinsic + 4, save_intrinsic_1);
+                    std::copy(local_dist, local_dist + 4, save_dist_1);
+                } else {
+                    std::copy(local_intrinsic, local_intrinsic + 4, save_intrinsic_2);
+                    std::copy(local_dist, local_dist + 4, save_dist_2);
+                }
+                
+                // Use optimized pose for this camera (single_timestamp has one entry, so one target pose)
+                std::vector<std::array<double, 7>> frame_target_poses_after = {single_target_pose[0]};
+                
+                std::string filename_after = "calibration_result_timestamp_" + std::to_string(entry.timestamp_id) + "_cam" + std::to_string(cam_id) + "_after.json";
+                SaveCalibrationResult(
+                    filename_after,
+                    save_intrinsic_0, save_dist_0,
+                    save_intrinsic_1, save_dist_1,
+                    save_intrinsic_2, save_dist_2,
+                    dummy_qvec, dummy_tvec, // cam1 (dummy)
+                    dummy_qvec, dummy_tvec, // cam2 (dummy)
+                    frame_target_poses_after,
+                    single_timestamp
+                );
+                std::cout << "    Saved calibration results AFTER optimization to " << filename_after << std::endl;
+            }
+            
             // Store optimized intrinsics and target pose
             if (cam_id == 0) {
                 per_frame_intrinsics_0.push_back({local_intrinsic[0], local_intrinsic[1], local_intrinsic[2], local_intrinsic[3]});
                 per_frame_dist_0.push_back({local_dist[0], local_dist[1], local_dist[2], local_dist[3]});
+                // Update frame-specific intrinsics
+                for (int i = 0; i < 4; ++i) {
+                    frame_intrinsic_0[i] = local_intrinsic[i];
+                    frame_dist_0[i] = local_dist[i];
+                }
             } else if (cam_id == 1) {
                 per_frame_intrinsics_1.push_back({local_intrinsic[0], local_intrinsic[1], local_intrinsic[2], local_intrinsic[3]});
                 per_frame_dist_1.push_back({local_dist[0], local_dist[1], local_dist[2], local_dist[3]});
+                // Update frame-specific intrinsics
+                for (int i = 0; i < 4; ++i) {
+                    frame_intrinsic_1[i] = local_intrinsic[i];
+                    frame_dist_1[i] = local_dist[i];
+                }
             } else {
                 per_frame_intrinsics_2.push_back({local_intrinsic[0], local_intrinsic[1], local_intrinsic[2], local_intrinsic[3]});
                 per_frame_dist_2.push_back({local_dist[0], local_dist[1], local_dist[2], local_dist[3]});
+                // Update frame-specific intrinsics
+                for (int i = 0; i < 4; ++i) {
+                    frame_intrinsic_2[i] = local_intrinsic[i];
+                    frame_dist_2[i] = local_dist[i];
+                }
             }
             
             per_frame_target_poses_by_cam[frame_idx].push_back(single_target_pose[0]);
@@ -2567,8 +2666,39 @@ int main(int argc, char** argv) {
                       << ", fy=" << local_intrinsic[1] << ", cx=" << local_intrinsic[2] 
                       << ", cy=" << local_intrinsic[3] << std::endl;
         }
+        
+        // Save calibration results for this frame after all cameras are processed
+        {
+            // Collect target poses for this frame (one per camera that was optimized)
+            std::vector<std::array<double, 7>> frame_target_poses;
+            const auto& target_poses_cam = per_frame_target_poses_by_cam[frame_idx];
+            for (const auto& tp : target_poses_cam) {
+                frame_target_poses.push_back(tp);
+            }
+            
+            // Create timestamp entry for this frame
+            std::vector<TimestampEntry> frame_timestamp = {entry};
+            
+            // Use dummy extrinsics (identity) since we're not optimizing them yet
+            double dummy_qvec[4] = {1.0, 0.0, 0.0, 0.0};
+            double dummy_tvec[3] = {0.0, 0.0, 0.0};
+            
+            // Save calibration result for this frame
+            std::string filename = "calibration_result_initial_timestamp_" + std::to_string(entry.timestamp_id) + ".json";
+            SaveCalibrationResult(
+                filename,
+                frame_intrinsic_0, frame_dist_0,
+                frame_intrinsic_1, frame_dist_1,
+                frame_intrinsic_2, frame_dist_2,
+                dummy_qvec, dummy_tvec, // cam1 (dummy)
+                dummy_qvec, dummy_tvec, // cam2 (dummy)
+                frame_target_poses,
+                frame_timestamp
+            );
+            std::cout << "  Saved calibration results for timestamp " << entry.timestamp_id << " to " << filename << std::endl;
+        }
     }
-    
+    std::cin.get();
     // Step 3a: Average intrinsics across frames for each camera
     std::cout << "\n========== Averaging intrinsics across frames ==========" << std::endl;
     
@@ -3387,6 +3517,16 @@ int main(int argc, char** argv) {
         std::copy(tvec_cam_1, tvec_cam_1 + 3, frame_tvec_cam_1);
         std::copy(qvec_cam_2, qvec_cam_2 + 4, frame_qvec_cam_2);
         std::copy(tvec_cam_2, tvec_cam_2 + 3, frame_tvec_cam_2);
+
+        //Save a calibration file before each optimization, with appropriate name
+        std::string filename = "calibration_result_initial_frame_" + std::to_string(i) + ".json";
+        SaveCalibrationResult(filename,
+            intrinsic_0, dist_0,
+            intrinsic_1, dist_1,
+            intrinsic_2, dist_2,
+            qvec_cam_1, tvec_cam_1,
+            qvec_cam_2, tvec_cam_2,
+            frame_target_poses, single_timestamp);
         
         // Optimize this frame's parameters
         OptimizeFishEyeParameters(
