@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include <iomanip>
 #include <iostream>
 #include <tuple>
 #include <string>
@@ -2698,7 +2699,7 @@ int main(int argc, char** argv) {
             std::cout << "  Saved calibration results for timestamp " << entry.timestamp_id << " to " << filename << std::endl;
         }
     }
-    std::cin.get();
+    // std::cin.get();
     // Step 3a: Average intrinsics across frames for each camera
     std::cout << "\n========== Averaging intrinsics across frames ==========" << std::endl;
     
@@ -2775,7 +2776,11 @@ int main(int argc, char** argv) {
     if (!extrinsics_loaded) {
         // Compute inter-camera extrinsics from per-frame target poses
         std::vector<Eigen::Matrix4d> cam1_to_cam0_list, cam2_to_cam0_list;
-        
+        // Per-frame storage for saving pre-optimization extrinsics (frame_index -> present?, T)
+        std::vector<std::pair<bool, Eigen::Matrix4d>> cam1_per_frame(master_timestamps.size(), {false, Eigen::Matrix4d::Identity()});
+        std::vector<std::pair<bool, Eigen::Matrix4d>> cam2_per_frame(master_timestamps.size(), {false, Eigen::Matrix4d::Identity()});
+        std::vector<std::pair<bool, Eigen::Matrix4d>> cam2_to_cam1_per_frame(master_timestamps.size(), {false, Eigen::Matrix4d::Identity()});
+
         for (size_t frame_idx = 0; frame_idx < master_timestamps.size(); ++frame_idx) {
             const auto& entry = master_timestamps[frame_idx];
             const auto& target_poses_cam = per_frame_target_poses_by_cam[frame_idx];
@@ -2804,6 +2809,7 @@ int main(int argc, char** argv) {
                 Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(target_pose_cam1);
                 Eigen::Matrix4d T_cam1_in_cam0 = T_target_in_cam0 * T_target_in_cam1.inverse();
                 cam1_to_cam0_list.push_back(T_cam1_in_cam0);
+                cam1_per_frame[frame_idx] = {true, T_cam1_in_cam0};
             }
             
             // Compute cam2→cam0: T_cam2_in_cam0 = T_target_in_cam0 * T_target_in_cam2^-1
@@ -2812,6 +2818,109 @@ int main(int argc, char** argv) {
                 Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(target_pose_cam2);
                 Eigen::Matrix4d T_cam2_in_cam0 = T_target_in_cam0 * T_target_in_cam2.inverse();
                 cam2_to_cam0_list.push_back(T_cam2_in_cam0);
+                cam2_per_frame[frame_idx] = {true, T_cam2_in_cam0};
+            }
+            
+            // Compute cam2→cam1: T_cam2_in_cam1 = T_target_in_cam1 * T_target_in_cam2^-1 (for frames with cam1+cam2 but possibly no cam0)
+            if (has_cam1 && has_cam2) {
+                Eigen::Matrix4d T_target_in_cam1 = arrayPoseToMatrix(target_pose_cam1);
+                Eigen::Matrix4d T_target_in_cam2 = arrayPoseToMatrix(target_pose_cam2);
+                Eigen::Matrix4d T_cam2_in_cam1 = T_target_in_cam1 * T_target_in_cam2.inverse();
+                cam2_to_cam1_per_frame[frame_idx] = {true, T_cam2_in_cam1};
+            }
+        }
+
+        // Save pre-optimization per-frame extrinsics to JSON for consistency analysis.
+        // When running one frame per command (e.g. rc3.sh), merge with existing file by timestamp_id
+        // so all runs accumulate into one JSON instead of overwriting.
+        {
+            json pre_opt_json;
+            pre_opt_json["description"] = "Pre-optimization inter-camera extrinsics per frame (from single-camera target poses, before global optimization)";
+            pre_opt_json["frames"] = json::array();
+            for (size_t i = 0; i < master_timestamps.size(); ++i) {
+                json frame_entry;
+                frame_entry["frame_index"] = static_cast<int>(i);
+                frame_entry["timestamp_id"] = master_timestamps[i].timestamp_id;
+                if (cam1_per_frame[i].first) {
+                    const Eigen::Matrix4d& T = cam1_per_frame[i].second;
+                    Eigen::Quaterniond q(T.block<3,3>(0,0));
+                    frame_entry["camera1_to_camera0"] = {
+                        {"quaternion", json::array({q.w(), q.x(), q.y(), q.z()})},
+                        {"translation", json::array({T(0,3), T(1,3), T(2,3)})}
+                    };
+                } else {
+                    frame_entry["camera1_to_camera0"] = nullptr;
+                }
+                if (cam2_per_frame[i].first) {
+                    const Eigen::Matrix4d& T = cam2_per_frame[i].second;
+                    Eigen::Quaterniond q(T.block<3,3>(0,0));
+                    frame_entry["camera2_to_camera0"] = {
+                        {"quaternion", json::array({q.w(), q.x(), q.y(), q.z()})},
+                        {"translation", json::array({T(0,3), T(1,3), T(2,3)})}
+                    };
+                } else {
+                    frame_entry["camera2_to_camera0"] = nullptr;
+                }
+                if (cam2_to_cam1_per_frame[i].first) {
+                    const Eigen::Matrix4d& T = cam2_to_cam1_per_frame[i].second;
+                    Eigen::Quaterniond q(T.block<3,3>(0,0));
+                    frame_entry["camera2_to_camera1"] = {
+                        {"quaternion", json::array({q.w(), q.x(), q.y(), q.z()})},
+                        {"translation", json::array({T(0,3), T(1,3), T(2,3)})}
+                    };
+                } else {
+                    frame_entry["camera2_to_camera1"] = nullptr;
+                }
+                pre_opt_json["frames"].push_back(frame_entry);
+            }
+
+            std::string pre_opt_path = "pre_optimization_extrinsics_per_frame.json";
+            json merged = pre_opt_json;
+            std::ifstream ifs(pre_opt_path);
+            if (ifs && ifs.good()) {
+                try {
+                    json existing;
+                    ifs >> existing;
+                    if (existing.contains("frames") && existing["frames"].is_array()) {
+                        json::array_t& existing_frames = existing["frames"].get_ref<json::array_t&>();
+                        for (const json& new_frame : pre_opt_json["frames"]) {
+                            int ts_id = new_frame["timestamp_id"].get<int>();
+                            bool found = false;
+                            for (size_t k = 0; k < existing_frames.size(); ++k) {
+                                if (existing_frames[k].contains("timestamp_id") &&
+                                    existing_frames[k]["timestamp_id"].get<int>() == ts_id) {
+                                    existing_frames[k] = new_frame;
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found) {
+                                existing_frames.push_back(new_frame);
+                            }
+                        }
+                        merged["frames"] = existing_frames;
+                        // Sort by timestamp_id and renumber frame_index
+                        json::array_t& frames = merged["frames"].get_ref<json::array_t&>();
+                        std::sort(frames.begin(), frames.end(),
+                            [](const json& a, const json& b) {
+                                return a["timestamp_id"].get<int>() < b["timestamp_id"].get<int>();
+                            });
+                        for (size_t k = 0; k < frames.size(); ++k) {
+                            frames[k]["frame_index"] = static_cast<int>(k);
+                        }
+                    }
+                } catch (const json::exception& e) {
+                    std::cerr << "Warning: Could not merge existing " << pre_opt_path << " (" << e.what() << "), writing current run only." << std::endl;
+                }
+            }
+
+            std::ofstream ofs(pre_opt_path);
+            if (ofs) {
+                ofs << std::setw(4) << merged << std::endl;
+                std::cout << "Saved pre-optimization per-frame extrinsics to " << pre_opt_path
+                          << " (" << merged["frames"].size() << " frames)" << std::endl;
+            } else {
+                std::cerr << "Warning: Could not write " << pre_opt_path << std::endl;
             }
         }
         
@@ -3687,7 +3796,7 @@ int main(int argc, char** argv) {
         qvec_cam_2, tvec_cam_2,
         target_poses, master_timestamps
     );
-    std::cin.get();
+    // std::cin.get();
 
     std::cout << "Stage 2: Global optimization..." << std::endl;
 

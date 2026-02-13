@@ -53,6 +53,13 @@ Todo
     - 12/31 hmmm why does cam0 converge but the other two don't? I have added vizualization for the other two, but I haven't yet looked the the results.
     - 1/26 look at the initialization for cam 1 and 2 and maybe enable stored oprimization frames so we can see why they aren't optimizing.
     - 1/27 okok so it looks like the initial calibration is decenet. now I should do a much larger set of calibrations and then compared where the reproject the cameras to be and see if taking an average makes sense.
+          though honestly the per frame optimization could be a lot better?
+    - 1/28 ok, i need to visualize each frame individually, so I need to break out the synthetic data into frames
+    - 2/2 vizualized each frame, now I need to look at the ones that failed compeletely.
+      - F1C2, F2C1, F3C1, F5C1 a few wrap arounds but looks good otherwise, F26C2 ... but not enough ponts, so that makes sense,
+    - 2/9 Now back out the extriniscs
+    - 2/10 deal with all the null (get cam1-cam2 extriniscs)
+    - 2/12 initial a frame wide optimiztion with the per cam per frame results
 
 
 - Fix distortion wrap around checking in simulator, visuzlizer and calibrator
